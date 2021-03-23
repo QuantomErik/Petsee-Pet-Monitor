@@ -3,7 +3,7 @@
 >Din sprint backlog bör innehålla:
 >
 >* Analys av föregående iteration; en kort text kring vad som gick bra och vad som inte gick så bra.
->* Tidsrapport – skattad vs. verklig tid för varje mål, totalt arbetad tid i iterationen och projektet.
+>* Tidsrapport – skattad vs. verklig tid för varje mål, totalt arbetad tid i iterationen och projektet. _I denna kurs ska du rapportera **all** tid du lägger på projektet. Detta inkluderar teoriinläsning, dokumentation med mera._
 >* Mål för iterationen i form av nedbrutna och tidsskattade krav från kravspec.
 >* Burndownchart – ej obligatoriskt
 >
