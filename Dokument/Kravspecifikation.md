@@ -2,15 +2,15 @@
 
 ## 1. Funktionella krav (Frivilligt)
 
->Om du har ett behov av att skriva något eller några krav mer i ett sammanhang t.ex. som användningsfall (use cases) kan det vara klumpigt att göra det i form av Issues. Om du vill kan du i så fall lägga in ett eller flera funktionella krav i kravspecen. Delar av ditt krav kan då länkas till respektive issue i din backlog.
+>Om du har ett behov av att skriva något eller några krav mer i ett sammanhang till exempel som användningsfall (use cases) kan det vara klumpigt att göra det i form av ”issues”. Om du vill kan du i så fall lägga in ett eller flera funktionella krav i kravspecifikationen. Delar av ditt krav kan då länkas till respektive issue i din backlog.
 
-## 2. Ickefunktionella Produktkrav (non-functional product requirements)
+## 2. Ickefunktionella produktkrav (non-functional product requirements)
 
->Definiera de kvalitetskrav som finns i din applikation. Kvalitetskrav genomsyra ofta hela utvecklingen och påverkar systemet som en helhet. Det går därför oftast inte att hantera dem som ett enskillt issue. Glöm inte bort att fundera över testbarhet när det gäller dina kvalitetskrav. Det kan också finnas en poäng i att ytterligare analysera ev. olika typer av användare i systemet.
+>Definiera de kvalitetskrav som finns i din applikation. Kvalitetskrav genomsyra ofta hela utvecklingen och påverkar systemet som en helhet. Det går därför oftast inte att hantera dem som ett enskilt ”issue”. Glöm inte bort att fundera över testbarhet när det gäller dina kvalitetskrav. Det kan också finnas en poäng i att ytterligare analysera ev. olika typer av användare i systemet.
 
 ## 3. Organisationskrav (non-functional organizational requirements)
 
->Krav kring hur du ska arbeta och hur utvecklingen ska ske. T.ex. krav kring programspråk, utvecklingsmiljö, och/eller vilka plattformar systemet ska köras/levereras på.
+>Krav kring hur du ska arbeta och hur utvecklingen ska ske. Exempel på krav kan vara programspråk, utvecklingsmiljö, och/eller vilka plattformar systemet ska köras/levereras på.
 
 ### 3.1 Versionshantering
 
@@ -22,7 +22,7 @@
 
 ### 3.3 Koddokumentation
 
->Beskriv hur du kommer att arbeta med dokumentation av din kod och om detta kommer att generera någon extern dokumentation av din applikation (exempelvis api-dokumentation).
+>Beskriv hur du kommer att arbeta med dokumentation av din kod och om detta kommer att generera någon extern dokumentation av din applikation (exempelvis API-dokumentation).
 
 
 ## 4. Externa krav (non-functional external requirements)
