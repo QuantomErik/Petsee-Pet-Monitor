@@ -12,4 +12,4 @@
 >* Resursplan
 >* Tidplan för projektet, med milstolpar för deadlines, beakta speciellt hårda deadlines som inte går att flytta på
 >
->I början är projektplanen ofta ganska grov och opålitlig när man går in i Constructionfasen så ska dock projektplanen vara tillräckligt solid och större avsteg kan anses som allvarliga.
+>I början är projektplanen ofta ganska grov och opålitlig. När du går in i konstruktionsfasen så ska dock projektplanen vara tillräckligt solid och större avsteg kan anses som allvarliga.
