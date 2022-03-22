@@ -2,5 +2,4 @@
 I vissa projekt med en komplex övergripande arkitektur är detta dokument mycket viktigt, medan i enklare applikationer kommer det kanske inte att tillföra så mycket. 
 >
 >Illustrera gärna den övergripande arkitekturen med en eller flera bilder.
-
  
