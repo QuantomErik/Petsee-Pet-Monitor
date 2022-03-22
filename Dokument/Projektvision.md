@@ -10,14 +10,14 @@
 >* **Baskrav/Egenskaper/Features/Unique Selling Points**
 Ett baskrav är ett krav på en hög nivå och innehåller inga detaljer, detaljerna kommer snarare i kravspecifikationen. Baskraven får gärna vara säljande, lyft fram det som gör din applikation bra, spännande, unik etc. Det är ingen mening med att lista “självklar” funktionalitet som t.ex. att “Användaren ska kunna logga in” (detta hör snarare hemma i kravspecifikationen). Sammantaget så skall baskraven lösa problemet i problembeskrivningen för den tilltänkta målgruppen på ett för marknaden unikt sätt.
 >* **Teknik**
-I detta projekt för vi även in ett avsnitt kring tekniker du tänkt använda dig av, då detta är en viktig punkt i dessa projekt. Tekniker kan väljas utifrån tidigare erfarenhet, att man vill testa eller lära sig något, industristandard, tillgänglighet, etc. Teknik kan vara alltifrån val av programmeringsspråk, speciella api:er, ramverk, hårdvaruplattformar, servermjukvaror etc.
+I detta projekt för vi även in ett avsnitt kring tekniker du tänkt använda dig av, då detta är en viktig punkt i dessa projekt. Tekniker kan väljas utifrån tidigare erfarenhet, att man vill testa eller lära sig något, industristandard, tillgänglighet, etc. Teknik kan vara alltifrån val av programmeringsspråk, speciella API:er, ramverk, hårdvaruplattformar, servermjukvaror etc.
 >* (Ditt namn, användarnamn och projektnamn i tabellen nedan)
 
 
 |              |                                          |
 |--------------|------------------------------------------|
 | Namn         | Ellen Nu                                 |
-| Användarnamn | en222xy                                  |
+| Användarnamn | en999zz                                  |
 | Studieform   | Campus eller Distans                     |
-| Projektnamn  | Studenräkning                            |
+| Projektnamn  | Studenträkning                            |
 | Tekniker     | React, Nginx, Node.js, Express, HTML/CSS |
