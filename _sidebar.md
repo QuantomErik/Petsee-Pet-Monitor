@@ -11,7 +11,7 @@ Dokumentation:
 - [Ordlista](/Dokument/Ordlista) (frivillig)
 
 Testning:
-- [Testspecifikation (VT22)](Testspecifikation-(VT22))
+- [Testspecifikation (VT22)](Testning/Testspecifikation-(VT22))
 - [Testspecifikation](Testning/Testspecifikation)
 - [Testrapport](Testning/Testrapport 1) iteration 1
 - ...
