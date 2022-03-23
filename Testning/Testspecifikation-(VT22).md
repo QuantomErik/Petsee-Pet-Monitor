@@ -36,7 +36,7 @@
 >
 >Testning över lag är ett svårt område och det kan alltid finnas buggar i ett system. Ett tecken på att du inte testar bra är att du inte hittar några buggar. __Arbeta kontinuerligt med testningen, prioritera testning av riskfyllda delar och vänta inte med testning till slutet! Glöm inte heller att använda din projektgrupp där ni hela tiden kan testa varandras applikationer och på så sätt hitta buggar.__
 
-# Exempel Testplan och testspecifikation
+# Exempel på testplan och testspecifikation
 
 ## Målbeskrivning
 
