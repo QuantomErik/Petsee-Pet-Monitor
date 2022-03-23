@@ -1,7 +1,7 @@
 ### [Startsida](home)
 
 ---
-Dokumentation:
+#### Dokumentation
 - [Post Mortem - Slutrapport](/Dokument/Slutrapport)
 - [Projektvision](/Dokument/Projektvision)
 - [Arkitektur och systemdesgin](/Dokument/Arkitektur)
@@ -10,23 +10,21 @@ Dokumentation:
 - [Risklista](/Dokument/Risklista) (frivillig)
 - [Ordlista](/Dokument/Ordlista) (frivillig)
 
-Testning:
-- [Testspecifikation (VT22)](Testning/Testspecifikation-(VT22))
+#### Testning
 - [Testspecifikation](Testning/Testspecifikation)
 - [Testrapport](Testning/Testrapport 1) iteration 1
 - ...
 - Testrapport iteration 8
 
-Sprint Backlogs
+#### Sprint Backlogs
 - [Iteration 0](/Sprints/Iteration 0)
 - Iteration 1
 - ...
 - Iteration 8
 
-Applikationen:
+### Applikationen
 - [Källkod](Källkod)
 - [Körbar version av applikationen](Körbar) (frivillig)
 - [Demonstrationsfilm](Demonstrationsfilm)
 
-*Editera denna meny genom att klicka på "[Edit siderbar](_sidebar/edit)"*
-
+_Editera denna meny genom att klicka på "[Edit siderbar](_sidebar/edit)"_
