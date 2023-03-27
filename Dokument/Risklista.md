@@ -6,7 +6,8 @@
 >* Riskspecifikationer
 >   * Risknamn
 >   * Beskrivning
->   * Sannolikhet (1-5), Konsekvens (1-5), Prioritet: Sannolikhet * Konsekvens
+>   * Sannolikhet (1-5), Konsekvens (1-5), Prioritet: Sannolikhet 
+>   * Konsekvens
 >   * Bevakningsstrategi, hur kan vi bevaka denna risk, vem är ansvarig?
 >   * Konsekvensstrategi, Kan vi på något sätt minska konsekvensen av risken?
 >   * Sannolikhetsstrategi, Kan vi på något sätt minska sannolikheten att risken inträffar?
