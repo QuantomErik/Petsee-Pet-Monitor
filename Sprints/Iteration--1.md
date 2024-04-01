@@ -10,7 +10,9 @@
 | Research av React                                  |                       |                                   | 3           | 3           |
 | Leta Inspiration Online för projectidé             |                       |                                   | 5           | 5           |
 | Fundera över projectidé på promenad/i bilen        |                       |                                   | 7           | 7           |
+| Skriva projectvision                               |                       |                                   | 2           | 2           |
+| Skriva Sprint BackLogs                             |                       |                                   | 2           | 2           |
 | …                                                  | …                     | …                                 | …           | …           |
-|                                                    |                       | Summa                             | 21          | 21          |
-|                                                    |                       | Tid sedan föregående iteration    |             | 21          |
-|                                                    |                       | Tid totalt i projektet            |             | 21          |
+|                                                    |                       | Summa                             | 25          | 25          |
+|                                                    |                       | Tid sedan föregående iteration    |             | 25          |
+|                                                    |                       | Tid totalt i projektet            |             | 25          |
