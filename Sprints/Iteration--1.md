@@ -1,5 +1,3 @@
->En iterationsplan (sprint backlog) är en detaljerad plan för en iteration; i detta fall en vecka. Den upprättas med utgångspunkt från t.ex. risklistan, kravspecifikation, vision, testrapport och återkoppling från kund/slutanvändare. Denna plan uppdateras och skattas kontinuerligt under iterationen/sprinten. En grafisk status (burndown chart) kan göras om det tillför någon intressant information. Då iterationsplanen och framför allt tidsskattningar och ”burndown chart” skall hållas uppdaterade kontinuerligt så är det ganska smidigt att antingen dela iterationsplanen i två dokument (ett för text och ett kalkylark) eller bara ha det i ett kalkylark. Att klara av att rapportera sin tid är ett obligatoriskt moment i kursen. Rapporter i efterhand godkännes ej! Slarva inte med detta!!
->
 >Din sprint backlog bör innehålla:
 >
 >* Analys av föregående iteration; en kort text kring vad som gick bra och vad som inte gick så bra.
