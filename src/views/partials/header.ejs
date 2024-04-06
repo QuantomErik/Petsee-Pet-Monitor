@@ -1,0 +1,28 @@
+<header class="header">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="./">Home</a>
+          <a class="nav-link" href="./dash">Dashboard</a>
+
+          <% if (isAuthenticated) { %>
+            <!-- If user is logged in, display Create Snippet and Logout links. -->
+            <a class="nav-link" href="./dash/create">Create snippet</a>
+              <form method="post" action="<%= baseURL %>logout" class="nav-link">
+              <button type="submit" class="btn btn-link">Logout</button>
+            </form>
+          <% } else { %>
+            <!-- Login and Register links -->
+            <a class="nav-link" href="./login">Login</a>
+            <a class="nav-link" href="./register">Register</a>
+          <% } %>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

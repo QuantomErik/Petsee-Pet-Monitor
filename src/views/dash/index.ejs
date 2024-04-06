@@ -1,0 +1,78 @@
+<h1>Dashboard</h1>
+
+  <form method="GET" action="<%= baseURL %>dash">
+  <select name="filterType">
+    <option value="name" <% if (viewData.filterType === 'name') { %>selected<% } %>>Name</option>
+    <option value="tag" <% if (viewData.filterType === 'tag') { %>selected<% } %>>Tag</option>
+    <option value="occupation" <% if (viewData.filterType === 'occupation') { %>selected<% } %>>Occupation</option>
+    <option value="age" <% if (viewData.filterType === 'age') { %>selected<% } %>>Age</option>
+  </select>
+  <input type="text" name="filterValue" placeholder="Enter filter value">
+  <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-center px-4">Age</th>
+      <th class="text-center px-4">Name</th>
+      <th class="text-center px-4">@Email</th>
+      <th class="text-center px-4">Occupation</th>
+      <th class="text-center px-4">Status</th>
+      <th class="text-center px-4">Tags</th>
+      <th class="text-center px-4">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% if (viewData?.dashes?.length) { %>
+      <% for (const dash of viewData.dashes) { %>
+        <tr>
+          <td class="text-center px-4 <% if (!dash.active) { %> text-muted <% } %>">
+            <%= dash.age %>
+          </td>
+
+          <td class="text-center px-4 <% if (!dash.active) { %> text-muted <% } %>">
+            <%- dash.name.replace(/\n/g, '<br>') %>
+          </td>
+
+          <td class="text-center px-4 <% if (!dash.active) { %> text-muted <% } %>">
+            <%= dash.email %>
+          </td>
+
+          <td class="text-center px-4 <% if (!dash.active) { %> text-muted <% } %>">
+            <%- dash.occupation.replace(/\n/g, '<br>') %>
+          </td>
+
+
+          <td class="text-center px-4 text-primary">
+            <%= dash.active ? 'Active' : 'Inactive' %>
+          </td>
+          
+          <td class="text-center px-4 <% if (!dash.active) { %> text-muted <% } %>">
+            <%= dash.tags?.join(', ') %>
+          </td>
+
+        
+        <td class="text-nowrap text-center">
+          <% if (dash.createdBy && viewData.currentUserId && dash.createdBy.toString() === viewData.currentUserId.toString()) { %>
+            <a href="./dash/<%= dash.id %>/update">Update</a>
+            <a href="./dash/<%= dash.id %>/delete">Delete</a>
+          <% } %>
+        </td>
+          
+
+        </tr>
+      <% } %>
+    <% } else { %>
+      <tr>
+        <td colspan="7" class="text-center text-danger">
+          There are no snippets to display
+        </td>
+      </tr>
+    <% } %>
+
+
+  </tbody>
+</table>
