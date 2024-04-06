@@ -1,5 +1,6 @@
 // src/components/Register.jsx
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // Function to handle user registration
 async function registerUser(userData) {
@@ -10,7 +11,7 @@ async function registerUser(userData) {
     });
     if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Registration failed');
+        throw new Error(errorData.message || 'Registration failed')
     }
     return response.json();
 }
@@ -19,11 +20,14 @@ const Register = () => {
     const [userData, setUserData] = useState({
         username: '',
         password: '',
-        // Add other fields as necessary
-    });
+        email: ''
+    
+    })
+
+    const navigate = useNavigate()
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target
         setUserData(prevData => ({
             ...prevData,
             [name]: value
@@ -31,13 +35,14 @@ const Register = () => {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
         try {
-            const data = await registerUser(userData);
-            console.log('Registration successful:', data);
+            const data = await registerUser(userData)
+            console.log('Registration successful:', data)
+            navigate('/login')
             // Redirect or manage state as needed, such as navigating to the login page or dashboard
         } catch (error) {
-            console.error('Registration error:', error);
+            console.error('Registration error:', error)
         }
     };
 

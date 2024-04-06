@@ -23,6 +23,30 @@ const userSchema = new mongoose.Schema({
     trim: true,
     minlength: 6,
     maxlength: 2000
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true,
+  },
+  permissionLevel: {
+    type: Number,
+    required: [true, 'Permission level is required.'],
+    default: 1,
+    enum: [
+      1, // read
+      2, // create
+      3, // read and create
+      4, // update
+      5, // read and update
+      6, // create and update
+      8, // delete
+      9, // read and delete
+      10, // create and delete
+      12, // update and delete
+      15] // read, create, update and delete
   }
 })
 

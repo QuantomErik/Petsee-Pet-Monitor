@@ -11,6 +11,7 @@ import { router as dashRouter } from './dashRouter.js'
 import { router as loginRouter } from './loginRouter.js'
 import { router as userRouter } from './userRouter.js'
 import { router as logoutRouter } from './logoutRouter.js'
+/* import { router as homepageRouter } from './logoutRouter.js' */
 
 export const router = express.Router()
 
@@ -19,7 +20,9 @@ router.use('/dash', dashRouter)
 /* router.use('/login', loginRouter) */
 router.use('/api', loginRouter)
 /* router.use('/register', userRouter) */
-router.use('/api', userRouter);
+router.use('/api', userRouter)
+
+/* router.use('/api', homepageRouter) */
 
 router.use('/logout', logoutRouter)
 

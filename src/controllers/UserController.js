@@ -22,24 +22,46 @@ export class UserController {
    * @returns {Promise<void>} A promise that resolves after processing the form submission.
    */
   async registerPost(req, res) {
+    console.log('POST /api/register route handler')
     console.log(req.body)
     try {
-        const { username, password } = req.body;
+        const { username, password, email } = req.body;
+        console.log('Registering user:', username, password, email)
+
+        const permissionLevel = 15
 
         // For debugging: Log the received username and password
-        console.log('Registering user:', username, password)
 
         // Basic check to ensure username and password are received
-        if (!username || !password) {
-            return res.status(400).json({ success: false, message: 'Username and password are required.' })
+        if (!username || !password || !email) {
+            return res.status(400).json({ success: false, message: 'Username, password, and email are required.' });
         }
 
-        // Temporarily skip detailed validation and check for existing user
-        // Create a new user directly for debugging purposes
-        const newUser = await UserModel.create({ username, password })
+        const existingEmail = await UserModel.findOne({ email });
+if (existingEmail) {
+    return res.status(409).json({ success: false, message: 'Email is already in use.' });
+}
+
+        // Check for existing user
+        const existingUser = await UserModel.findOne({ username });
+        if (existingUser) {
+            return res.status(409).json({ success: false, message: 'Username is already taken.' });
+        }
+
+        // Create a new user with default permission level
+        const newUser = await UserModel.create({
+            username,
+            password,
+            email,
+            permissionLevel  // Set permissionLevel to 15
+        });
 
         // Respond with success and the new user's ID and username
-        res.status(201).json({ success: true, message: 'User registered successfully.', user: { id: newUser._id, username: newUser.username } })
+        res.status(201).json({
+            success: true,
+            message: 'User registered successfully.',
+            user: { id: newUser._id, username: newUser.username, permissionLevel: newUser.permissionLevel }
+        });
     } catch (error) {
         // Log the error to the console for debugging
         console.error('Registration error:', error)
