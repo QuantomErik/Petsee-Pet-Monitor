@@ -22,14 +22,50 @@ const App = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsAuthenticated(false);
-    // Optionally navigate to login page or perform other actions
 };
 
   return (
+
     <Router>
+      <div className="min-h-screen bg-gray-100 text-gray-800">
+        <nav className="bg-white shadow">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="flex justify-between">
+              <div className="flex space-x-4">
+                {/* Logo and application name */}
+                <div>
+                  <a href="/" className="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                    <span className="font-bold">Petsee</span>
+                  </a>
+                </div>
+                {/* Primary Nav */}
+                <div className="hidden md:flex items-center space-x-1">
+                  {isAuthenticated ? (
+                    <a href="/" onClick={handleLogout} className="py-5 px-3 text-gray-700 hover:text-gray-900">Logout</a>
+                  ) : (
+                    <>
+                      <Link to="/login" className="py-5 px-3">Login</Link>
+                      <Link to="/register" className="py-5 px-3">Register</Link>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        
+        <Routes>
+          <Route path="/login" element={isAuthenticated ? <Navigate replace to="/" /> : <Login onLoginSuccess={handleLoginSuccess} />} />
+          <Route path="/register" element={isAuthenticated ? <Navigate replace to="/" /> : <Register />} />
+          <Route path="/" element={isAuthenticated ? <Homepage /> : <Navigate replace to="/login" />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+   /*  <Router>
       <div className="text-5xl mb-4">Petsee</div>
       
-      {/* Navigation Links */}
       {isAuthenticated ? (
         <nav>
           <button onClick={handleLogout}>Logout</button>
@@ -41,7 +77,6 @@ const App = () => {
         </nav>
       )}
 
-      {/* Routes */}
       <Routes>
         <Route path="/login" element={isAuthenticated ? <Navigate replace to="/" /> : <Login onLoginSuccess={handleLoginSuccess} />} />
         <Route path="/register" element={isAuthenticated ? <Navigate replace to="/" /> : <Register />} />
@@ -49,6 +84,6 @@ const App = () => {
       </Routes>
     </Router>
   );
-};
+}; */
 
 export default App;

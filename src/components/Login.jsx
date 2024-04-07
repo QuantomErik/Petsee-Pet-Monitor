@@ -1,6 +1,7 @@
 // src/components/Login.jsx
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+/* import backgroundImage from '../images/background.webp' */
 
 
 // Add props parameter to your Login function
@@ -31,10 +32,83 @@ const Login = (props) => {
         } catch (error) {
             console.error('Login error:', error);
         }
-    };
+    }
+    
+    /* const containerStyle = {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
+      } */
 
     return (
-        <div className="max-w-sm mx-auto mt-10">
+        
+
+
+             <div className="login-background flex min-h-screen overflow-hidden">
+        <div className="login-container">
+
+            
+            <div className="px-8 py-6 w-full max-w-md"> {/* Control the width of the form here */}
+            <div className="text-center mb-6">
+                        <h3 className="text-4xl font-bold">Welcome to</h3>
+                        <h3 className="text-4xl font-bold text-blue-600">Petsee</h3>
+                        </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="mt-4">
+                        <label className="block" htmlFor="username">Username</label>
+                        <input type="text" placeholder="Username"
+                               className="w-3/4 px-4 py-2 mt-2 border rounded-full focus:outline-none focus:ring-1 focus:ring-blue-600"
+                               value={username} onChange={e => setUsername(e.target.value)} />
+                    </div>
+
+                    <div className="mt-4">
+                        <label className="block">Password</label>
+                        <input type="password" placeholder="Password"
+                               className="w-3/4 px-4 py-2 mt-2 border rounded-full focus:outline-none focus:ring-1 focus:ring-blue-600"
+                               value={password} onChange={e => setPassword(e.target.value)} />
+                    </div>
+
+                    <div className="flex justify-start mt-6">
+                        <button type="submit" className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        
+    </div>
+);
+};
+        {/* <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="px-8 py-6 mt-4 text-left bg-white shadow-lg">
+          <h3 className="text-2xl font-bold text-center">Welcome to Petsee</h3>
+          <form onSubmit={handleSubmit}>
+            <div className="mt-4">
+              <div>
+                <label className="block" htmlFor="username">Username</label>
+                <input type="text" placeholder="Username"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  value={username} onChange={e => setUsername(e.target.value)} />
+              </div>
+              <div className="mt-4">
+                <label className="block">Password</label>
+                <input type="password" placeholder="Password"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  value={password} onChange={e => setPassword(e.target.value)} />
+              </div>
+              <div className="flex items-baseline justify-between">
+                <button type="submit" className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }; */}
+       /*  <div className="max-w-sm mx-auto mt-10">
             <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <div className="mb-4">
@@ -71,7 +145,7 @@ const Login = (props) => {
             </form>
         </div>
     );
-};
+}; */
 
 Login.propTypes = {
     onLoginSuccess: PropTypes.func.isRequired,
