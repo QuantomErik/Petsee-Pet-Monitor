@@ -1,27 +1,66 @@
->En iterationsplan (sprint backlog) är en detaljerad plan för en iteration; i detta fall en vecka. Den upprättas med utgångspunkt från t.ex. risklistan, kravspecifikation, vision, testrapport och återkoppling från kund/slutanvändare. Denna plan uppdateras och skattas kontinuerligt under iterationen/sprinten. En grafisk status (burndown chart) kan göras om det tillför någon intressant information. Då iterationsplanen och framför allt tidsskattningar och ”burndown chart” skall hållas uppdaterade kontinuerligt så är det ganska smidigt att antingen dela iterationsplanen i två dokument (ett för text och ett kalkylark) eller bara ha det i ett kalkylark. Att klara av att rapportera sin tid är ett obligatoriskt moment i kursen. Rapporter i efterhand godkännes ej! Slarva inte med detta!!
->
->Din sprint backlog bör innehålla:
->
->* Analys av föregående iteration; en kort text kring vad som gick bra och vad som inte gick så bra.
->* Tidsrapport – skattad vs. verklig tid för varje mål, totalt arbetad tid i iterationen och projektet. _I denna kurs ska du rapportera **all** tid du lägger på projektet. Detta inkluderar teoriinläsning, dokumentation med mera._
->* Mål för iterationen i form av nedbrutna och tidsskattade krav från kravspecifikationen.
->* ”Burndown chart” – ej obligatoriskt
->
->### Enkelt exempel
-**Sprint backlog v4**
+**Sprint backlog v0**
 **Analys av föregående iteration.**
-Man kan nu göra inlägg i bloggen och texten i dessa kan formateras. Dock tog det lite längre tid än förväntat (framförallt valideringen) och därför har funktionaliteten för likes flyttats fram till denna vecka. Hade även lite problem med att få leveransen att fungera till driftsmiljön, men det visade sig vara ett lösenord till databasen som var fel, så jag ska nu implementera en miljövariabel på produktionsservern och på den lokala servern.
+Applikationen har nu ett simpelt användargränssnitt. Funktion för registrering och inloggning av användaren finns. Användaruppgifterna sparas i databas på mongoDb. Använder mig utav Jwt för autentisering och session "persistency". Jag kontemplerade kring valen att spara sessionen med hjälp av "session cookies" eller Jwt. Session cookies är enlkare att implementera men Jwt känns mer robust, framförallt om man delar upp projektet i olika delar (services). Jag använder mig även utav asynkron kodning utav jwtn.
 
 #### Tidsrapport
 
 | Uppgift                                            | Krav                  | Teststatus                        | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------|-------------|-------------|
-| Delta vid kursintroduktion                         |                       |                                   | 2           | 2           |
-| Skapa formulär för att skriva ett inlägg           | 2 – Skapa blogginlägg | [2 ✅ , 2 ❌](/Testning/Testrapport) | 5           | 8           |
-| Validering av inlägg                               | 2 – Skapa blogginlägg | [1 ✅](/Testning/Testrapport)       | 1           | 5           |
-| Fixa formatering (fetstil, kursiv, understrykning) | 2 – Skapa blogginlägg |                                   | 8           | 6           |
-| Gör grafik för like knapp                          | 3 – Gilla blogginlägg | Ej påbörjat                       | 2           |             |
+| Titta på video Blogg                               |                       |                                   | 1           | 1           |
+| Gå igenom material på kurshemsidan                 |                       |                                   | 3           | 3           |
+| Research av React                                  |                       |                                   | 8           | 8           |
+| Skriva kod                                         |                       |                                   | 8           | 8           |
+| Fundera över projectidé på promenad/i bilen        |                       |                                   | 4           | 4           |
+| Skriva Sprint BackLogs                             |                       |                                   | 1           | 1           |
 | …                                                  | …                     | …                                 | …           | …           |
-|                                                    |                       | Summa                             | 18          | 21          |
-|                                                    |                       | Tid sedan föregående iteration    |             | 46          |
-|                                                    |                       | Tid totalt i projektet            |             | 67          |
+|                                                    |                       | Summa                             | 25          | 25          |
+|                                                    |                       | Tid sedan föregående iteration    |             | 50          |
+|                                                    |                       | Tid totalt i projektet            |             | 50          |
+
+# Risklista
+
+## <span style="color: red;">Tekniska Risker</span>
+
+## Dataintegritet och Noggrannhet
+
+#### Risk: Felaktig eller ofullständig data om husdjursnutrition och aktiviteter kan leda till vilseledande insikter.
+#### Åtgärd: Implementera robusta processer för datavalidering och verifiering. Samarbeta med pålitliga datakällor för information om husdjursnutrition.
+
+## API-integration och Datatillgänglighet
+
+#### Risk: Beroende av tredjeparts-API:er för näringsinformation kan leda till otillgänglighet av data eller integrationsproblem.
+#### Åtgärd: Forska och integrera med pålitliga API:er. Överväg alternativ för manuell datainmatning som en backup.
+
+## Applikationsprestanda och Skalbarhet
+
+#### Risk: Applikationen kanske inte presterar väl under belastning eller kanske inte skalar effektivt med ett ökande antal användare och datavolym.
+#### Åtgärd: Designa applikationen med skalbarhet i åtanke. Använd effektiva algoritmer, databasindexering och överväg molntjänster som skalar automatiskt.
+
+## Offline Funktionalitet och Datasynkronisering
+
+#### Risk: Som en PWA behöver applikationen fungera effektivt offline och pålitligt synkronisera data när den är online.
+#### Åtgärd: Implementera service workers och lokala cachningsmekanismer effektivt. Säkerställ att datasynkroniseringsprocesser är robusta och hanterar konflikter på ett smidigt sätt.
+
+## <span style="color: red;">Användarupplevelse Risker</span>
+
+## Användarengagemang och -bevarande
+
+#### Risk: Användare kan tycka att applikationen är komplex eller inte tillräckligt engagerande för att använda regelbundet.
+#### Åtgärd: Fokusera på användarvänlig design, spelmekanismer och regelbundna uppdateringar baserade på användarfeedback för att öka engagemanget.
+
+## Tillgänglighet och Användbarhet
+
+#### Risk: Applikationen kanske inte är lättanvänd för alla målanvändare, särskilt de som inte är tekniskt kunniga eller har funktionshinder.
+#### Åtgärd: Följ riktlinjer för tillgänglighet, genomför användbarhetstester med olika användargrupper och implementera intuitiva UI/UX-designer.
+
+## <span style="color: red;">Juridiska och Reglerande Risker</span>
+
+## Datasekretess och Säkerhet
+
+#### Risk: Hantering av personuppgifter, särskilt hälsorelaterad information, medför betydande integritets- och säkerhetsrisker.
+#### Åtgärd: Implementera strikta dataskyddsåtgärder, följ relevanta föreskrifter (som GDPR eller HIPAA om tillämpligt) och säkerställ kryptering av känslig data.
+
+## Immateriella rättigheter och Upphovsrättsfrågor
+
+#### Risk: Användning av tredjepartsdata eller API:er kan bryta mot immateriella rättigheter.
+#### Åtgärd: Verifiera laglig användning av externa datakällor, skaffa nödvändiga licenser och attribuera datakällor som krävs.
