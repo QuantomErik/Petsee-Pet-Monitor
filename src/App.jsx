@@ -1,11 +1,12 @@
 // src/App.jsx
-import React, { useState } from 'react';
-import Login from './components/Login';
-import Register from './components/Register';
-import Homepage from './components/Homepage';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import Login from './components/Login'
+import Register from './components/Register'
+import Homepage from './components/Homepage'
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import { useEffect } from 'react';
-import './App.css';
+import './App.css'
+import Footer from './components/Footer'
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -27,8 +28,13 @@ const App = () => {
   return (
 
     <Router>
-      <div className="min-h-screen bg-gray-100 text-gray-800">
-        <nav className="bg-white shadow">
+
+      
+
+<div className="full-screen-background text-gray-800">  {/* Changed class here */}
+        <nav className="bg-white bg-opacity-75 shadow">
+
+          
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex justify-between">
               <div className="flex space-x-4">
@@ -55,14 +61,19 @@ const App = () => {
         </nav>
         
         <Routes>
-          <Route path="/login" element={isAuthenticated ? <Navigate replace to="/" /> : <Login onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="/login" element={!isAuthenticated ? <Login onLoginSuccess={handleLoginSuccess} /> : <Navigate replace to="/home" />} />
+          <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate replace to="/home" />} />
+          <Route path="/home" element={isAuthenticated ? <Homepage /> : <Navigate replace to="/login" />} />
+          <Route path="/" element={<Navigate replace to={isAuthenticated ? "/home" : "/login"} />} />
+          {/* <Route path="/login" element={isAuthenticated ? <Navigate replace to="/" /> : <Login onLoginSuccess={handleLoginSuccess} />} />
           <Route path="/register" element={isAuthenticated ? <Navigate replace to="/" /> : <Register />} />
-          <Route path="/" element={isAuthenticated ? <Homepage /> : <Navigate replace to="/login" />} />
+          <Route path="/" element={isAuthenticated ? <Homepage /> : <Navigate replace to="/login" />} /> */}
         </Routes>
+        <Footer />  {/* Include the Footer component */}
       </div>
     </Router>
-  );
-};
+  )
+}
    /*  <Router>
       <div className="text-5xl mb-4">Petsee</div>
       

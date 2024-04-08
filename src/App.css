@@ -1,7 +1,7 @@
 #root {
-  max-width: 1280px;
+ /*  max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
@@ -41,13 +41,14 @@
   color: #888;
 }
 
-.login-background {
-  background-image: url('./images/background.webp');
+/* .login-background {
+  background-image: url('./images/test6.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
-}
+  height: 100vh;
+  width: 100%;
+} */
 
 .login-container {
   background-color: transparent;
@@ -75,10 +76,31 @@ body, html {
   overflow: hidden;
 }
 
-#root {
+/* #root {
   min-height: 100%;
   overflow: hidden;
+} */
+
+.full-screen-background {
+  background-image: url('./images/test6.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
 }
+
+
+footer {
+  background-color: #f3f3f3;
+  color: #636363;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 
 
 
