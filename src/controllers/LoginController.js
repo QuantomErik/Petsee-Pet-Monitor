@@ -45,10 +45,10 @@ export class LoginController {
 
 async login(req, res) {
     try {
-      const user = await UserModel.authenticate(req.body.username, req.body.password);
+      const user = await UserModel.authenticate(req.body.username, req.body.password)
       if (user) {
         // Generate a JWT token
-        const accessToken = await JsonWebToken.encodeUser(user, '36h'); // Adjust the expiration time as needed
+        const accessToken = await JsonWebToken.encodeUser(user, '36h') // Adjust the expiration time
         res.json({
           success: true,
           message: 'Login successful',
@@ -59,11 +59,11 @@ async login(req, res) {
           accessToken  // Include the token in the response
         });
       } else {
-        res.status(401).json({ success: false, message: 'Invalid username or password' });
+        res.status(401).json({ success: false, message: 'Invalid username or password' })
       }
     } catch (error) {
       console.error('Login error:', error);
-      res.status(500).json({ success: false, message: 'Internal server error' });
+      res.status(500).json({ success: false, message: 'Internal server error' })
     }
   }
 
