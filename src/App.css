@@ -41,14 +41,14 @@
   color: #888;
 }
 
-/* .login-background {
+.login-background {
   background-image: url('./images/test6.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
   width: 100%;
-} */
+}
 
 .login-container {
   background-color: transparent;
@@ -81,14 +81,14 @@ body, html {
   overflow: hidden;
 } */
 
-.full-screen-background {
+/* .full-screen-background {
   background-image: url('./images/test6.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
   width: 100%;
-}
+} */
 
 
 footer {
@@ -173,7 +173,7 @@ footer {
 
 .card {
   background-color: #adb2f0;
-  border-radius: 8px;
+  border-radius: 40px;
   padding: 16px;
   margin: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -209,6 +209,94 @@ footer {
   border-radius: 8px;
   margin-bottom: 10px;
 } */
+
+
+.pet-image-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pet-image-container {
+  display: inline-block; /* Makes the container inline for center alignment */
+  width: 200px; /* Set the width as needed */
+  height: 200px; /* Set the height as needed */
+  border-radius: 50%; /* Makes it circular */
+  overflow: hidden; /* Ensures the image does not exceed the container's bounds */
+  border: 2px solid #adb2f0; /* Optional: Adds a border to the circle */
+  line-height: 0; /* Remove space below the image */
+}
+
+.pet-image {
+  width: 100%; /* Makes the image fill the container */
+  height: 100%; /* Makes the image fill the container */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+
+
+.pet-image-circle {
+  width: 150px; /* or any size */
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.pet-image-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pet-image-circle {
+  width: 150px;  /* or any size you prefer */
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+.file-upload-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #adb2f0;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.file-upload-btn:hover {
+  background-color: #9a95f3;
+}
+
+.pet-image-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 20px;
+  display: block; /* Ensure the image is block level to center it */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-container {
+  text-align: center; /* Center align the content */
+}
+
+.input-container {
+  margin-top: 20px;
+}
+
+.input-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 80%; /* Adjust width as per design requirements */
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
 
 
 

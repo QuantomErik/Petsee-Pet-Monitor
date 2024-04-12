@@ -3,7 +3,7 @@ import React from 'react';
 
 const FeatureCard = ({ title, description, icon }) => {
     return (
-        <div className="card shadow-lg rounded-lg p-4">
+        <div className="card">
             <div className="card-icon">
                 {icon}
             </div>
