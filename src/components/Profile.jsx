@@ -10,7 +10,6 @@ const Profile = () => {
     length: '',
     favouriteFood: '',
     favouriteToy: '',
-    // Add other biometric details as needed
   })
 
   const handleImageChange = (event) => {

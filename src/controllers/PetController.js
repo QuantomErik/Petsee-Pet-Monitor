@@ -38,4 +38,26 @@ export class PetController {
             res.status(500).json({ success: false, message: 'Error saving pet profile' })
         }
     }
+
+
+
+    async getPetProfile(req, res) {
+        try {
+            // Assuming the pet profile is linked to the user
+            const userId = req.user.id;
+            const petProfile = await PetProfileModel.findOne({ userId: userId });
+    
+            if (!petProfile) {
+                return res.status(404).json({ success: false, message: 'Pet profile not found' });
+            }
+    
+            res.status(200).json(petProfile);
+        } catch (error) {
+            console.error('Error fetching pet profile:', error);
+            res.status(500).json({ success: false, message: 'Error fetching pet profile' });
+        }
+    }
+    
+
+
 }
