@@ -48,4 +48,4 @@ const petProfileSchema = new mongoose.Schema({
 petProfileSchema.add(BASE_SCHEMA)
 
 
-export const PetProfileModel = mongoose.model('PetProfile', petProfileSchema)
+export const PetProfileModel = mongoose.model('PetDetails', petProfileSchema)

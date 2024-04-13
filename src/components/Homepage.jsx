@@ -1,13 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+
+
+const Card = ({ title, children }) => (
+    <div className="petcard">
+        <h3>{title}</h3>
+        <div>{children}</div>
+    </div>
+)
 
 const Homepage = ({ onLogout }) => {
-    const [petProfile, setPetProfile] = useState(null);
+    const navigate = useNavigate();
+    const [petDetails, setPetDetails] = useState(null);
 
     useEffect(() => {
-        const fetchPetProfile = async () => {
+        const fetchPetDetails = async () => {
             const token = localStorage.getItem('token');
             try {
-                const response = await fetch('http://localhost:3000/api/pet/profile', {
+                const response = await fetch('http://localhost:3000/api/pet/petdetails', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -16,34 +27,57 @@ const Homepage = ({ onLogout }) => {
                 if (response.ok) {
                     const data = await response.json();
                     console.log(data); // Log the data to see its structure
-                    setPetProfile(data);
+                    setPetDetails(data);
                 } else {
-                    throw new Error('Failed to fetch pet profile');
+                    throw new Error('No pet details found');
                 }
             } catch (error) {
-                console.error('Error fetching pet profile:', error);
+                console.error('Error fetching pet details:', error);
+                setPetDetails(null); // Ensures that petDetails is null if there's an error
             }
         };
 
-        fetchPetProfile();
+        fetchPetDetails();
     }, []);
 
     return (
         <div className="home-background">
-            <div className="pet-details-section">
-                <h2>Pet Details</h2>
-                {petProfile ? (
-                    <>
-                        <img src={`data:image/jpeg;base64,${petProfile.image}`} alt="Pet" className="pet-image-circle" />
-                        <p>Name: {petProfile.name}</p>
-                        <p>Age: {petProfile.age}</p>
-                        <p>Weight: {petProfile.weight}</p>
-                        {/* Add more details as needed */}
-                    </>
-                ) : (
+            {petDetails ? (
+                <>
+                    <div className="pet-image-section">
+                        <img src={`data:image/jpeg;base64,${petDetails.image}`} alt="Pet" className="pet-image-circle" />
+                    </div>
+                    <div className="pet-details-cards">
+                        <Card title="Pet Details">
+                            <p>Name: {petDetails.name}</p>
+                            <p>Age: {petDetails.age}</p>
+                            <p>Weight: {petDetails.weight}</p>
+                            <p>Length: {petDetails.length}</p>
+                            <p>Favourite Food: {petDetails.favouriteFood}</p>
+                            <p>Favourite Toy: {petDetails.favouriteToy}</p>
+                            <button className="icon-button fas fa-edit" onClick={() => navigate('/petdetails')}></button>
+                        </Card>
+                        {/* Placeholder for other cards */}
+                        <Card title="Diet">
+                            <button className="icon-button fas fa-edit" onClick={() => console.log('Edit Details')}></button>
+                        </Card>
+                        <Card title="Activity">
+                            <button className="icon-button fas fa-edit" onClick={() => console.log('Edit Details')}></button>
+                        </Card>
+                        <Card title="Schedule">
+                            <button className="icon-button fas fa-edit" onClick={() => console.log('Edit Details')}></button>
+                        </Card>
+                    </div>
+                </>
+            ) : (
+                <>
                     <p>Loading pet details...</p>
-                )}
-            </div>
+                    <div>
+                        <p>No pet details found. Add your pets details to get started.</p>
+                        <button onClick={() => navigate('/petdetails')} className="add-pet-details-button">Add Pet Details</button>
+                    </div>
+                </>
+            )}
 
             <div className="pet-functions-section">
                 <button onClick={() => {/* function to add food */}}>Add Food</button>

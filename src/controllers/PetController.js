@@ -5,58 +5,79 @@ import path from 'path'
 
 export class PetController {
 
-    async savePetProfile(req, res) {
-        console.log('POST /api/pet/profile route handler')
+    async savePetDetails(req, res) {
+        console.log('POST /api/pet/petdetails route handler')
         try {
 
-            console.log('Received image:', req.file); // Check if the file object is populated
-            console.log('Received form data:', req.body); // Check the rest of the form data
+            console.log('Received image:', req.file) // Check if the file object is populated
+            console.log('Received form data:', req.body) // Check the rest of the form data
 
             if (!req.file) {
-                throw new Error('No image file uploaded');
+                throw new Error('No image file uploaded')
             }
 
-            const { user, file, body } = req;
-            const petDetails = JSON.parse(body.details)
+            const { user, file, body } = req
+            const petData = JSON.parse(body.details)
 
              // Read the file from the uploads directory
-             const filePath = req.file.path;
-             const fileData = fs.readFileSync(filePath);
-             const base64Image = fileData.toString('base64');
+             const filePath = req.file.path
+             const fileData = fs.readFileSync(filePath)
+             const base64Image = fileData.toString('base64')
 
-            const petProfile = new PetProfileModel({
-                ...petDetails,
+            const petDetails = new PetProfileModel({
+                ...petData,
                 /* image: file.path,  */ // or handle the image as needed
                 image: base64Image,
                 userId: user.id
-            });
+            })
 
-            await petProfile.save();
-            res.status(201).json({ success: true, message: 'Pet profile saved successfully', data: petProfile })
+            await petDetails.save()
+            res.status(201).json({ success: true, message: 'Pet Details saved successfully', data: petDetails })
         } catch (error) {
-            console.error('Error saving pet profile:', error)
-            res.status(500).json({ success: false, message: 'Error saving pet profile' })
+            console.error('Error saving pet Details:', error)
+            res.status(500).json({ success: false, message: 'Error saving pet Details' })
         }
     }
 
 
 
-    async getPetProfile(req, res) {
+    async getPetDetails(req, res) {
         try {
-            // Assuming the pet profile is linked to the user
-            const userId = req.user.id;
-            const petProfile = await PetProfileModel.findOne({ userId: userId });
+            // Assuming the pet Details is linked to the user
+            const userId = req.user.id
+            const petDetails = await PetProfileModel.findOne({ userId: userId })
     
-            if (!petProfile) {
-                return res.status(404).json({ success: false, message: 'Pet profile not found' });
+            if (!petDetails) {
+                return res.status(404).json({ success: false, message: 'Pet Details not found' })
             }
     
-            res.status(200).json(petProfile);
+            res.status(200).json(petDetails)
         } catch (error) {
-            console.error('Error fetching pet profile:', error);
-            res.status(500).json({ success: false, message: 'Error fetching pet profile' });
+            console.error('Error fetching pet Details:', error)
+            res.status(500).json({ success: false, message: 'Error fetching pet Details' })
         }
     }
+
+
+async updatePetDetails(req, res) {
+    const { id } = req.params
+    const updateData = JSON.parse(req.body.details)
+
+    console.log("Received update for ID:", id)
+    console.log("Updating pet details with data:", req.body)
+
+    try {
+        const updatedPetDetails = await PetProfileModel.findByIdAndUpdate(id, updateData, { new: true })
+        if (!updatedPetDetails) {
+            return res.status(404).json({ message: "Pet details not found" })
+        }
+        res.json({ message: "Pet details updated successfully", petDetails: updatedPetDetails })
+    } catch (error) {
+        console.error("Error updating pet details:", error)
+        res.status(500).json({ message: "Failed to update pet details", error: error.toString() })
+    }
+}
+
     
 
 
