@@ -2,7 +2,7 @@
 
 Test User Registration
 
->* Test enviroment: VScode, google chrome, web broswer, mongoDB.
+>* Test enviroment: VScode, google chrome, web browser, mongoDB.
 
 Test Case 2.1: Successful User Registration
 Objective: Verify that new users can register successfully using valid credentials.
