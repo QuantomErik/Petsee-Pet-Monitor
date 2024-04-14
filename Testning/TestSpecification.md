@@ -26,9 +26,9 @@ Test Case 2.2: Failed Registration - Duplicate Username
 Objective: Ensure the registration process validates for duplicate usernames.
 Input:
 Navigate to the registration page.
-Enter an existing username: "existinguser"
-Enter password: "password123"
-Enter email: "newemail@example.com"
+Enter an existing username: "testuser"
+Enter password: "testpassword"
+Enter email: "test@hotmail.com"
 Expected Output:
 Error message: "Username is already taken."
 User remains on the registration page.
@@ -37,9 +37,9 @@ Test Case 2.3: Failed Registration - Duplicate Email
 Objective: Ensure the registration process checks for duplicate email addresses.
 Input:
 Navigate to the registration page.
-Enter username: "uniqueusername"
-Enter password: "password123"
-Enter an existing email: "existingemail@example.com"
+Enter username: "testuser1"
+Enter password: "testpassword"
+Enter an existing email: "testuser@example.com"
 Expected Output:
 Error message: "Email is already in use."
 User remains on the registration page.
@@ -58,9 +58,9 @@ Test Case 2.5: Failed Registration - Invalid Email Format
 Objective: Ensure that the email field validates for correct email format.
 Input:
 Navigate to the registration page.
-Enter username: "username123"
-Enter password: "password123"
-Enter email: "notanemail"
+Enter username: "testuser2"
+Enter password: "testpassword"
+Enter email: "testuser@examplecom"
 Expected Output:
 Error message: "Invalid email format."
 User remains on the registration page.

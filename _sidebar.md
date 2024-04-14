@@ -12,7 +12,7 @@
 
 #### Testning
 - [TestSpecification](Testning/TestSpecification)
-- Testspecifikation(Testning/Testspecifikation)
+<!-- - Testspecifikation(Testning/Testspecifikation) -->
 - [Testrapport](Testning/Testrapport 1) iteration 1
 - ...
 - Testrapport iteration 8
