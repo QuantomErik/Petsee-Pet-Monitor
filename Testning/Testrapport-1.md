@@ -1,41 +1,41 @@
 2024-04-11
 
-Test User Registration
+### Test User Registration
 
 >* Test enviroment: VScode, google chrome, web broswer, mongoDB.
 
-Test Case 2.1: Successful User Registration
-Objective: Verify that new users can register successfully using valid credentials.
+#### Test Case 2.1: Successful User Registration
+#### Objective: Verify that new users can register successfully using valid credentials.
 
 ![Local Image](./screenshots/TC2.1.png)
 ![Local Image](./screenshots/TC2.1.2.png)
 
 
 
-Test Case 2.2: Failed Registration - Duplicate Username
-Objective: Ensure the registration process validates for duplicate usernames.
+#### Test Case 2.2: Failed Registration - Duplicate Username
+#### Objective: Ensure the registration process validates for duplicate usernames.
 
 ![Local Image](./screenshots/TC2.2.png)
 
 Comment 2.2: Test case failed. The error message "Username is already taken" is correct, but it only shows in console and not in the browser for the user to see.
 
-Test Case 2.3: Failed Registration - Duplicate Email
-Objective: Ensure the registration process checks for duplicate email addresses.
+#### Test Case 2.3: Failed Registration - Duplicate Email
+#### Objective: Ensure the registration process checks for duplicate email addresses.
 
 ![Local Image](./screenshots/TC2.3.png)
 
 Comment 2.3: Test case failed. The error message "Email is already in use" is correct, but it only shows in console and not in the browser for the user to see.
 
-Test Case 2.4: Failed Registration - Empty Fields
-Objective: Validate that all fields (username, password, email) are required.
+#### Test Case 2.4: Failed Registration - Empty Fields
+#### Objective: Validate that all fields (username, password, email) are required.
 
 
 ![Local Image](./screenshots/TC2.4.png)
 
 Comment 2.4: Test case failed. The error message "Username, password, and email are required" is correct, but it only shows in console and not in the browser for the user to see.
 
-Test Case 2.5: Failed Registration - Invalid Email Format
-Objective: Ensure that the email field validates for correct email format.
+#### Test Case 2.5: Failed Registration - Invalid Email Format
+#### Objective: Ensure that the email field validates for correct email format.
 
 ![Local Image](./screenshots/TC2.5.1.png)
 
@@ -60,7 +60,7 @@ Although the error messages are correctly formulated and triggered, they don't s
 
 2024-04-14
 
-Test User Authentication
+### Test User Authentication
 
 >* Test enviroment: VScode, google chrome, web broswer, mongoDB.
 
