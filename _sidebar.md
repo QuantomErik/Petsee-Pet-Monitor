@@ -11,7 +11,8 @@
 - [Ordlista](/Dokument/Ordlista) (frivillig)
 
 #### Testning
-- [Testspecifikation](Testning/Testspecifikation)
+- [TestSpecification](Testning/TestSpecification)
+- Testspecifikation(Testning/Testspecifikation)
 - [Testrapport](Testning/Testrapport 1) iteration 1
 - ...
 - Testrapport iteration 8
