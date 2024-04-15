@@ -5,7 +5,11 @@ import Register from './components/Register'
 import Homepage from './components/Homepage'
 import Support from './components/Support'
 import Contact from './components/Contact'
-import PetDetails from './components/PetDetails';
+import PetDetails from './components/PetDetails'
+import DietDetails from './components/DietDetails'
+import ActivityDetails from './components/ActivityDetails'
+import ScheduleDetails from './components/ScheduleDetails'
+
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import './App.css'
@@ -58,7 +62,12 @@ return (
         <Route path="/login" element={!isAuthenticated ? <Login onLoginSuccess={handleLoginSuccess} /> : <Navigate replace to="/home" />} />
         <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate replace to="/home" />} />
         <Route path="/home" element={isAuthenticated ? <Homepage /> : <Navigate replace to="/login" />} />
+
         <Route path="/petdetails" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/login" />} />
+        <Route path="/dietdetails" element={isAuthenticated ? <DietDetails /> : <Navigate replace to="/login" />} />
+        <Route path="/activitydetails" element={isAuthenticated ? <ActivityDetails /> : <Navigate replace to="/login" />} />
+        <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/login" />} />
+
         <Route path="/support" element={<Support />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Navigate replace to={isAuthenticated ? "/home" : "/login"} />} />

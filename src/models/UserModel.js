@@ -65,7 +65,7 @@ userSchema.add(BASE_SCHEMA)
  * @throws {Error} Throws an error if the login attempt is invalid.
  * @returns {Promise<object>} A promise that resolves to the authenticated user document.
  */
-userSchema.statics.authenticate = async function (username, password) {
+/* userSchema.statics.authenticate = async function (username, password) {
   const user = await this.findOne({ username })
 
   if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -73,6 +73,24 @@ userSchema.statics.authenticate = async function (username, password) {
   }
 
   return user
+} */
+
+userSchema.statics.authenticate = async function (username, password) {
+  const user = await this.findOne({ username })
+
+  // Check if user exists
+  if (!user) {
+      return { error: 'userNotFound' }
+  }
+
+  // Check if the password is correct
+  if (!(await bcrypt.compare(password, user.password))) {
+      return { error: 'passwordIncorrect' }
+  }
+
+  // If everything's fine, return the user
+  return user
 }
+
 
 export const UserModel = mongoose.model('User', userSchema)

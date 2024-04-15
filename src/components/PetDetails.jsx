@@ -1,21 +1,93 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const PetDetails = () => {
+  const navigate = useNavigate()
   const [petImage, setPetImage] = useState(null)
   const [imagePreviewUrl, setImagePreviewUrl] = useState(null)
+  const [breeds, setBreeds] = useState([])
   const [petDetails, setPetDetails] = useState({
-    id: '', // Include an id field in your state
+    id: '',
     name: '',
     age: '',
     weight: '',
     length: '',
     favouriteFood: '',
     favouriteToy: '',
-  });
+    breed: '',
+    medicalNotes: '',
+    animalType: ','
+  })
+
+  const fetchBreeds = async (animalType) => {
+    if (!animalType) {
+      setBreeds([])
+      return
+    }
+  
+    // Construct the file path based on the animal type
+    const filePath = `./Breeds/${animalType.toLowerCase()}Breeds.json`
+  
+    try {
+      const response = await fetch(filePath)
+      if (response.ok) {
+        const data = await response.json()
+        // Check if breeds is actually an array
+        if (Array.isArray(data)) {
+          setBreeds(data);
+        } else {
+          console.error('Expected breeds to be an array')
+          setBreeds([])
+        }
+      } else {
+        console.error('Failed to fetch breeds', response.status)
+        setBreeds([])
+      }
+    } catch (error) {
+      console.error('Error fetching breeds:', error)
+      setBreeds([])
+    }
+  }
+  
+
+  useEffect(() => {
+    fetchBreeds(petDetails.animalType)
+  }, [petDetails.animalType])
+
+  /* const fetchBreeds = async () => {
+    try {
+      const response = await fetch('https://dog.ceo/api/breeds/list/all');
+      if (response.ok) {
+        const data = await response.json()
+        const breedData = data.message
+  
+      
+        const breedsWithSubBreeds = Object.entries(breedData).flatMap(([breed, subBreeds]) => {
+          if (subBreeds.length === 0) {
+            return [breed]
+          } else {
+            return subBreeds.map(subBreed => `${breed} (${subBreed})`)
+          }
+        });
+  
+        setBreeds(breedsWithSubBreeds)
+      } else {
+        console.error('Failed to fetch breeds')
+      }
+    } catch (error) {
+      console.error('Error fetching breeds:', error)
+    }
+  } */
+
+ /*  useEffect(() => {
+    fetchBreeds()
+  }, []); */
+
+  /* const navigate = useNavigate() */
 
   useEffect(() => {
     const fetchPetDetails = async () => {
-      const token = localStorage.getItem('token');// Ensure you have the token stored in localStorage
+      const token = localStorage.getItem('token')// Ensure you have the token stored in localStorage
       try {
         const response = await fetch('http://localhost:3000/api/pet/petdetails', {
           method: 'GET',
@@ -47,7 +119,7 @@ const PetDetails = () => {
     const file = event.target.files[0]
     if (file) {
       setImagePreviewUrl(URL.createObjectURL(file))
-      setPetImage(file);
+      setPetImage(file)
     }
   };
 
@@ -56,8 +128,8 @@ const PetDetails = () => {
     setPetDetails(prevDetails => ({
       ...prevDetails,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   const handleSaveOrUpdate = async () => {
     const formData = new FormData()
@@ -84,7 +156,8 @@ const PetDetails = () => {
       const result = await response.json()
       console.log('Operation successful:', result)
       // Update local state to reflect the newly saved/updated details
-      setPetDetails(result);
+      setPetDetails(result)
+      navigate('/home')
     } catch (error) {
       console.error('Error saving/updating pet details:', error)
     }
@@ -110,6 +183,25 @@ const PetDetails = () => {
         </div>
 
         <div className="input-container">
+                <select name="animalType" value={petDetails.animalType} onChange={handleDetailChange}>
+                    <option value="">Select Animal Type</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Bird">Bird</option>
+                    <option value="Hamster">Hamster</option>
+                    <option value="Rabbit">Rabbit</option>
+                </select>
+                </div>
+
+        <div className="input-container">
+          <select name="age" value={petDetails.age} onChange={handleDetailChange}>
+            {Array.from({ length: 21 }, (_, i) => (
+              <option key={i} value={i}>{i}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* <div className="input-container">
           <input
             type="text"
             name="age"
@@ -117,9 +209,17 @@ const PetDetails = () => {
             onChange={handleDetailChange}
             placeholder="Pet's age"
           />
+        </div> */}
+
+<div className="input-container">
+          <select name="weight" value={petDetails.weight} onChange={handleDetailChange}>
+            {Array.from({ length: 101 }, (_, i) => (
+              <option key={i} value={i}>{i} kg</option>
+            ))}
+          </select>
         </div>
 
-        <div className="input-container">
+        {/* <div className="input-container">
           <input
             type="text"
             name="weight"
@@ -127,9 +227,17 @@ const PetDetails = () => {
             onChange={handleDetailChange}
             placeholder="Pet's weight"
           />
+        </div> */}
+
+<div className="input-container">
+          <select name="length" value={petDetails.length} onChange={handleDetailChange}>
+            {Array.from({ length: 191 }, (_, i) => i + 10).map(value => (
+              <option key={value} value={value}>{value} cm</option>
+            ))}
+          </select>
         </div>
 
-        <div className="input-container">
+       {/*  <div className="input-container">
           <input
             type="text"
             name="length"
@@ -137,7 +245,7 @@ const PetDetails = () => {
             onChange={handleDetailChange}
             placeholder="Pet's length"
           />
-        </div>
+        </div> */}
 
         <div className="input-container">
           <input
@@ -158,6 +266,35 @@ const PetDetails = () => {
             placeholder="Pet's favourite toy"
           />
         </div>
+
+        <div className="input-container">
+  <select name="breed" value={petDetails.breed} onChange={handleDetailChange}>
+    {breeds.length > 0 && breeds.map(breed => (
+      <option key={breed} value={breed}>{breed}</option>
+    ))}
+  </select>
+</div>
+
+        {/* <div className="input-container">
+          <input
+            type="text"
+            name="breed"
+            value={petDetails.breed}
+            onChange={handleDetailChange}
+            placeholder="Pet's Breed"
+          />
+        </div> */}
+
+        <div className="input-container">
+          <input
+            type="text"
+            name="medicalNotes"
+            value={petDetails.medicalNotes}
+            onChange={handleDetailChange}
+            placeholder="Pet's medical notes"
+          />
+        </div>
+
       </div>
       {petDetails.id ?
         <button onClick={handleSaveOrUpdate} className="update-button">Update Pet Details</button> :

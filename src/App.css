@@ -73,7 +73,8 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow: auto;
 }
 
 /* #root {
@@ -282,11 +283,16 @@ footer {
 }
 
 .petdetails-container {
-  text-align: center; /* Center align the content */
+ /*  text-align: center; */
+ display: flex;
+ flex-direction: column;
+ min-height: 100vh;  /* Ensures minimum height is full viewport height */
+ overflow-y: auto;
 }
 
 .input-container {
   margin-top: 20px;
+  margin-bottom: 1rem;
 }
 
 .input-container input {

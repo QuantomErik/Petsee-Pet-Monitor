@@ -29,7 +29,6 @@ const Login = (props) => {
             return response.json()
         } else {
             const errorData = await response.json()
-            // Here you should handle different error types based on your API response
             if (response.status === 401) {
                 setFlashMessage('Incorrect password')
             } else if (response.status === 404) {
@@ -38,16 +37,24 @@ const Login = (props) => {
                 setFlashMessage('Invalid login')
             }
             setShowFlash(true);
-            return Promise.reject(errorData);
+            return Promise.reject(errorData)
         }
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         setShowFlash(false)
+
+// Check for empty fields before sending a request
+if (!username.trim() || !password.trim()) {
+    setFlashMessage('Username and password required')
+    setShowFlash(true)
+    return
+}
+
         try {
             const data = await loginUser({ username, password })
-            console.log('Login successful:', data);
+            console.log('Login successful:', data)
             localStorage.setItem('token', data.accessToken) // Store the token
             // Call the onLoginSuccess function passed as a prop
             props.onLoginSuccess();
@@ -68,10 +75,7 @@ const Login = (props) => {
 <div className="login-background flex flex-col overflow-hidden">
             <div className="login-container mx-auto my-auto">
 
-             {/* <div className="login-background flex min-h-screen overflow-hidden">
-        <div className="login-container"> */}
 
-            
             <div className="px-8 py-6 w-full max-w-md"> {/* Control the width of the form here */}
             <div className="text-center mb-6">
                         <h3 className="text-7xl font-bold text-white varela-round-regular whitespace-nowrap">Welcome to</h3>

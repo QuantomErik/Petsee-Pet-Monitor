@@ -12,6 +12,9 @@ import { router as loginRouter } from './loginRouter.js'
 import { router as userRouter } from './userRouter.js'
 import { router as logoutRouter } from './logoutRouter.js'
 import { router as petRouter } from './petRouter.js'
+import { router as dietRouter } from './dietRouter.js'
+import { router as activityRouter } from './activityRouter.js'
+import { router as scheduleRouter } from './scheduleRouter.js'
 /* import { router as homepageRouter } from './logoutRouter.js' */
 
 export const router = express.Router()
@@ -24,6 +27,9 @@ router.use('/api', loginRouter)
 router.use('/api', userRouter)
 
 router.use('/api', petRouter)
+router.use('/api', dietRouter)
+router.use('/api', activityRouter)
+router.use('/api', scheduleRouter)
 
 /* router.use('/api', homepageRouter) */
 

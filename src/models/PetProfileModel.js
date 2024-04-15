@@ -41,6 +41,22 @@ const petProfileSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  breed: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  medicalNotes: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  animalType: {
+    type: String,
+    required: true,
+    trim: true,
+    enum: ['Dog', 'Cat', 'Bird', 'Hamster', 'Rabbit']  // Enum to restrict the animal types
+},
   image: String,
 })
 
