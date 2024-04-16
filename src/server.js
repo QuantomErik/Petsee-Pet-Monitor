@@ -15,6 +15,7 @@ import { sessionOptions } from './config/sessionOptions.js'
 import { router } from './routes/router.js'
 import helmet from 'helmet'
 import cors from 'cors'
+import mongoose from 'mongoose'
 
 try {
   // Connect to MongoDB.
@@ -22,6 +23,9 @@ try {
 
   // Creates an Express application.
   const app = express()
+
+mongoose.set('debug', true);
+  
 
   // Get the directory name of this module's path.
   const directoryFullName = dirname(fileURLToPath(import.meta.url))

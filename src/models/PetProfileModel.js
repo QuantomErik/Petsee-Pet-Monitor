@@ -7,6 +7,7 @@
 import mongoose from 'mongoose'
 import { BASE_SCHEMA } from './baseSchema.js'
 
+
 // Create a schema.
 const petProfileSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

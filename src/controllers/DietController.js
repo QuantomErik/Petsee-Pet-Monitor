@@ -20,6 +20,9 @@ export class DietController {
     }
 
     async saveDietDetails(req, res) {
+
+        console.log("Received diet details:", req.body);
+
         console.log('POST /api/pet/dietdetails route handler')
         console.log("Received diet details:", req.body)
 
@@ -44,6 +47,9 @@ export class DietController {
     
 
       async updateDietDetails(req, res) {
+
+        console.log("Received diet details:", req.body);
+
         const { id } = req.params;
     
         // Check if the body has content

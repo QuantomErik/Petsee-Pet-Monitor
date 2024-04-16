@@ -152,7 +152,7 @@ const Homepage = ({ onLogout }) => {
 
                         {/* Placeholder for other cards */}
                         
-                        <Card title="Diet">
+       {/*                  <Card title="Diet">
     {dietDetails ? (
         <>
             <p>Food Type: {dietDetails.foodType}</p>
@@ -168,8 +168,49 @@ const Homepage = ({ onLogout }) => {
     ) : (
         <p>Loading diet details...</p>
     )}
- {/* <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button> */}
+ <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
+</Card> */}
+
+{/* <Card title="Diet">
+  {dietDetails ? (
+    <>
+      <ul>
+        {dietDetails.meals.map((meal, index) => (
+          <li key={index}>{`${meal.mealType}: ${meal.time}`}</li>
+        ))}
+      </ul>
+      <p>Total Calories: {dietDetails.totalCalories} kcal</p>
+      <p>Total Quantity: {dietDetails.quantity} grams</p>
+      <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
+    </>
+  ) : dietError ? (
+    <p>Error loading diet details. Please try again.</p>
+  ) : (
+    <p>Loading diet details...</p>
+  )}
+  <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
+</Card> */}
+
+<Card title="Diet">
+    {dietDetails ? (
+        <>
+            <ul>
+                {dietDetails.meals.map((meal, index) => (
+                    <li key={index}>{`${meal.mealType}: ${meal.time}`}</li>
+                ))}
+            </ul>
+            <p>Total Calories: {dietDetails.totalCalories} kcal</p>
+            <p>Total Quantity: {dietDetails.quantity} grams</p>
+            <p>Name: {dietDetails.name}</p>
+        </>
+    ) : dietError ? (
+        <p>Error loading diet details. Please try again.</p>
+    ) : (
+        <p>Loading diet details...</p>
+    )}
+    <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
 </Card>
+
 
 
                         <Card title="Activity">

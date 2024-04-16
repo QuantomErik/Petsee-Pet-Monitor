@@ -161,7 +161,12 @@ const PetDetails = () => {
     } catch (error) {
       console.error('Error saving/updating pet details:', error)
     }
-  };
+  }
+
+
+
+
+
 
   return (
     <div className="petdetails-container">
@@ -173,6 +178,7 @@ const PetDetails = () => {
       </div>
       <div className="pet-biometrics">
       <div className="input-container">
+      <label htmlFor="name">Name </label>
           <input
             type="text"
             name="name"
@@ -183,6 +189,7 @@ const PetDetails = () => {
         </div>
 
         <div className="input-container">
+        <label htmlFor="name">Animal Type:</label>
                 <select name="animalType" value={petDetails.animalType} onChange={handleDetailChange}>
                     <option value="">Select Animal Type</option>
                     <option value="Dog">Dog</option>
@@ -248,6 +255,7 @@ const PetDetails = () => {
         </div> */}
 
         <div className="input-container">
+        <label htmlFor="favouriteFood">Favourite Food </label>
           <input
             type="text"
             name="favouriteFood"
@@ -258,6 +266,7 @@ const PetDetails = () => {
         </div>
 
         <div className="input-container">
+        <label htmlFor="favouriteToy">Favourite Toy </label>
           <input
             type="text"
             name="favouriteToy"
@@ -286,6 +295,7 @@ const PetDetails = () => {
         </div> */}
 
         <div className="input-container">
+        <label htmlFor="medicalNotes">Medical Notes </label>
           <input
             type="text"
             name="medicalNotes"
