@@ -3,7 +3,7 @@
 import mongoose from 'mongoose'
 import { BASE_SCHEMA } from './baseSchema.js'
 
-const nutrientSchema = new mongoose.Schema({
+/* const nutrientSchema = new mongoose.Schema({
     CrudeProtein: Number,
     FatContent: Number,
     CrudeAsh: Number,
@@ -13,7 +13,7 @@ const nutrientSchema = new mongoose.Schema({
     Phosphorus: Number,
     Omega3FattyAcids: Number,
     Omega6FattyAcids: Number
-});
+}); */
 
 /* const mealSchema = new mongoose.Schema({
     mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },
@@ -23,22 +23,33 @@ const nutrientSchema = new mongoose.Schema({
     totalCalories: Number
 }); */
 
-const mealSchema = new mongoose.Schema({
+/* const mealSchema = new mongoose.Schema({
     mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },
     time: { type: String, required: true },
     quantity: Number,
     totalCalories: Number,
     nutrients: nutrientSchema
-})
+}) */
 
 
-const dietProfileSchema = new mongoose.Schema({
+/* const dietProfileSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     meals: [mealSchema],
+   mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },
+   time: { type: String, required: true },
     quantity: { type: Number, required: true },
     totalCalories: { type: Number, required: true },
     name: {type: String, required: true}
-})
+}) */
+
+const dietProfileSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },
+    time: { type: String/* , required: true */ },
+    quantity: { type: Number, required: true },
+    totalCalories: { type: Number, required: true },
+    name: { type: String, required: true }
+});
 
 /* const mealSchema = new mongoose.Schema({
     mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },

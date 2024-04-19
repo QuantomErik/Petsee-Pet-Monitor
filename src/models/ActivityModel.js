@@ -7,9 +7,10 @@ const activitySchema = new mongoose.Schema({
     type: { type: String, required: true },
     duration: { type: Number, required: true }, // in minutes
     intensity: { type: String, required: true },
-    date: { type: Date, required: true },
-    notes: String,
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    /* date: { type: Date, required: true }, */
+    /* notes: String, */
+    userId: { type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserModel' }
 });
 
 activitySchema.add(BASE_SCHEMA)

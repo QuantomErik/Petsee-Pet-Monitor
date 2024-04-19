@@ -2,8 +2,200 @@ import { ActivityModel } from '../models/ActivityModel.js'
 
 export class ActivityController {
 
+    async getActivityDetails(req, res, next) {
+        try {
+            const activities = await ActivityModel.find();
+            // Sending back a JSON response containing the activity details
+            res.json({ activities });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    /* async create (req, res){
+
+try {
+      const previousData = req.session.previousData
+      delete req.session.previousData // Clear after use
+
+      res.json({ previousData })
+    } catch (error) {
+     console.log('Error')
+    }
+    } */
+
+    async createActivity(req, res) {
+        try {
+            const { type, duration, intensity, userId } = req.body;
+    
+            // Assuming `userId` should be validated or transformed into MongoDB ObjectId
+            const activity = await ActivityModel.create({
+                type,
+                duration,
+                intensity,
+                userId: userId
+            });
+    
+            // Send a success response with the created activity data
+            res.status(201).json({
+                message: "Activity successfully created",
+                activity: activity
+            });
+        } catch (error) {
+            console.error('Error creating activity:', error);
+            res.status(500).json({
+                message: "Error creating activity",
+                error: error.message
+            });
+        }
+    }
+    
+
+    async getActivityById(req, res, next) {
+        try {
+            const { id } = req.params;
+            const activity = await ActivityModel.findById(id);
+    
+            if (!activity) {
+                return res.status(404).json({ message: "Activity not found" });
+            }
+    
+            res.json(activity);
+        } catch (error) {
+            console.error('Error fetching activity:', error);
+            res.status(500).json({ message: "Error fetching activity", error: error.message });
+        }
+    }
+    
+
+
+   /*  async saveActivityDetails(req, res) {
+        console.log('POST /api/pet/activitydetails route handler')
+        console.log("Received activity details:", req.body)
+
+        try {
+
+            const activityDetails = new ActivityModel({
+                ...req.body,
+                userId: req.user.id
+            })
+
+            console.log("Full body received:", req.body)
+
+          await activityDetails.save()
+
+          res.status(201).json({ success: true, message: 'activity Details saved successfully', data: activityDetails })
+        } catch (error) {
+          console.error('Failed to save activity details:', error)
+          res.status(500).send('Internal Server Error')
+        }
+      } */
+      async updateActivity(req, res) {
+        const { id } = req.params; // Assuming the ID is passed as a URL parameter
+        const updates = req.body; // All updates provided in the body of the request
+    
+        try {
+            // Find the document by ID and update it with the new values
+            // The { new: true } option returns the updated document instead of the original
+            const updatedActivity = await ActivityModel.findByIdAndUpdate(id, updates, { new: true });
+    
+            if (!updatedActivity) {
+                return res.status(404).json({ message: "Activity not found" });
+            }
+    
+            // Send back the updated activity data
+            res.status(200).json({
+                message: "Activity updated successfully",
+                activity: updatedActivity
+            });
+        } catch (error) {
+            console.error('Error updating activity:', error);
+            res.status(500).json({
+                message: "Error updating activity",
+                error: error.message
+            });
+        }
+    }
+
+    async deleteActivity(req, res) {
+        try {
+            const { activityId } = req.params;
+    
+            // Optional: Validate the activityId here, for example, checking if it's a valid MongoDB ObjectId
+            if (!activityId.match(/^[0-9a-fA-F]{24}$/)) {
+                return res.status(400).json({ message: "Invalid activity ID format" });
+            }
+    
+            const activity = await ActivityModel.findByIdAndDelete(activityId);
+    
+            if (activity) {
+                res.status(200).json({
+                    message: "Activity successfully deleted",
+                    activityId: activity._id
+                });
+            } else {
+                res.status(404).json({
+                    message: "Activity not found"
+                });
+            }
+        } catch (error) {
+            console.error('Error deleting activity:', error);
+            res.status(500).json({
+                message: "Error deleting activity",
+                error: error.message
+            });
+        }
+    }
+    
+    
+    
+
+      /* async updateActivityDetails(req, res) {
+        const { id } = req.params;
+    
+       
+        if (!req.body || Object.keys(req.body).length === 0) {
+            return res.status(400).json({ message: 'No details provided for update' });
+        }
+    
+        console.log("Received update for ID:", id);
+        console.log("Updating activity details with data:", req.body);
+    
+        try {
+            const updatedActivityDetails = await ActivityModel.findByIdAndUpdate(id, req.body, { new: true });
+            if (!updatedActivityDetails) {
+                return res.status(404).json({ message: 'activity details not found' });
+            }
+            res.json({ message: 'activity details updated successfully', activityDetails: updatedActivityDetails });
+        } catch (error) {
+            console.error('Error updating activity details:', error);
+            res.status(500).json({ message: 'Failed to update activity details', error });
+        }
+    } */
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import { ActivityModel } from '../models/ActivityModel.js'
+
+export class ActivityController {
+
     async getActivityDetails(req, res) {
-        /* console.log('POST /api/pet/activitydetails route handler') */
+        
         const userId = req.user.id
         try {
             const activityDetails = await ActivityModel.findOne({ userId: userId })
@@ -44,7 +236,7 @@ export class ActivityController {
       async updateActivityDetails(req, res) {
         const { id } = req.params;
     
-        // Check if the body has content
+       
         if (!req.body || Object.keys(req.body).length === 0) {
             return res.status(400).json({ message: 'No details provided for update' });
         }
@@ -65,4 +257,4 @@ export class ActivityController {
     }
     
     
-}
+} */

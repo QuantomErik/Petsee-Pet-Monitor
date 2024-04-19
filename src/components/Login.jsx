@@ -3,6 +3,12 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 /* import backgroundImage from '../images/background.webp' */
 import FeatureCard from './FeatureCard'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 
 
 // Add props parameter to your Login function
@@ -56,6 +62,7 @@ if (!username.trim() || !password.trim()) {
             const data = await loginUser({ username, password })
             console.log('Login successful:', data)
             localStorage.setItem('token', data.accessToken) // Store the token
+            /* localStorage.setItem('userId', data.userId);  */
             // Call the onLoginSuccess function passed as a prop
             props.onLoginSuccess();
         } catch (error) {
@@ -70,58 +77,37 @@ if (!username.trim() || !password.trim()) {
         backgroundRepeat: 'no-repeat',
       } */
 
-    return (
-        
-<div className="login-background flex flex-col overflow-hidden">
-            <div className="login-container mx-auto my-auto">
+      return (
+        <div className="login-background">
+        <Container>
+            <Row className="justify-content-md-center">
+                <Col xs={12} md={6} lg={4} className="mx-auto">
+                    <h1 className="text-center mb-4">Login to Petsee</h1>
+                    {showFlash && <div className="alert alert-danger">{flashMessage}</div>}
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group controlId="username">
+                            <Form.Control type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                        </Form.Group>
+                        <Form.Group controlId="password">
+                            <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        </Form.Group>
+                        <Button variant="primary" type="submit" className="w-100 mt-3">Log In</Button>
+                    </Form>
+                </Col>
+            </Row>
 
-
-            <div className="px-8 py-6 w-full max-w-md"> {/* Control the width of the form here */}
-            <div className="text-center mb-6">
-                        <h3 className="text-7xl font-bold text-white varela-round-regular whitespace-nowrap">Welcome to</h3>
-                        <h3 className="text-7xl font-bold text-white petsee-text varela-round-regular">Petsee</h3>
-                        </div>
-
-                        {showFlash && <div className="flash-message text-red-500">{flashMessage}</div>}
-                <form onSubmit={handleSubmit}>
-                    <div className="mt-4">
-                        {/* <label className="block" htmlFor="username">Username</label> */}
-                        <input type="text" placeholder="Username"
-                               className="w-3/4 px-4 py-2 mt-2 border rounded-full focus:outline-none focus:ring-1 focus:ring-blue-600"
-                               value={username} onChange={e => setUsername(e.target.value)} />
-                    </div>
-
-                    <div className="mt-4">
-                        {/* <label className="block">Password</label> */}
-                        <input type="password" placeholder="Password"
-                               className="w-3/4 px-4 py-2 mt-2 border rounded-full focus:outline-none focus:ring-1 focus:ring-blue-600"
-                               value={password} onChange={e => setPassword(e.target.value)} />
-                    </div>
-
-                    <div className="mt-4">
-                        <button type="submit" className="w-3/4 px-4 py-2 mt-2 text-white nav-link">
-                            Login
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-        <div className="feature-cards-container absolute bottom-0 right-0 p-8">
-            <div className="feature-cards varela-round-regular">
+            <Row className="mt-4 px-3">
                 {features.map((feature, index) => (
-                    <FeatureCard key={index} title={feature.title} description={feature.description} />
+                    <Col sm={6} md={3} key={index}>
+                        <FeatureCard title={feature.title} description={feature.description} />
+                    </Col>
                 ))}
-            </div>
+            </Row>
+            
+        </Container>
         </div>
-
-    </div>
-
-    
-)
-}
-
+    );
+};
 
 Login.propTypes = {
     onLoginSuccess: PropTypes.func.isRequired,
@@ -130,3 +116,11 @@ Login.propTypes = {
 
 export default Login;
 
+
+{/* <div className="feature-cards-container absolute bottom-0 right-0 p-8">
+<div className="feature-cards varela-round-regular">
+    {features.map((feature, index) => (
+        <FeatureCard key={index} title={feature.title} description={feature.description} />
+    ))}
+</div>
+</div> */}

@@ -13,6 +13,7 @@ router.get('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
 
 // Save new diet details
 router.post('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
+    console.log("Received diet details:", req.body);
     dietController.saveDietDetails(req, res, next);
 })
 
@@ -20,3 +21,11 @@ router.post('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
 router.put('/pet/dietdetails/:id', auth.authenticateJWT, (req, res, next) => {
     dietController.updateDietDetails(req, res, next);
 })
+
+/* router.delete('/pet/dietdetails/:userId/:mealId', auth.authenticateJWT, (req, res) => {
+    dietController.deleteMeal(req, res);
+}); */
+
+router.delete('/pet/dietdetails/:mealId', (req, res, next) => {
+    dietController.deleteMeal(req, res, next);
+});

@@ -44,10 +44,13 @@
 .login-background {
   background-image: url('./images/test6.webp');
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   height: 100vh;
   width: 100%;
+  display: flex;     
+  align-items: center; 
+  justify-content: center;
 }
 
 .login-container {
@@ -55,6 +58,12 @@
   padding: 2rem;
   border-radius: 8px;
 }
+
+/* .container, .container-fluid {
+  height: 100%;       
+  padding: 0;         
+  margin: 0;       
+} */
 
 /* .input-field, .login-button {
   background-color: white;
@@ -92,7 +101,7 @@ body, html {
 } */
 
 
-footer {
+/* footer {
   background-color: #f3f3f3;
   color: #636363;
   text-align: center;
@@ -100,7 +109,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-}
+} */
 
 .petsee-text {
   text-align: left;
@@ -146,7 +155,7 @@ footer {
 
 /* App.css */
 
-.nav-link {
+/* .nav-link {
   display: inline-block;
   padding: 10px 15px;
   margin: 5px 25px;
@@ -156,7 +165,7 @@ footer {
   text-decoration: none;
   transition: background-color 0.3s, transform 0.2s;
   font-family: 'Varela Round', sans-serif;
-}
+} */
 
 .nav-link:hover {
   background-color: #e043f5;
@@ -174,11 +183,12 @@ footer {
 
 .card {
   background-color: #adb2f0;
-  border-radius: 40px;
+  border-radius: 20px;
   padding: 16px;
   margin: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   color: black;
+  max-height: 400px;
   
 }
 
@@ -355,6 +365,50 @@ footer {
   cursor: pointer;
   margin-top: 10px;
 }
+
+.card-image-top {
+  max-height: 150px; /* Set the maximum height as required */
+  width: auto;
+  display: block;
+  margin: 0 auto; /* Centers the image horizontally */
+}
+
+.card-text {
+  column-count: 1; /* Start with one column by default */
+  max-height: 300px; /* Adjust based on your preference */
+  overflow: auto; /* Allows scrolling if content exceeds max height */
+}
+
+.card-text p {
+  /* position: relative; */
+  /* padding-left: 20px; */
+}
+
+.card-text p::before {
+/*   content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #666;
+  border-radius: 50%; */
+}
+
+.diet-card {
+  max-width: 300px; /* Maximum width of the card */
+  max-height: 400px; /* Maximum height of the card */
+  overflow: auto; /* Adds scrollbars if content exceeds the card's maximum height */
+  margin-bottom: 20px; /* Adds space between the cards */
+}
+
+
+
+
+
+
+
 
 
 
