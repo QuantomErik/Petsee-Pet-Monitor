@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Profile = () => {
   const [petImage, setPetImage] = useState(null)
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(null)
   const [petDetails, setPetDetails] = useState({
     name: '',
     age: '',
@@ -17,8 +17,8 @@ const Profile = () => {
     if (file) {
         /* setPetImage(URL.createObjectURL(file)) */
         /* setPetImage(file) */
-        setImagePreviewUrl(URL.createObjectURL(file)); // Set the URL for image preview
-        setPetImage(file); // Keep the file object for sending to the server
+        setImagePreviewUrl(URL.createObjectURL(file)) // Set the URL for image preview
+        setPetImage(file) // Keep the file object for sending to the server
     }
   }
 
@@ -39,7 +39,7 @@ const handleSave = async () => {
 
     
     try {
-        const token = localStorage.getItem('token');  // Ensure you have the token stored in localStorage
+        const token = localStorage.getItem('token')  // Ensure you have the token stored in localStorage
         const response = await fetch('http://localhost:3000/api/pet/profile', {
             method: 'POST',
             headers: {
@@ -52,11 +52,11 @@ const handleSave = async () => {
             throw new Error('Failed to save pet profile')
         }
 
-        const result = await response.json();
-        console.log('Save successful:', result);
+        const result = await response.json()
+        console.log('Save successful:', result)
         // Handle success
     } catch (error) {
-        console.error('Save error:', error);
+        console.error('Save error:', error)
         // Handle error
     }
 }
@@ -139,4 +139,4 @@ const handleSave = async () => {
   )
 }
 
-export default Profile;
+export default Profile

@@ -1,40 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import { useNavigate } from 'react-router-dom'
 
 function ActivityDetails() {
-    const [activities, setActivities] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const navigate = useNavigate(); 
+    const [activities, setActivities] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const navigate = useNavigate() 
 
     useEffect(() => {
         const fetchActivities = async () => {
-          const token = localStorage.getItem('token');
-            setIsLoading(true);
+          const token = localStorage.getItem('token')
+            setIsLoading(true)
             try {
                 const response = await fetch('http://localhost:3000/api/pet/activitydetails', {
                   headers: {
                     'Authorization': `Bearer ${token}`,
                   },
-                });
+                })
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Network response was not ok')
                 }
-                const data = await response.json();
-                setActivities(data.activities);
+                const data = await response.json()
+                console.log('Fetched activities:', data.activities)
+                setActivities(data.activities)
             } catch (error) {
-                setError(error.message);
+                setError(error.message)
             }
-            setIsLoading(false);
-        };
+            setIsLoading(false)
+        }
 
-        fetchActivities();
-    }, []);
+        fetchActivities()
+    }, [])
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error: {error}</div>
 
     return (
       <div>
@@ -51,7 +52,16 @@ function ActivityDetails() {
                 <br/>
                 Intensity: {activity.intensity}
             </Card.Text>
-            <Button variant="primary" onClick={() => navigate(`/activitydetails/edit/${activity._id}`)}>Edit</Button>
+            
+            {/* <Button variant="primary" onClick={() => navigate(`/activitydetails/edit/${activity._id}`)}>Edit</Button> */}
+            <Button variant="primary" onClick={() => {
+  if(activity._id) {
+    console.log("Navigating with ID:", activity._id) // Ensure this logs a valid ID
+    navigate(`/activitydetails/edit/${activity._id}`)
+  } else {
+    console.error("Invalid activity ID:", activity._id)
+  }
+}}>Edit</Button>
         </Card.Body>
     </Card>
                   ))}
@@ -61,7 +71,7 @@ function ActivityDetails() {
           )}
           <Button onClick={() => navigate('/activitydetails/addactivity')} className="mt-3">Create Activity</Button>
       </div>
-  );
+  )
 }
 
-export default ActivityDetails;
+export default ActivityDetails

@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 /* import backgroundImage from '../images/background.webp' */
 import FeatureCard from './FeatureCard'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 
 
@@ -30,7 +30,7 @@ const Login = (props) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(credentials),
-        });
+        })
         if (response.ok) {
             return response.json()
         } else {
@@ -42,7 +42,7 @@ const Login = (props) => {
             } else {
                 setFlashMessage('Invalid login')
             }
-            setShowFlash(true);
+            setShowFlash(true)
             return Promise.reject(errorData)
         }
     }
@@ -62,9 +62,9 @@ if (!username.trim() || !password.trim()) {
             const data = await loginUser({ username, password })
             console.log('Login successful:', data)
             localStorage.setItem('token', data.accessToken) // Store the token
-            /* localStorage.setItem('userId', data.userId);  */
+            /* localStorage.setItem('userId', data.userId)  */
             // Call the onLoginSuccess function passed as a prop
-            props.onLoginSuccess();
+            props.onLoginSuccess()
         } catch (error) {
             console.error('Login error:', error)
         }
@@ -106,15 +106,15 @@ if (!username.trim() || !password.trim()) {
             
         </Container>
         </div>
-    );
-};
+    )
+}
 
 Login.propTypes = {
     onLoginSuccess: PropTypes.func.isRequired,
-};
+}
 
 
-export default Login;
+export default Login
 
 
 {/* <div className="feature-cards-container absolute bottom-0 right-0 p-8">

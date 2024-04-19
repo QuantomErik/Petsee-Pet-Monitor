@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import bowlImage from './bowl2.png';
-import addMealImage from '../images/addMeal.webp';
-import activityImage from '../images/activity.webp';
-import petDetailsImage from '../images/background.webp';
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
+import bowlImage from './bowl2.png'
+import addMealImage from '../images/addMeal.webp'
+import activityImage from '../images/activity.webp'
+import petDetailsImage from '../images/background.webp'
 
 
 
@@ -24,14 +24,14 @@ const Homepage = ({ onLogout }) => {
     const [petDetails, setPetDetails] = useState(null)
 
     /* const [dietDetails, setDietDetails] = useState(null) */
-    const [dietDetails, setDietDetails] = useState({ meals: [] }); 
+    const [dietDetails, setDietDetails] = useState({ meals: [] })
     const [dietError, setDietError] = useState(false)
 
     const [activityDetails, setActivityDetails] = useState(null)
     const [activityError, setActivityError] = useState(false)
 
-    const [scheduleDetails, setScheduleDetails] = useState(null);
-    const [scheduleError, setScheduleError] = useState(false);
+    const [scheduleDetails, setScheduleDetails] = useState(null)
+    const [scheduleError, setScheduleError] = useState(false)
 
 
     useEffect(() => {
@@ -45,37 +45,37 @@ const Homepage = ({ onLogout }) => {
                     }
                 });
                 if (response.ok) {
-                    const data = await response.json();
+                    const data = await response.json()
                     console.log(data) // Log the data to see its structure
                     setPetDetails(data)
                 } else {
-                    throw new Error('No pet details found');
+                    throw new Error('No pet details found')
                 }
             } catch (error) {
-                console.error('Error fetching pet details:', error);
+                console.error('Error fetching pet details:', error)
                 setPetDetails(null) // Ensures that petDetails is null if there's an error
             }
         };
 
-        fetchPetDetails();
+        fetchPetDetails()
     }, [])
 
     useEffect(() => {
         // Existing code to fetch pet details...
         const fetchDietDetails = async () => {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('token')
             try {
                 const response = await fetch('http://localhost:3000/api/pet/dietdetails', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
-                });
+                })
                 if (response.ok) {
                     const data = await response.json()
                     console.log('Fetched diet details:', data); 
                     /* setDietDetails(data) */
-                    setDietDetails({ meals: data, totalCalories: data.reduce((sum, item) => sum + item.totalCalories, 0) });
+                    /* setDietDetails({ meals: data, totalCalories: data.reduce((sum, item) => sum + item.totalCalories, 0) }); */
                     setDietError(false)
                 } else {
                     console.error('Failed to fetch diet details')
@@ -98,7 +98,7 @@ const Homepage = ({ onLogout }) => {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
-                });
+                })
                 if (response.ok) {
                     const data = await response.json()
                     console.log(data) // Log the data to see its structure
@@ -110,9 +110,9 @@ const Homepage = ({ onLogout }) => {
                 console.error('Error fetching activity details:', error)
                 setActivityDetails(null)
             }
-        };
+        }
 
-        fetchActivityDetails();
+        fetchActivityDetails()
     }, [])
 
 
@@ -123,7 +123,7 @@ const Homepage = ({ onLogout }) => {
                 const response = await fetch('http://localhost:3000/api/pet/scheduledetails', {
                     method: 'GET',
                     headers: { 'Authorization': `Bearer ${token}` }
-                });
+                })
                 if (response.ok) {
                     const data = await response.json()
                     setScheduleDetails(data)
@@ -132,8 +132,8 @@ const Homepage = ({ onLogout }) => {
                 }
             } catch (error) {
                 console.error('Error fetching schedule details:', error)
-                setScheduleDetails(null);
-                setScheduleError(true);
+                setScheduleDetails(null)
+                setScheduleError(true)
             }
         };
     
@@ -284,7 +284,7 @@ const Homepage = ({ onLogout }) => {
 
             
         </div>
-    );
-};
+    )
+}
 
 export default Homepage;

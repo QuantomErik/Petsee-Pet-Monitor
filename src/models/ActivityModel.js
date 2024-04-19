@@ -10,7 +10,7 @@ const activitySchema = new mongoose.Schema({
     /* date: { type: Date, required: true }, */
     /* notes: String, */
     userId: { type: mongoose.Schema.Types.ObjectId,
-    ref: 'UserModel' }
+    ref: 'User' }
 });
 
 activitySchema.add(BASE_SCHEMA)

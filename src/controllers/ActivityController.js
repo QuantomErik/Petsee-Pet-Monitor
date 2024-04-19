@@ -2,15 +2,34 @@ import { ActivityModel } from '../models/ActivityModel.js'
 
 export class ActivityController {
 
-    async getActivityDetails(req, res, next) {
+    /* async getActivityDetails(req, res, next) {
         try {
             const activities = await ActivityModel.find();
-            // Sending back a JSON response containing the activity details
+            console.log("Activities fetched:", activities)
+           
             res.json({ activities });
         } catch (error) {
             next(error);
         }
+    } */
+
+    async getActivityDetails(req, res, next) {
+        try {
+            const activities = await ActivityModel.find()
+            console.log("Activities fetched:", activities)  // Log to see the data
+            // Sending back a JSON response containing the activity details
+            // Ensure that the _id field is included in each activity object
+            res.json({
+                activities: activities.map(activity => ({
+                    ...activity.toObject(), // Convert Mongoose document to a plain JavaScript object
+                    _id: activity._id      // Ensure _id is included
+                }))
+            });
+        } catch (error) {
+            next(error);
+        }
     }
+    
 
     /* async create (req, res){
 
@@ -26,14 +45,15 @@ try {
 
     async createActivity(req, res) {
         try {
-            const { type, duration, intensity, userId } = req.body;
+            const { type, duration, intensity, userId } = req.body
     
             // Assuming `userId` should be validated or transformed into MongoDB ObjectId
             const activity = await ActivityModel.create({
                 type,
                 duration,
                 intensity,
-                userId: userId
+                /* userId: userId */
+                userId: req.user.id
             });
     
             // Send a success response with the created activity data
@@ -51,9 +71,29 @@ try {
     }
     
 
+    /* async getActivityById(req, res, next) {
+        try {
+            const { id } = req.params.id;
+
+            
+            console.log('ID received:', id);
+            const activity = await ActivityModel.findById(id);
+    
+            if (!activity) {
+                return res.status(404).json({ message: "Activity not found" });
+            }
+    
+            res.json(activity);
+        } catch (error) {
+            console.error('Error fetching activity:', error);
+            res.status(500).json({ message: "Error fetching activity", error: error.message });
+        }
+    } */
+    
     async getActivityById(req, res, next) {
         try {
-            const { id } = req.params;
+            const id = req.params.id;  // Correct way to extract the id
+            console.log('ID received:', id);
             const activity = await ActivityModel.findById(id);
     
             if (!activity) {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 const ActivityDetails = () => {
     const [activityDetails, setActivityDetails] = useState({
@@ -9,8 +9,8 @@ const ActivityDetails = () => {
         intensity: '',
         /* date: '',
         notes: '' */
-    });
-    const navigate = useNavigate();
+    })
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchActivityDetails = async () => {
@@ -27,21 +27,21 @@ const ActivityDetails = () => {
               },
             })
             if (response.ok) {
-              const data = await response.json();
+              const data = await response.json()
               setActivityDetails(data)
             } else {
-              console.error('Failed to fetch activity details');
+              console.error('Failed to fetch activity details')
             }
           } catch (error) {
-            console.error('Error fetching activity details:', error);
+            console.error('Error fetching activity details:', error)
           }
         }
     
-        fetchActivityDetails();
+        fetchActivityDetails()
       }, [])
     
       const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target
         setActivityDetails(prevDetails => ({
           ...prevDetails,
           [name]: value
@@ -49,27 +49,28 @@ const ActivityDetails = () => {
       }
     
       const handleSaveActivityDetails = async () => {
-        const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3000/api/pet/activitydetails', {
+        const token = localStorage.getItem('token')
+        const response = await fetch('http://localhost:3000/api/pet/activitydetails/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify(activityDetails),
-        });
+        })
     
         if (!response.ok) {
-          throw new Error('Failed to save activity details');
+          throw new Error('Failed to save activity details')
         }
     
-        const result = await response.json();
-        console.log('Operation successful:', result);
-        setActivityDetails(result);
-        navigate('/activitydetails');
+        const result = await response.json()
+        console.log('Operation successful:', result)
+        /* setActivityDetails(result) */
+        setActivityDetails(result.activity)
+        navigate('/activitydetails')
       }
     
-      const handleUpdateActivityDetails = async () => {
+      /* const handleUpdateActivityDetails = async () => {
         const token = localStorage.getItem('token')
         const response = await fetch(`http://localhost:3000/api/pet/activitydetails/${activityDetails.id}`, {
           method: 'PUT',
@@ -78,17 +79,17 @@ const ActivityDetails = () => {
             'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify(activityDetails),
-        });
+        })
     
         if (!response.ok) {
-          throw new Error('Failed to update activity details');
+          throw new Error('Failed to update activity details')
         }
     
         const result = await response.json()
         console.log('Operation successful:', result)
         setActivityDetails(result)
         navigate('/home')
-      }
+      } */
 
       return (
         <div className="activity-details-container">
@@ -152,8 +153,8 @@ const ActivityDetails = () => {
           {/* <Button onClick={() => navigate('/dietdetails/addmeal')} className="mt-3">Create Meal</Button> */}
         </div>
         
-      );
+      )
       
-    };
+    }
 
 export default ActivityDetails

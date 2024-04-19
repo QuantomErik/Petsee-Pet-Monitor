@@ -1,51 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
 
 function EditActivity() {
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams()
+    console.log("ID from useParams:", id)
+    
+    const navigate = useNavigate()
     const [activity, setActivity] = useState({
         type: '',
         duration: '',
         intensity: ''
-    });
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
+    })
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState('')
 
     useEffect(() => {
+
+       
+
         const fetchActivity = async () => {
-            setIsLoading(true);
+            setIsLoading(true)
             try {
                 const response = await fetch(`http://localhost:3000/api/pet/activitydetails/${id}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
-                });
-                const data = await response.json();
+                })
+                const data = await response.json()
+                console.log(data)
                 if (response.ok) {
-                    setActivity(data.activity);
+                   /*  setActivity(data.activity) */
+                    setActivity(data)
                 } else {
-                    throw new Error(data.message || 'Failed to fetch activity');
+                    throw new Error(data.message || 'Failed to fetch activity')
                 }
             } catch (error) {
-                setError(error.message);
+                setError(error.message)
             }
-            setIsLoading(false);
-        };
+            setIsLoading(false)
+        }
 
-        fetchActivity();
-    }, [id]);
+        fetchActivity()
+    }, [id])
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setActivity(prev => ({ ...prev, [name]: value }));
-    };
+        const { name, value } = e.target
+        setActivity(prev => ({ ...prev, [name]: value }))
+    }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
+        e.preventDefault()
+        setIsLoading(true)
         try {
             const response = await fetch(`http://localhost:3000/api/pet/activitydetails/edit/${id}`, {
                 method: 'PUT',
@@ -54,21 +61,22 @@ function EditActivity() {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(activity)
-            });
-            const data = await response.json();
+            })
+            const data = await response.json()
             if (response.ok) {
-                navigate('/activitydetails');
+                navigate('/activitydetails')
             } else {
-                throw new Error(data.message || 'Failed to update activity');
+                throw new Error(data.message || 'Failed to update activity')
             }
         } catch (error) {
-            setError(error.message);
+            setError(error.message)
         }
-        setIsLoading(false);
-    };
+        setIsLoading(false)
+    }
 
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (isLoading) return <p>Loading...</p>
+    if (error) return <p>Error: {error}</p>
+    if (!activity) return <p>No activity found</p>
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -103,7 +111,7 @@ function EditActivity() {
                 Update Activity
             </Button>
         </Form>
-    );
+    )
 }
 
-export default EditActivity;
+export default EditActivity
