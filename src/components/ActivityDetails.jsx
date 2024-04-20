@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function ActivityDetails() {
     const [activities, setActivities] = useState([])
@@ -10,6 +12,9 @@ function ActivityDetails() {
     const navigate = useNavigate() 
 
     useEffect(() => {
+
+      /* toast.success("Component mounted and toast triggered."); */
+
         const fetchActivities = async () => {
           const token = localStorage.getItem('token')
             setIsLoading(true)
@@ -32,13 +37,27 @@ function ActivityDetails() {
         }
 
         fetchActivities()
+
+        console.log("Component mounted, checking for flash message.");
+        const message = localStorage.getItem('flashMessage');
+        if (message) {
+          console.log('Flash message found:', message);
+          toast.success(message);
+          localStorage.removeItem('flashMessage');
+        } else {
+          console.log('No flash message found.');
+        }
+
     }, [])
+
+   
 
     if (isLoading) return <div>Loading...</div>
     if (error) return <div>Error: {error}</div>
 
     return (
       <div>
+       {/*  <ToastContainer /> */}
           <h1>Activity Details</h1>
           {activities.length > 0 ? (
               <div>
@@ -62,6 +81,10 @@ function ActivityDetails() {
     console.error("Invalid activity ID:", activity._id)
   }
 }}>Edit</Button>
+
+
+{/* <Button variant="primary" onClick={() => navigate(`/activitydetails/edit/${activity._id}`)}>Edit</Button>  */}
+
         </Card.Body>
     </Card>
                   ))}
@@ -70,6 +93,10 @@ function ActivityDetails() {
               <p>No activities found</p>
           )}
           <Button onClick={() => navigate('/activitydetails/addactivity')} className="mt-3">Create Activity</Button>
+          {/* <button onClick={() => toast.success('Test Toast')}>Show Test Toast</button> */}
+
+          
+
       </div>
   )
 }

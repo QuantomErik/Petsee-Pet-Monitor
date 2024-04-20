@@ -403,6 +403,23 @@ body, html {
   margin-bottom: 20px; /* Adds space between the cards */
 }
 
+.activityForm {
+  width: 700px;
+}
+
+.center-select {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
+
+}
+
+.save-button {
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
 
 
 

@@ -39,6 +39,6 @@ router.put('/pet/activitydetails/edit/:id', auth.authenticateJWT, (req, res, nex
 })
 
 
-/* router.delete('/pet/activitydetails/:activityId', auth.authenticateJWT, (req, res, next) => {
+router.delete('/pet/activitydetails/edit/:id', auth.authenticateJWT, (req, res, next) => {
     activityController.deleteActivity(req, res, next);
-}) */
+})

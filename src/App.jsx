@@ -16,6 +16,9 @@ import ScheduleDetails from './components/ScheduleDetails'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
@@ -71,6 +74,8 @@ return (
       </Container>
     </Navbar>
       
+    <ToastContainer position="bottom-center" autoClose={2000} hideProgressBar={true} newestOnTop={false} closeOnClick pauseOnFocusLoss draggable pauseOnHover />
+    {/* <ToastContainer position="top-right" autoClose={5000} /> */}
       <Routes>
         <Route path="/login" element={!isAuthenticated ? <Login onLoginSuccess={handleLoginSuccess} /> : <Navigate replace to="/home" />} />
         <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate replace to="/home" />} />

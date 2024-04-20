@@ -50,7 +50,7 @@ try {
             // Assuming `userId` should be validated or transformed into MongoDB ObjectId
             const activity = await ActivityModel.create({
                 type,
-                duration,
+                duration: Number(duration),
                 intensity,
                 /* userId: userId */
                 userId: req.user.id
@@ -157,14 +157,11 @@ try {
         }
     }
 
-    async deleteActivity(req, res) {
+   /*  async deleteActivity(req, res) {
         try {
             const { activityId } = req.params;
     
-            // Optional: Validate the activityId here, for example, checking if it's a valid MongoDB ObjectId
-            if (!activityId.match(/^[0-9a-fA-F]{24}$/)) {
-                return res.status(400).json({ message: "Invalid activity ID format" });
-            }
+           
     
             const activity = await ActivityModel.findByIdAndDelete(activityId);
     
@@ -185,8 +182,35 @@ try {
                 error: error.message
             });
         }
-    }
+    } */
     
+    async deleteActivity(req, res) {
+        try {
+            /* const { activityId } = req.params; */
+            const id = req.params.id;
+    
+           
+    
+            const activity = await ActivityModel.findByIdAndDelete(id);
+    
+            if (activity) {
+                res.status(200).json({
+                    message: "Activity successfully deleted",
+                    id: activity._id
+                });
+            } else {
+                res.status(404).json({
+                    message: "Activity not found"
+                });
+            }
+        } catch (error) {
+            console.error('Error deleting activity:', error);
+            res.status(500).json({
+                message: "Error deleting activity",
+                error: error.message
+            });
+        }
+    }
     
     
 

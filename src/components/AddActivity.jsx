@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 const ActivityDetails = () => {
     const [activityDetails, setActivityDetails] = useState({
@@ -66,8 +67,18 @@ const ActivityDetails = () => {
         const result = await response.json()
         console.log('Operation successful:', result)
         /* setActivityDetails(result) */
+
         setActivityDetails(result.activity)
-        navigate('/activitydetails')
+
+        console.log("Setting flash message");
+        localStorage.setItem('flashMessage', 'Activity created successfully!');
+        setTimeout(() => {
+          console.log("Navigating to /activitydetails");
+          navigate('/activitydetails');
+        }, 100);
+
+        /* setActivityDetails(result.activity)
+        navigate('/activitydetails') */
       }
     
       /* const handleUpdateActivityDetails = async () => {
@@ -94,8 +105,56 @@ const ActivityDetails = () => {
       return (
         <div className="activity-details-container">
           <h1>Activity Details</h1>
+
+          <div className="center-select">
+  <Form.Group>
+    <Form.Label>Activity Type</Form.Label>
+    <Form.Select
+      className="activityForm"
+      name="type"
+      value={activityDetails.type}
+      onChange={handleChange}
+      aria-label="Default select example"
+    >
+      <option value="">Select Type</option>
+      <option value="Agility">Agility</option>
+      <option value="Running">Running</option>
+      <option value="Walking">Walking</option>
+    </Form.Select>
+  </Form.Group>
+</div>
+
+
+<div className="center-select">
+  <Form.Group>
+    <Form.Label>Activity Duration</Form.Label>
+    <Form.Select
+      className="activityForm"
+      name="duration"
+      value={activityDetails.duration}
+      onChange={handleChange}
+      aria-label="Select duration"
+    >
+      <option value="">Select Duration</option>
+      <option value="15">15 min</option>
+      <option value="30">30 min</option>
+      <option value="60">60 min</option>
+    </Form.Select>
+  </Form.Group>
+</div>
+
+
+
+          {/* <div className="center-select">
+          <Form.Select aria-label="Default select example" className="activityForm">
+      <option>Activity Type</option>
+      <option value="1">Agility</option>
+      <option value="2">Running</option>
+      <option value="3">Walking</option>
+    </Form.Select>
+    </div> */}
       
-          <div className="input-container">
+         {/*  <div className="input-container">
             <input
               type="text"
               name="type"
@@ -103,9 +162,9 @@ const ActivityDetails = () => {
               onChange={handleChange}
               placeholder="Type"
             />
-          </div>
+          </div> */}
     
-          <div className="input-container">
+         {/*  <div className="input-container">
       <input
         type="text"
         name="duration"
@@ -113,9 +172,27 @@ const ActivityDetails = () => {
         onChange={handleChange}
         placeholder="Duration"
       />
-    </div>
+    </div> */}
+
+<div className="center-select">
+  <Form.Group>
+    <Form.Label>Activity Intensity</Form.Label>
+    <Form.Select
+      className="activityForm"
+      name="intensity"
+      value={activityDetails.intensity}
+      onChange={handleChange}
+      aria-label="Default select example"
+    >
+      <option value="">Select Intensity</option>
+      <option value="Easy">Easy</option>
+      <option value="Medium">Medium</option>
+      <option value="Hard">Hard</option>
+    </Form.Select>
+  </Form.Group>
+</div>
     
-          <div className="input-container">
+         {/*  <div className="input-container">
             <input
               type="text"
               name="intensity"
@@ -123,7 +200,7 @@ const ActivityDetails = () => {
               onChange={handleChange}
               placeholder="Intensity"
             />
-          </div>
+          </div> */}
     
          {/*  <div className="input-container">
             <input
@@ -146,11 +223,12 @@ const ActivityDetails = () => {
     </div> */}
     
     
-          {activityDetails.id ?
-            <button onClick={handleUpdateActivityDetails} className="update-button">Update Activity Details</button> :
-            <button onClick={handleSaveActivityDetails} className="save-button">Save Activity Details</button>
-          }
-          {/* <Button onClick={() => navigate('/dietdetails/addmeal')} className="mt-3">Create Meal</Button> */}
+    <Button variant="primary" onClick={handleSaveActivityDetails} className="save-button">
+  Save Activity Details
+</Button>
+
+            {/* <button onClick={handleSaveActivityDetails} className="save-button">Save Activity Details</button> */}
+          
         </div>
         
       )
