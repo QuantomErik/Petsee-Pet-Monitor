@@ -113,23 +113,45 @@ User remains on the login page.
 
 Test Suite: Pet Details Management
 
-Test Case 4.1: View Pet Details
+Test Case 4.1: View Pet Details on Home page
+Objective: Verify that users can view details of their pets.
+Input:
+Log in successfully.
+Redirected to the logged in "home" page.
+Expected Output:
+Displays a card with the Pet details.
+
+Test Case 4.2: View Pet Details
 Objective: Verify that users can view details of their pets.
 Input:
 Log in successfully.
 Navigate to the pet details section.
 Expected Output:
-Displays pet's name, age, breed, and medical notes.
+Displays pet's name, age, weight, length, favouriteFood, favouriteToy, breed and medical notes.
 
-Test Case 4.2: Edit Pet Details
-Objective: Ensure users can edit and save changes to pet details.
+Test Case 4.3: Edit Pet Details - Save when creating new document.
+Objective: Ensure users can create a new document to pet details.
 Input:
 Log in and view pet details.
 Click "Edit".
-Change the pet's age and medical notes.
+Add input to the form.
 Save changes.
 Expected Output:
-Confirmation message "Details updated successfully."
+Only the "save" button should appear.
+Details succesfully stored in mongoDB.
+User is redirected to the logged in "home" page.
+Saved details are displayed.
+
+Test Case 4.4: Edit Pet Details - Update when existing document exists.
+Objective: Ensure users can edit and update changes to pet details.
+Input:
+Log in and view pet details.
+Click "Edit".
+Change pet's name to "Kalle"
+Update changes.
+Expected Output:
+Only the "update" button should appear.
+User is redirected to the logged in "home" page.
 Updated details are displayed.
 
 Test Suite: Diet Management
@@ -154,23 +176,123 @@ Updated diet details are saved.
 Display "Diet plan updated successfully."
 Test Suite: Activity Scheduling
 
-Test Case 6.1: Schedule New Activity
-Objective: Verify that users can schedule activities for their pets.
+Test Suite: Activity Management
+
+Test Case 6.1: Add New Button
+Objective: Verify that the url for adding activities work and that a button to "create activity" displays. 
 Input:
-Log in and navigate to the activity section.
-Enter activity details (type, duration, notes).
-Set date and time.
+Log in and navigate to the "activitydetails" section.
+Expected Output:
+A new page is opened.
+A create button is displayed.
+
+Test Case 6.2: Add New Activity Form
+Objective: Verify that users can add activities for their pets through dropdown menus.
+Input:
+Log in and navigate to the activitydetails section.
+Choose activity details from dropdown (type, duration, intensity).
+Expected Output:
+User interface is displayed where the user can choose activity from dropdown menus.
+
+Test Case 6.3: Add New Activity
+Objective: Verify that users can save activities for their pets.
+Input:
+Log in and navigate to the activitydetails section.
+Choose activity details from dropdown (type, duration, intensity).
 Save the activity.
 Expected Output:
-Activity is scheduled.
-Display "Activity scheduled successfully."
+Activity is added to the "activitydetails" page.
+Displays the new activity.
 
-Test Case 6.2: Edit Scheduled Activity
-Objective: Ensure users can modify scheduled activities.
+Test Case 6.4: Edit Activity
+Objective: Verify that users can edit activities for their pets.
 Input:
-Choose an existing activity.
-Change the time and notes.
-Update the activity.
+Log in and navigate to the activitydetails section.
+Choose activity and press the "edit" button.
 Expected Output:
-Activity details are updated.
-Display "Activity updated successfully."
+User is redirected to an "edit" url for the specified activity.
+Displays Buttons for "update" activity" and "delete activity".
+
+Test Case 6.5: Update Activity
+Objective: Verify that users can update activities for their pets.
+Input:
+Log in and navigate to the activitydetails section.
+Choose activity and press the "edit" button.
+Change duration to 60.
+Press the "update activity" button.
+Expected Output:
+User is redirected to the activitydetails url and the activity is updated.
+Displayes A message "update succesfull" is displayed.
+
+Test Case 6.6: Delete Activity
+Objective: Verify that users can delete activities for their pets.
+Input:
+Log in and navigate to the activitydetails section.
+Choose activity and press the "edit" button.
+Click the "delete" button.
+Expected Output:
+A warning is displayed warning the user about the deletion.
+User is redirected to the activitydetails url and the activity is deleted.
+Displayes A message "delete succesfull" is displayed.
+
+Test Suite: Schedule Management
+
+Test Case 7.1: Add New Button
+Objective: Verify that the url for adding schedule work and that a button to "create schedule" displays. 
+Input:
+Log in and navigate to the "scheduledetails" section.
+Expected Output:
+A new page is opened.
+A create button is displayed.
+
+Test Case 7.2: Add New Schedule Form
+Objective: Verify that users can add schedule for their pet.
+Input:
+Log in and navigate to the "scheduledetails" section.
+Choose schedule details from dropdown.
+Expected Output:
+User interface is displayed where the user can add date and note.
+
+Test Case 7.3: Add New Schedule
+Objective: Verify that users can save the schedule for their pet.
+Input:
+Log in and navigate to the scheduledetails section.
+Choose date and write a note.
+Save the schedule.
+Expected Output:
+A schedule is added to the "scheduledetails" page.
+Displays the new schedule.
+
+Test Case 7.4: Edit Schedule
+Objective: Verify that users can edit the schedule for their pet.
+Input:
+Log in and navigate to the schedule details section.
+Choose the schedule and press the "edit" button.
+Expected Output:
+User is redirected to an "edit" url for the schedule.
+Displays Buttons for "update" schedule" and "delete schedule".
+
+Test Case 7.5: Update Schedule
+Objective: Verify that users can update the schedule for their pet.
+Input:
+Log in and navigate to the schedule details section.
+Choose the schedule and press the "edit" button.
+Change note to..
+Press the "update schedule" button.
+Expected Output:
+User is redirected to the scheduledetails url and the schedule is updated.
+Displayes A message "update succesfull" is displayed.
+
+Test Case 7.6: Delete Schedule
+Objective: Verify that users can delete the schedule.
+Input:
+Log in and navigate to the scheduledetails section.
+Choose the schedule and press the "edit" button.
+Click the "delete" button.
+Expected Output:
+A warning is displayed warning the user about the deletion.
+User is redirected to the scheduledetails url and the schedule is deleted.
+Displayes A message "delete succesfull" is displayed.
+
+
+
