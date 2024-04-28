@@ -6,7 +6,7 @@
 - **Development Tools:** VSCode
 - **Browser:** Google Chrome
 - **Database:** MongoDB
-- **Framework:** [Your Framework]
+- **Framework:** [React, MongoDB, node.js, express]
 
 ### Test Suite: Activity Management
 

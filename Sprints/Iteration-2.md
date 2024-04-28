@@ -12,29 +12,10 @@ I have now started to implement the different functions of the application. It i
 | Gå igenom material på kurshemsidan                 |                       |                                   | 2           |         2   |
 | Research av React                                  |                       |                                   | 2           |         1   |
 | Skriva kod för dietdetails                         |                       |                                   | 1           |         8   |
-| Skriva kod för dietdetails/addmeal                 |                       |                                   | 1           |         6   |
-| Skriva kod för dietdetails/addmeal  fetch          |                       |                                   | 1           |         3   |
-| Skriva kod för dietdetails/addmeal  create         |                       |                                   | 1           |         2   |
-| Skriva kod för dietdetails/addmeal  put            |                       |                                   | 1           |         2   |
-| Skriva kod för dietdetails/addmeal  delete         |                       |                                   | 1           |         4   |
-| Skriva kod för activitydetails                     |                       |                                   | 2           |         3   |
-| Skriva kod för activitydetails/addactivity         |                       |                                   | 1           |         1   |
-| Skriva kod för activitydetails/addactivity  fetch  |                       |                                   | 1           |         6   |
-| Skriva kod för activitydetails/addactivity  create |                       |                                   | 1           |         1   |
-| Skriva kod för activitydetails/addactivity put     |                       |                                   | 1           |         1   |
-| Skriva kod för activitydetails/addactivity delete  |                       |                                   | 1           |         1   |
-| Skriva kod för scheduledetails                     |                       |                                   | 2           |         1   |
-| Skriva kod för scheduledetails/addschedule         |                       |                                   | 1           |         1   |
-| Skriva kod för scheduledetails/addschedule  fetch  |                       |                                   | 1           |         0   |
-| Skriva kod för scheduledetails/addschedule  create |                       |                                   | 1           |         0   |
-| Skriva kod för scheduledetails/addschedule  put    |                       |                                   | 1           |         0   |
-| Skriva kod för scheduledetails/addschedule  delete |                       |                                   | 1           |         0   |
-| Skriva kod för petdetails                          |                       |                                   | 2           |         1   |
-| Skriva kod för petdetails/addpetdetails            |                       |                                   | 1           |         1   |
-| Skriva kod för petdetails/addpetdetails fetch      |                       |                                   | 1           |         1   |
-| Skriva kod för petdetails/addpetdetails create     |                       |                                   | 1           |         0   |
-| Skriva kod för petdetails/addpetdetails  put       |                       |                                   | 1           |         0   |
-| Skriva kod för petdetails/addpetdetails  delete    |                       |                                   | 1           |         0   |
+| Skriva kod för dietdetails/addmeal                 |                       |                                   | 5           |         17  |
+| Skriva kod för activitydetails                     |                       |                                   | 7           |         13  |
+| Skriva kod för scheduledetails                     |                       |                                   | 7           |         2   |
+| Skriva kod för petdetails                          |                       |                                   | 7           |         3   |
 | Fundera över projectidé på promenad/i bilen        |                       |                                   | 2           |         1   |
 | Skriva Sprint BackLogs                             |                       |                                   | 1           |         1   |
 | Testing functions for ActivityDetails              | 6 –Activity Management|[6 ✅](/Testning/Testrapport-2.md)| 2            |        4    |

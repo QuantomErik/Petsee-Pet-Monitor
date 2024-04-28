@@ -15,6 +15,7 @@
 <!-- - Testspecifikation(Testning/Testspecifikation) -->
 - [Testrapport](Testning/Testrapport-1) iteration 1
 - [Testrapport](Testning/Testrapport-2) iteration 2
+- [Testrapport](Testning/Testrapport-3) iteration 3
 - ...
 - Testrapport iteration 8
 
@@ -24,6 +25,7 @@
 - [Iteration 1](/Sprints/Iteration-1)
 - [Iteration 2](/Sprints/Iteration-2)
 - [Iteration 3](/Sprints/Iteration-3)
+- [Iteration 4](/Sprints/Iteration-4)
 - ...
 - Iteration 8
 
