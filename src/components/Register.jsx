@@ -8,12 +8,12 @@ async function registerUser(userData) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
-    });
+    })
     if (!response.ok) {
-        const errorData = await response.json();
+        const errorData = await response.json()
         throw new Error(errorData.message || 'Registration failed')
     }
-    return response.json();
+    return response.json()
 }
 
 const Register = () => {
@@ -31,8 +31,8 @@ const Register = () => {
         setUserData(prevData => ({
             ...prevData,
             [name]: value
-        }));
-    };
+        }))
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -44,7 +44,7 @@ const Register = () => {
         } catch (error) {
             console.error('Registration error:', error)
         }
-    };
+    }
 
 
     return (
@@ -99,8 +99,8 @@ const Register = () => {
             </form>
         </div>
         
-    );
-};
+    )
+}
 
     /* return (
         <div>
@@ -117,7 +117,7 @@ const Register = () => {
                 <button type="submit">Register</button>
             </form>
         </div>
-    );
-}; */
+    )
+} */
 
-export default Register;
+export default Register

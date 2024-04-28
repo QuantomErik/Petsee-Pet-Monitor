@@ -44,7 +44,7 @@ export class LoginController {
         res.status(401).json({ success: false, message: 'Invalid username or password' })
       }
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Login error:', error)
       res.status(500).json({ success: false, message: 'Internal server error' })
     }
   } */
@@ -74,7 +74,7 @@ export class LoginController {
                 username: result.username
             },
             accessToken  // Include the token in the response
-        });
+        })
     } catch (error) {
         console.error('Login error:', error)
         res.status(500).json({ success: false, message: 'Internal server error' })

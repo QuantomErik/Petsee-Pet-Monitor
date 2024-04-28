@@ -3,7 +3,7 @@
 import { PetController } from '../controllers/PetController.js'
 import express from 'express'
 import multer from 'multer'
-import auth from '../middlewares/auth.js';
+import auth from '../middlewares/auth.js'
 
 
 export const router = express.Router()
@@ -27,4 +27,4 @@ router.put('/pet/petdetails/:id', auth.authenticateJWT, upload.single('image'), 
 })
 
 
-/* export default router; */
+/* export default router */

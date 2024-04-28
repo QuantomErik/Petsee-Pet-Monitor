@@ -24,7 +24,7 @@ try {
   // Creates an Express application.
   const app = express()
 
-mongoose.set('debug', true);
+mongoose.set('debug', true)
   
 
   // Get the directory name of this module's path.
@@ -48,8 +48,8 @@ mongoose.set('debug', true);
   )
 
   // Parse JSON and urlencoded request bodies
-app.use(express.json()); // Parses incoming requests with JSON payloads
-app.use(express.urlencoded({ extended: false })); // Parses incoming requests with URL-encoded payloads
+app.use(express.json()) // Parses incoming requests with JSON payloads
+app.use(express.urlencoded({ extended: false })) // Parses incoming requests with URL-encoded payloads
 
   // Set up a morgan logger using the dev format for log entries.
   app.use(logger('dev'))

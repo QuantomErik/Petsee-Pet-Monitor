@@ -13,7 +13,7 @@ import { BASE_SCHEMA } from './baseSchema.js'
     Phosphorus: Number,
     Omega3FattyAcids: Number,
     Omega6FattyAcids: Number
-}); */
+}) */
 
 /* const mealSchema = new mongoose.Schema({
     mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },
@@ -21,7 +21,7 @@ import { BASE_SCHEMA } from './baseSchema.js'
     nutrients: nutrientSchema,
     quantity: Number,
     totalCalories: Number
-}); */
+}) */
 
 /* const mealSchema = new mongoose.Schema({
     mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },
@@ -44,12 +44,12 @@ import { BASE_SCHEMA } from './baseSchema.js'
 
 const dietProfileSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },
+    mealType: { type: String, required: true },
     time: { type: String/* , required: true */ },
     quantity: { type: Number, required: true },
     totalCalories: { type: Number, required: true },
-    name: { type: String, required: true }
-});
+    selectedBrand: { type: String, required: true }
+})
 
 /* const mealSchema = new mongoose.Schema({
     mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },
@@ -67,7 +67,7 @@ const dietProfileSchema = new mongoose.Schema({
         carbs: Number,
         moisture: Number
     }
-}); */
+}) */
 
 /* const dietProfileSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

@@ -6,13 +6,13 @@ export class ScheduleController {
         const userId = req.user.id
 
         try {
-            const { date, note } = req.body;
+            const { date, note } = req.body
             /* const newSchedule = new ScheduleModel({ date, note, userId: req.user._id }) */
-            const newSchedule = new ScheduleModel({ date, note, userId: userId })
-            await newSchedule.save();
-            res.status(201).json(newSchedule);
+            const newSchedule = new ScheduleModel({ date, note, userId/* : userId */ })
+            await newSchedule.save()
+            res.status(201).json(newSchedule)
         } catch (error) {
-            res.status(500).send('Failed to save schedule details');
+            res.status(500).send('Failed to save schedule details')
         }
     }
     
@@ -20,27 +20,53 @@ export class ScheduleController {
         const userId = req.user.id
         try {
             /* const schedules = await ScheduleModel.find({ userId: req.user._id }) */
-            const schedules = await ScheduleModel.findOne({ userId: userId })
-            res.json(schedules);
+            const schedules = await ScheduleModel.find({ userId: userId })
+            res.json(schedules)
         } catch (error) {
-            res.status(500).send('Failed to get schedules');
+            res.status(500).send('Failed to get schedules')
         }
     }
     
     async updateScheduleDetails(req, res) {
-        const { id } = req.params;
-        const { date, note } = req.body;
+        const { id } = req.params
+        const { date, note } = req.body
 
         try {
-            const updatedSchedule = await ScheduleModel.findByIdAndUpdate(id, { date, note }, { new: true });
+            const updatedSchedule = await ScheduleModel.findByIdAndUpdate(id, { date, note }, { new: true })
             if (!updatedSchedule) {
-                return res.status(404).json({ message: 'Schedule not found' });
+                return res.status(404).json({ message: 'Schedule not found' })
             }
-            res.json({ message: 'Schedule updated successfully', data: updatedSchedule });
+            res.json({ message: 'Schedule updated successfully', data: updatedSchedule })
         } catch (error) {
-            res.status(500).send('Failed to update schedule details');
+            res.status(500).send('Failed to update schedule details')
         }
     }
 
+    async deleteScheduleDetails(req, res) {
+        const id = req.params.id
+    
+        try {  // Ensure this opening brace is present
+            const note = await ScheduleModel.findByIdAndDelete(id)
+    
+            if (note) {
+                res.status(200).json({
+                    message: "Activity successfully deleted",
+                    id: note._id
+                })
+            } else {
+                res.status(404).json({
+                    message: "Activity not found"
+                })
+            }
+        } catch (error) {  // This catch now correctly corresponds to the try block
+            console.error('Error deleting activity:', error)
+            res.status(500).json({
+                message: "Error deleting activity",
+                error: error.message
+            })
+        }
+    }
 
 }
+
+

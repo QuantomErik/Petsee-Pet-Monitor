@@ -1,5 +1,5 @@
 // src/components/FeatureCard.jsx
-import React from 'react';
+import React from 'react'
 
 const FeatureCard = ({ title, description, icon }) => {
     return (
@@ -12,7 +12,7 @@ const FeatureCard = ({ title, description, icon }) => {
                 <p className="card-description">{description}</p>
             </div>
         </div>
-    );
+    )
 }
 
-export default FeatureCard;
+export default FeatureCard

@@ -1,5 +1,12 @@
+
 import React, { useReducer, useEffect, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
+
+
 
 const brandsData = {
   brands: [
@@ -58,14 +65,15 @@ const useSaveDietDetails = (isSubmitting, dietDetails) => {
 
     const saveDietDetails = async () => {
       const payload = { 
-        /* meals  */
-        mealType: dietDetails.currentMeal.mealType,
+       
+        mealType: dietDetails.currentMeal?.mealType,
     time: dietDetails.currentMeal.time,
     quantity: parseFloat(dietDetails.quantity),
     totalCalories: parseFloat(dietDetails.totalCalories),
+    selectedBrand: dietDetails.selectedBrand,
     name: dietDetails.name
       }
-      const method = 'POST' // Simplified for example
+      const method = 'POST'
       const endpoint = 'http://localhost:3000/api/pet/dietdetails/'
   
       try {
@@ -84,12 +92,12 @@ const useSaveDietDetails = (isSubmitting, dietDetails) => {
   
         const result = await response.json()
         console.log('Operation successful:', result)
-        // Dispatch to state reducer if needed or handle the result
+        
         
       } catch (error) {
         console.error('Error saving/updating diet details:', error)
       } finally {
-        // Reset submission state or handle navigation
+        
         navigate('/dietdetails', { state: { refresh: true } })
       }
     }
@@ -101,12 +109,11 @@ const useSaveDietDetails = (isSubmitting, dietDetails) => {
 const DietDetails = () => {
   const navigate = useNavigate()
   const [dietDetails, dispatch] = useReducer(dietReducer, {
-    name: '', 
     quantity: '',
     totalCalories: 0,
     selectedBrand: '',
     nutrients: {},
-    meals: [],
+    /* meals: [], */
     currentMeal: { mealType: '', time: '', quantity: '0' },
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -169,7 +176,7 @@ const DietDetails = () => {
     }
   }
 
-  // Function to handle when the form is submitted
+ 
   const handleSubmit = async () => {
     if (isSubmitting) {
       console.log('Submission blocked, already submitting.')
@@ -202,7 +209,7 @@ const DietDetails = () => {
 
       const result = await response.json()
       console.log('Operation successful:', result)
-      // Navigate or update UI as needed
+     
     } catch (error) {
       console.error('Error saving/updating diet details:', error)
     } finally {
@@ -233,13 +240,13 @@ const DietDetails = () => {
       nutrients: { ...dietDetails.nutrients }
     }
   
-    const updatedMeals = [...dietDetails.meals, newMeal]
+    /* const updatedMeals = [... newMeal] */
   
     const payload = {
       name: dietDetails.name,
       quantity: dietDetails.quantity,
-      totalCalories: dietDetails.totalCalories, // This should be calculated based on all meals if not done yet
-      meals: updatedMeals
+      totalCalories: dietDetails.totalCalories, 
+      /* meals: updatedMeals */
     }
   
     try {
@@ -257,8 +264,8 @@ const DietDetails = () => {
       const result = await response.json()
       console.log('Operation successful:', result)
       
-      // Update the state with the result and reset current meal
-      dispatch({ type: 'SET_DIET_DETAILS', details: {...result, meals: updatedMeals, currentMeal: { mealType: '', time: '', quantity: '0' }} })
+     
+      dispatch({ type: 'SET_DIET_DETAILS', details: {...result, /* meals: updatedMeals, */ currentMeal: { mealType: '', time: '', quantity: '0' }} })
   
       navigate('/dietdetails', { state: { refresh: true } })
     } catch (error) {
@@ -271,38 +278,90 @@ const DietDetails = () => {
   
 
   
+    
   return (
     <div className="diet-details-container">
-      <h1>Diet Details</h1>
+      {/* <h1>Diet Details</h1> */}
+
+      
       <form onSubmit={handleSubmit}>
-      <div>
-        <label>Brand:</label>
-        <select name="selectedBrand" value={dietDetails.selectedBrand} onChange={handleInputChange}>
+
+
+      <div className="center-select">
+      <Form.Group>
+      {/* <Form.Label>Brand:</Form.Label> */}
+      <Form.Select 
+      className="mealForm"
+      name="selectedBrand" 
+      value={dietDetails.selectedBrand} 
+      onChange={handleInputChange}>
+
           <option value="">Select a Brand</option>
           {brandsData.brands.map((brand, index) => (
             <option key={index} value={brand.name}>{brand.name}</option>
           ))}
-        </select>
+        </Form.Select>
+        </Form.Group>
       </div>
-      <div>
-        <label>Quantity (grams):</label>
-        <input type="number" name="quantity" value={dietDetails.quantity} onChange={handleInputChange} />
+
+
+      <div className="center-select">
+      <Form.Group>
+      {/* <Form.Label>Quantity (grams):</Form.Label> */}
+      
+      <Form.Select 
+      className="mealForm"
+      type="number" 
+      name="quantity" 
+      value={dietDetails.quantity} 
+      onChange={handleInputChange}
+      >
+        <option value="">Select Grams</option>
+        <option value="5">5 grams</option>
+        <option value="10">10 grams</option>
+        <option value="15">15 grams</option>
+        <option value="20">20 grams</option>
+        <option value="25">25 grams</option>
+        <option value="30">30 grams</option>
+        <option value="35">35 grams</option>
+        <option value="40">40 grams</option>
+        <option value="45">45 grams</option>
+        <option value="50">50 grams</option>
+      </Form.Select>
+        </Form.Group>
       </div>
-      <div>
-        <label>Meal Type:</label>
-        <select name="mealType" value={dietDetails.currentMeal?.mealType} onChange={handleInputChange}>
-          <option value="">Choose a Meal Type</option>
+
+
+      <div className="center-select">
+      <Form.Group>
+        {/* <label>Meal Type:</label> */}
+        <Form.Select
+        className="mealForm"
+        name="mealType" 
+        value={dietDetails.currentMeal?.mealType}
+        onChange={handleInputChange}>
+
+          <option value="">Choose Meal</option>
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
           <option value="Dinner">Dinner</option>
           <option value="Snack">Snack</option>
-        </select>
+          </Form.Select>
+        </Form.Group>
       </div>
-      <div>
-        <label>Time:</label>
+
+
+      <div className="center-select">
+      <Form.Group>
+      <Form.Label>Choose a Time</Form.Label>
         <input type="time" name="time" value={dietDetails.currentMeal?.time || ''} onChange={handleInputChange} />
+        </Form.Group>
       </div>
-      <div>
+
+      </form>
+
+
+      {/* <div>
         {dietDetails.nutrients && (
           <>
             <h2>Nutrients</h2>
@@ -312,19 +371,34 @@ const DietDetails = () => {
             <p>Total Calories: {dietDetails.totalCalories} kcal</p>
           </>
         )}
-      </div>
-      <div>
-        <label>Name:</label>
-        <input type="text" name="name" value={dietDetails.name} onChange={handleInputChange} />
-      </div>
-      {/* <button onClick={addMeal} disabled={isSubmitting} className="save-button">Add & Save Meal</button> */}
-     {/*  <button type="submit" disabled={isSubmitting}>Save Diet Details</button> */}
-     <button onClick={addMealAndSave} disabled={isSubmitting}>Add Meal and Save</button>
+      </div> */}
 
-      </form>
+<Card style={{ width: '18rem' }} className="addmeal-nutrients-card">
+      <Card.Header>Nutrients</Card.Header>
+      <ListGroup variant="flush">
+        {Object.entries(dietDetails.nutrients).map(([key, value]) => (
+          <ListGroup.Item key={key}>{key}: {value} grams</ListGroup.Item>
+        ))}
+        <ListGroup.Item><strong>Total Calories:</strong> {dietDetails.totalCalories} kcal</ListGroup.Item>
+      </ListGroup>
+    </Card>
+   
+
+
+     
+    <Button variant="primary" onClick={addMealAndSave} disabled={isSubmitting} className="save-button">
+      Add Meal and Save
+    </Button>
+    
+
+      {/* </form> */}
     </div>
+    
+    
   )
+  
 }
+
 
 
 

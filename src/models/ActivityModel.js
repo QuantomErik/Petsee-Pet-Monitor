@@ -11,7 +11,7 @@ const activitySchema = new mongoose.Schema({
     /* notes: String, */
     userId: { type: mongoose.Schema.Types.ObjectId,
     ref: 'User' }
-});
+})
 
 activitySchema.add(BASE_SCHEMA)
 

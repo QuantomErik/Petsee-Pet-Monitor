@@ -17,6 +17,6 @@ const userController = new UserController()
 }) */
 
 router.post('/register', (req, res, next) => {
-  console.log('POST /api/register route handler');
-  userController.registerPost(req, res, next);
+  console.log('POST /api/register route handler')
+  userController.registerPost(req, res, next)
 })

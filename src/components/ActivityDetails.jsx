@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 
 function ActivityDetails() {
     const [activities, setActivities] = useState([])
@@ -38,14 +38,14 @@ function ActivityDetails() {
 
         fetchActivities()
 
-        console.log("Component mounted, checking for flash message.");
-        const message = localStorage.getItem('flashMessage');
+        console.log("Component mounted, checking for flash message.")
+        const message = localStorage.getItem('flashMessage')
         if (message) {
-          console.log('Flash message found:', message);
+          console.log('Flash message found:', message)
           toast.success(message);
-          localStorage.removeItem('flashMessage');
+          localStorage.removeItem('flashMessage')
         } else {
-          console.log('No flash message found.');
+          console.log('No flash message found.')
         }
 
     }, [])

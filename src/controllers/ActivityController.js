@@ -4,12 +4,12 @@ export class ActivityController {
 
     /* async getActivityDetails(req, res, next) {
         try {
-            const activities = await ActivityModel.find();
+            const activities = await ActivityModel.find()
             console.log("Activities fetched:", activities)
            
-            res.json({ activities });
+            res.json({ activities })
         } catch (error) {
-            next(error);
+            next(error)
         }
     } */
 
@@ -24,9 +24,9 @@ export class ActivityController {
                     ...activity.toObject(), // Convert Mongoose document to a plain JavaScript object
                     _id: activity._id      // Ensure _id is included
                 }))
-            });
+            })
         } catch (error) {
-            next(error);
+            next(error)
         }
     }
     
@@ -54,56 +54,56 @@ try {
                 intensity,
                 /* userId: userId */
                 userId: req.user.id
-            });
+            })
     
             // Send a success response with the created activity data
             res.status(201).json({
                 message: "Activity successfully created",
                 activity: activity
-            });
+            })
         } catch (error) {
-            console.error('Error creating activity:', error);
+            console.error('Error creating activity:', error)
             res.status(500).json({
                 message: "Error creating activity",
                 error: error.message
-            });
+            })
         }
     }
     
 
     /* async getActivityById(req, res, next) {
         try {
-            const { id } = req.params.id;
+            const { id } = req.params.id
 
             
-            console.log('ID received:', id);
-            const activity = await ActivityModel.findById(id);
+            console.log('ID received:', id)
+            const activity = await ActivityModel.findById(id)
     
             if (!activity) {
-                return res.status(404).json({ message: "Activity not found" });
+                return res.status(404).json({ message: "Activity not found" })
             }
     
-            res.json(activity);
+            res.json(activity)
         } catch (error) {
-            console.error('Error fetching activity:', error);
-            res.status(500).json({ message: "Error fetching activity", error: error.message });
+            console.error('Error fetching activity:', error)
+            res.status(500).json({ message: "Error fetching activity", error: error.message })
         }
     } */
     
     async getActivityById(req, res, next) {
         try {
-            const id = req.params.id;  // Correct way to extract the id
-            console.log('ID received:', id);
-            const activity = await ActivityModel.findById(id);
+            const id = req.params.id  // Correct way to extract the id
+            console.log('ID received:', id)
+            const activity = await ActivityModel.findById(id)
     
             if (!activity) {
-                return res.status(404).json({ message: "Activity not found" });
+                return res.status(404).json({ message: "Activity not found" })
             }
     
-            res.json(activity);
+            res.json(activity)
         } catch (error) {
-            console.error('Error fetching activity:', error);
-            res.status(500).json({ message: "Error fetching activity", error: error.message });
+            console.error('Error fetching activity:', error)
+            res.status(500).json({ message: "Error fetching activity", error: error.message })
         }
     }
     
@@ -131,109 +131,109 @@ try {
         }
       } */
       async updateActivity(req, res) {
-        const { id } = req.params; // Assuming the ID is passed as a URL parameter
-        const updates = req.body; // All updates provided in the body of the request
+        const { id } = req.params // Assuming the ID is passed as a URL parameter
+        const updates = req.body // All updates provided in the body of the request
     
         try {
             // Find the document by ID and update it with the new values
             // The { new: true } option returns the updated document instead of the original
-            const updatedActivity = await ActivityModel.findByIdAndUpdate(id, updates, { new: true });
+            const updatedActivity = await ActivityModel.findByIdAndUpdate(id, updates, { new: true })
     
             if (!updatedActivity) {
-                return res.status(404).json({ message: "Activity not found" });
+                return res.status(404).json({ message: "Activity not found" })
             }
     
             // Send back the updated activity data
             res.status(200).json({
                 message: "Activity updated successfully",
                 activity: updatedActivity
-            });
+            })
         } catch (error) {
-            console.error('Error updating activity:', error);
+            console.error('Error updating activity:', error)
             res.status(500).json({
                 message: "Error updating activity",
                 error: error.message
-            });
+            })
         }
     }
 
    /*  async deleteActivity(req, res) {
         try {
-            const { activityId } = req.params;
+            const { activityId } = req.params
     
            
     
-            const activity = await ActivityModel.findByIdAndDelete(activityId);
+            const activity = await ActivityModel.findByIdAndDelete(activityId)
     
             if (activity) {
                 res.status(200).json({
                     message: "Activity successfully deleted",
                     activityId: activity._id
-                });
+                })
             } else {
                 res.status(404).json({
                     message: "Activity not found"
-                });
+                })
             }
         } catch (error) {
-            console.error('Error deleting activity:', error);
+            console.error('Error deleting activity:', error)
             res.status(500).json({
                 message: "Error deleting activity",
                 error: error.message
-            });
+            })
         }
     } */
     
     async deleteActivity(req, res) {
         try {
-            /* const { activityId } = req.params; */
-            const id = req.params.id;
+            /* const { activityId } = req.params */
+            const id = req.params.id
     
            
     
-            const activity = await ActivityModel.findByIdAndDelete(id);
+            const activity = await ActivityModel.findByIdAndDelete(id)
     
             if (activity) {
                 res.status(200).json({
                     message: "Activity successfully deleted",
                     id: activity._id
-                });
+                })
             } else {
                 res.status(404).json({
                     message: "Activity not found"
-                });
+                })
             }
         } catch (error) {
-            console.error('Error deleting activity:', error);
+            console.error('Error deleting activity:', error)
             res.status(500).json({
                 message: "Error deleting activity",
                 error: error.message
-            });
+            })
         }
     }
     
     
 
       /* async updateActivityDetails(req, res) {
-        const { id } = req.params;
+        const { id } = req.params
     
        
         if (!req.body || Object.keys(req.body).length === 0) {
-            return res.status(400).json({ message: 'No details provided for update' });
+            return res.status(400).json({ message: 'No details provided for update' })
         }
     
-        console.log("Received update for ID:", id);
-        console.log("Updating activity details with data:", req.body);
+        console.log("Received update for ID:", id)
+        console.log("Updating activity details with data:", req.body)
     
         try {
-            const updatedActivityDetails = await ActivityModel.findByIdAndUpdate(id, req.body, { new: true });
+            const updatedActivityDetails = await ActivityModel.findByIdAndUpdate(id, req.body, { new: true })
             if (!updatedActivityDetails) {
-                return res.status(404).json({ message: 'activity details not found' });
+                return res.status(404).json({ message: 'activity details not found' })
             }
-            res.json({ message: 'activity details updated successfully', activityDetails: updatedActivityDetails });
+            res.json({ message: 'activity details updated successfully', activityDetails: updatedActivityDetails })
         } catch (error) {
-            console.error('Error updating activity details:', error);
-            res.status(500).json({ message: 'Failed to update activity details', error });
+            console.error('Error updating activity details:', error)
+            res.status(500).json({ message: 'Failed to update activity details', error })
         }
     } */
     
@@ -298,25 +298,25 @@ export class ActivityController {
     
 
       async updateActivityDetails(req, res) {
-        const { id } = req.params;
+        const { id } = req.params
     
        
         if (!req.body || Object.keys(req.body).length === 0) {
-            return res.status(400).json({ message: 'No details provided for update' });
+            return res.status(400).json({ message: 'No details provided for update' })
         }
     
-        console.log("Received update for ID:", id);
-        console.log("Updating activity details with data:", req.body);
+        console.log("Received update for ID:", id)
+        console.log("Updating activity details with data:", req.body)
     
         try {
-            const updatedActivityDetails = await ActivityModel.findByIdAndUpdate(id, req.body, { new: true });
+            const updatedActivityDetails = await ActivityModel.findByIdAndUpdate(id, req.body, { new: true })
             if (!updatedActivityDetails) {
-                return res.status(404).json({ message: 'activity details not found' });
+                return res.status(404).json({ message: 'activity details not found' })
             }
-            res.json({ message: 'activity details updated successfully', activityDetails: updatedActivityDetails });
+            res.json({ message: 'activity details updated successfully', activityDetails: updatedActivityDetails })
         } catch (error) {
-            console.error('Error updating activity details:', error);
-            res.status(500).json({ message: 'Failed to update activity details', error });
+            console.error('Error updating activity details:', error)
+            res.status(500).json({ message: 'Failed to update activity details', error })
         }
     }
     

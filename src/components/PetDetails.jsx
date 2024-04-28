@@ -34,7 +34,7 @@ const PetDetails = () => {
         const data = await response.json()
         // Check if breeds is actually an array
         if (Array.isArray(data)) {
-          setBreeds(data);
+          setBreeds(data)
         } else {
           console.error('Expected breeds to be an array')
           setBreeds([])
@@ -56,7 +56,7 @@ const PetDetails = () => {
 
   /* const fetchBreeds = async () => {
     try {
-      const response = await fetch('https://dog.ceo/api/breeds/list/all');
+      const response = await fetch('https://dog.ceo/api/breeds/list/all')
       if (response.ok) {
         const data = await response.json()
         const breedData = data.message
@@ -68,7 +68,7 @@ const PetDetails = () => {
           } else {
             return subBreeds.map(subBreed => `${breed} (${subBreed})`)
           }
-        });
+        })
   
         setBreeds(breedsWithSubBreeds)
       } else {
@@ -81,7 +81,7 @@ const PetDetails = () => {
 
  /*  useEffect(() => {
     fetchBreeds()
-  }, []); */
+  }, []) */
 
   /* const navigate = useNavigate() */
 
@@ -112,7 +112,7 @@ const PetDetails = () => {
       }
     }
 
-    fetchPetDetails();
+    fetchPetDetails()
   }, [])
 
   const handleImageChange = (event) => {
@@ -121,7 +121,7 @@ const PetDetails = () => {
       setImagePreviewUrl(URL.createObjectURL(file))
       setPetImage(file)
     }
-  };
+  }
 
   const handleDetailChange = (event) => {
     const { name, value } = event.target
@@ -312,6 +312,6 @@ const PetDetails = () => {
       }
     </div>
   )
-};
+}
 
-export default PetDetails;
+export default PetDetails

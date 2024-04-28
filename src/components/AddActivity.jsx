@@ -13,7 +13,7 @@ const ActivityDetails = () => {
     })
     const navigate = useNavigate()
 
-    useEffect(() => {
+    /* useEffect(() => {
         const fetchActivityDetails = async () => {
           const token = localStorage.getItem('token')
           try {
@@ -39,7 +39,7 @@ const ActivityDetails = () => {
         }
     
         fetchActivityDetails()
-      }, [])
+      }, []) */
     
       const handleChange = (event) => {
         const { name, value } = event.target
@@ -70,12 +70,12 @@ const ActivityDetails = () => {
 
         setActivityDetails(result.activity)
 
-        console.log("Setting flash message");
-        localStorage.setItem('flashMessage', 'Activity created successfully!');
+        console.log("Setting flash message")
+        localStorage.setItem('flashMessage', 'Activity created successfully!')
         setTimeout(() => {
-          console.log("Navigating to /activitydetails");
-          navigate('/activitydetails');
-        }, 100);
+          console.log("Navigating to /activitydetails")
+          navigate('/activitydetails')
+        }, 100)
 
         /* setActivityDetails(result.activity)
         navigate('/activitydetails') */

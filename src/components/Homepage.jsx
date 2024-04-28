@@ -36,14 +36,14 @@ const Homepage = ({ onLogout }) => {
 
     useEffect(() => {
         const fetchPetDetails = async () => {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('token')
             try {
                 const response = await fetch('http://localhost:3000/api/pet/petdetails', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
-                });
+                })
                 if (response.ok) {
                     const data = await response.json()
                     console.log(data) // Log the data to see its structure
@@ -55,7 +55,7 @@ const Homepage = ({ onLogout }) => {
                 console.error('Error fetching pet details:', error)
                 setPetDetails(null) // Ensures that petDetails is null if there's an error
             }
-        };
+        }
 
         fetchPetDetails()
     }, [])
@@ -73,9 +73,9 @@ const Homepage = ({ onLogout }) => {
                 })
                 if (response.ok) {
                     const data = await response.json()
-                    console.log('Fetched diet details:', data); 
+                    console.log('Fetched diet details:', data) 
                     /* setDietDetails(data) */
-                    /* setDietDetails({ meals: data, totalCalories: data.reduce((sum, item) => sum + item.totalCalories, 0) }); */
+                    /* setDietDetails({ meals: data, totalCalories: data.reduce((sum, item) => sum + item.totalCalories, 0) }) */
                     setDietError(false)
                 } else {
                     console.error('Failed to fetch diet details')
@@ -84,9 +84,9 @@ const Homepage = ({ onLogout }) => {
             } catch (error) {
                 console.error('Error fetching diet details:', error)
             }
-        };
+        }
     
-        fetchDietDetails();
+        fetchDietDetails()
     }, [])
 
     useEffect(() => {
@@ -118,7 +118,7 @@ const Homepage = ({ onLogout }) => {
 
     useEffect(() => {
         const fetchScheduleDetails = async () => {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('token')
             try {
                 const response = await fetch('http://localhost:3000/api/pet/scheduledetails', {
                     method: 'GET',
@@ -135,9 +135,9 @@ const Homepage = ({ onLogout }) => {
                 setScheduleDetails(null)
                 setScheduleError(true)
             }
-        };
+        }
     
-        fetchScheduleDetails();
+        fetchScheduleDetails()
     }, [])
     
 
@@ -146,7 +146,7 @@ const Homepage = ({ onLogout }) => {
             {petDetails ? (
                 <>
                     <div className="pet-image-section">
-                        <img src={`data:image/jpeg;base64,${petDetails.image}`} alt="Pet" className="pet-image-circle" />
+                        <img src={`data:image/jpegbase64,${petDetails.image}`} alt="Pet" className="pet-image-circle" />
                     </div>
                     <div className="pet-details-cards">
                         <Card title="Pet Details" style={{ width: '23rem' }}>
@@ -287,4 +287,4 @@ const Homepage = ({ onLogout }) => {
     )
 }
 
-export default Homepage;
+export default Homepage

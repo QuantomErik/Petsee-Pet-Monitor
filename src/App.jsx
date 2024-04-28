@@ -8,6 +8,7 @@ import Contact from './components/Contact'
 import PetDetails from './components/PetDetails'
 import DietDetails from './components/DietDetails'
 import AddMeal from './components/AddMeal'
+import EditMeal from './components/EditMeal'
 import ActivityDetails from './components/ActivityDetails'
 import AddActivity from './components/AddActivity'
 import EditActivity from './components/EditActivity'
@@ -16,32 +17,32 @@ import ScheduleDetails from './components/ScheduleDetails'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 import './App.css'
 import Footer from './components/Footer'
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token);
-}, []);
+    const token = localStorage.getItem('token')
+    setIsAuthenticated(!!token)
+}, [])
 
   const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
-  };
+    setIsAuthenticated(true)
+  }
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
-};
+    localStorage.removeItem('token')
+    setIsAuthenticated(false)
+}
 
 return (
   <Router>
@@ -82,12 +83,15 @@ return (
         <Route path="/home" element={isAuthenticated ? <Homepage /> : <Navigate replace to="/login" />} />
 
         <Route path="/petdetails" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/login" />} />
+
         <Route path="/dietdetails" element={isAuthenticated ? <DietDetails /> : <Navigate replace to="/login" />} />
         <Route path="/dietdetails/addmeal" element={isAuthenticated ? <AddMeal/> : <Navigate replace to="/login" />} />
+        <Route path="/dietdetails/edit/:id" element={isAuthenticated ? <EditMeal /> : <Navigate replace to="/login" />} />
 
         <Route path="/activitydetails" element={isAuthenticated ? <ActivityDetails /> : <Navigate replace to="/login" />} />
         <Route path="/activitydetails/addactivity" element={isAuthenticated ? <AddActivity /> : <Navigate replace to="/login" />} />
         <Route path="/activitydetails/edit/:id" element={isAuthenticated ? <EditActivity /> : <Navigate replace to="/login" />} />
+
         <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/login" />} />
 
         <Route path="/support" element={<Support />} />
@@ -97,7 +101,7 @@ return (
     {/*   <Footer /> */}
     </div>
   </Router>
-);
-};
+)
+}
 
-export default App;
+export default App
