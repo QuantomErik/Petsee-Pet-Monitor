@@ -55,7 +55,7 @@
 - **Input:** Log in and navigate to the scheduledetails section. Choose the note test6 on the calendar and click it. Click the "delete" button.
 - **Expected Output:** User is redirected to the scheduledetails url and the note is deleted from the calendar. Displays a message "delete successful".
 - **Result:** [PASS]
-- **Screenshots:** ![Local Image](./screenshots/TC7.6.1.png) (./screenshots/TC7.6.2.png)
+- **Screenshots:** ![Local Image](./screenshots/TC7.6.1.png) ![Local Image](./screenshots/TC7.6.2.png)
 - **Comments:** [Any additional notes]
 
 ### Summary
