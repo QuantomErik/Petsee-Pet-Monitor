@@ -359,7 +359,7 @@ const ScheduleDetails = () => {
 
     const handleDateClick = (arg) => {
         const clickedDate = new Date(arg.dateStr)
-        clickedDate.setUTCHours(0, 0, 0, 0) // Set to 12:00 PM UTC
+        /* clickedDate.setUTCHours(0, 0, 0, 0) */
         setScheduleDetails(prevDetails => ({
             ...prevDetails,
             date: clickedDate,
@@ -403,8 +403,8 @@ const ScheduleDetails = () => {
         const method = scheduleDetails.id ? 'PUT' : 'POST'
         const url = scheduleDetails.id ? `http://localhost:3000/api/pet/scheduledetails/${scheduleDetails.id}` : 'http://localhost:3000/api/pet/scheduledetails'
 
-        /* const dateToSend = new Date(scheduleDetails.date.getTime())
-        dateToSend.setUTCHours(12, 0, 0, 0) */
+       /*  const dateToSend = new Date(scheduleDetails.date.getTime())
+        dateToSend.setUTCHours(0, 0, 0, 0) */
 
         try {
             const response = await fetch(url, {
@@ -414,20 +414,22 @@ const ScheduleDetails = () => {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(scheduleDetails)
-                /* body: JSON.stringify({...scheduleDetails, date: dateToSend.toISOString()}) */
+               /* body: JSON.stringify({...scheduleDetails, date: dateToSend.toISOString()}) */
+                
             })
 
             if (response.ok) {
 
                 toast.info('Note saved successfully')
-                
+
+                /* await fetchScheduleDetails() */
 
                 const result = await response.json()
 
                 const updatedEvent = {
                     id: scheduleDetails.id ? scheduleDetails.id : result.id,
                     title: scheduleDetails.note,
-                    date: scheduleDetails.date.toISOString().split('T')[0]
+                    date: scheduleDetails.date/* .toISOString().split('T')[0] */
                 }
 
                 /* const updatedEvent = {

@@ -78,9 +78,9 @@ const DietDetails = () => {
 
 
 
-  const editMeal = (mealId) => {
+  /* const editMeal = (mealId) => {
     navigate(`/dietdetails/edit/${mealId}`)
-  }
+  } */
 
   return (
     <div>
@@ -109,7 +109,10 @@ const DietDetails = () => {
                     <br/>
                     Quantity: {meal.quantity} grams
                     </Card.Text>
-                <Button variant="primary" onClick={() => editMeal(meal._id)}>Edit</Button>
+                {/* <Button variant="primary" onClick={() => editMeal(meal._id)}>Edit</Button> */}
+
+                <button className="btn btn-primary" onClick={() => navigate(`/dietdetails/edit/${meal._id}`)}>Edit</button>
+
                 {/* <Button variant="danger" onClick={() => deleteMeal(meal._id)} className="ms-2">Delete</Button> */}
             </Card.Body>
         </Card>

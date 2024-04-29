@@ -82,17 +82,17 @@ return (
         <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate replace to="/home" />} />
         <Route path="/home" element={isAuthenticated ? <Homepage /> : <Navigate replace to="/login" />} />
 
-        <Route path="/petdetails" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/login" />} />
+        <Route path="/petdetails" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/petdetails" />} />
 
-        <Route path="/dietdetails" element={isAuthenticated ? <DietDetails /> : <Navigate replace to="/login" />} />
-        <Route path="/dietdetails/addmeal" element={isAuthenticated ? <AddMeal/> : <Navigate replace to="/login" />} />
-        <Route path="/dietdetails/edit/:id" element={isAuthenticated ? <EditMeal /> : <Navigate replace to="/login" />} />
+        <Route path="/dietdetails" element={isAuthenticated ? <DietDetails /> : <Navigate replace to="/dietdetails" />} />
+        <Route path="/dietdetails/addmeal" element={isAuthenticated ? <AddMeal/> : <Navigate replace to="/dietdetails/addmeal" />} />
+        <Route path="/dietdetails/edit/:id" element={isAuthenticated ? <EditMeal /> : <Navigate replace to="/dietdetails" />} />
 
-        <Route path="/activitydetails" element={isAuthenticated ? <ActivityDetails /> : <Navigate replace to="/login" />} />
-        <Route path="/activitydetails/addactivity" element={isAuthenticated ? <AddActivity /> : <Navigate replace to="/login" />} />
+        <Route path="/activitydetails" element={isAuthenticated ? <ActivityDetails /> : <Navigate replace to="/activitydetails" />} />
+        <Route path="/activitydetails/addactivity" element={isAuthenticated ? <AddActivity /> : <Navigate replace to="/activitydetails/addactivity" />} />
         <Route path="/activitydetails/edit/:id" element={isAuthenticated ? <EditActivity /> : <Navigate replace to="/login" />} />
 
-        <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/login" />} />
+        <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/scheduledetails" />} />
 
         <Route path="/support" element={<Support />} />
         <Route path="/contact" element={<Contact />} />

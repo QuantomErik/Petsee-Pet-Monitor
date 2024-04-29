@@ -18,7 +18,9 @@ router.post('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
 })
 
 router.get('/pet/dietdetails/:id', auth.authenticateJWT, (req, res, next) => {
+    
     console.log(`Fetching details for ID: ${req.params.id}`)
+    
     dietController.getMealById(req, res, next)
 })
 

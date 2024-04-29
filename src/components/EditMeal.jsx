@@ -1,15 +1,15 @@
-/* import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
+/* import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import ListGroup from 'react-bootstrap/ListGroup'
+import Card from 'react-bootstrap/Card'
  */
 
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Form, Button, ListGroup, Card } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Form, Button, ListGroup, Card } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 
 
@@ -34,8 +34,8 @@ const brandsData = {
   }
 
   function EditMeal() {
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams()
+    const navigate = useNavigate()
     const [meal, setMeal] = useState({
         selectedBrand: '',
         quantity: '',
@@ -43,45 +43,45 @@ const brandsData = {
         time: '',
         totalCalories: '',
         nutrients: {}
-    });
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
+    })
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState('')
 
     const calculateNutrients = (value, name, meal) => {
-        const quantity = name === 'quantity' ? parseFloat(value) : parseFloat(meal.quantity);
-        const selectedBrand = name === 'selectedBrand' ? value : meal.selectedBrand;
-        const brand = brandsData.brands.find(brand => brand.name === selectedBrand);
+        const quantity = name === 'quantity' ? parseFloat(value) : parseFloat(meal.quantity)
+        const selectedBrand = name === 'selectedBrand' ? value : meal.selectedBrand
+        const brand = brandsData.brands.find(brand => brand.name === selectedBrand)
     
         if (brand && quantity) {
-            const nutrients = {};
+            const nutrients = {}
             Object.entries(brand.nutrients).forEach(([key, percent]) => {
-                nutrients[key] = ((quantity * percent) / 100).toFixed(2); // Ensure calculation is correct
-            });
-            const totalCalories = (brand.caloriesPerGram * quantity).toFixed(2);
+                nutrients[key] = ((quantity * percent) / 100).toFixed(2) // Ensure calculation is correct
+            })
+            const totalCalories = (brand.caloriesPerGram * quantity).toFixed(2)
     
-            return { nutrients, totalCalories };
+            return { nutrients, totalCalories }
         }
     
-        return { nutrients: {}, totalCalories: '0' }; // Return default if no brand or quantity
-    };
+        return { nutrients: {}, totalCalories: '0' } // Return default if no brand or quantity
+    }
 
  /*  const calculateNutrients = (value, name, meal) => {
-    const quantity = name === 'quantity' ? parseFloat(value) : parseFloat(meal.quantity);
-    const selectedBrand = name === 'selectedBrand' ? value : meal.selectedBrand;
-    const brand = brandsData.brands.find(brand => brand.name === selectedBrand);
+    const quantity = name === 'quantity' ? parseFloat(value) : parseFloat(meal.quantity)
+    const selectedBrand = name === 'selectedBrand' ? value : meal.selectedBrand
+    const brand = brandsData.brands.find(brand => brand.name === selectedBrand)
 
     if (brand && quantity) {
-        const nutrients = {};
+        const nutrients = {}
         Object.entries(brand.nutrients).forEach(([key, percent]) => {
-            nutrients[key] = ((quantity * percent) / 100).toFixed(2);
-        });
-        const totalCalories = (brand.caloriesPerGram * quantity).toFixed(2);
+            nutrients[key] = ((quantity * percent) / 100).toFixed(2)
+        })
+        const totalCalories = (brand.caloriesPerGram * quantity).toFixed(2)
 
         setMeal(prev => ({
             ...prev,
             nutrients,
             totalCalories
-        }));
+        }))
     }
 } */
 
@@ -91,8 +91,8 @@ const brandsData = {
   }
 
   /* function EditMeal() {
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams()
+    const navigate = useNavigate()
     const [meal, setMeal] = useState({
         selectedBrand: '',
         quantity: '',
@@ -100,18 +100,18 @@ const brandsData = {
         time: '',
         totalCalories: '',
         nutrients: {}
-    });
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(''); */
+    })
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState('') */
 
     useEffect(() => {
         const fetchMeal = async () => {
-            setIsLoading(true);
+            setIsLoading(true)
             try {
                 const response = await fetch(`http://localhost:3000/api/pet/dietdetails/${id}`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-                });
-                const data = await response.json();
+                })
+                const data = await response.json()
                 if (response.ok) {
                     console.log(data)
                     const { nutrients, totalCalories } = calculateNutrients(data.quantity, 'quantity', data)
@@ -122,50 +122,50 @@ const brandsData = {
                         time: data.time,
                         totalCalories/* : data.totalCalories.toString() */,
                         nutrients/* : data.nutrients || {} */
-                    });
+                    })
                 } else {
-                    throw new Error(data.message || 'Failed to fetch meal');
+                    throw new Error(data.message || 'Failed to fetch meal')
                 }
             } catch (error) {
-                setError(error.message);
+                setError(error.message)
             }
-            setIsLoading(false);
-        };
+            setIsLoading(false)
+        }
     
-        fetchMeal();
+        fetchMeal()
     }, [id])
     
 
 
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target
         if (name === 'quantity' || name === 'selectedBrand') {
-            const { nutrients, totalCalories } = calculateNutrients(value, name, { ...meal, [name]: value });
+            const { nutrients, totalCalories } = calculateNutrients(value, name, { ...meal, [name]: value })
             setMeal(prev => ({
                 ...prev,
                 [name]: value,
                 nutrients,
                 totalCalories
-            }));
+            }))
         } else {
             setMeal(prev => ({
                 ...prev,
                 [name]: value
-            }));
+            }))
         }
-    };
+    }
     
     /* const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setMeal(prev => ({ ...prev, [name]: value }));
+        const { name, value } = event.target
+        setMeal(prev => ({ ...prev, [name]: value }))
         if (name === 'quantity' || name === 'selectedBrand') {
-            calculateNutrients(value, name, meal);
+            calculateNutrients(value, name, meal)
         }
     } */
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
+        e.preventDefault()
+        setIsLoading(true)
         try {
             const response = await fetch(`http://localhost:3000/api/pet/dietdetails/edit/${id}`, {
                 method: 'PUT',
@@ -174,17 +174,17 @@ const brandsData = {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(meal)
-            });
-            const data = await response.json();
+            })
+            const data = await response.json()
             if (response.ok) {
 
                 
-                console.log("Setting flash message");
-  localStorage.setItem('flashMessage', 'Meal updated successfully!');
+                console.log("Setting flash message")
+  localStorage.setItem('flashMessage', 'Meal updated successfully!')
   setTimeout(() => {
-    console.log("Navigating to /dietdetails");
-    navigate('/dietdetails');
-  }, 100);
+    console.log("Navigating to /dietdetails")
+    navigate('/dietdetails')
+  }, 100)
                
                 /* navigate('/activitydetails') */
                /* setTimeout(() => navigate('/activitydetails'), 2000) */
@@ -194,37 +194,37 @@ const brandsData = {
         } catch (error) {
             setError(error.message)
         }
-        setIsLoading(false);
-    };
+        setIsLoading(false)
+    }
 
     const handleDelete = async () => {
-        if (!window.confirm("Are you sure you want to delete this meal?")) return;
-        setIsLoading(true);
+        if (!window.confirm("Are you sure you want to delete this meal?")) return
+        setIsLoading(true)
         try {
             const response = await fetch(`http://localhost:3000/api/pet/dietdetails/edit/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
-            });
+            })
             if (!response.ok) {
-                throw new Error('Failed to delete the meal');
+                throw new Error('Failed to delete the meal')
             }
-            console.log("Setting flash message");
-  localStorage.setItem('flashMessage', 'Meal deleted successfully!');
+            console.log("Setting flash message")
+  localStorage.setItem('flashMessage', 'Meal deleted successfully!')
   setTimeout(() => {
-    console.log("Navigating to /dietdetails");
-    navigate('/dietdetails');
-  }, 100);
+    console.log("Navigating to /dietdetails")
+    navigate('/dietdetails')
+  }, 100)
         } catch (error) {
-            setError(error.message);
+            setError(error.message)
         }
-        setIsLoading(false);
-    };
+        setIsLoading(false)
+    }
 
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
-    if (!meal) return <p>No meal found</p>;
+    if (isLoading) return <p>Loading...</p>
+    if (error) return <p>Error: {error}</p>
+    if (!meal) return <p>No meal found</p>
 
 
 
@@ -321,7 +321,7 @@ const brandsData = {
             <Button variant="danger" onClick={handleDelete}>Delete Activity</Button>
         </Form>
         </div>
-    );
+    )
 }
 
-export default EditMeal;
+export default EditMeal

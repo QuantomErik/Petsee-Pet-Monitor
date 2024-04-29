@@ -130,7 +130,7 @@ console.log("Type of dietDetails:", typeof dietDetails)
 
     async getMealById(req, res, next) {
         try {
-            const id = req.params.id  // Correct way to extract the id
+            const id = req.params.id
             console.log('ID received:', id)
             const meal = await DietModel.findById(id)
     
