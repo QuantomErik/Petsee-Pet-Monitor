@@ -8,9 +8,13 @@ import 'react-toastify/dist/ReactToastify.css'
 const DietDetails = () => {
   const navigate = useNavigate()
   const [meals, setMeals] = useState([])
-  const [dietDetails, setDietDetails] = useState(null)
+ /*  const [dietDetails, setDietDetails] = useState(null) */
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [dietDetails, setDietDetails] = useState({
+    totalCalories: 0,
+    totalQuantity: 0
+  })
 
  
   
@@ -32,7 +36,19 @@ const DietDetails = () => {
         if (data.meals && data.meals.length > 0) {
           const validMeals = data.meals.filter(meal => meal != null) // Filter out null values
           setMeals(validMeals)
-          setDietDetails(data)
+
+// Calculate totals
+const totals = validMeals.reduce((acc, meal) => {
+  acc.totalCalories += Number(meal.totalCalories)
+  acc.totalQuantity += Number(meal.quantity);
+  return acc;
+}, { totalCalories: 0, totalQuantity: 0 })
+
+totals.totalCalories = parseFloat(totals.totalCalories.toFixed(1))
+totals.totalQuantity = parseFloat(totals.totalQuantity.toFixed(1))
+
+setDietDetails(totals)
+          /* setDietDetails(data) */
         } else {
           console.error('No valid meals received:', data)
         }
@@ -44,6 +60,17 @@ const DietDetails = () => {
     }
   
     fetchMeals()
+
+    console.log("Component mounted, checking for flash message.")
+    const message = localStorage.getItem('flashMessage')
+    if (message) {
+      console.log('Flash message found:', message)
+      toast.success(message);
+      localStorage.removeItem('flashMessage')
+    } else {
+      console.log('No flash message found.')
+    }
+
   }, [])
   
 
@@ -105,9 +132,9 @@ const DietDetails = () => {
                 <Card.Text>
                     Brand: {meal.selectedBrand}
                     <br/>
-                    Total Calories: {meal.totalCalories} kcal
+                    Total Calories: {parseFloat(meal.totalCalories).toFixed(1)} kcal
                     <br/>
-                    Quantity: {meal.quantity} grams
+                    Quantity: {parseFloat(meal.quantity).toFixed(1)} grams
                     </Card.Text>
                 {/* <Button variant="primary" onClick={() => editMeal(meal._id)}>Edit</Button> */}
 
@@ -165,7 +192,7 @@ const DietDetails = () => {
               <h2>Summary</h2>
               <p>Total Calories: {dietDetails.totalCalories} kcal</p>
               <p>Total Quantity: {dietDetails.quantity} grams</p>
-              <p>Name: {dietDetails.name}</p>
+              
             </>
           )}
           {/* <Button onClick={() => navigate('/dietdetails/addmeal')} className="mt-3">Create Meal</Button> */}

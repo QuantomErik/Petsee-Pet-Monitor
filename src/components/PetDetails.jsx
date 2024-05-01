@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form, Dropdown } from 'react-bootstrap'
+import { toast, ToastContainer } from 'react-toastify'
 
 
 const PetDetails = () => {
@@ -157,6 +158,7 @@ const PetDetails = () => {
 
       const result = await response.json()
       console.log('Operation successful:', result)
+      toast.info('Information updated successfully!')
       // Update local state to reflect the newly saved/updated details
       setPetDetails(result)
       navigate('/home')
