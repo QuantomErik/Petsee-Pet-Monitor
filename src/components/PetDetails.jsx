@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Button, Form, Dropdown } from 'react-bootstrap'
+
 
 const PetDetails = () => {
   const navigate = useNavigate()
@@ -165,9 +167,6 @@ const PetDetails = () => {
 
 
 
-
-
-
   return (
     <div className="petdetails-container">
       <h1>Pet Details</h1>
@@ -176,6 +175,153 @@ const PetDetails = () => {
         <label htmlFor="fileInput" className="file-upload-btn">Choose a file</label>
         {imagePreviewUrl && <img src={imagePreviewUrl} alt="Pet" className="pet-image-circle" />}
       </div>
+
+      <div className="center-select">      
+        {/* Pet's Name */}
+        <Form.Group className="mb-3" controlId="petName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter pet's name"
+            name="name"
+            value={petDetails.name}
+            onChange={handleDetailChange}
+          />
+        </Form.Group>
+        </div>
+
+      
+      
+        <Form.Group className="mb-3" controlId="animalType">
+          <Form.Label>Animal Type</Form.Label>
+          <Form.Select
+            name="animalType"
+            value={petDetails.animalType}
+            onChange={handleDetailChange}
+          >
+            <option value="">Select Animal Type</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Bird">Bird</option>
+            <option value="Hamster">Hamster</option>
+            <option value="Rabbit">Rabbit</option>
+          </Form.Select>
+        </Form.Group>
+       
+
+        {/* Age */}
+        
+        <Form.Group className="mb-3" controlId="petAge">
+          <Form.Label>Age</Form.Label>
+          <Form.Select
+            name="age"
+            value={petDetails.age}
+            onChange={handleDetailChange}
+          >
+            {Array.from({ length: 21 }, (_, i) => (
+              <option key={i} value={i}>{i}</option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+        
+
+        {/* Weight */}
+        <Form.Group className="mb-3" controlId="petWeight">
+          <Form.Label>Weight (kg)</Form.Label>
+          <Form.Select
+            name="weight"
+            value={petDetails.weight}
+            onChange={handleDetailChange}
+          >
+            {Array.from({ length: 101 }, (_, i) => (
+              <option key={i} value={i}>{i} kg</option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+
+        {/* Length */}
+        <Form.Group className="mb-3" controlId="petLength">
+          <Form.Label>Length (cm)</Form.Label>
+          <Form.Select
+            name="length"
+            value={petDetails.length}
+            onChange={handleDetailChange}
+          >
+            {Array.from({ length: 101 }, (_, i) => i + 10).map(value => (
+              <option key={value} value={value}>{value} cm</option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+
+        {/* Favourite Food */}
+        <Form.Group className="mb-3" controlId="favouriteFood">
+          <Form.Label>Favourite Food</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter pet's favourite food"
+            name="favouriteFood"
+            value={petDetails.favouriteFood}
+            onChange={handleDetailChange}
+          />
+        </Form.Group>
+
+        {/* Favourite Toy */}
+        <Form.Group className="mb-3" controlId="favouriteToy">
+          <Form.Label>Favourite Toy</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter pet's favourite toy"
+            name="favouriteToy"
+            value={petDetails.favouriteToy}
+            onChange={handleDetailChange}
+          />
+        </Form.Group>
+
+        {/* Breed */}
+        <Form.Group className="mb-3" controlId="petBreed">
+          <Form.Label>Breed</Form.Label>
+          <Form.Select
+            name="breed"
+            value={petDetails.breed}
+            onChange={handleDetailChange}
+          >
+            <option value="">Select a Breed</option>
+            {breeds.map(breed => (
+              <option key={breed} value={breed}>{breed}</option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+
+        {/* Medical Notes */}
+        <Form.Group className="mb-3" controlId="medicalNotes">
+          <Form.Label>Medical Notes</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter any medical notes"
+            name="medicalNotes"
+            value={petDetails.medicalNotes}
+            onChange={handleDetailChange}
+          />
+        </Form.Group>
+
+        <Button variant="primary" onClick={handleSaveOrUpdate}>
+          {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}
+        </Button>
+      
+    </div>
+  );
+  
+
+
+  /* return (
+    <div className="petdetails-container">
+      <h1>Pet Details</h1>
+      <div className="pet-image-section">
+        <input type="file" id="fileInput" onChange={handleImageChange} hidden />
+        <label htmlFor="fileInput" className="file-upload-btn">Choose a file</label>
+        {imagePreviewUrl && <img src={imagePreviewUrl} alt="Pet" className="pet-image-circle" />}
+      </div>
+      
       <div className="pet-biometrics">
       <div className="input-container">
       <label htmlFor="name">Name </label>
@@ -208,15 +354,6 @@ const PetDetails = () => {
           </select>
         </div>
 
-        {/* <div className="input-container">
-          <input
-            type="text"
-            name="age"
-            value={petDetails.age}
-            onChange={handleDetailChange}
-            placeholder="Pet's age"
-          />
-        </div> */}
 
 <div className="input-container">
           <select name="weight" value={petDetails.weight} onChange={handleDetailChange}>
@@ -226,15 +363,7 @@ const PetDetails = () => {
           </select>
         </div>
 
-        {/* <div className="input-container">
-          <input
-            type="text"
-            name="weight"
-            value={petDetails.weight}
-            onChange={handleDetailChange}
-            placeholder="Pet's weight"
-          />
-        </div> */}
+       
 
 <div className="input-container">
           <select name="length" value={petDetails.length} onChange={handleDetailChange}>
@@ -244,15 +373,7 @@ const PetDetails = () => {
           </select>
         </div>
 
-       {/*  <div className="input-container">
-          <input
-            type="text"
-            name="length"
-            value={petDetails.length}
-            onChange={handleDetailChange}
-            placeholder="Pet's length"
-          />
-        </div> */}
+       
 
         <div className="input-container">
         <label htmlFor="favouriteFood">Favourite Food </label>
@@ -284,15 +405,7 @@ const PetDetails = () => {
   </select>
 </div>
 
-        {/* <div className="input-container">
-          <input
-            type="text"
-            name="breed"
-            value={petDetails.breed}
-            onChange={handleDetailChange}
-            placeholder="Pet's Breed"
-          />
-        </div> */}
+    
 
         <div className="input-container">
         <label htmlFor="medicalNotes">Medical Notes </label>
@@ -311,7 +424,7 @@ const PetDetails = () => {
         <button onClick={handleSaveOrUpdate} className="save-button">Save Pet Details</button>
       }
     </div>
-  )
+  ) */
 }
 
 export default PetDetails

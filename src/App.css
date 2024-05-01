@@ -293,12 +293,23 @@ body, html {
 }
 
 .petdetails-container {
- /*  text-align: center; */
+  text-align: center;
+  align-items: center;
+  
  display: flex;
  flex-direction: column;
- min-height: 100vh;  /* Ensures minimum height is full viewport height */
+ min-height: 100vh;  
  overflow-y: auto;
+ 
 }
+
+.mb-3 {
+  width: 500px;
+  margin-bottom: 20px;
+  
+}
+
+
 
 .input-container {
   margin-top: 20px;
