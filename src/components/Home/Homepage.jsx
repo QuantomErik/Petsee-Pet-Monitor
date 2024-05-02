@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import bowlImage from './bowl2.png'
-import addMealImage from '../images/addMeal.webp'
-import activityImage from '../images/activity.webp'
-import petDetailsImage from '../images/background.webp'
+import addMealImage from '../../images/addMeal.webp'
+import activityImage from '../../images/activity.webp'
+import petDetailsImage from '../../images/background.webp'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchMeals } from '../Diet//mealsSlice'
 
 
 
@@ -20,6 +24,10 @@ import petDetailsImage from '../images/background.webp'
 ) */
 
 const Homepage = ({ onLogout }) => {
+
+    const dispatch = useDispatch() //new
+    const { meals, isLoading, error } = useSelector(state => state.meals) //new
+
     const navigate = useNavigate()
     const [petDetails, setPetDetails] = useState(null)
 
@@ -46,14 +54,14 @@ const Homepage = ({ onLogout }) => {
                 })
                 if (response.ok) {
                     const data = await response.json()
-                    console.log(data) // Log the data to see its structure
+                    console.log(data)
                     setPetDetails(data)
                 } else {
                     throw new Error('No pet details found')
                 }
             } catch (error) {
                 console.error('Error fetching pet details:', error)
-                setPetDetails(null) // Ensures that petDetails is null if there's an error
+                setPetDetails(null)
             }
         }
 
@@ -61,7 +69,11 @@ const Homepage = ({ onLogout }) => {
     }, [])
 
     useEffect(() => {
-        // Existing code to fetch pet details...
+        dispatch(fetchMeals())
+    }, [dispatch])
+
+   /*  useEffect(() => {
+       
         const fetchDietDetails = async () => {
             const token = localStorage.getItem('token')
             try {
@@ -74,8 +86,7 @@ const Homepage = ({ onLogout }) => {
                 if (response.ok) {
                     const data = await response.json()
                     console.log('Fetched diet details:', data) 
-                    /* setDietDetails(data) */
-                    /* setDietDetails({ meals: data, totalCalories: data.reduce((sum, item) => sum + item.totalCalories, 0) }) */
+                   
                     setDietError(false)
                 } else {
                     console.error('Failed to fetch diet details')
@@ -87,7 +98,7 @@ const Homepage = ({ onLogout }) => {
         }
     
         fetchDietDetails()
-    }, [])
+    }, []) */
 
     useEffect(() => {
         const fetchActivityDetails = async () => {
@@ -149,11 +160,14 @@ const Homepage = ({ onLogout }) => {
                         <img src={`data:image/jpegbase64,${petDetails.image}`} alt="Pet" className="pet-image-circle" />
                     </div>
                     <div className="pet-details-cards">
-                        <Card title="Pet Details" style={{ width: '23rem' }}>
+                        <Card title="Pet Details" style={{ width: '23rem' }}
+                        onClick={() => navigate('/petdetails')}
+
+                        >
                         <Card.Img variant="top" src={petDetailsImage} className="card-image-top"/>
                         <Card.Body>
-                        <Card.Title>Pet Details</Card.Title>
-                        <div>
+                        <Card.Title>Profile</Card.Title>
+                        {/* <div>
                             <p>Name: {petDetails.name}</p>
                             <p>Animal Type: {petDetails.animalType}</p>
                             <p>Age: {petDetails.age}</p>
@@ -163,18 +177,44 @@ const Homepage = ({ onLogout }) => {
                             <p>Favourite Toy: {petDetails.favouriteToy}</p>
                             <p>Breed: {petDetails.breed}</p>
                             <p>Medical Notes: {petDetails.medicalNotes}</p>
-                            </div>
+                            </div> */}
                             <button className="icon-button fas fa-edit" onClick={() => navigate('/petdetails')}></button>
                             </Card.Body>
                         </Card>
 
-                    
+                        <Card title="Diet" style={{ width: '23rem' }}
+                        onClick={() => navigate('/dietdetails')}
 
+                        >
+                <Card.Img variant="top" src={addMealImage} className="card-image-top"/>
+                <Card.Body>
+                    <Card.Title>Diet</Card.Title>
+
+                   {/*  <div>
+                        {isLoading ? (
+                            <p>Loading diet details...</p>
+                        ) : error ? (
+                            <p>Error loading diet details. Please try again.</p>
+                        ) : (
+                            <ul>
+                                {meals.map((meal, index) => (
+                                    <li key={index}>{`${meal.mealType}: ${meal.time}`}</li>
+                                ))}
+                            </ul>
+                        )}
+                    </div> */}
+
+                    <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
+                </Card.Body>
+            </Card>
+
+                    
+{/* 
                         <Card title="Diet" style={{ width: '23rem' }}>
   <Card.Img variant="top" src={addMealImage} className="card-image-top"/>
   <Card.Body>
     <Card.Title>Diet</Card.Title>
-    {/* Use a div or omit the container tag entirely instead of Card.Text when nesting ul or div */}
+   
     <div>
       {dietDetails ? (
         <>
@@ -195,17 +235,20 @@ const Homepage = ({ onLogout }) => {
     </div>
     <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
   </Card.Body>
-</Card>
+</Card> */}
 
 
 
 
 
-                        <Card title="Activity" style={{ width: '23rem' }}>
+                        <Card title="Activity" style={{ width: '23rem' }}
+                        onClick={() => navigate('/activitydetails')}
+
+                        >
                         <Card.Img variant="top" src={activityImage} className="card-image-top"/>
                         <Card.Body>
                         <Card.Title>Activity</Card.Title>
-                        <div>
+                        {/* <div>
 
                         {activityDetails ? (
                             <>
@@ -216,7 +259,7 @@ const Homepage = ({ onLogout }) => {
                             <p>Date: {activityDetails.date}</p>
                             <p>Notes: {activityDetails.notes}</p>
                             
-                            {/* <button className="icon-button fas fa-edit" onClick={() => navigate('/activitydetails')}></button> */}
+                            
 
                             </>
                     ) : activityError ? (
@@ -224,31 +267,34 @@ const Homepage = ({ onLogout }) => {
                     ) : (
                         <p>Loading activity details...</p>
                         )}
-                    </div>
+                    </div> */}
                             <button className="icon-button fas fa-edit" onClick={() => navigate('/activitydetails')}></button>
                     </Card.Body>
                         </Card>
 
 
-                        <Card title="Schedule" style={{ width: '23rem' }}>
+                        <Card title="Schedule" style={{ width: '23rem' }}
+                        onClick={() => navigate('/scheduledetails')}
+
+                        >
                         <Card.Img variant="top" src={bowlImage} className="card-image-top"/>
                         <Card.Body>
                         <Card.Title>Schedule</Card.Title>
-                        <div>
+                       {/*  <div>
 
                         {scheduleDetails ? (
                         <>
                             <p>Date: {new Date(scheduleDetails.date).toLocaleDateString()}</p>
                         <p>Note: {scheduleDetails.note}</p>
-                        {/* <button className="icon-button fas fa-edit" onClick={() => navigate('/scheduledetails')}></button> */}
+                        
                              </>
                         ) : scheduleError ? (
                         <p>Error loading schedule details. Please try again.</p>
                         ) : (
                         <p>Loading schedule details...</p>
                         )}
-                    </div>
-                            <button className="icon-button fas fa-edit" onClick={() => navigate('/scheduledetails')}></button>
+                    </div> */}
+                         <button className="icon-button fas fa-edit" onClick={() => navigate('/scheduledetails')}></button>
                     </Card.Body>
                         </Card>
 
@@ -282,8 +328,54 @@ const Homepage = ({ onLogout }) => {
                 <button onClick={() => {/* function to add activity */}}>Add Activity</button>
             </div>
 
-            
+            <CardGroup>
+      <Card>
+        <Card.Img variant="top" src="holder.js/100px160" />
+        <Card.Body>
+          <Card.Title>Card title</Card.Title>
+          <Card.Text>
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </Card.Footer>
+      </Card>
+      <Card>
+        <Card.Img variant="top" src="holder.js/100px160" />
+        <Card.Body>
+          <Card.Title>Card title</Card.Title>
+          <Card.Text>
+            This card has supporting text below as a natural lead-in to
+            additional content.{' '}
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </Card.Footer>
+      </Card>
+      <Card>
+        <Card.Img variant="top" src="holder.js/100px160" />
+        <Card.Body>
+          <Card.Title>Card title</Card.Title>
+          <Card.Text>
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This card has even longer content than the
+            first to show that equal height action.
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </Card.Footer>
+      </Card>
+    </CardGroup>
+
+
         </div>
+
+
+
     )
 }
 

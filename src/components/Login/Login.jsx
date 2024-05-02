@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 /* import backgroundImage from '../images/background.webp' */
-import FeatureCard from './FeatureCard'
+import FeatureCard from '../Home/FeatureCard'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'

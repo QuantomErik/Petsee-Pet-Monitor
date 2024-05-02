@@ -27,11 +27,11 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
+} */
 
 /* .card {
   padding: 2em;
@@ -184,16 +184,19 @@ body, html {
 .card {
   background-color: #adb2f0;
   border-radius: 20px;
-  padding: 16px;
-  margin: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 1px;
+  margin: 2px;
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
   color: black;
   /* max-height: 400px; */
+  margin-bottom: 20px;
+  /* flex: 0 1 calc(50% - 20px); */
+  
   
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: 1em;
   font-weight: bold;
   margin-bottom: 8px;
 }
@@ -209,7 +212,7 @@ body, html {
 
 .feature-cards-container {
   max-width: 500px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
   margin-bottom: 10px;
   /* background-color: #adb2f0; */
 }
@@ -333,15 +336,18 @@ body, html {
   margin: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   background-color: white;
-  width: 100%;
+  /* width: 100%; */
     max-width: 300px;
+    
 }
 
 .pet-details-cards {
-  margin-top: 60px;
+  /* margin-top: 60px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  gap: 1px; /* Adds space between cards */
+  padding: 0px;
 }
 
 /* @media (min-width: 768px) {
@@ -384,12 +390,14 @@ body, html {
   width: auto;
   display: block;
   margin: 0 auto; /* Centers the image horizontally */
+  object-fit: cover; 
 }
 
 .card-text {
   column-count: 1; /* Start with one column by default */
   max-height: 300px; /* Adjust based on your preference */
-  overflow: auto; /* Allows scrolling if content exceeds max height */
+  overflow: auto;
+  font-size: 1em; /* Allows scrolling if content exceeds max height */
 }
 
 .card-text p {
@@ -511,6 +519,65 @@ textarea:focus {
 .ReactModal__Content {
   z-index: 1001; /* This ensures the content is above the overlay */
 }
+
+.summary-card {
+  background-color: #21b86c;
+  color: white;
+  border-color: #3e8e41;
+  padding: 20px; /* Example: Adds more space inside the card */
+  border-radius: 10px; /* Example: Rounded corners */
+}
+
+@media (max-width: 400px) { 
+  .card {
+    flex: 0 1 calc(40% - 8px);
+    padding: 1px;
+    height: auto;
+    border-radius: 2px;;
+    /* margin: 1px; */
+  }
+
+  .card-title, .card-text {
+    font-size: 12px; /* Smaller font size for better fit on small screens */
+  }
+
+  .card-body {
+    padding: 5px; /* Reduce padding to save space */
+  }
+
+  .icon-button {
+    font-size: 10px;
+    color: #4CAF50;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .icon-button {
+    display: none;  /* Hide the edit button */
+  }
+
+  .card:hover {
+    cursor: pointer; /* Indicates the card is clickable */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Optional: Add a shadow on hover to highlight the card */
+  }
+
+  /*  */
+
+}
+
+/* .card-img-top {
+  width: 100%;
+  height: auto; 
+  max-height: 150px
+}
+
+.card-body {
+  padding: 0.5px;
+} */
+
+
 
 
 

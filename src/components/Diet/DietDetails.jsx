@@ -148,53 +148,22 @@ setDietDetails(totals)
     <p>No meals available.</p>
 )}
 
-{/* {meals.length > 0 ? meals.map((meal, index) => {
-    if (!meal) return null
-    return (
-        <Card key={meal._id || index} className="diet-card">
-            <Card.Header>{meal.mealType}</Card.Header>
-            <Card.Body>
-                <Card.Title>Time: {meal.time}</Card.Title>
-                <Card.Text>
-                    Total Calories: {meal.totalCalories} kcal
-                    <br/>
-                    Quantity: {meal.quantity} grams
-                </Card.Text>
-                <Button variant="primary" onClick={() => editMeal(meal._id)}>Edit</Button>
-                <Button variant="danger" onClick={() => deleteMeal(meal._id)} className="ms-2">Delete</Button>
-            </Card.Body>
-        </Card>
-    )
-}) : (
-    <p>No meals available.</p>
-)} */}
 
-
-          {/* {meals.length > 0 ? meals.map((meal, index) => (
-            <Card key={index} className="diet-card">
-              <Card.Header>{meal.mealType}</Card.Header>
-              <Card.Body>
-                <Card.Title>Time: {meal.time}</Card.Title>
-                <Card.Text>
-                  Total Calories: {meal.totalCalories} kcal
-                  <br/>
-                  Quantity: {meal.quantity} grams
-                </Card.Text>
-                <Button variant="primary" onClick={() => editMeal(meal.id)}>Edit</Button>
-                <Button variant="danger" onClick={() => deleteMeal(meal.id)} className="ms-2">Delete</Button>
-              </Card.Body>
-            </Card>
-          )) : (
-            <p>No meals available.</p>
-          )} */}
           {dietDetails && (
             <>
-              <h2>Summary</h2>
+            <Card className="diet-card summary-card">
+            <Card.Header className="card-headerStyle">
+              Summary
+              </Card.Header>
+              <Card.Text>
               <p>Total Calories: {dietDetails.totalCalories} kcal</p>
               <p>Total Quantity: {dietDetails.quantity} grams</p>
-              
+            </Card.Text>
+              </Card>
             </>
+            
           )}
+          
           {/* <Button onClick={() => navigate('/dietdetails/addmeal')} className="mt-3">Create Meal</Button> */}
         </>
         
