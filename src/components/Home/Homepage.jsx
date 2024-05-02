@@ -10,6 +10,7 @@ import bowlImage from './bowl2.png'
 import addMealImage from '../../images/addMeal.webp'
 import activityImage from '../../images/activity.webp'
 import petDetailsImage from '../../images/background.webp'
+import Dock from '../Dock/Dock.jsx'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeals } from '../Diet//mealsSlice'
@@ -156,9 +157,9 @@ const Homepage = ({ onLogout }) => {
         <div className="home-background">
             {petDetails ? (
                 <>
-                    <div className="pet-image-section">
+                    {/* <div className="pet-image-section">
                         <img src={`data:image/jpegbase64,${petDetails.image}`} alt="Pet" className="pet-image-circle" />
-                    </div>
+                    </div> */}
                     <div className="pet-details-cards">
                         <Card title="Pet Details" style={{ width: '23rem' }}
                         onClick={() => navigate('/petdetails')}
@@ -371,7 +372,7 @@ const Homepage = ({ onLogout }) => {
       </Card>
     </CardGroup>
 
-
+    {/* <Dock /> */}
         </div>
 
 

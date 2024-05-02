@@ -13,6 +13,9 @@ import ActivityDetails from './components/Activity/ActivityDetails'
 import AddActivity from './components/Activity/AddActivity'
 import EditActivity from './components/Activity/EditActivity'
 import ScheduleDetails from './components/Schedule/ScheduleDetails'
+import More from './components/More/More'
+
+import Dock from './components/Dock/Dock.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Nav, Navbar, Container } from 'react-bootstrap'
@@ -94,13 +97,20 @@ return (
 
         <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/scheduledetails" />} />
 
+        <Route path="/more" element={isAuthenticated ? <More /> : <Navigate replace to="/more" />} />
+
         <Route path="/support" element={<Support />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Navigate replace to={isAuthenticated ? "/home" : "/login"} />} />
       </Routes>
     {/*   <Footer /> */}
+
+    <Dock />
+
     </div>
   </Router>
+
+  
 )
 }
 

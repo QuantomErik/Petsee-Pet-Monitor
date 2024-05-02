@@ -57,12 +57,13 @@ function ActivityDetails() {
 
     return (
       <div>
-       {/*  <ToastContainer /> */}
+     
           <h1>Activity Details</h1>
           {activities.length > 0 ? (
               <div>
+                
                   {activities.map((activity, index) => (
-    <Card key={activity._id || index} style={{ width: '18rem', marginBottom: '1rem' }}>
+    <Card key={activity._id || index} /* style={{ width: '18rem', marginBottom: '1rem' }} */>
         <Card.Body>
             <Card.Title>{activity.type}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">Activity Details</Card.Subtitle>
@@ -72,10 +73,10 @@ function ActivityDetails() {
                 Intensity: {activity.intensity}
             </Card.Text>
             
-            {/* <Button variant="primary" onClick={() => navigate(`/activitydetails/edit/${activity._id}`)}>Edit</Button> */}
+            
             <Button variant="primary" onClick={() => {
   if(activity._id) {
-    console.log("Navigating with ID:", activity._id) // Ensure this logs a valid ID
+    console.log("Navigating with ID:", activity._id)
     navigate(`/activitydetails/edit/${activity._id}`)
   } else {
     console.error("Invalid activity ID:", activity._id)
@@ -83,7 +84,6 @@ function ActivityDetails() {
 }}>Edit</Button>
 
 
-{/* <Button variant="primary" onClick={() => navigate(`/activitydetails/edit/${activity._id}`)}>Edit</Button>  */}
 
         </Card.Body>
     </Card>
@@ -93,7 +93,7 @@ function ActivityDetails() {
               <p>No activities found</p>
           )}
           <Button onClick={() => navigate('/activitydetails/addactivity')} className="mt-3">Create Activity</Button>
-          {/* <button onClick={() => toast.success('Test Toast')}>Show Test Toast</button> */}
+         
 
           
 

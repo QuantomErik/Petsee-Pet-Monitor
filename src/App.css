@@ -528,6 +528,95 @@ textarea:focus {
   border-radius: 10px; /* Example: Rounded corners */
 }
 
+/* Adjust CSS for icons if necessary */
+.dock-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: none;
+  color: white; /* Icon color */
+  font-size: 24px; /* Adjust icon size */
+  cursor: pointer;
+}
+
+.dock-container {
+  display: flex;
+  justify-content: space-around; /* Evenly spaces the icons across the container */
+  align-items: center; /* Aligns icons vertically */
+  position: fixed; /* Keeps the dock in place when scrolling */
+  bottom: 0; /* Positions the dock at the bottom of the viewport */
+  left: 0;
+  right: 0;
+  background-color: #2c3e50; /* Sets a background color for the dock */
+  height: 60px; /* Sets a fixed height for the dock */
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.3); /* Optional: adds a subtle shadow for a lifted effect */
+}
+
+.dock-icon:hover {
+  color: #18BC9C; /* Change color on hover */
+}
+
+/* MoreStyles.css */
+.button-container {
+  display: grid;
+  gap: 16px; /* Adjust the space between the buttons */
+  padding: 10px; /* Padding around the buttons inside the container */
+}
+
+.button-container button {
+  width: 100%; /* Ensure buttons are block-level */
+  padding: 8px 0; /* Additional padding for the buttons, adjust as needed */
+}
+
+.custom-button {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-right: 2rem; /* Ensuring there's room for the circle on the right */
+}
+
+.icon-left {
+  margin-right: 0.5rem; /* Space between the icon and text */
+}
+
+.icon-right {
+  margin-left: auto; /* Pushes the icon to the right */
+  position: relative;
+  width: 20px; /* Diameter of the circle */
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-right::before {
+  content: "";
+  position: absolute;
+  width: 100%; /* Full width of the parent */
+  height: 100%; /* Full height of the parent */
+  background-color: #fff; /* Background of the circle */
+  border: 1px solid #ccc; /* Border of the circle */
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.icon-right > svg {
+  position: relative;
+  z-index: 1; /* Makes sure the icon is above the pseudo-element */
+  color: #000; /* Icon color */
+}
+
+
+
+
+
+
+
+
+
 @media (max-width: 400px) { 
   .card {
     flex: 0 1 calc(40% - 8px);
@@ -562,6 +651,29 @@ textarea:focus {
     cursor: pointer; /* Indicates the card is clickable */
     box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Optional: Add a shadow on hover to highlight the card */
   }
+
+  .fc-event-title {
+    font-size: 10px; /* Smaller size for smaller screens */
+}
+
+.fc-day-number {
+    font-size: 10px;
+}
+
+.fc-col-header-cell {
+    font-size: 12px;
+}
+
+.fc-col-header-cell-cushion {
+  font-size: 8px;
+}
+
+.button-container button {
+  font-size: 10px;
+  border-radius: 4px;
+  /* padding: 5px; */
+  /* gap: 2px; */
+}
 
   /*  */
 
