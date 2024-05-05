@@ -16,12 +16,28 @@ router.post('/pet/petdetails', auth.authenticateJWT, upload.single('image'), (re
     petController.savePetDetails(req, res, next)
 })
 
+/* router.post('/pet/more/addpet', auth.authenticateJWT, upload.single('image'), (req, res, next) => {
+    petController.savePetDetails(req, res, next)
+}) */
+
 // Get pet Details
 router.get('/pet/petdetails', auth.authenticateJWT, (req, res, next) => {
     petController.getPetDetails(req, res, next)
 })
 
+/* router.get('/pet/petdetails/:id', auth.authenticateJWT, (req, res, next) => {
+    petController.getPetDetailsById(req, res, next)
+}) */
+
+router.get('/pet/petdetails/:id', auth.authenticateJWT, (req, res, next) => {
+    petController.getPetDetailsById(req, res, next)
+})
+
 // Update pet details
+/* router.put('/pet/more/petdetails/:id', auth.authenticateJWT, upload.single('image'), (req, res, next) => {
+    petController.updatePetDetails(req, res, next)
+}) */
+
 router.put('/pet/petdetails/:id', auth.authenticateJWT, upload.single('image'), (req, res, next) => {
     petController.updatePetDetails(req, res, next)
 })

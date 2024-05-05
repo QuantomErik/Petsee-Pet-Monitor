@@ -45,7 +45,26 @@ export class PetController {
         try {
             // Assuming the pet Details is linked to the user
             const userId = req.user.id
-            const petDetails = await PetProfileModel.findOne({ userId: userId })
+            const petDetails = await PetProfileModel.find/* One */({ userId: userId })
+    
+            if (!petDetails) {
+                return res.status(404).json({ success: false, message: 'Pet Details not found' })
+            }
+    
+            res.status(200).json(petDetails)
+        } catch (error) {
+            console.error('Error fetching pet Details:', error)
+            res.status(500).json({ success: false, message: 'Error fetching pet Details' })
+        }
+    }
+
+    async getPetDetailsById(req, res) {
+        try {
+            // Assuming the pet Details is linked to the user
+            const id = req.params.id
+           /*  const userId = req.user.id */
+            const petDetails = await PetProfileModel.findById(id)
+            /* const petDetails = await PetProfileModel.findOne({ _id: id }); */
     
             if (!petDetails) {
                 return res.status(404).json({ success: false, message: 'Pet Details not found' })

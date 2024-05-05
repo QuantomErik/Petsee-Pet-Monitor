@@ -43,7 +43,7 @@ const Homepage = ({ onLogout }) => {
     const [scheduleError, setScheduleError] = useState(false)
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         const fetchPetDetails = async () => {
             const token = localStorage.getItem('token')
             try {
@@ -67,7 +67,7 @@ const Homepage = ({ onLogout }) => {
         }
 
         fetchPetDetails()
-    }, [])
+    }, []) */
 
     useEffect(() => {
         dispatch(fetchMeals())
@@ -155,20 +155,20 @@ const Homepage = ({ onLogout }) => {
 
     return (
         <div className="home-background">
-            {petDetails ? (
-                <>
+            {/* {petDetails ? (
+                <> */}
                     {/* <div className="pet-image-section">
                         <img src={`data:image/jpegbase64,${petDetails.image}`} alt="Pet" className="pet-image-circle" />
                     </div> */}
                     <div className="pet-details-cards">
-                        <Card title="Pet Details" style={{ width: '23rem' }}
+                        {/* <Card title="Pet Details" style={{ width: '23rem' }}
                         onClick={() => navigate('/petdetails')}
 
                         >
                         <Card.Img variant="top" src={petDetailsImage} className="card-image-top"/>
                         <Card.Body>
                         <Card.Title>Profile</Card.Title>
-                        {/* <div>
+                        <div>
                             <p>Name: {petDetails.name}</p>
                             <p>Animal Type: {petDetails.animalType}</p>
                             <p>Age: {petDetails.age}</p>
@@ -178,10 +178,10 @@ const Homepage = ({ onLogout }) => {
                             <p>Favourite Toy: {petDetails.favouriteToy}</p>
                             <p>Breed: {petDetails.breed}</p>
                             <p>Medical Notes: {petDetails.medicalNotes}</p>
-                            </div> */}
+                            </div>
                             <button className="icon-button fas fa-edit" onClick={() => navigate('/petdetails')}></button>
                             </Card.Body>
-                        </Card>
+                        </Card> */}
 
                         <Card title="Diet" style={{ width: '23rem' }}
                         onClick={() => navigate('/dietdetails')}
@@ -301,16 +301,16 @@ const Homepage = ({ onLogout }) => {
 
 
                     </div>
-                </>
-            ) : (
-                <>
+            {/*     </>
+            ) : ( */}
+                {/* <>
                     <p>Loading pet details...</p>
                     <div>
                         <p>No pet details found. Add your pets details to get started.</p>
                         <button onClick={() => navigate('/petdetails')} className="add-pet-details-button">Add Pet Details</button>
                     </div>
                 </>
-            )}
+            )} */}
 
                     {/* <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src="holder.js/100px180" />

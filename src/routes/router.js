@@ -15,7 +15,7 @@ import { router as petRouter } from './petRouter.js'
 import { router as dietRouter } from './dietRouter.js'
 import { router as activityRouter } from './activityRouter.js'
 import { router as scheduleRouter } from './scheduleRouter.js'
-import { router as moreRouter } from './moreRouter.js'
+
 /* import { router as homepageRouter } from './logoutRouter.js' */
 
 export const router = express.Router()
@@ -31,7 +31,7 @@ router.use('/api', petRouter)
 router.use('/api', dietRouter)
 router.use('/api', activityRouter)
 router.use('/api', scheduleRouter)
-router.use('/api', moreRouter)
+
 
 
 

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form, Dropdown } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify'
+import { useParams} from 'react-router-dom';
 
 
 const PetDetails = () => {
+  const { id } = useParams()
   const navigate = useNavigate()
   const [petImage, setPetImage] = useState(null)
   const [imagePreviewUrl, setImagePreviewUrl] = useState(null)
@@ -17,18 +19,18 @@ const PetDetails = () => {
     length: '',
     favouriteFood: '',
     favouriteToy: '',
-    breed: '',
+    /* breed: '', */
     medicalNotes: '',
     animalType: ','
   })
 
-  const fetchBreeds = async (animalType) => {
+  /* const fetchBreeds = async (animalType) => {
     if (!animalType) {
       setBreeds([])
       return
     }
   
-    // Construct the file path based on the animal type
+    
     const filePath = `./Breeds/${animalType.toLowerCase()}Breeds.json`
   
     try {
@@ -55,7 +57,7 @@ const PetDetails = () => {
 
   useEffect(() => {
     fetchBreeds(petDetails.animalType)
-  }, [petDetails.animalType])
+  }, [petDetails.animalType]) */
 
   /* const fetchBreeds = async () => {
     try {
@@ -88,9 +90,9 @@ const PetDetails = () => {
 
   /* const navigate = useNavigate() */
 
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchPetDetails = async () => {
-      const token = localStorage.getItem('token')// Ensure you have the token stored in localStorage
+      const token = localStorage.getItem('token')
       try {
         const response = await fetch('http://localhost:3000/api/pet/petdetails', {
           method: 'GET',
@@ -116,7 +118,43 @@ const PetDetails = () => {
     }
 
     fetchPetDetails()
-  }, [])
+  }, []) */
+
+
+  useEffect(() => {
+    if (id === 'addpet') {
+      setPetDetails
+    } else {
+      fetchPetDetails(id)
+    }
+  }, [id]);
+
+  const fetchPetDetails = async (id) => {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await fetch(`http://localhost:3000/api/pet/petdetails/${id}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+      if (response.ok) {
+        const data = await response.json()
+        
+        if (data) {
+          setPetDetails(data)
+          if (data.image) {
+            setImagePreviewUrl(`data:image/jpeg;base64,${data.image}`)
+          }
+        }
+      } else {
+        throw new Error('Failed to fetch pet details')
+      }
+    } catch (error) {
+      console.error('Error fetching pet details:', error)
+    }
+  }
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0]
@@ -141,6 +179,7 @@ const PetDetails = () => {
 
     const method = petDetails.id ? 'PUT' : 'POST'
     const endpoint = petDetails.id ? `http://localhost:3000/api/pet/petdetails/${petDetails.id}` : 'http://localhost:3000/api/pet/petdetails'
+  
 
     try {
       const token = localStorage.getItem('token')
@@ -172,6 +211,10 @@ const PetDetails = () => {
   return (
     <div className="petdetails-container">
       <h1>Pet Details</h1>
+      <Button variant="primary" onClick={handleSaveOrUpdate}>
+          {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}
+        </Button>
+
       <div className="pet-image-section">
         <input type="file" id="fileInput" onChange={handleImageChange} hidden />
         <label htmlFor="fileInput" className="file-upload-btn">Choose a file</label>
@@ -280,7 +323,7 @@ const PetDetails = () => {
         </Form.Group>
 
         {/* Breed */}
-        <Form.Group className="mb-3" controlId="petBreed">
+        {/* <Form.Group className="mb-3" controlId="petBreed">
           <Form.Label>Breed</Form.Label>
           <Form.Select
             name="breed"
@@ -292,7 +335,7 @@ const PetDetails = () => {
               <option key={breed} value={breed}>{breed}</option>
             ))}
           </Form.Select>
-        </Form.Group>
+        </Form.Group> */}
 
         {/* Medical Notes */}
         <Form.Group className="mb-3" controlId="medicalNotes">

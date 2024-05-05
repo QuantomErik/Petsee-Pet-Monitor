@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import Homepage from './components/Home/Homepage'
-import Support from './components/Support'
-import Contact from './components/Contact'
+import CustomerService from './components/CustomerService.jsx'
+import Faq from './components/Faq.jsx'
 import PetDetails from './components/Profile/PetDetails'
+import EditPetDetails from './components/Profile/EditPetDetails'
 import DietDetails from './components/Diet/DietDetails'
 import AddMeal from './components/Diet/AddMeal'
 import EditMeal from './components/Diet/EditMeal'
@@ -97,10 +98,15 @@ return (
 
         <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/scheduledetails" />} />
 
-        <Route path="/more" element={isAuthenticated ? <More /> : <Navigate replace to="/more" />} />
+       {/*  <Route path="/more" element={isAuthenticated ? <More /> : <Navigate replace to="/more" />} /> */}
+        <Route path="/more" element={isAuthenticated ? <More onLogout={handleLogout} /> : <Navigate replace to="/more" />} />
+        <Route path="/more/addpet" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/petdetails" />} />
+        <Route path="/petdetails/:id" element={isAuthenticated ? <EditPetDetails /> : <Navigate replace to="/petdetails" />} />
 
-        <Route path="/support" element={<Support />} />
-        <Route path="/contact" element={<Contact />} />
+            
+
+        <Route path="/customerservice" element={<CustomerService />} />
+        <Route path="/faq" element={<Faq />} />
         <Route path="/" element={<Navigate replace to={isAuthenticated ? "/home" : "/login"} />} />
       </Routes>
     {/*   <Footer /> */}

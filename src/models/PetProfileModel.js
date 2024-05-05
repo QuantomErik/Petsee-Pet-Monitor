@@ -42,11 +42,11 @@ const petProfileSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  breed: {
+  /* breed: {
     type: String,
     required: true,
     trim: true,
-  },
+  }, */
   medicalNotes: {
     type: String,
     required: true,
