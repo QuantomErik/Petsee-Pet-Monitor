@@ -1,5 +1,6 @@
 
 import React, { useReducer, useEffect, useCallback, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -57,11 +58,12 @@ const dietReducer = (state, action) => {
 }
 
 
-const useSaveDietDetails = (isSubmitting, dietDetails) => {
+const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
   const navigate = useNavigate()
   
   useEffect(() => {
-    if (!isSubmitting || !dietDetails) return
+    /* if (!isSubmitting || !dietDetails) return */
+    if (!isSubmitting || !dietDetails || !currentPet || !currentPet.id) return;
 
     const saveDietDetails = async () => {
       const payload = { 
@@ -74,7 +76,8 @@ const useSaveDietDetails = (isSubmitting, dietDetails) => {
     name: dietDetails.name
       }
       const method = 'POST'
-      const endpoint = 'http://localhost:3000/api/pet/dietdetails/'
+     /*  const endpoint = 'http://localhost:3000/api/pet/dietdetails/' */
+      const endpoint = `http://localhost:3000/api/pet/${currentPet.id}/dietdetails`
   
       try {
         console.log("Sending payload:", JSON.stringify(payload))
@@ -103,7 +106,7 @@ const useSaveDietDetails = (isSubmitting, dietDetails) => {
     }
 
     saveDietDetails()
-  }, [isSubmitting, dietDetails, navigate])
+  }, [isSubmitting, dietDetails, navigate, currentPet])
 }
 
 const DietDetails = () => {
@@ -117,6 +120,8 @@ const DietDetails = () => {
     currentMeal: { mealType: '', time: '', quantity: '0' },
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const currentPet = useSelector(state => state.pets.currentPet)
+  
 
   useSaveDietDetails(isSubmitting, dietDetails)
 
@@ -126,6 +131,7 @@ const DietDetails = () => {
     if (name === 'quantity' || name === 'selectedBrand') {
       calculateNutrients(value, name, dietDetails, dispatch)
     }
+    console.log(`Updated ${name} to ${value}`);
   }
   
 
@@ -159,7 +165,7 @@ const DietDetails = () => {
 
   
 
-  const addMeal = () => {
+  /* const addMeal = () => {
     if (isSubmitting) {
       console.log('Submission blocked, already submitting.')
       return
@@ -174,10 +180,17 @@ const DietDetails = () => {
       alert("Please fill in all fields for the meal.")
       setIsSubmitting(false)
     }
-  }
+  } */
 
  
   const handleSubmit = async () => {
+    console.log("Sending payload:", JSON.stringify(payload));
+
+    if (!currentPet) {
+      alert("Please select a pet first.");
+      return;
+    }
+
     if (isSubmitting) {
       console.log('Submission blocked, already submitting.')
       return
@@ -189,14 +202,19 @@ const DietDetails = () => {
       meals: dietDetails.meals.map(meal => ({
         ...meal,
         quantity: parseFloat(meal.quantity),
-        totalCalories: parseFloat(meal.totalCalories)
+        totalCalories: parseFloat(meal.totalCalories),
+        petId: currentPet.id
       }))
     }
 
     try {
       console.log("Sending payload:", JSON.stringify(payload))
+      console.log("URL:", `http://localhost:3000/api/pet/${currentPet.id}/dietdetails`);
+console.log("Payload:", JSON.stringify(payload));
 
-      const response = await fetch('http://localhost:3000/api/pet/dietdetails/', {
+
+      const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/dietdetails`, {
+      /* const response = await fetch('http://localhost:3000/api/pet/dietdetails/', { */
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -219,9 +237,16 @@ const DietDetails = () => {
 
 
   const addMealAndSave = async () => {
-    if (isSubmitting) {
+
+    
+
+    if (!currentPet || !currentPet.id) {
+      console.error("No current pet selected or pet ID is missing.");
+      alert("Please select a pet first.");
+      return;
+    /* if (isSubmitting) {
       console.log('Submission blocked, already submitting.')
-      return
+      return */
     }
   
     const { mealType, time, quantity } = dietDetails.currentMeal
@@ -246,12 +271,17 @@ const DietDetails = () => {
       name: dietDetails.name,
       quantity: dietDetails.quantity,
       totalCalories: dietDetails.totalCalories, 
+      mealType: dietDetails.currentMeal.mealType,
+      time: dietDetails.currentMeal.time,
+      selectedBrand: dietDetails.selectedBrand
       /* meals: updatedMeals */
     }
   
     try {
-      console.log("Sending payload:", JSON.stringify(payload))
-      const response = await fetch('http://localhost:3000/api/pet/dietdetails/', {
+     /*  console.log("Sending payload:", JSON.stringify(payload)) */
+      
+      /* const response = await fetch('http://localhost:3000/api/pet/dietdetails/', { */
+      const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/dietdetails`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -259,6 +289,8 @@ const DietDetails = () => {
         },
         body: JSON.stringify(payload)
       })
+
+      console.log("Sending payload:", JSON.stringify(payload));
   
       if (!response.ok) throw new Error('Failed to save/update diet details')
       const result = await response.json()
@@ -398,9 +430,6 @@ const DietDetails = () => {
   )
   
 }
-
-
-
 
 
  

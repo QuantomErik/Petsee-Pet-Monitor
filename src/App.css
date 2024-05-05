@@ -3,7 +3,12 @@
   margin: 0 auto;
   /* padding: 2rem; */
   text-align: center;
+  margin-bottom: 100px;
 }
+
+/* body, html {
+  margin-bottom: 200px;
+} */
 
 .logo {
   height: 6em;
@@ -426,7 +431,12 @@ body, html {
 
 .mealForm {
   width: 700px;
+  /* margin-bottom:100px; */
 }
+
+/* .form {
+  margin-bottom:100px;
+} */
 
 .editmeal-nutrients-card {
   /* width: 300px; */ /* Set the width to a suitable size */
@@ -610,6 +620,10 @@ textarea:focus {
   position: relative;
   z-index: 1; /* Makes sure the icon is above the pseudo-element */
   color: #000; /* Icon color */
+}
+
+.form-container {
+  padding-bottom: 100px; /* Adjust the value based on your navbar's height */
 }
 
 

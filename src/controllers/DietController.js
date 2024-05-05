@@ -6,22 +6,29 @@ import { DietModel } from '../models/DietModel.js'
 export class DietController {
 
     async getDietDetails(req, res) {
+        console.log("Fetching meals for petId:", req.params.petId);
         try {
+            const petId = req.params.petId
             /* const userId = req.user._id */
-            const dietDetails = await DietModel.find/* ({ userId }) */({})
-            console.log("Diet details fetched:", dietDetails)
+            /* const dietDetails = await DietModel.find({ userId })({petId: petId}) */
+            const dietDetails = await DietModel.find({ petId: petId })
+            console.log("Diet details fetched:", petId,  dietDetails)
 console.log("Type of dietDetails:", typeof dietDetails)
+
+console.log("Fetching meals for petId:", req.params.petId);
             
     
             if (!dietDetails || dietDetails.length === 0) {
                 return res.status(404).json({ message: 'No diet details found' })
             }
     
+            const formattedDietDetails = dietDetails.map(diet => diet.toObject());
             // Map over the documents to convert them to plain JavaScript objects
-            const formattedDietDetails = dietDetails.map(diet => ({
-                ...diet.toObject(), // Convert Mongoose document to a plain JavaScript object
-                _id: diet._id       // Ensure _id is included
-            }))
+           /*  const formattedDietDetails = dietDetails.map(diet => ({
+                ...diet.toObject(),
+                _id: diet._id  
+                _id: diet._id.toString()
+            })) */
             console.log("Diet details fetched:", dietDetails)
             res.json({ meals: formattedDietDetails/* , userId  */}) // Send the formatted diet details
         } catch (error) {
@@ -54,7 +61,27 @@ console.log("Type of dietDetails:", typeof dietDetails)
         }
     }
  */
+
     async saveDietDetails(req, res) {
+        try {
+            const petId = req.params.petId; // Get pet ID from route parameter
+            const dietDetails = new DietModel({
+                ...req.body,
+                petId: petId  // Save petId along with other meal details
+            });
+    
+            await dietDetails.save();
+            res.status(201).json({ message: 'Meal saved successfully', data: dietDetails });
+        } catch (error) {
+            console.error('Failed to save meal:', error);
+    if (error.name === 'ValidationError') {
+        return res.status(400).json({ message: 'Validation Error', errors: error.errors });
+    }
+    res.status(500).send('Internal Server Error');
+        }
+    }
+    
+    /* async saveDietDetails(req, res) {
 
         console.log("Received diet details:", req.body)
 
@@ -77,7 +104,7 @@ console.log("Type of dietDetails:", typeof dietDetails)
           console.error('Failed to save diet details:', error)
           res.status(500).send('Internal Server Error')
         }
-      }
+      } */
       
     
 

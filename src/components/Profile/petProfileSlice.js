@@ -8,6 +8,7 @@ export const fetchPets = createAsyncThunk('pets/fetchPets', async () => {
 })
   const data = await response.json()
   return data
+  /* return data.pets */
 })
 
 // Slice definition
@@ -18,7 +19,14 @@ const petsSlice = createSlice({
     loading: false,
     error: null
   },
-  reducers: {},
+  reducers: {
+    setCurrentPet: (state, action) => {
+      state.currentPet = action.payload;
+  },
+  resetCurrentPet: (state) => {
+      state.currentPet = null;
+  }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPets.pending, (state) => {
       state.loading = true
@@ -33,5 +41,7 @@ const petsSlice = createSlice({
     })
   }
 })
+
+export const { setCurrentPet, resetCurrentPet } = petsSlice.actions
 
 export default petsSlice.reducer

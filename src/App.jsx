@@ -15,6 +15,7 @@ import AddActivity from './components/Activity/AddActivity'
 import EditActivity from './components/Activity/EditActivity'
 import ScheduleDetails from './components/Schedule/ScheduleDetails'
 import More from './components/More/More'
+import PetDropdown from './components/PetDropDown/PetDropdown'
 
 import Dock from './components/Dock/Dock.jsx'
 
@@ -75,6 +76,9 @@ return (
             <Nav.Link as={Link} to="/support" eventKey="/support">Support</Nav.Link>
             <Nav.Link as={Link} to="/contact" eventKey="/contact">Contact</Nav.Link>
           </Nav>
+
+          {isAuthenticated && <PetDropdown />}
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
@@ -91,6 +95,7 @@ return (
         <Route path="/dietdetails" element={isAuthenticated ? <DietDetails /> : <Navigate replace to="/dietdetails" />} />
         <Route path="/dietdetails/addmeal" element={isAuthenticated ? <AddMeal/> : <Navigate replace to="/dietdetails/addmeal" />} />
         <Route path="/dietdetails/edit/:id" element={isAuthenticated ? <EditMeal /> : <Navigate replace to="/dietdetails" />} />
+        <Route path="/dietdetails" component={DietDetails} />
 
         <Route path="/activitydetails" element={isAuthenticated ? <ActivityDetails /> : <Navigate replace to="/activitydetails" />} />
         <Route path="/activitydetails/addactivity" element={isAuthenticated ? <AddActivity /> : <Navigate replace to="/activitydetails/addactivity" />} />

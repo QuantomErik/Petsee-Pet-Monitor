@@ -44,6 +44,7 @@ import { BASE_SCHEMA } from './baseSchema.js'
 
 const dietProfileSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    petId: { type: mongoose.Schema.Types.ObjectId, ref: 'Pet'},
     mealType: { type: String, required: true },
     time: { type: String/* , required: true */ },
     quantity: { type: Number, required: true },

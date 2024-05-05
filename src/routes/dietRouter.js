@@ -7,15 +7,30 @@ export const router = express.Router()
 const dietController = new DietController()
 
 
-router.get('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
+/* router.get('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
     dietController.getDietDetails(req, res, next)
-})
+}) */
+
+/* router.get('/pet/:petId/dietdetails', auth.authenticateJWT, (req, res) => {
+    dietController.getDietDetails(req, res);
+}); */
+
+router.get('/pet/:petId/dietdetails', auth.authenticateJWT, (req, res) => {
+    dietController.getDietDetails(req, res);
+});
 
 // Save new diet details
-router.post('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
+/* router.post('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
     console.log("Received diet details:", req.body)
     dietController.saveDietDetails(req, res, next)
+}) */
+
+// Save new diet details for a specific pet
+router.post('/pet/:petId/dietdetails', auth.authenticateJWT, (req, res, next) => {
+    console.log("Received diet details for pet:", req.params.petId, req.body);
+    dietController.saveDietDetails(req, res, next);
 })
+
 
 router.get('/pet/dietdetails/:id', auth.authenticateJWT, (req, res, next) => {
     

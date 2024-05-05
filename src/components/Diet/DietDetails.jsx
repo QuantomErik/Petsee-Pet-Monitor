@@ -4,9 +4,11 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useSelector } from 'react-redux'
 
 const DietDetails = () => {
   const navigate = useNavigate()
+  const currentPet = useSelector(state => state.pets.currentPet)
   const [meals, setMeals] = useState([])
  /*  const [dietDetails, setDietDetails] = useState(null) */
   const [isLoading, setIsLoading] = useState(true)
@@ -20,10 +22,16 @@ const DietDetails = () => {
   
 
   useEffect(() => {
+    console.log("Current pet ID:", currentPet?.id);
+
+    
+    
     const fetchMeals = async () => {
+      
       const token = localStorage.getItem('token')
       try {
-        const response = await fetch('http://localhost:3000/api/pet/dietdetails', {
+        const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/dietdetails`, {
+        /* const response = await fetch('http://localhost:3000/api/pet/dietdetails', { */
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -70,8 +78,8 @@ setDietDetails(totals)
     } else {
       console.log('No flash message found.')
     }
-
-  }, [])
+    
+  },  [currentPet])
   
 
   const deleteMeal = async (mealId) => {
@@ -156,8 +164,8 @@ setDietDetails(totals)
               Summary
               </Card.Header>
               <Card.Text>
-              <p>Total Calories: {dietDetails.totalCalories} kcal</p>
-              <p>Total Quantity: {dietDetails.quantity} grams</p>
+             Total Calories: {dietDetails.totalCalories} kcal
+              Total Quantity: {dietDetails.quantity} grams
             </Card.Text>
               </Card>
             </>

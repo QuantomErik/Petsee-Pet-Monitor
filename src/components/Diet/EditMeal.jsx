@@ -233,7 +233,7 @@ const brandsData = {
 
 
     return (
-        <div>
+        <div className="form-container">
            {/*  <ToastContainer /> */}
         <Form onSubmit={handleSubmit}>
 
