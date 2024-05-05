@@ -86,7 +86,7 @@ return (
         <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate replace to="/home" />} />
         <Route path="/home" element={isAuthenticated ? <Homepage /> : <Navigate replace to="/login" />} />
 
-        <Route path="/petdetails" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/petdetails" />} />
+        {/* <Route path="/petdetails" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/petdetails" />} /> */}
 
         <Route path="/dietdetails" element={isAuthenticated ? <DietDetails /> : <Navigate replace to="/dietdetails" />} />
         <Route path="/dietdetails/addmeal" element={isAuthenticated ? <AddMeal/> : <Navigate replace to="/dietdetails/addmeal" />} />
@@ -99,9 +99,10 @@ return (
         <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/scheduledetails" />} />
 
        {/*  <Route path="/more" element={isAuthenticated ? <More /> : <Navigate replace to="/more" />} /> */}
-        <Route path="/more" element={isAuthenticated ? <More onLogout={handleLogout} /> : <Navigate replace to="/more" />} />
-        <Route path="/more/addpet" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/petdetails" />} />
-        <Route path="/petdetails/:id" element={isAuthenticated ? <EditPetDetails /> : <Navigate replace to="/petdetails" />} />
+        {/* <Route path="/more" element={isAuthenticated ? <More/> : <Navigate replace to="/more" />} /> */}
+        <Route path="/more" element={isAuthenticated ? <More onLogout={handleLogout} /> : <Navigate replace to="/login" />} />
+        <Route path="/more/addpet" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/more/addpet" />} />
+        <Route path="/petdetails/:id" element={isAuthenticated ? <EditPetDetails /> : <Navigate replace to="/petdetails/:id" />} />
 
             
 

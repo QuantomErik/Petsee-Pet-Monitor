@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form, Dropdown } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify'
-import { useParams} from 'react-router-dom';
+import { useParams} from 'react-router-dom'
 
 
 const PetDetails = () => {
@@ -127,7 +127,7 @@ const PetDetails = () => {
     } else {
       fetchPetDetails(id)
     }
-  }, [id]);
+  }, [id])
 
   const fetchPetDetails = async (id) => {
     const token = localStorage.getItem('token')
@@ -211,15 +211,16 @@ const PetDetails = () => {
   return (
     <div className="petdetails-container">
       <h1>Pet Details</h1>
-      <Button variant="primary" onClick={handleSaveOrUpdate}>
+      {/* <Button variant="primary" onClick={handleSaveOrUpdate}>
           {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}
-        </Button>
+        </Button> */}
 
-      <div className="pet-image-section">
+      {/* <div className="pet-image-section">
+        
         <input type="file" id="fileInput" onChange={handleImageChange} hidden />
         <label htmlFor="fileInput" className="file-upload-btn">Choose a file</label>
         {imagePreviewUrl && <img src={imagePreviewUrl} alt="Pet" className="pet-image-circle" />}
-      </div>
+      </div> */}
 
       <div className="center-select">      
         {/* Pet's Name */}
@@ -354,7 +355,7 @@ const PetDetails = () => {
         </Button>
       
     </div>
-  );
+  )
   
 
 

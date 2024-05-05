@@ -8,7 +8,7 @@ import { IoIosArrowForward, IoIosAdd } from 'react-icons/io'
 import { FaDog, FaQuestionCircle, FaHeadset} from 'react-icons/fa'
 import { MdExitToApp } from 'react-icons/md'
 
-/* import { useDispatch, useSelector } from 'react-redux'; */
+/* import { useDispatch, useSelector } from 'react-redux' */
 /* import { fetchPets } from '../Profile/petProfileSlice' */
 
 function More({ onLogout }) {
@@ -17,8 +17,8 @@ function More({ onLogout }) {
   const { pets, loading, error } = useSelector(state => state.pets)
 
   useEffect(() => {
-    dispatch(fetchPets());
-  }, [dispatch]);
+    dispatch(fetchPets())
+  }, [dispatch])
 
   const navigate = useNavigate()
 
@@ -35,11 +35,11 @@ function More({ onLogout }) {
   }
 
   const handlePetClick = (petId) => {
-    navigate(`/petdetails/${petId}`);
+    navigate(`/petdetails/${petId}`)
   }
 
  /*  const handlePetClick = (petId) => {
-    (`/petdetails/editpetdetails/${petId}`);
+    (`/petdetails/editpetdetails/${petId}`)
   } */
 
     return (
@@ -47,15 +47,9 @@ function More({ onLogout }) {
 
       
       <div className="button-container"> 
-        <Button variant="primary" size="lg" className="block-button" > 
-          Block level button 
-         
-        </Button>
+        
 
 
-        <Button variant="secondary" size="lg" className="block-button">
-          Block level button
-        </Button>
 
         {pets.map(pet => (
         <Button key={pet.id} variant="primary" size="lg" className="custom-button" onClick={() => handlePetClick(pet.id)}>
@@ -65,13 +59,7 @@ function More({ onLogout }) {
         </Button>
       ))}
 
-        <Button variant="primary" size="lg" className="custom-button">
-        <FaDog className="icon-left" /> {/* Icon on the left */}
-        Block level button
-        <span className="icon-right">
-          <IoIosArrowForward />
-        </span>
-      </Button>
+       
 
 
       <Button variant="primary" size="lg" className="custom-button" onClick={handleAddPetClick}>

@@ -58,7 +58,7 @@ const petProfileSchema = new mongoose.Schema({
     trim: true,
     enum: ['Dog', 'Cat', 'Bird', 'Hamster', 'Rabbit']  // Enum to restrict the animal types
 },
-  image: String,
+ /*  image: String, */
 })
 
 

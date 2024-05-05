@@ -40,8 +40,8 @@ const DietDetails = () => {
 // Calculate totals
 const totals = validMeals.reduce((acc, meal) => {
   acc.totalCalories += Number(meal.totalCalories)
-  acc.totalQuantity += Number(meal.quantity);
-  return acc;
+  acc.totalQuantity += Number(meal.quantity)
+  return acc
 }, { totalCalories: 0, totalQuantity: 0 })
 
 totals.totalCalories = parseFloat(totals.totalCalories.toFixed(1))
@@ -65,7 +65,7 @@ setDietDetails(totals)
     const message = localStorage.getItem('flashMessage')
     if (message) {
       console.log('Flash message found:', message)
-      toast.success(message);
+      toast.success(message)
       localStorage.removeItem('flashMessage')
     } else {
       console.log('No flash message found.')

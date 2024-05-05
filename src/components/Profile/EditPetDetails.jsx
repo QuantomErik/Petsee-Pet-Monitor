@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function EditPetDetails() {
     const [imagePreviewUrl, setImagePreviewUrl] = useState(null)
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const [petImage, setPetImage] = useState(null)
+    const { id } = useParams()
+    const navigate = useNavigate()
     const [petDetails, setPetDetails] = useState({
         name: '',
         age: '',
@@ -18,34 +19,34 @@ function EditPetDetails() {
        /*  breed: '', */
         medicalNotes: '',
         animalType: ''
-    });
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
+    })
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState('')
 
     useEffect(() => {
-        fetchPetDetails(id);
-    }, [id]);
+        fetchPetDetails(id)
+    }, [id])
 
     const fetchPetDetails = async () => {
-        setIsLoading(true);
+        setIsLoading(true)
         try {
             const response = await fetch(`http://localhost:3000/api/pet/petdetails/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
-            });
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message || 'Failed to fetch pet details');
-            setPetDetails(data);
+            })
+            const data = await response.json()
+            if (!response.ok) throw new Error(data.message || 'Failed to fetch pet details')
+            setPetDetails(data)
         } catch (error) {
-            setError(error.message);
+            setError(error.message)
         }
-        setIsLoading(false);
-    };
+        setIsLoading(false)
+    }
     
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
+        e.preventDefault()
+        setIsLoading(true)
         try {
             const response = await fetch(`http://localhost:3000/api/pet/petdetails/${id}`, {
                 method: 'PUT',
@@ -54,43 +55,43 @@ function EditPetDetails() {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(petDetails)
-            });
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message || 'Failed to update pet details');
-            toast.success('Pet details updated successfully!');
-            navigate('/more');
+            })
+            const data = await response.json()
+            if (!response.ok) throw new Error(data.message || 'Failed to update pet details')
+            toast.success('Pet details updated successfully!')
+            navigate('/more')
         } catch (error) {
-            setError(error.message);
+            setError(error.message)
         }
-        setIsLoading(false);
-    };
+        setIsLoading(false)
+    }
     
     const handleDelete = async () => {
-        if (!window.confirm("Are you sure you want to delete this pet?")) return;
-        setIsLoading(true);
+        if (!window.confirm("Are you sure you want to delete this pet?")) return
+        setIsLoading(true)
         try {
             const response = await fetch(`http://localhost:3000/api/pet/petdetails/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
-            });
-            if (!response.ok) throw new Error('Failed to delete the pet');
-            toast.success('Pet deleted successfully!');
-            navigate('/more');
+            })
+            if (!response.ok) throw new Error('Failed to delete the pet')
+            toast.success('Pet deleted successfully!')
+            navigate('/more')
         } catch (error) {
-            setError(error.message);
+            setError(error.message)
         }
-        setIsLoading(false);
-    };
+        setIsLoading(false)
+    }
 
-    const handleImageChange = (event) => {
+   /*  const handleImageChange = (event) => {
         const file = event.target.files[0]
         if (file) {
           setImagePreviewUrl(URL.createObjectURL(file))
           setPetImage(file)
         }
-      }
+      } */
     
       const handleDetailChange = (event) => {
         const { name, value } = event.target
@@ -138,22 +139,22 @@ function EditPetDetails() {
     // Define fetchPetDetails, handleInputChange, handleSubmit, and handleDelete here
     // Similar to your EditActivity.jsx logic
 
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
-    if (!petDetails) return <p>No pet details found</p>;
+    if (isLoading) return <p>Loading...</p>
+    if (error) return <p>Error: {error}</p>
+    if (!petDetails) return <p>No pet details found</p>
 
     return (
         <div className="petdetails-container">
           <h1>Pet Details</h1>
-          <Button variant="primary" onClick={handleSaveOrUpdate}>
+          {/* <Button variant="primary" onClick={handleSaveOrUpdate}>
               {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}
-            </Button>
+            </Button> */}
     
-          <div className="pet-image-section">
+         {/*  <div className="pet-image-section">
             <input type="file" id="fileInput" onChange={handleImageChange} hidden />
             <label htmlFor="fileInput" className="file-upload-btn">Choose a file</label>
             {imagePreviewUrl && <img src={imagePreviewUrl} alt="Pet" className="pet-image-circle" />}
-          </div>
+          </div> */}
     
           <div className="center-select">      
             {/* Pet's Name */}
@@ -282,13 +283,18 @@ function EditPetDetails() {
                 onChange={handleDetailChange}
               />
             </Form.Group>
+
+            <div className="d-flex justify-content-start">
     
             <Button variant="primary" onClick={handleSaveOrUpdate}>
-              {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}
+              {petDetails.id ? 'Update ' : 'Save Pet Details'}
             </Button>
+
+            <Button variant="danger" onClick={handleDelete}>Delete</Button>
+            </div>
           
         </div>
-    );
+    )
 }
 
-export default EditPetDetails;
+export default EditPetDetails

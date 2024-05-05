@@ -42,5 +42,9 @@ router.put('/pet/petdetails/:id', auth.authenticateJWT, upload.single('image'), 
     petController.updatePetDetails(req, res, next)
 })
 
+router.delete('/pet/petdetails/:id', auth.authenticateJWT, (req, res, next) => {
+    petController.deletePet(req, res, next)
+})
+
 
 /* export default router */

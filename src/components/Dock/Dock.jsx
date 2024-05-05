@@ -1,10 +1,10 @@
 // components/Dock.js
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { IoHomeSharp, IoRestaurant, IoWalk, IoCalendar, IoPaw } from 'react-icons/io5'; // Example icons from react-icons
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { IoHomeSharp, IoRestaurant, IoWalk, IoCalendar, IoPaw } from 'react-icons/io5' // Example icons from react-icons
 
 const Dock = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     return (
         <div className="dock-container">
@@ -21,7 +21,7 @@ const Dock = () => {
                 <IoCalendar />
             </button>
         </div>
-    );
-};
+    )
+}
 
-export default Dock;
+export default Dock

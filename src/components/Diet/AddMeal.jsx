@@ -3,8 +3,8 @@ import React, { useReducer, useEffect, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup'
+import Card from 'react-bootstrap/Card'
 
 
 

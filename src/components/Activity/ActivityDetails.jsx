@@ -13,7 +13,7 @@ function ActivityDetails() {
 
     useEffect(() => {
 
-      /* toast.success("Component mounted and toast triggered."); */
+      /* toast.success("Component mounted and toast triggered.") */
 
         const fetchActivities = async () => {
           const token = localStorage.getItem('token')
@@ -42,7 +42,7 @@ function ActivityDetails() {
         const message = localStorage.getItem('flashMessage')
         if (message) {
           console.log('Flash message found:', message)
-          toast.success(message);
+          toast.success(message)
           localStorage.removeItem('flashMessage')
         } else {
           console.log('No flash message found.')
