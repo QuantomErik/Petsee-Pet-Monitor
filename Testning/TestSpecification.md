@@ -295,4 +295,51 @@ User is redirected to the scheduledetails url and the schedule is deleted.
 Displayes A message "delete succesfull" is displayed.
 
 
+Test Suite: Multiple Pets
+
+Test Case 8.1: Add New Pet
+Objective: Verify that user can add a new pets.
+Input:
+Log in and navigate to the "more" section on the dock.
+Choose "Add a pet".
+Put in test as name of the Pet.
+Save the new pet.
+Expected Output:
+A new Pet is added to the "more" page.
+Displays the new Pet.
+
+Test Case 8.2: Button/Dropdown for multiple pets
+Objective: Verify that user sees a button for switching between pets.
+Input:
+Log in.
+Expected Output:
+A button for selecting pet should be visible to the user at all times.
+
+Test Case 8.3: Display information for specific pet
+Objective: Verify that only the saved information for the selected pet i displayed.
+Input:
+Navigate to "dietdetails".
+Choose Kali as selected pet.
+Expected Output:
+The saved meals for the pet Kali should be displayed. 
+Input:
+Switch selected pet to Chelsea.
+The saved meal for the pet Chelsea should be displayed. 
+
+Test Case 8.4: Add information for specific pet
+Objective: Verify that only the saved information only applies to the selected pet.
+Input:
+Navigate to "dietdetails".
+Choose Kali as selected pet.
+Click the "Create meal" button.
+Create a meal and save it. 
+Expected Output:
+The new meal should only be displayed for the pet Kali.
+
+
+
+
+
+
+
 
