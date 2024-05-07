@@ -15,18 +15,27 @@ export class ActivityController {
 
     async getActivityDetails(req, res, next) {
         try {
-            const activities = await ActivityModel.find()
-            console.log("Activities fetched:", activities)  // Log to see the data
+            const petId = req.params.petId
+            if (!petId) {
+                return res.status(400).json({ message: 'Pet ID is required' })
+            }
+            /* const activities = await ActivityModel.find() */
+           /*  const activities = await ActivityModel.find({ petId: petId }) */
+            const activities = await ActivityModel.find({ petId: petId }).lean()
+            console.log("Activities fetched:", activities) 
+             // Log to see the data
             // Sending back a JSON response containing the activity details
             // Ensure that the _id field is included in each activity object
-            res.json({
+            res.json({ activities })
+            /* res.json({
                 activities: activities.map(activity => ({
-                    ...activity.toObject(), // Convert Mongoose document to a plain JavaScript object
-                    _id: activity._id      // Ensure _id is included
+                    ...activity.toObject(),
+                    _id: activity._id
                 }))
-            })
+            }) */
         } catch (error) {
-            next(error)
+            console.error('Error fetching activities:', error)
+            res.status(500).json({ message: 'Error fetching activities' })
         }
     }
     
@@ -45,22 +54,30 @@ try {
 
     async createActivity(req, res) {
         try {
-            const { type, duration, intensity, userId } = req.body
-    
-            // Assuming `userId` should be validated or transformed into MongoDB ObjectId
-            const activity = await ActivityModel.create({
+
+            const petId = req.params.petId
+            /* const { type, duration, intensity, userId } = req.body */
+            
+            const newActivity = new ActivityModel({
+                 ...req.body, 
+                 petId: petId })
+            await newActivity.save()
+
+            res.status(201).json({ message: 'Activity saved successfully', data: newActivity })
+            
+           /*  const activity = await ActivityModel.create({
                 type,
                 duration: Number(duration),
                 intensity,
-                /* userId: userId */
+               
                 userId: req.user.id
-            })
+            }) */
     
             // Send a success response with the created activity data
-            res.status(201).json({
+            /* res.status(201).json({
                 message: "Activity successfully created",
                 activity: activity
-            })
+            }) */
         } catch (error) {
             console.error('Error creating activity:', error)
             res.status(500).json({
@@ -92,9 +109,11 @@ try {
     
     async getActivityById(req, res, next) {
         try {
-            const id = req.params.id  // Correct way to extract the id
+            const id = req.params.id
+           /*  const { id } = req.params */
             console.log('ID received:', id)
             const activity = await ActivityModel.findById(id)
+            /* const activity = await ActivityModel.findOne({ _id: id }) */
     
             if (!activity) {
                 return res.status(404).json({ message: "Activity not found" })

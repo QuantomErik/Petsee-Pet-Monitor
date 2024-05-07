@@ -7,7 +7,11 @@ export const router = express.Router()
 const activityController = new ActivityController()
 
 
-router.get('/pet/activitydetails', auth.authenticateJWT, (req, res, next) => {
+/* router.get('/pet/activitydetails', auth.authenticateJWT, (req, res, next) => {
+    activityController.getActivityDetails(req, res, next)
+}) */
+
+router.get('/pet/:petId/activitydetails', auth.authenticateJWT, (req, res, next) => {
     activityController.getActivityDetails(req, res, next)
 })
 
@@ -16,11 +20,17 @@ router.get('/pet/activitydetails', auth.authenticateJWT, (req, res, next) => {
     activityController.saveActivityDetails(req, res, next)
 }) */
 
+router.post('/pet/:petId/activitydetails', auth.authenticateJWT, (req, res, next) => {
+    activityController.createActivity(req, res, next)
+})
+
 /* router.param('id', (req, res, next, id) => activityController.getActivityById(req, res, next, id))
  */
 router.post('/pet/activitydetails', auth.authenticateJWT, (req, res, next) => {
     activityController.createActivity(req, res, next)
 })
+
+
 
 router.get('/pet/activitydetails/:id', auth.authenticateJWT, (req, res, next) => {
     console.log(`Fetching details for ID: ${req.params.id}`)

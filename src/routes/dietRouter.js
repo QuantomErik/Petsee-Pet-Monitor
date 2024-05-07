@@ -12,12 +12,12 @@ const dietController = new DietController()
 }) */
 
 /* router.get('/pet/:petId/dietdetails', auth.authenticateJWT, (req, res) => {
-    dietController.getDietDetails(req, res);
-}); */
+    dietController.getDietDetails(req, res)
+}) */
 
 router.get('/pet/:petId/dietdetails', auth.authenticateJWT, (req, res) => {
-    dietController.getDietDetails(req, res);
-});
+    dietController.getDietDetails(req, res)
+})
 
 // Save new diet details
 /* router.post('/pet/dietdetails', auth.authenticateJWT, (req, res, next) => {
@@ -27,8 +27,8 @@ router.get('/pet/:petId/dietdetails', auth.authenticateJWT, (req, res) => {
 
 // Save new diet details for a specific pet
 router.post('/pet/:petId/dietdetails', auth.authenticateJWT, (req, res, next) => {
-    console.log("Received diet details for pet:", req.params.petId, req.body);
-    dietController.saveDietDetails(req, res, next);
+    console.log("Received diet details for pet:", req.params.petId, req.body)
+    dietController.saveDietDetails(req, res, next)
 })
 
 

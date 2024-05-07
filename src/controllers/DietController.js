@@ -6,7 +6,7 @@ import { DietModel } from '../models/DietModel.js'
 export class DietController {
 
     async getDietDetails(req, res) {
-        console.log("Fetching meals for petId:", req.params.petId);
+        console.log("Fetching meals for petId:", req.params.petId)
         try {
             const petId = req.params.petId
             /* const userId = req.user._id */
@@ -15,16 +15,16 @@ export class DietController {
             console.log("Diet details fetched:", petId,  dietDetails)
 console.log("Type of dietDetails:", typeof dietDetails)
 
-console.log("Fetching meals for petId:", req.params.petId);
+console.log("Fetching meals for petId:", req.params.petId)
             
     
             if (!dietDetails || dietDetails.length === 0) {
                 return res.status(404).json({ message: 'No diet details found' })
             }
     
-            const formattedDietDetails = dietDetails.map(diet => diet.toObject());
+            const formattedDietDetails = dietDetails.map(diet => diet.toObject())
             // Map over the documents to convert them to plain JavaScript objects
-           /*  const formattedDietDetails = dietDetails.map(diet => ({
+          /*   const formattedDietDetails = dietDetails.map(diet => ({
                 ...diet.toObject(),
                 _id: diet._id  
                 _id: diet._id.toString()
@@ -64,20 +64,20 @@ console.log("Fetching meals for petId:", req.params.petId);
 
     async saveDietDetails(req, res) {
         try {
-            const petId = req.params.petId; // Get pet ID from route parameter
+            const petId = req.params.petId// Get pet ID from route parameter
             const dietDetails = new DietModel({
                 ...req.body,
-                petId: petId  // Save petId along with other meal details
-            });
+                petId: petId,
+            })
     
-            await dietDetails.save();
-            res.status(201).json({ message: 'Meal saved successfully', data: dietDetails });
+            await dietDetails.save()
+            res.status(201).json({ message: 'Meal saved successfully', data: dietDetails })
         } catch (error) {
-            console.error('Failed to save meal:', error);
+            console.error('Failed to save meal:', error)
     if (error.name === 'ValidationError') {
-        return res.status(400).json({ message: 'Validation Error', errors: error.errors });
+        return res.status(400).json({ message: 'Validation Error', errors: error.errors })
     }
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Internal Server Error')
         }
     }
     
@@ -155,22 +155,29 @@ console.log("Fetching meals for petId:", req.params.petId);
         }
     }
 
-    async getMealById(req, res, next) {
-        try {
-            const id = req.params.id
-            console.log('ID received:', id)
-            const meal = await DietModel.findById(id)
+    async getMealById(req, res) {
+        const id = req.params.id
+        console.log('Attempting to fetch meal with ID:', id)
     
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            console.warn('Invalid ID supplied:', id)
+            return res.status(400).json({ message: "Invalid ID format" })
+        }
+    
+        try {
+            const meal = await DietModel.findById(id)
             if (!meal) {
+                console.warn('No meal found with ID:', id)
                 return res.status(404).json({ message: "Meal not found" })
             }
-    
+            console.log('Meal fetched successfully:', meal)
             res.json(meal)
         } catch (error) {
-            console.error('Error fetching meal:', error)
+            console.error('Database access error while fetching meal:', error)
             res.status(500).json({ message: "Error fetching meal", error: error.message })
         }
     }
+    
 
     /* async deleteMeal(req, res) {
         const { mealId } = req.params

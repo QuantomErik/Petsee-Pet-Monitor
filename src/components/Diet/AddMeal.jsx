@@ -63,7 +63,7 @@ const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
   
   useEffect(() => {
     /* if (!isSubmitting || !dietDetails) return */
-    if (!isSubmitting || !dietDetails || !currentPet || !currentPet.id) return;
+    if (!isSubmitting || !dietDetails || !currentPet || !currentPet.id) return
 
     const saveDietDetails = async () => {
       const payload = { 
@@ -131,7 +131,7 @@ const DietDetails = () => {
     if (name === 'quantity' || name === 'selectedBrand') {
       calculateNutrients(value, name, dietDetails, dispatch)
     }
-    console.log(`Updated ${name} to ${value}`);
+    console.log(`Updated ${name} to ${value}`)
   }
   
 
@@ -184,11 +184,11 @@ const DietDetails = () => {
 
  
   const handleSubmit = async () => {
-    console.log("Sending payload:", JSON.stringify(payload));
+    console.log("Sending payload:", JSON.stringify(payload))
 
     if (!currentPet) {
-      alert("Please select a pet first.");
-      return;
+      alert("Please select a pet first.")
+      return
     }
 
     if (isSubmitting) {
@@ -209,9 +209,8 @@ const DietDetails = () => {
 
     try {
       console.log("Sending payload:", JSON.stringify(payload))
-      console.log("URL:", `http://localhost:3000/api/pet/${currentPet.id}/dietdetails`);
-console.log("Payload:", JSON.stringify(payload));
-
+      console.log("URL:", `http://localhost:3000/api/pet/${currentPet.id}/dietdetails`)
+console.log("Payload:", JSON.stringify(payload))
 
       const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/dietdetails`, {
       /* const response = await fetch('http://localhost:3000/api/pet/dietdetails/', { */
@@ -241,9 +240,9 @@ console.log("Payload:", JSON.stringify(payload));
     
 
     if (!currentPet || !currentPet.id) {
-      console.error("No current pet selected or pet ID is missing.");
-      alert("Please select a pet first.");
-      return;
+      console.error("No current pet selected or pet ID is missing.")
+      alert("Please select a pet first.")
+      return
     /* if (isSubmitting) {
       console.log('Submission blocked, already submitting.')
       return */
@@ -290,7 +289,7 @@ console.log("Payload:", JSON.stringify(payload));
         body: JSON.stringify(payload)
       })
 
-      console.log("Sending payload:", JSON.stringify(payload));
+      console.log("Sending payload:", JSON.stringify(payload))
   
       if (!response.ok) throw new Error('Failed to save/update diet details')
       const result = await response.json()

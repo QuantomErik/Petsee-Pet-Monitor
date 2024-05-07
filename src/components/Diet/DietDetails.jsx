@@ -22,7 +22,7 @@ const DietDetails = () => {
   
 
   useEffect(() => {
-    console.log("Current pet ID:", currentPet?.id);
+    console.log("Current pet ID:", currentPet?.id)
 
     
     
@@ -130,7 +130,7 @@ setDietDetails(totals)
 {meals.length > 0 ? meals.map((meal, index) => {
     if (!meal) return null  // Skip rendering if meal is null or undefined
     return (
-        <Card key={meal._id || index} className="diet-card">
+        <Card key={meal.id || index} className="diet-card">
             <Card.Header className="card-headerStyle">
               {meal.mealType} - Time: {meal.time}
               </Card.Header>
@@ -145,8 +145,8 @@ setDietDetails(totals)
                     Quantity: {parseFloat(meal.quantity).toFixed(1)} grams
                     </Card.Text>
                 {/* <Button variant="primary" onClick={() => editMeal(meal._id)}>Edit</Button> */}
-
-                <button className="btn btn-primary" onClick={() => navigate(`/dietdetails/edit/${meal._id}`)}>Edit</button>
+                
+                <button className="btn btn-primary" onClick={() => navigate(`/dietdetails/edit/${meal.id}`)}>Edit</button>
 
                 {/* <Button variant="danger" onClick={() => deleteMeal(meal._id)} className="ms-2">Delete</Button> */}
             </Card.Body>

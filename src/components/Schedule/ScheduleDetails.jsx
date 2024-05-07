@@ -365,8 +365,8 @@ const ScheduleDetails = () => {
             date: clickedDate,
             id: '',
             note: ''
-        }));
-        setModalIsOpen(true);
+        }))
+        setModalIsOpen(true)
     }
     
 

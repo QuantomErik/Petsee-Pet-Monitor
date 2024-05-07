@@ -4,14 +4,29 @@ import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchActivitiess } from './activitiesSlice'
 
 function ActivityDetails() {
-    const [activities, setActivities] = useState([])
+    /* const [activities, setActivities] = useState([]) */
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
     const navigate = useNavigate() 
 
+    const { activities } = useSelector(state => state.activities)
+    
+
+    const dispatch = useDispatch()
+    
+    const currentPet = useSelector(state => state.pets.currentPet)
+
     useEffect(() => {
+      console.log("Current pet ID:", currentPet?.id)
+      if (currentPet && currentPet.id) {
+        console.log("Current pet ID:", currentPet.id)
+        dispatch(fetchActivitiess(currentPet.id))
+            
+    }
 
       /* toast.success("Component mounted and toast triggered.") */
 
@@ -19,7 +34,8 @@ function ActivityDetails() {
           const token = localStorage.getItem('token')
             setIsLoading(true)
             try {
-                const response = await fetch('http://localhost:3000/api/pet/activitydetails', {
+                /* const response = await fetch('http://localhost:3000/api/pet/activitydetails', { */
+                const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/activitydetails`, {
                   headers: {
                     'Authorization': `Bearer ${token}`,
                   },
@@ -29,7 +45,7 @@ function ActivityDetails() {
                 }
                 const data = await response.json()
                 console.log('Fetched activities:', data.activities)
-                setActivities(data.activities)
+                /* setActivities(data.activities) */
             } catch (error) {
                 setError(error.message)
             }
@@ -48,12 +64,12 @@ function ActivityDetails() {
           console.log('No flash message found.')
         }
 
-    }, [])
+    }, [dispatch, currentPet])
 
    
 
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error: {error}</div>
+  /*   if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error: {error}</div> */
 
     return (
       <div>
@@ -63,7 +79,7 @@ function ActivityDetails() {
               <div>
                 
                   {activities.map((activity, index) => (
-    <Card key={activity._id || index} /* style={{ width: '18rem', marginBottom: '1rem' }} */>
+    <Card key={activity._id || index} >
         <Card.Body>
             <Card.Title>{activity.type}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">Activity Details</Card.Subtitle>

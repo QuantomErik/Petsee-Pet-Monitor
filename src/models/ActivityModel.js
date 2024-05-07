@@ -10,7 +10,8 @@ const activitySchema = new mongoose.Schema({
     /* date: { type: Date, required: true }, */
     /* notes: String, */
     userId: { type: mongoose.Schema.Types.ObjectId,
-    ref: 'User' }
+    ref: 'User' },
+    petId: { type: mongoose.Schema.Types.ObjectId, ref: 'Pet'},
 })
 
 activitySchema.add(BASE_SCHEMA)

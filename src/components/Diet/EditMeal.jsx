@@ -46,6 +46,7 @@ const brandsData = {
     })
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
+    
 
     const calculateNutrients = (value, name, meal) => {
         const quantity = name === 'quantity' ? parseFloat(value) : parseFloat(meal.quantity)

@@ -21,10 +21,10 @@ const petsSlice = createSlice({
   },
   reducers: {
     setCurrentPet: (state, action) => {
-      state.currentPet = action.payload;
+      state.currentPet = action.payload
   },
   resetCurrentPet: (state) => {
-      state.currentPet = null;
+      state.currentPet = null
   }
   },
   extraReducers: (builder) => {

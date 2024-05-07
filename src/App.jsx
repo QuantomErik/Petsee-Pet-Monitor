@@ -95,11 +95,12 @@ return (
         <Route path="/dietdetails" element={isAuthenticated ? <DietDetails /> : <Navigate replace to="/dietdetails" />} />
         <Route path="/dietdetails/addmeal" element={isAuthenticated ? <AddMeal/> : <Navigate replace to="/dietdetails/addmeal" />} />
         <Route path="/dietdetails/edit/:id" element={isAuthenticated ? <EditMeal /> : <Navigate replace to="/dietdetails" />} />
-        <Route path="/dietdetails" component={DietDetails} />
+        {/* <Route path="/dietdetails" component={DietDetails} /> */}
 
         <Route path="/activitydetails" element={isAuthenticated ? <ActivityDetails /> : <Navigate replace to="/activitydetails" />} />
         <Route path="/activitydetails/addactivity" element={isAuthenticated ? <AddActivity /> : <Navigate replace to="/activitydetails/addactivity" />} />
         <Route path="/activitydetails/edit/:id" element={isAuthenticated ? <EditActivity /> : <Navigate replace to="/login" />} />
+        {/* <Route path="/activitydetails" component={ActivityDetails} /> */}
 
         <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/scheduledetails" />} />
 
