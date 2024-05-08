@@ -107,7 +107,7 @@ try {
         }
     } */
     
-    async getActivityById(req, res, next) {
+    async getActivityById(req, res) {
         try {
             const id = req.params.id
            /*  const { id } = req.params */

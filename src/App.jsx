@@ -17,6 +17,7 @@ import ScheduleDetails from './components/Schedule/ScheduleDetails'
 import More from './components/More/More'
 import PetDropdown from './components/PetDropDown/PetDropdown'
 import ToDoList from './components/ToDoList/ToDoList'
+import EditToDoList from './components/ToDoList/EditToDoList'
 
 import Dock from './components/Dock/Dock.jsx'
 
@@ -113,6 +114,7 @@ return (
 
 
         <Route path="/todolist" element={isAuthenticated ? <ToDoList /> : <Navigate replace to="/todolist" />} />
+        <Route path="/todolist/edit/:id" element={isAuthenticated ? <EditToDoList /> : <Navigate replace to="/todolist" />} />
 
             
 
