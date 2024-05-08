@@ -16,6 +16,7 @@ import EditActivity from './components/Activity/EditActivity'
 import ScheduleDetails from './components/Schedule/ScheduleDetails'
 import More from './components/More/More'
 import PetDropdown from './components/PetDropDown/PetDropdown'
+import ToDoList from './components/ToDoList/ToDoList'
 
 import Dock from './components/Dock/Dock.jsx'
 
@@ -109,6 +110,9 @@ return (
         <Route path="/more" element={isAuthenticated ? <More onLogout={handleLogout} /> : <Navigate replace to="/login" />} />
         <Route path="/more/addpet" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/more/addpet" />} />
         <Route path="/petdetails/:id" element={isAuthenticated ? <EditPetDetails /> : <Navigate replace to="/petdetails/:id" />} />
+
+
+        <Route path="/todolist" element={isAuthenticated ? <ToDoList /> : <Navigate replace to="/todolist" />} />
 
             
 

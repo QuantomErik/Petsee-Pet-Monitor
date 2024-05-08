@@ -300,6 +300,21 @@ const Homepage = ({ onLogout }) => {
                         </Card>
 
 
+
+
+                <Card title="Schedule" style={{ width: '23rem' }}
+                        onClick={() => navigate('/todolist')}
+
+                        >
+                        <Card.Img variant="top" src={petDetailsImage} className="card-image-top"/>
+                        <Card.Body>
+                        <Card.Title>ToDoList</Card.Title>
+                      
+                         <button className="icon-button fas fa-edit" onClick={() => navigate('/todolist')}></button>
+                </Card.Body>
+                        </Card>
+
+
                     </div>
             {/*     </>
             ) : ( */}

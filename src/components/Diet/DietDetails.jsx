@@ -120,11 +120,7 @@ setDietDetails(totals)
   return (
     <div>
       <h1>Diet Details</h1>
-      {isLoading ? (
-        <p>Loading diet details...</p>
-      ) : error ? (
-        <p>Error loading diet details: {error}</p>
-      ) : (
+     
         <>
 
 {meals.length > 0 ? meals.map((meal, index) => {
@@ -175,7 +171,7 @@ setDietDetails(totals)
           {/* <Button onClick={() => navigate('/dietdetails/addmeal')} className="mt-3">Create Meal</Button> */}
         </>
         
-      )}
+      
       <Button onClick={() => navigate('/dietdetails/addmeal')} className="mt-3">Create Meal</Button>
     </div>
   )
