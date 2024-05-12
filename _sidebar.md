@@ -28,6 +28,7 @@
 - [Iteration 3](/Sprints/Iteration-3)
 - [Iteration 4](/Sprints/Iteration-4)
 - [Iteration 5](/Sprints/Iteration-5)
+- [Iteration 6](/Sprints/Iteration-6)
 - ...
 - Iteration 8
 
