@@ -49,7 +49,7 @@ const ActivityDetails = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/activitydetails`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/activitydetails`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -120,35 +120,6 @@ const ActivityDetails = () => {
 
 
 
-        {/* <div className="center-select">
-        <Form.Select aria-label="Default select example" className="activityForm">
-    <option>Activity Type</option>
-    <option value="1">Agility</option>
-    <option value="2">Running</option>
-    <option value="3">Walking</option>
-  </Form.Select>
-  </div> */}
-    
-       {/*  <div className="input-container">
-          <input
-            type="text"
-            name="type"
-            value={activityDetails.type}
-            onChange={handleChange}
-            placeholder="Type"
-          />
-        </div> */}
-  
-       {/*  <div className="input-container">
-    <input
-      type="text"
-      name="duration"
-      value={activityDetails.duration}
-      onChange={handleChange}
-      placeholder="Duration"
-    />
-  </div> */}
-
 <div className="center-select">
 <Form.Group>
   <Form.Label>Activity Intensity</Form.Label>
@@ -166,36 +137,6 @@ const ActivityDetails = () => {
   </Form.Select>
 </Form.Group>
 </div>
-  
-       {/*  <div className="input-container">
-          <input
-            type="text"
-            name="intensity"
-            value={activityDetails.intensity}
-            onChange={handleChange}
-            placeholder="Intensity"
-          />
-        </div> */}
-  
-       {/*  <div className="input-container">
-          <input
-            type="number"
-            name="date"
-            value={activityDetails.date}
-            onChange={handleChange}
-            placeholder="Date)"
-          />
-        </div> */}
-  
-        {/* <div className="input-container">
-    <input
-      type="number"
-      name="notes"
-      value={activityDetails.notes}
-      onChange={handleChange}
-      placeholder="Notes"
-    />
-  </div> */}
   
   
   <Button variant="primary" onClick={handleSaveActivityDetails} className="save-button">

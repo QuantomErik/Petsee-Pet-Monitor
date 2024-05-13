@@ -52,7 +52,7 @@ const App = () => {
 }
 
 return (
-  <Router>
+  <Router basename="/petsee">
   <div className="text-gray-800">
     <Navbar bg="light" expand="lg">
       <Container>

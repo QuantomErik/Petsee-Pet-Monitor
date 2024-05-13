@@ -19,123 +19,29 @@ const PetDetails = () => {
     length: '',
     favouriteFood: '',
     favouriteToy: '',
-    /* breed: '', */
     medicalNotes: '',
     animalType: ','
   })
 
-  /* const fetchBreeds = async (animalType) => {
-    if (!animalType) {
-      setBreeds([])
-      return
-    }
-  
-    
-    const filePath = `./Breeds/${animalType.toLowerCase()}Breeds.json`
-  
-    try {
-      const response = await fetch(filePath)
-      if (response.ok) {
-        const data = await response.json()
-        // Check if breeds is actually an array
-        if (Array.isArray(data)) {
-          setBreeds(data)
-        } else {
-          console.error('Expected breeds to be an array')
-          setBreeds([])
-        }
-      } else {
-        console.error('Failed to fetch breeds', response.status)
-        setBreeds([])
-      }
-    } catch (error) {
-      console.error('Error fetching breeds:', error)
-      setBreeds([])
-    }
-  }
-  
+ 
 
   useEffect(() => {
-    fetchBreeds(petDetails.animalType)
-  }, [petDetails.animalType]) */
-
-  /* const fetchBreeds = async () => {
-    try {
-      const response = await fetch('https://dog.ceo/api/breeds/list/all')
-      if (response.ok) {
-        const data = await response.json()
-        const breedData = data.message
   
-      
-        const breedsWithSubBreeds = Object.entries(breedData).flatMap(([breed, subBreeds]) => {
-          if (subBreeds.length === 0) {
-            return [breed]
-          } else {
-            return subBreeds.map(subBreed => `${breed} (${subBreed})`)
-          }
-        })
-  
-        setBreeds(breedsWithSubBreeds)
-      } else {
-        console.error('Failed to fetch breeds')
-      }
-    } catch (error) {
-      console.error('Error fetching breeds:', error)
-    }
-  } */
-
- /*  useEffect(() => {
-    fetchBreeds()
-  }, []) */
-
-  /* const navigate = useNavigate() */
-
-  /* useEffect(() => {
-    const fetchPetDetails = async () => {
-      const token = localStorage.getItem('token')
-      try {
-        const response = await fetch('http://localhost:3000/api/pet/petdetails', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        })
-        if (response.ok) {
-          const data = await response.json()
-          
-          if (data) {
-            setPetDetails(data)
-            if (data.image) {
-              setImagePreviewUrl(`data:image/jpeg;base64,${data.image}`)
-            }
-          }
-        } else {
-          throw new Error('Failed to fetch pet details')
-        }
-      } catch (error) {
-        console.error('Error fetching pet details:', error)
-      }
-    }
-
-    fetchPetDetails()
-  }, []) */
-
-
-  useEffect(() => {
-    if (id === 'addpet') {
-      setPetDetails
-    } else {
-      fetchPetDetails(id)
+    if (id && id !== 'addpet') {
+      fetchPetDetails(id);
     }
   }, [id])
 
   const fetchPetDetails = async (id) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`http://localhost:3000/api/pet/petdetails/${id}`, {
+      
+      
+      const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/petdetails/${id}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
+          
         },
       })
       if (response.ok) {
@@ -156,13 +62,7 @@ const PetDetails = () => {
   }
 
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0]
-    if (file) {
-      setImagePreviewUrl(URL.createObjectURL(file))
-      setPetImage(file)
-    }
-  }
+  
 
   const handleDetailChange = (event) => {
     const { name, value } = event.target
@@ -173,12 +73,9 @@ const PetDetails = () => {
   }
 
   const handleSaveOrUpdate = async () => {
-    const formData = new FormData()
-    formData.append('image', petImage)
-    formData.append('details', JSON.stringify(petDetails))
 
     const method = petDetails.id ? 'PUT' : 'POST'
-    const endpoint = petDetails.id ? `http://localhost:3000/api/pet/petdetails/${petDetails.id}` : 'http://localhost:3000/api/pet/petdetails'
+    const endpoint = petDetails.id ? `https://cscloud7-95.lnu.se/petsee/pet/petdetails/${petDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/pet/petdetails'
   
 
     try {
@@ -187,8 +84,10 @@ const PetDetails = () => {
         method: method,
         headers: {
           'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         },
-        body: formData,
+
+       body: JSON.stringify(petDetails),
       })
 
       if (!response.ok) {
@@ -197,6 +96,7 @@ const PetDetails = () => {
 
       const result = await response.json()
       console.log('Operation successful:', result)
+      console.log('Calling from Petdetails.jsx')
       toast.info('Information updated successfully!')
       // Update local state to reflect the newly saved/updated details
       setPetDetails(result)
@@ -211,16 +111,6 @@ const PetDetails = () => {
   return (
     <div className="petdetails-container">
       <h1>Pet Details</h1>
-      {/* <Button variant="primary" onClick={handleSaveOrUpdate}>
-          {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}
-        </Button> */}
-
-      {/* <div className="pet-image-section">
-        
-        <input type="file" id="fileInput" onChange={handleImageChange} hidden />
-        <label htmlFor="fileInput" className="file-upload-btn">Choose a file</label>
-        {imagePreviewUrl && <img src={imagePreviewUrl} alt="Pet" className="pet-image-circle" />}
-      </div> */}
 
       <div className="center-select">      
         {/* Pet's Name */}

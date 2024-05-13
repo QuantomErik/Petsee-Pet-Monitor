@@ -105,7 +105,7 @@ const Homepage = ({ onLogout }) => {
         const fetchActivityDetails = async () => {
             const token = localStorage.getItem('token')
             try {
-                const response = await fetch('http://localhost:3000/api/pet/activitydetails', {
+                const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/activitydetails', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -132,7 +132,7 @@ const Homepage = ({ onLogout }) => {
         const fetchScheduleDetails = async () => {
             const token = localStorage.getItem('token')
             try {
-                const response = await fetch('http://localhost:3000/api/pet/scheduledetails', {
+                const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/scheduledetails', {
                     method: 'GET',
                     headers: { 'Authorization': `Bearer ${token}` }
                 })

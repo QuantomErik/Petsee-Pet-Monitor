@@ -66,50 +66,21 @@ const brandsData = {
         return { nutrients: {}, totalCalories: '0' } // Return default if no brand or quantity
     }
 
- /*  const calculateNutrients = (value, name, meal) => {
-    const quantity = name === 'quantity' ? parseFloat(value) : parseFloat(meal.quantity)
-    const selectedBrand = name === 'selectedBrand' ? value : meal.selectedBrand
-    const brand = brandsData.brands.find(brand => brand.name === selectedBrand)
-
-    if (brand && quantity) {
-        const nutrients = {}
-        Object.entries(brand.nutrients).forEach(([key, percent]) => {
-            nutrients[key] = ((quantity * percent) / 100).toFixed(2)
-        })
-        const totalCalories = (brand.caloriesPerGram * quantity).toFixed(2)
-
-        setMeal(prev => ({
-            ...prev,
-            nutrients,
-            totalCalories
-        }))
-    }
-} */
+ 
 
   const calculateTotalCalories = (quantity, brandName) => {
     const brand = brandsData.brands.find(b => b.name === brandName)
     return brand ? (brand.caloriesPerGram * parseFloat(quantity)).toFixed(2) : 0
   }
 
-  /* function EditMeal() {
-    const { id } = useParams()
-    const navigate = useNavigate()
-    const [meal, setMeal] = useState({
-        selectedBrand: '',
-        quantity: '',
-        mealType: '',
-        time: '',
-        totalCalories: '',
-        nutrients: {}
-    })
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState('') */
+ 
 
     useEffect(() => {
         const fetchMeal = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch(`http://localhost:3000/api/pet/dietdetails/${id}`, {
+               /*  const response = await fetch(`http://localhost:3000/api/pet/dietdetails/${id}`, { */
+               const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/dietdetails/${id}`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 })
                 const data = await response.json()
@@ -121,8 +92,8 @@ const brandsData = {
                         quantity: data.quantity,
                         mealType: data.mealType,
                         time: data.time,
-                        totalCalories/* : data.totalCalories.toString() */,
-                        nutrients/* : data.nutrients || {} */
+                        totalCalories,
+                        nutrients
                     })
                 } else {
                     throw new Error(data.message || 'Failed to fetch meal')
@@ -156,13 +127,7 @@ const brandsData = {
         }
     }
     
-    /* const handleInputChange = (event) => {
-        const { name, value } = event.target
-        setMeal(prev => ({ ...prev, [name]: value }))
-        if (name === 'quantity' || name === 'selectedBrand') {
-            calculateNutrients(value, name, meal)
-        }
-    } */
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -187,8 +152,7 @@ const brandsData = {
     navigate('/dietdetails')
   }, 100)
                
-                /* navigate('/activitydetails') */
-               /* setTimeout(() => navigate('/activitydetails'), 2000) */
+               
             } else {
                 throw new Error(data.message || 'Failed to update meal')
             }

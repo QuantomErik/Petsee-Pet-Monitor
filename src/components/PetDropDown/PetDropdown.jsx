@@ -9,6 +9,7 @@ const PetDropdown = () => {
     const currentPet = useSelector(state => state.pets.currentPet)
 
     useEffect(() => {
+        /* console.log('Pets in dropdown:', pets) */
         dispatch(fetchPets())
     }, [dispatch])
 

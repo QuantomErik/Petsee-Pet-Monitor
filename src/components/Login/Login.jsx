@@ -26,7 +26,8 @@ const Login = (props) => {
     ]
 
     async function loginUser(credentials) {
-        const response = await fetch('http://localhost:3000/api/login', {
+        /* const response = await fetch('http://localhost:3000/api/login', { */
+            const response = await fetch('https://cscloud7-95.lnu.se/petsee/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(credentials),
@@ -70,12 +71,7 @@ if (!username.trim() || !password.trim()) {
         }
     }
     
-    /* const containerStyle = {
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        backgroundRepeat: 'no-repeat',
-      } */
+    
 
       return (
         <div className="login-background">
@@ -117,10 +113,3 @@ Login.propTypes = {
 export default Login
 
 
-{/* <div className="feature-cards-container absolute bottom-0 right-0 p-8">
-<div className="feature-cards varela-round-regular">
-    {features.map((feature, index) => (
-        <FeatureCard key={index} title={feature.title} description={feature.description} />
-    ))}
-</div>
-</div> */}

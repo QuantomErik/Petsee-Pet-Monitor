@@ -9,25 +9,20 @@ export class PetController {
         console.log('POST /api/pet/petdetails route handler')
         try {
 
-            console.log('Received image:', req.file) 
-            console.log('Received form data:', req.body) 
+           
+            console.log('Received  data:', req.body)
 
-           /*  if (!req.file) {
-                throw new Error('No image file uploaded')
-            } */
+           
 
-            const { user, /* file, */ body } = req
-            const petData = JSON.parse(body.details)
+            const { user, body } = req
+            /* const petData = JSON.parse(body.details) */
+            const petData = req.body
 
-             // Read the file from the uploads directory
-            /*  const filePath = req.file.path
-             const fileData = fs.readFileSync(filePath)
-             const base64Image = fileData.toString('base64') */
+    
 
             const petDetails = new PetProfileModel({
                 ...petData,
-                /* image: file.path,  */ // or handle the image as needed
-               /*  image: base64Image, */
+               
                 userId: user.id
             })
 
@@ -39,13 +34,13 @@ export class PetController {
         }
     }
 
-
-
+    
     async getPetDetails(req, res) {
         try {
-            // Assuming the pet Details is linked to the user
+            
             const userId = req.user.id
-            const petDetails = await PetProfileModel.find/* One */({ userId: userId })
+            const petDetails = await PetProfileModel.find({ userId: userId })
+            console.log('Fetched pet details:', petDetails)
     
             if (!petDetails) {
                 return res.status(404).json({ success: false, message: 'Pet Details not found' })
@@ -60,7 +55,7 @@ export class PetController {
 
     async getPetDetailsById(req, res) {
         try {
-            // Assuming the pet Details is linked to the user
+        
             const id = req.params.id
            /*  const userId = req.user.id */
             const petDetails = await PetProfileModel.findById(id)

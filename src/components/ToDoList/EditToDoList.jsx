@@ -5,13 +5,12 @@ import { /* useHistory,  */useParams, useNavigate } from 'react-router-dom'
 function EditToDoList() {
     const [task, setTask] = useState('')
     const [isCompleted, setIsCompleted] = useState(false)
-    const { id } = useParams() // Assuming you're using React Router to pass the task ID
-    /* const history = useHistory() */
+    const { id } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         const fetchTask = async () => {
-            const response = await fetch(`http://localhost:3000/api/pet/todolist/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/todolist/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -30,7 +29,7 @@ function EditToDoList() {
 
     const updateTask = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/todolist/edit/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/todolist/edit/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,7 +50,7 @@ function EditToDoList() {
 
     const deleteTask = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/todolist/edit/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/todolist/edit/${id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -59,7 +58,7 @@ function EditToDoList() {
             })
 
             if (response.ok) {
-                navigate('/todolist') // Navigate back after deletion
+                navigate('/todolist')
             } else {
                 throw new Error('Failed to delete task')
             }
@@ -83,12 +82,7 @@ function EditToDoList() {
                     <Button variant="danger" onClick={deleteTask}>Delete Task</Button>
                 
             </InputGroup>
-           {/*  <Form.Check
-                type="checkbox"
-                label="Completed"
-                checked={isCompleted}
-                onChange={(e) => setIsCompleted(e.target.checked)}
-            /> */}
+          
         </div>
     )
 }

@@ -56,7 +56,7 @@ async getTaskById(req, res) {
 async updateTask(req, res) {
     try {
         const { id } = req.params // Extracting the task ID from the URL
-        const { task, isCompleted } = req.body // Assuming you might be updating task description and its completion status
+        const { task, isCompleted } = req.body
 
         // Find the task by ID and ensure it belongs to the user
         const taskToUpdate = await ToDoListModel.findOne({ _id: id, userId: req.user.id })

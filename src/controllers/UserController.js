@@ -30,7 +30,7 @@ export class UserController {
 
         const permissionLevel = 15
 
-        // For debugging: Log the received username and password
+    
 
         // Basic check to ensure username and password are received
         if (!username || !password || !email) {

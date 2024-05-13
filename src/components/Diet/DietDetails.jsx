@@ -30,7 +30,7 @@ const DietDetails = () => {
       
       const token = localStorage.getItem('token')
       try {
-        const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/dietdetails`, {
+        const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`, {
         /* const response = await fetch('http://localhost:3000/api/pet/dietdetails', { */
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -42,7 +42,7 @@ const DietDetails = () => {
         const data = await response.json()
         console.log('Fetched meals:', data)
         if (data.meals && data.meals.length > 0) {
-          const validMeals = data.meals.filter(meal => meal != null) // Filter out null values
+          const validMeals = data.meals.filter(meal => meal != null)
           setMeals(validMeals)
 
 // Calculate totals
@@ -91,16 +91,14 @@ setDietDetails(totals)
       return
     } */
     try {
-        const response = await fetch(`http://localhost:3000/api/pet/dietdetails/${mealId}`, {
+        const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/dietdetails/${mealId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
         })
         if (response.ok) {
-            // Remove the meal from the local state to update the UI
-            /* setMeals(prevMeals => prevMeals.filter(meal => meal.id !== mealId)) */
-            /* setMeals(prevMeals => prevMeals.filter(meal => meal._id !== mealId)) */
+           console.log('Deleted')
             
         } else {
             throw new Error('Failed to delete the meal')

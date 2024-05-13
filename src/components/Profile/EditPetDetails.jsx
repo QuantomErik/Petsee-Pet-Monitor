@@ -30,7 +30,7 @@ function EditPetDetails() {
     const fetchPetDetails = async () => {
         setIsLoading(true)
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/petdetails/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/petdetails/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -48,7 +48,7 @@ function EditPetDetails() {
         e.preventDefault()
         setIsLoading(true)
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/petdetails/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/petdetails/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ function EditPetDetails() {
         if (!window.confirm("Are you sure you want to delete this pet?")) return
         setIsLoading(true)
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/petdetails/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/petdetails/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -85,13 +85,7 @@ function EditPetDetails() {
         setIsLoading(false)
     }
 
-   /*  const handleImageChange = (event) => {
-        const file = event.target.files[0]
-        if (file) {
-          setImagePreviewUrl(URL.createObjectURL(file))
-          setPetImage(file)
-        }
-      } */
+   
     
       const handleDetailChange = (event) => {
         const { name, value } = event.target
@@ -103,11 +97,11 @@ function EditPetDetails() {
     
       const handleSaveOrUpdate = async () => {
         const formData = new FormData()
-        formData.append('image', petImage)
+       /*  formData.append('image', petImage) */
         formData.append('details', JSON.stringify(petDetails))
     
         const method = petDetails.id ? 'PUT' : 'POST'
-        const endpoint = petDetails.id ? `http://localhost:3000/api/pet/petdetails/${petDetails.id}` : 'http://localhost:3000/api/pet/petdetails'
+        const endpoint = petDetails.id ? `https://cscloud7-95.lnu.se/petsee/pet/petdetails/${petDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/pet/petdetails'
       
     
         try {
@@ -136,8 +130,6 @@ function EditPetDetails() {
       }
     
 
-    // Define fetchPetDetails, handleInputChange, handleSubmit, and handleDelete here
-    // Similar to your EditActivity.jsx logic
 
     if (isLoading) return <p>Loading...</p>
     if (error) return <p>Error: {error}</p>
@@ -146,15 +138,7 @@ function EditPetDetails() {
     return (
         <div className="petdetails-container">
           <h1>Pet Details</h1>
-          {/* <Button variant="primary" onClick={handleSaveOrUpdate}>
-              {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}
-            </Button> */}
-    
-         {/*  <div className="pet-image-section">
-            <input type="file" id="fileInput" onChange={handleImageChange} hidden />
-            <label htmlFor="fileInput" className="file-upload-btn">Choose a file</label>
-            {imagePreviewUrl && <img src={imagePreviewUrl} alt="Pet" className="pet-image-circle" />}
-          </div> */}
+         
     
           <div className="center-select">      
             {/* Pet's Name */}
@@ -257,20 +241,6 @@ function EditPetDetails() {
               />
             </Form.Group>
     
-            {/* Breed */}
-            {/* <Form.Group className="mb-3" controlId="petBreed">
-              <Form.Label>Breed</Form.Label>
-              <Form.Select
-                name="breed"
-                value={petDetails.breed}
-                onChange={handleDetailChange}
-              >
-                <option value="">Select a Breed</option>
-                {breeds.map(breed => (
-                  <option key={breed} value={breed}>{breed}</option>
-                ))}
-              </Form.Select>
-            </Form.Group> */}
     
             {/* Medical Notes */}
             <Form.Group className="mb-3" controlId="medicalNotes">

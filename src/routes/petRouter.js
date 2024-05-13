@@ -12,7 +12,8 @@ const upload = multer({ dest: 'uploads/' })
 
 
 // Save pet Details
-router.post('/pet/petdetails', auth.authenticateJWT, upload.single('image'), (req, res, next) => {
+router.post('/pet/petdetails', auth.authenticateJWT, /* upload.single('image'), */ (req, res, next) => {
+    console.log(req.body)
     petController.savePetDetails(req, res, next)
 })
 
@@ -21,6 +22,20 @@ router.post('/pet/petdetails', auth.authenticateJWT, upload.single('image'), (re
 }) */
 
 // Get pet Details
+/* router.get('/pet/petdetails', auth.authenticateJWT, (req, res, next) => {
+    petController.getPetDetails(req, res, next)
+}) */
+
+/* router.get('/pet/petdetails', async (req, res) => {
+    try {
+        const petDetails = await petController.savePetDetails(req, res); // Implement this function to fetch data
+        res.json({ pets: petDetails }); // Send JSON response
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}); */
+
+
 router.get('/pet/petdetails', auth.authenticateJWT, (req, res, next) => {
     petController.getPetDetails(req, res, next)
 })

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchActivitiess } from './activitiesSlice'
 
 function ActivityDetails() {
-    /* const [activities, setActivities] = useState([]) */
+
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
     const navigate = useNavigate() 
@@ -28,14 +28,14 @@ function ActivityDetails() {
             
     }
 
-      /* toast.success("Component mounted and toast triggered.") */
+    
 
         const fetchActivities = async () => {
           const token = localStorage.getItem('token')
             setIsLoading(true)
             try {
                 /* const response = await fetch('http://localhost:3000/api/pet/activitydetails', { */
-                const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/activitydetails`, {
+                const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/activitydetails`, {
                   headers: {
                     'Authorization': `Bearer ${token}`,
                   },

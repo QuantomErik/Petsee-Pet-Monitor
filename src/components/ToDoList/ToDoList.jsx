@@ -10,7 +10,7 @@ function ToDoList() {
 
     useEffect(() => {
         const fetchTasks = async () => {
-            const response = await fetch('http://localhost:3000/api/pet/todolist', {
+            const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/todolist', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -31,7 +31,7 @@ function ToDoList() {
         if (!newTask.trim()) return
        
         try {
-            const response = await fetch('http://localhost:3000/api/pet/todolist', {
+            const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/todolist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ function ToDoList() {
         const updatedTask = { ...taskToUpdate, isCompleted: !taskToUpdate.isCompleted }
         
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/todolist/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/todolist/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -124,9 +124,9 @@ function ToDoList() {
             onClick={() => handleTaskClick(task._id)}
             style={{ display: 'flex', alignItems: 'center' }} // Ensures alignment of items within the list
         >
-            <div // This div wraps the checkbox, preventing event propagation to the ListGroup.Item
+            <div 
                 onClick={(event) => event.stopPropagation()} // Stops click events from propagating to the ListGroup.Item
-                style={{ marginRight: 'auto' }} // Ensures checkbox stays on the left
+                style={{ marginRight: 'auto' }}
             >
                 <Form.Check
                     type="checkbox"

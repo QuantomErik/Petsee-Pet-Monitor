@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchMeals = createAsyncThunk('meals/fetchMeals', async (_, { getState }) => {
     const token = localStorage.getItem('token')
-    const response = await fetch('http://localhost:3000/api/pet/dietdetails', {
+    const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/dietdetails', {
         headers: { 'Authorization': `Bearer ${token}` },
     })
     if (!response.ok) throw new Error('Failed to fetch meals')

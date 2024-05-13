@@ -77,7 +77,7 @@ const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
       }
       const method = 'POST'
      /*  const endpoint = 'http://localhost:3000/api/pet/dietdetails/' */
-      const endpoint = `http://localhost:3000/api/pet/${currentPet.id}/dietdetails`
+      const endpoint = `https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`
   
       try {
         console.log("Sending payload:", JSON.stringify(payload))
@@ -165,22 +165,6 @@ const DietDetails = () => {
 
   
 
-  /* const addMeal = () => {
-    if (isSubmitting) {
-      console.log('Submission blocked, already submitting.')
-      return
-    }
-    setIsSubmitting(true)
-    const { mealType, time, quantity } = dietDetails.currentMeal
-    if (mealType && time && quantity) {
-      const totalCalories = calculateTotalCalories(quantity, dietDetails.selectedBrand)
-      const newMeal = { mealType, time, quantity: parseFloat(quantity), totalCalories, nutrients: { ...dietDetails.nutrients } }
-      dispatch({ type: 'ADD_MEAL', meal: newMeal })
-    } else {
-      alert("Please fill in all fields for the meal.")
-      setIsSubmitting(false)
-    }
-  } */
 
  
   const handleSubmit = async () => {
@@ -209,10 +193,10 @@ const DietDetails = () => {
 
     try {
       console.log("Sending payload:", JSON.stringify(payload))
-      console.log("URL:", `http://localhost:3000/api/pet/${currentPet.id}/dietdetails`)
+      console.log("URL:", `https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`)
 console.log("Payload:", JSON.stringify(payload))
 
-      const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/dietdetails`, {
+      const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`, {
       /* const response = await fetch('http://localhost:3000/api/pet/dietdetails/', { */
         method: 'POST',
         headers: {
@@ -243,9 +227,7 @@ console.log("Payload:", JSON.stringify(payload))
       console.error("No current pet selected or pet ID is missing.")
       alert("Please select a pet first.")
       return
-    /* if (isSubmitting) {
-      console.log('Submission blocked, already submitting.')
-      return */
+    
     }
   
     const { mealType, time, quantity } = dietDetails.currentMeal
@@ -280,7 +262,7 @@ console.log("Payload:", JSON.stringify(payload))
      /*  console.log("Sending payload:", JSON.stringify(payload)) */
       
       /* const response = await fetch('http://localhost:3000/api/pet/dietdetails/', { */
-      const response = await fetch(`http://localhost:3000/api/pet/${currentPet.id}/dietdetails`, {
+      const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -392,17 +374,7 @@ console.log("Payload:", JSON.stringify(payload))
       </form>
 
 
-      {/* <div>
-        {dietDetails.nutrients && (
-          <>
-            <h2>Nutrients</h2>
-            {Object.entries(dietDetails.nutrients).map(([key, value]) => (
-              <div key={key}>{key}: {value} grams</div>
-            ))}
-            <p>Total Calories: {dietDetails.totalCalories} kcal</p>
-          </>
-        )}
-      </div> */}
+    
 
 <Card style={{ width: '18rem' }} className="addmeal-nutrients-card">
       <Card.Header>Nutrients</Card.Header>

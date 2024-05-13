@@ -38,9 +38,7 @@ function More({ onLogout }) {
     navigate(`/petdetails/${petId}`)
   }
 
- /*  const handlePetClick = (petId) => {
-    (`/petdetails/editpetdetails/${petId}`)
-  } */
+ 
 
     return (
 

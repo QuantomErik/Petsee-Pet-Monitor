@@ -7,9 +7,9 @@
     "description": "PWA including functions for monitoring your pet.",
     "icons": [
       {
-        "src": "images/egg192.png",
+        "src": "images/logo.jpg",
         "sizes": "192x192",
-        "type": "image/png"
+        "type": "image/jpeg"
       },
       {
         "src": "images/egg48.png",

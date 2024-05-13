@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 // Function to handle user registration
 async function registerUser(userData) {
-    const response = await fetch('http://localhost:3000/api/register', {
+    const response = await fetch('https://cscloud7-95.lnu.se/petsee/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
@@ -40,7 +40,7 @@ const Register = () => {
             const data = await registerUser(userData)
             console.log('Registration successful:', data)
             navigate('/login')
-            // Redirect or manage state as needed, such as navigating to the login page or dashboard
+            
         } catch (error) {
             console.error('Registration error:', error)
         }
@@ -102,22 +102,6 @@ const Register = () => {
     )
 }
 
-    /* return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Username:
-                    <input type="text" name="username" value={userData.username} onChange={handleChange} />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" name="password" value={userData.password} onChange={handleChange} />
-                </label>
-                <button type="submit">Register</button>
-            </form>
-        </div>
-    )
-} */
+
 
 export default Register

@@ -21,7 +21,7 @@ function EditActivity() {
         const fetchActivity = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch(`http://localhost:3000/api/pet/activitydetails/${id}`, {
+                const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/activitydetails/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
@@ -31,7 +31,7 @@ function EditActivity() {
                 if (response.ok) {
                     setActivity({
                         type: data.type,
-                        duration: data.duration.toString(),  // Convert duration to string if it's not
+                        duration: data.duration.toString(),
                         intensity: data.intensity
                     })
                 } else {
@@ -55,7 +55,7 @@ function EditActivity() {
         e.preventDefault()
         setIsLoading(true)
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/activitydetails/edit/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/activitydetails/edit/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,8 +74,7 @@ function EditActivity() {
     navigate('/activitydetails')
   }, 100)
                
-                /* navigate('/activitydetails') */
-               /* setTimeout(() => navigate('/activitydetails'), 2000) */
+                
             } else {
                 throw new Error(data.message || 'Failed to update activity')
             }
@@ -89,7 +88,7 @@ function EditActivity() {
         if (!window.confirm("Are you sure you want to delete this activity?")) return
         setIsLoading(true)
         try {
-            const response = await fetch(`http://localhost:3000/api/pet/activitydetails/edit/${id}`, {
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/activitydetails/edit/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
