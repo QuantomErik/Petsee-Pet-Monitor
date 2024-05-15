@@ -77,14 +77,14 @@ const ActivityDetails = () => {
     return (
         
       <div className="activity-details-container">
-        <h1>Activity Details</h1>
+        <h1 className="custom-heading">Add Activity</h1>
 
         
 
-        <div className="center-select">
+        <div>
           
 <Form.Group>
-  <Form.Label>Activity Type</Form.Label>
+ {/*  <Form.Label>Activity Type</Form.Label> */}
   <Form.Select
     className="activityForm"
     name="type"
@@ -101,9 +101,9 @@ const ActivityDetails = () => {
 </div>
 
 
-<div className="center-select">
+<div>
 <Form.Group>
-  <Form.Label>Activity Duration</Form.Label>
+  {/* <Form.Label>Activity Duration</Form.Label> */}
   <Form.Select
     className="activityForm"
     name="duration"
@@ -121,9 +121,9 @@ const ActivityDetails = () => {
 
 
 
-<div className="center-select">
+<div>
 <Form.Group>
-  <Form.Label>Activity Intensity</Form.Label>
+ {/*  <Form.Label>Activity Intensity</Form.Label> */}
   <Form.Select
     className="activityForm"
     name="intensity"

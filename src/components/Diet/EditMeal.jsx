@@ -199,6 +199,7 @@ const brandsData = {
 
     return (
         <div className="form-container">
+            <h1 className="custom-heading">Edit Meal</h1>
            {/*  <ToastContainer /> */}
         <Form onSubmit={handleSubmit}>
 

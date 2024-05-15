@@ -113,8 +113,11 @@ function EditActivity() {
     if (error) return <p>Error: {error}</p>
     if (!activity) return <p>No activity found</p>
 
+
+
     return (
         <div>
+            <h1 className="custom-heading">Edit Activity</h1>
            {/*  <ToastContainer /> */}
         <Form onSubmit={handleSubmit}>
 

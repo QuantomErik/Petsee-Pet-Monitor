@@ -6,6 +6,10 @@
   margin-bottom: 100px;
 }
 
+/* .h1 {
+  margin-bottom: 20px;
+} */
+
 /* body, html {
   margin-bottom: 200px;
 } */
@@ -424,10 +428,12 @@ body, html {
 }
 
 
-
 .activityForm {
   /* width: 700px; */
   margin-bottom: 20px;
+ /*  margin-right: 5px;
+  margin-left: 5px; */
+ 
   /* margin-top: 20px; */
 }
 
@@ -637,6 +643,18 @@ textarea:focus {
   padding-bottom: 100px; /* Adjust the value based on your navbar's height */
 }
 
+.custom-heading {
+  font-family: 'Varela Round', sans-serif; /* Use your desired font family */
+  color: #333; /* Change the color as needed */
+  font-size: 2.5rem; /* Adjust the font size */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Adjust the margin as needed */
+  margin-bottom: 20px; /* Adjust the margin as needed */
+  text-transform: uppercase; /* Optional: transform text to uppercase */
+  letter-spacing: 2px; /* Optional: add letter spacing */
+}
+
+
 
 
 
@@ -701,6 +719,10 @@ textarea:focus {
   border-radius: 4px;
   /* padding: 5px; */
   /* gap: 2px; */
+}
+
+.custom-heading {
+  font-size: 1.5rem;
 }
 
 /* .activityForm {

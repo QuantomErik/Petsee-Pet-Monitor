@@ -294,6 +294,7 @@ console.log("Payload:", JSON.stringify(payload))
     
   return (
     <div className="diet-details-container">
+       <h1 className="custom-heading">Add Meal</h1>
       {/* <h1>Diet Details</h1> */}
 
       
