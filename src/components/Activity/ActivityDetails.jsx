@@ -1,29 +1,30 @@
-import React, { useEffect, useState } from 'react'
+/* import React, { useEffect, useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchActivitiess } from './activitiesSlice'
+import { fetchActivitiess } from './activitiesSlice.js'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 function ActivityDetails() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
     const navigate = useNavigate() 
-
     const { activities } = useSelector(state => state.activities)
-    
-
     const dispatch = useDispatch()
-    
     const currentPet = useSelector(state => state.pets.currentPet)
+    
+    const [selectedDate, setSelectedDate] = useState(new Date())
 
     useEffect(() => {
       console.log("Current pet ID:", currentPet?.id)
       if (currentPet && currentPet.id) {
         console.log("Current pet ID:", currentPet.id)
+        
         dispatch(fetchActivitiess(currentPet.id))
             
     }
@@ -34,7 +35,7 @@ function ActivityDetails() {
           const token = localStorage.getItem('token')
             setIsLoading(true)
             try {
-                /* const response = await fetch('http://localhost:3000/api/pet/activitydetails', { */
+                
                 const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/activitydetails`, {
                   headers: {
                     'Authorization': `Bearer ${token}`,
@@ -45,7 +46,7 @@ function ActivityDetails() {
                 }
                 const data = await response.json()
                 console.log('Fetched activities:', data.activities)
-                /* setActivities(data.activities) */
+                
             } catch (error) {
                 setError(error.message)
             }
@@ -68,13 +69,15 @@ function ActivityDetails() {
 
    
 
-  /*   if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error: {error}</div> */
+  
 
     return (
       <div>
      
           <h1>Activity Details</h1>
+
+          <DatePicker selected={selectedDate} onChange={date => setSelectedDate(date)} />
+
           {activities.length > 0 ? (
               <div>
                 
@@ -118,3 +121,82 @@ function ActivityDetails() {
 }
 
 export default ActivityDetails
+ */
+
+import React, { useEffect, useState } from 'react'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import { useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchActivitiess } from './activitiesSlice'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
+function ActivityDetails() {
+    const [selectedDate, setSelectedDate] = useState(new Date())
+    const navigate = useNavigate()
+    const { activities, isLoading, error } = useSelector(state => state.activities)
+    const dispatch = useDispatch()
+    const currentPet = useSelector(state => state.pets.currentPet)
+
+    useEffect(() => {
+        if (currentPet && currentPet.id) {
+            console.log(`Fetching activities for date: ${selectedDate.toISOString().split('T')[0]}`)
+            dispatch(fetchActivitiess({ petId: currentPet.id, date: selectedDate.toISOString().split('T')[0] }))
+        }
+    }, [dispatch, currentPet, selectedDate])
+
+    useEffect(() => {
+        const message = localStorage.getItem('flashMessage')
+        if (message) {
+            toast.success(message)
+            localStorage.removeItem('flashMessage')
+        }
+    }, [])
+
+    return (
+        <div>
+            <h1>Activity Details</h1>
+            <DatePicker selected={selectedDate} onChange={date => {
+                setSelectedDate(date)
+                console.log(`Date changed to: ${date.toISOString().split('T')[0]}`)
+            }} />
+            {isLoading ? (
+                <div>Loading...</div>
+            ) : error ? (
+                <div>Error: {error}</div>
+            ) : activities.length > 0 ? (
+                <div>
+                    {activities.map((activity, index) => (
+                        <Card key={activity._id || index}>
+                            <Card.Body>
+                                <Card.Title>{activity.type}</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">Activity Details</Card.Subtitle>
+                                <Card.Text>
+                                    Duration: {activity.duration} minutes
+                                    <br />
+                                    Intensity: {activity.intensity}
+                                </Card.Text>
+                                <Button variant="primary" onClick={() => {
+                                    if (activity._id) {
+                                        navigate(`/activitydetails/edit/${activity._id}`)
+                                    } else {
+                                        console.error("Invalid activity ID:", activity._id)
+                                    }
+                                }}>Edit</Button>
+                            </Card.Body>
+                        </Card>
+                    ))}
+                </div>
+            ) : (
+                <p>No activities found</p>
+            )}
+            <Button onClick={() => navigate('/activitydetails/addactivity')} className="mt-3">Create Activity</Button>
+        </div>
+    )
+}
+
+export default ActivityDetails
+

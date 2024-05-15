@@ -82,6 +82,7 @@ const ActivityDetails = () => {
         
 
         <div className="center-select">
+          
 <Form.Group>
   <Form.Label>Activity Type</Form.Label>
   <Form.Select

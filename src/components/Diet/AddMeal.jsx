@@ -300,7 +300,7 @@ console.log("Payload:", JSON.stringify(payload))
       <form onSubmit={handleSubmit}>
 
 
-      <div className="center-select">
+      <div >
       <Form.Group>
       {/* <Form.Label>Brand:</Form.Label> */}
       <Form.Select 
@@ -318,7 +318,7 @@ console.log("Payload:", JSON.stringify(payload))
       </div>
 
 
-      <div className="center-select">
+      <div >
       <Form.Group>
       {/* <Form.Label>Quantity (grams):</Form.Label> */}
       
@@ -345,7 +345,7 @@ console.log("Payload:", JSON.stringify(payload))
       </div>
 
 
-      <div className="center-select">
+      <div>
       <Form.Group>
         {/* <label>Meal Type:</label> */}
         <Form.Select
@@ -371,12 +371,18 @@ console.log("Payload:", JSON.stringify(payload))
         </Form.Group>
       </div>
 
-      </form>
 
 
-    
 
-<Card style={{ width: '18rem' }} className="addmeal-nutrients-card">
+
+
+
+      {/* </form> */}
+
+
+      <div className="center-select">
+
+<Card style={{ width: '40rem' }} className="addmeal-nutrients-card">
       <Card.Header>Nutrients</Card.Header>
       <ListGroup variant="flush">
         {Object.entries(dietDetails.nutrients).map(([key, value]) => (
@@ -386,7 +392,8 @@ console.log("Payload:", JSON.stringify(payload))
       </ListGroup>
     </Card>
    
-
+   </div>
+   
 
      
     <Button variant="primary" onClick={addMealAndSave} disabled={isSubmitting} className="save-button">
@@ -394,7 +401,7 @@ console.log("Payload:", JSON.stringify(payload))
     </Button>
     
 
-      {/* </form> */}
+      </form>
     </div>
     
     

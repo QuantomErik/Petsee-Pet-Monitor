@@ -118,7 +118,8 @@ function EditActivity() {
            {/*  <ToastContainer /> */}
         <Form onSubmit={handleSubmit}>
 
-<div className="center-select">
+{/* <div className="center-select"> */}
+<div >
             <Form.Group>
                 <Form.Label>Activity Type</Form.Label>
                 <Form.Select
@@ -135,9 +136,10 @@ function EditActivity() {
             </Form.Group>
             </div>
 
-            <div className="center-select">
+            {/* <div className="center-select"> */}
+            <div >
             <Form.Group>
-                <Form.Label>Duration (minutes)</Form.Label>
+                <Form.Label>Duration (min)</Form.Label>
                 <Form.Select
                 className="activityForm"
                     name="duration"
@@ -152,7 +154,8 @@ function EditActivity() {
             </Form.Group>
             </div>
 
-            <div className="center-select">
+            {/* <div className="center-select"> */}
+            <div >
             <Form.Group>
                 <Form.Label>Intensity</Form.Label>
                 <Form.Select

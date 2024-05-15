@@ -426,11 +426,14 @@ body, html {
 
 
 .activityForm {
-  width: 700px;
+  /* width: 700px; */
+  margin-bottom: 20px;
+  /* margin-top: 20px; */
 }
 
 .mealForm {
-  width: 700px;
+  /* width: 700px; */
+  margin-bottom: 20px;
   /* margin-bottom:100px; */
 }
 
@@ -451,6 +454,7 @@ body, html {
   justify-content: center;
   margin-top: 40px;
   /* margin-bottom: 0px; */
+  /* flex-wrap: wrap; */
   
 }
 
@@ -460,9 +464,16 @@ body, html {
 }
 
 .diet-details-container {
-  display: flex;
-  justify-content: center;  /* Centers horizontally */
-  align-items: center;      /* Optional: Centers vertically if you want vertical alignment as well */
+ /*  display: flex; */
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+}
+
+.addmeal-nutrients-card {
+ /* display: block; */
+ margin: 1px auto;
+/*  width: 2; */
 }
 
 .card-headerStyle {
@@ -691,6 +702,14 @@ textarea:focus {
   /* padding: 5px; */
   /* gap: 2px; */
 }
+
+/* .activityForm {
+  width: 170px;
+} */
+
+/* .center-select {
+  width: 10px;
+} */
 
   /*  */
 

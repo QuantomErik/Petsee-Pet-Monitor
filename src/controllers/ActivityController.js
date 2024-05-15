@@ -3,8 +3,45 @@ import { ActivityModel } from '../models/ActivityModel.js'
 export class ActivityController {
 
     
-
     async getActivityDetails(req, res, next) {
+        try {
+            const petId = req.params.petId;
+            const { date } = req.query;
+
+            if (!petId) {
+                return res.status(400).json({ message: 'Pet ID is required' });
+            }
+
+            if (!date) {
+                return res.status(400).json({ message: 'Date is required' });
+            }
+
+            // Ensure the date is in YYYY-MM-DD format
+            const startDate = new Date(date);
+            startDate.setHours(0, 0, 0, 0);
+
+            const endDate = new Date(date);
+            endDate.setHours(23, 59, 59, 999);
+
+            // Filter activities by petId and createdAt within the date range
+            const activities = await ActivityModel.find({
+                petId: petId,
+                createdAt: {
+                    $gte: startDate,
+                    $lte: endDate
+                }
+            }).lean();
+
+            console.log("Activities fetched:", activities);
+
+            res.json({ activities });
+        } catch (error) {
+            console.error('Error fetching activities:', error);
+            res.status(500).json({ message: 'Error fetching activities' });
+        }
+    }
+
+   /*  async getActivityDetails(req, res, next) {
         try {
             const petId = req.params.petId
             if (!petId) {
@@ -15,17 +52,12 @@ export class ActivityController {
             console.log("Activities fetched:", activities) 
             
             res.json({ activities })
-            /* res.json({
-                activities: activities.map(activity => ({
-                    ...activity.toObject(),
-                    _id: activity._id
-                }))
-            }) */
+            
         } catch (error) {
             console.error('Error fetching activities:', error)
             res.status(500).json({ message: 'Error fetching activities' })
         }
-    }
+    } */
     
 
     

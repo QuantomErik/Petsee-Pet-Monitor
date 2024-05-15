@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-export const fetchMeals = createAsyncThunk('meals/fetchMeals', async (_, { getState }) => {
+export const fetchMeals = createAsyncThunk('meals/fetchMeals', async ({ petId/* , date */ }, { getState }) => {
     const token = localStorage.getItem('token')
-    const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/dietdetails', {
+   /*  const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${petId}dietdetails?date=${date}`, { */
+   const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${petId}dietdetails`, {
         headers: { 'Authorization': `Bearer ${token}` },
     })
     if (!response.ok) throw new Error('Failed to fetch meals')
