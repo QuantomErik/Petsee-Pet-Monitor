@@ -133,6 +133,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchActivitiess } from './activitiesSlice'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { FaCalendarAlt } from 'react-icons/fa'
 
 function ActivityDetails() {
     const [selectedDate, setSelectedDate] = useState(new Date())
@@ -158,11 +159,17 @@ function ActivityDetails() {
 
     return (
         <div>
-            <h1>Activity Details</h1>
-            <DatePicker selected={selectedDate} onChange={date => {
+            <h1 className="custom-heading">Activity Details</h1>
+
+            <div className="custom-date-picker">
+                {/* <FaCalendarAlt className="date-picker-icon" /> */}
+                    <DatePicker selected={selectedDate} onChange={date => {
                 setSelectedDate(date)
                 console.log(`Date changed to: ${date.toISOString().split('T')[0]}`)
             }} />
+
+</div>
+
             {isLoading ? (
                 <div>Loading...</div>
             ) : error ? (
@@ -171,9 +178,11 @@ function ActivityDetails() {
                 <div>
                     {activities.map((activity, index) => (
                         <Card key={activity._id || index}>
+                <Card.Header className="card-headerStyle">
+                        {activity.type}
+              </Card.Header>
+
                             <Card.Body>
-                                <Card.Title>{activity.type}</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">Activity Details</Card.Subtitle>
                                 <Card.Text>
                                     Duration: {activity.duration} minutes
                                     <br />

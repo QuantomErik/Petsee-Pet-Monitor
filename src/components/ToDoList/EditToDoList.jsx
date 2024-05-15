@@ -68,20 +68,29 @@ function EditToDoList() {
     }
 
     return (
-        <div className="center-select">
+
+        
+        <div >
+
+<h1 className="custom-heading">Edit Activity</h1>
             
-            <InputGroup className="mb-3">
+            <div>
+            <InputGroup>
                 <Form.Control
+                className="mealForm"
                     type="text"
                     placeholder="Update task"
                     value={task}
                     onChange={(e) => setTask(e.target.value)}
                 />
+                 </InputGroup>
+            </div>
                 
+                <div>
                     <Button variant="success" onClick={updateTask}>Update Task</Button>
                     <Button variant="danger" onClick={deleteTask}>Delete Task</Button>
-                
-            </InputGroup>
+                    </div>
+           
           
         </div>
     )

@@ -117,7 +117,7 @@ setDietDetails(totals)
 
   return (
     <div>
-      <h1>Diet Details</h1>
+      <h1 className="custom-heading">Diet Details</h1>
      
         <>
 

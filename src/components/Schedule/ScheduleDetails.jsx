@@ -172,7 +172,7 @@ const ScheduleDetails = () => {
 
     return (
         <div className="schedule-details-container">
-            <h1>Schedule Details</h1>
+            <h1 className="custom-heading">Schedule Details</h1>
             <FullCalendar
                 plugins={[dayGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"

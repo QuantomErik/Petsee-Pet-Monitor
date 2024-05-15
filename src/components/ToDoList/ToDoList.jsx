@@ -103,7 +103,7 @@ function ToDoList() {
 
     return (
         <div className="todo-list-container">
-            <h1>Todo List</h1>
+            <h1 className="custom-heading">To-do list</h1>
             <InputGroup className="center-select">
                 <Form.Control
                     type="text"
