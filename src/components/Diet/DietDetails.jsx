@@ -140,7 +140,7 @@ setDietDetails(totals)
     ) : meals.length > 0 ? meals.map((meal, index) => {
       if (!meal) return null  // Skip rendering if meal is null or undefined
       return (
-        <Card key={meal.id || index} className="diet-card">
+        <Card key={meal._id || index} className="diet-card">
           <Card.Header className="card-headerStyle">
             {meal.mealType} - Time: {meal.time}
           </Card.Header>
@@ -152,7 +152,7 @@ setDietDetails(totals)
               <br />
               Quantity: {parseFloat(meal.quantity).toFixed(1)} grams
             </Card.Text>
-            <Button className="btn btn-primary" onClick={() => navigate(`/dietdetails/edit/${meal.id}`)}>Edit</Button>
+            <Button className="btn btn-primary" onClick={() => navigate(`/dietdetails/edit/${meal._id}`)}>Edit</Button>
           </Card.Body>
         </Card>
       )

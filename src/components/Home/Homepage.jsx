@@ -133,11 +133,11 @@ const Homepage = ({ onLogout }) => {
                 petId: currentPet.id,
                 startDate,
                 endDate,
-                date
+                date: selectedDate.toISOString().split('T')[0],
               
             }))
         }
-    }, [dispatch, currentPet, date, startDate, endDate])
+    }, [dispatch, currentPet, date, startDate, endDate, selectedDate])
 
     useEffect(() => {
         if (currentPet && currentPet.id) {
@@ -145,11 +145,11 @@ const Homepage = ({ onLogout }) => {
             dispatch(fetchMeals({
                 petId: currentPet.id,
                 
-                date
+                date: selectedDate.toISOString().split('T')[0],
               
             }))
         }
-    }, [dispatch, currentPet, date])
+    }, [dispatch, currentPet, selectedDate])
 
    /*  useEffect(() => {
         if (currentPet && currentPet.id) {

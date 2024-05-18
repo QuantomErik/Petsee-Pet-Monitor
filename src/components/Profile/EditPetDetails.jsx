@@ -137,10 +137,10 @@ function EditPetDetails() {
 
     return (
         <div className="petdetails-container">
-          <h1>Pet Details</h1>
+          <h1 className="custom-heading">Pet Details</h1>
          
     
-          <div className="center-select">      
+               
             {/* Pet's Name */}
             <Form.Group className="mb-3" controlId="petName">
               <Form.Label>Name</Form.Label>
@@ -152,7 +152,7 @@ function EditPetDetails() {
                 onChange={handleDetailChange}
               />
             </Form.Group>
-            </div>
+            
     
           
           

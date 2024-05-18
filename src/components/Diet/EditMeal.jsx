@@ -35,6 +35,7 @@ const brandsData = {
 
   function EditMeal() {
     const { id } = useParams()
+    console.log("ID from useParams:", id)
     const navigate = useNavigate()
     const [meal, setMeal] = useState({
         selectedBrand: '',

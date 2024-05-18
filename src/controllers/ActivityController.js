@@ -17,19 +17,19 @@ export class ActivityController {
             }
 
 
-           /*  const startDate = new Date(date);
+            const startDate = new Date(date);
             startDate.setHours(0, 0, 0, 0);
 
             const endDate = new Date(date);
-            endDate.setHours(23, 59, 59, 999); */
+            endDate.setHours(23, 59, 59, 999);
 
             
             const activities = await ActivityModel.find({
                 petId: petId,
-                /* createdAt: {
+                createdAt: {
                     $gte: startDate,
                     $lte: endDate
-                } */
+                }
 
                
 

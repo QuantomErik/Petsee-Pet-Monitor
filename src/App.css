@@ -317,10 +317,18 @@ body, html {
 }
 
 .mb-3 {
-  width: 500px;
+  width: 50%;
   margin-bottom: 20px;
-  
 }
+
+.petForm {
+  width: 50%;
+  margin-bottom: 20px;
+
+
+}
+
+
 
 
 
@@ -440,8 +448,13 @@ body, html {
 .mealForm {
   /* width: 700px; */
   margin-bottom: 20px;
+
   /* margin-bottom:100px; */
 }
+
+/* .petForm {
+  margin-bottom: 20px;
+} */
 
 /* .form {
   margin-bottom:100px;
@@ -798,6 +811,20 @@ textarea:focus {
   text-transform: uppercase; /* Optional: transform text to uppercase */
   letter-spacing: 2px; /* Optional: add letter spacing */
 }
+
+
+.mb-3 {
+  width: 100%;
+  margin-bottom: 20px;
+  
+}
+
+.petForm {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+
 
 
 

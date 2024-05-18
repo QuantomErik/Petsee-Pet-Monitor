@@ -54,18 +54,18 @@ console.log("Fetching meals for petId:", req.params.petId)
                 return res.status(400).json({ message: 'Date is required' })
             }
 
-            const startDate = new Date(date)
+           /*  const startDate = new Date(date)
             startDate.setHours(0, 0, 0, 0)
 
             const endDate = new Date(date)
-            endDate.setHours(23, 59, 59, 999)
+            endDate.setHours(23, 59, 59, 999) */
 
             const dietDetails = await DietModel.find({
                 petId: petId,
-                createdAt: {
+                /* createdAt: {
                     $gte: startDate,
                     $lte: endDate
-                }
+                } */
             }).lean()
 
             console.log("Activities fetched:", dietDetails)

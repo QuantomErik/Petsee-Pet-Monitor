@@ -110,9 +110,9 @@ const PetDetails = () => {
 
   return (
     <div className="petdetails-container">
-      <h1>Pet Details</h1>
+      <h1 className="custom-heading">Pet Details</h1>
 
-      <div className="center-select">      
+        
         {/* Pet's Name */}
         <Form.Group className="mb-3" controlId="petName">
           <Form.Label>Name</Form.Label>
@@ -124,11 +124,11 @@ const PetDetails = () => {
             onChange={handleDetailChange}
           />
         </Form.Group>
-        </div>
+        
 
       
       
-        <Form.Group className="mb-3" controlId="animalType">
+        <Form.Group className="petForm" controlId="animalType">
           <Form.Label>Animal Type</Form.Label>
           <Form.Select
             name="animalType"
@@ -147,7 +147,7 @@ const PetDetails = () => {
 
         {/* Age */}
         
-        <Form.Group className="mb-3" controlId="petAge">
+        <Form.Group className="petForm" controlId="petAge">
           <Form.Label>Age</Form.Label>
           <Form.Select
             name="age"
@@ -162,7 +162,7 @@ const PetDetails = () => {
         
 
         {/* Weight */}
-        <Form.Group className="mb-3" controlId="petWeight">
+        <Form.Group className="petForm" controlId="petWeight">
           <Form.Label>Weight (kg)</Form.Label>
           <Form.Select
             name="weight"
@@ -176,7 +176,7 @@ const PetDetails = () => {
         </Form.Group>
 
         {/* Length */}
-        <Form.Group className="mb-3" controlId="petLength">
+        <Form.Group className="petForm" controlId="petLength">
           <Form.Label>Length (cm)</Form.Label>
           <Form.Select
             name="length"
@@ -190,7 +190,7 @@ const PetDetails = () => {
         </Form.Group>
 
         {/* Favourite Food */}
-        <Form.Group className="mb-3" controlId="favouriteFood">
+        <Form.Group className="petForm" controlId="favouriteFood">
           <Form.Label>Favourite Food</Form.Label>
           <Form.Control
             type="text"
@@ -202,7 +202,7 @@ const PetDetails = () => {
         </Form.Group>
 
         {/* Favourite Toy */}
-        <Form.Group className="mb-3" controlId="favouriteToy">
+        <Form.Group className="petForm" controlId="favouriteToy">
           <Form.Label>Favourite Toy</Form.Label>
           <Form.Control
             type="text"
@@ -229,7 +229,7 @@ const PetDetails = () => {
         </Form.Group> */}
 
         {/* Medical Notes */}
-        <Form.Group className="mb-3" controlId="medicalNotes">
+        <Form.Group className="petForm" controlId="medicalNotes">
           <Form.Label>Medical Notes</Form.Label>
           <Form.Control
             type="text"
