@@ -14,6 +14,14 @@ import Dock from '../Dock/Dock.jsx'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeals } from '../Diet//mealsSlice'
+import { fetchActivitiesForWeek } from '../Activity/activitiesSlice'
+import { fetchActivitiess } from '../Activity/activitiesSlice'
+
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
+
+
 
 
 
@@ -26,6 +34,7 @@ import { fetchMeals } from '../Diet//mealsSlice'
 
 const Homepage = ({ onLogout }) => {
 
+    const [selectedDate, setSelectedDate] = useState(new Date())
     const dispatch = useDispatch() //new
     const { meals, isLoading, error } = useSelector(state => state.meals) //new
 
@@ -41,6 +50,13 @@ const Homepage = ({ onLogout }) => {
 
     const [scheduleDetails, setScheduleDetails] = useState(null)
     const [scheduleError, setScheduleError] = useState(false)
+
+    const { activitiesForWeek = [], isLoading: isActivitiesLoading, error: activitiesError } = useSelector(state => state.activities)
+    const currentPet = useSelector(state => state.pets.currentPet)
+
+    const [startDate, setStartDate] = useState(new Date(new Date().setDate(new Date().getDate() - 7)))
+    const [endDate, setEndDate] = useState(new Date())
+    const [date, setDate] = useState(new Date())
 
 
     /* useEffect(() => {
@@ -101,7 +117,35 @@ const Homepage = ({ onLogout }) => {
         fetchDietDetails()
     }, []) */
 
+   /*  useEffect(() => {
+        if (currentPet && currentPet.id) {
+            console.log(`Fetching activities for date: ${selectedDate.toISOString().split('T')[0]}`)
+            dispatch(fetchActivitiess({ petId: currentPet.id, date: selectedDate.toISOString().split('T')[0] }))
+        }
+    }, [dispatch, currentPet, selectedDate]) */
+
     useEffect(() => {
+        if (currentPet && currentPet.id) {
+            console.log('Fetching activities for week with pet ID:', currentPet.id)
+            dispatch(fetchActivitiesForWeek({
+                petId: currentPet.id,
+                startDate,
+                endDate,
+                date
+              
+            }))
+        }
+    }, [dispatch, currentPet, date, startDate, endDate])
+
+   /*  useEffect(() => {
+        if (currentPet && currentPet.id) {
+            dispatch(fetchActivitiesForWeek({ petId: currentPet.id }))
+        }
+    }, [dispatch, currentPet]) */
+
+    console.log('Rendered Homepage with state:', { meals, activitiesForWeek, currentPet })
+
+    /* useEffect(() => {
         const fetchActivityDetails = async () => {
             const token = localStorage.getItem('token')
             try {
@@ -113,7 +157,7 @@ const Homepage = ({ onLogout }) => {
                 })
                 if (response.ok) {
                     const data = await response.json()
-                    console.log(data) // Log the data to see its structure
+                    console.log(data)
                     setActivityDetails(data)
                 } else {
                     throw new Error('No activity details found')
@@ -125,7 +169,7 @@ const Homepage = ({ onLogout }) => {
         }
 
         fetchActivityDetails()
-    }, [])
+    }, []) */
 
 
     useEffect(() => {
@@ -315,6 +359,52 @@ const Homepage = ({ onLogout }) => {
                         </Card>
 
 
+                        <>
+      <Card border="primary" style={{ width: '53rem' }}>
+        <Card.Header>Diet summary Week</Card.Header>
+        <Card.Body>
+          <Card.Title>Primary Card Title</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the cards content.
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      
+
+      <Card border="light" style={{ width: '53rem' }}>
+        
+                                <Card.Header>Activity and Diet summary </Card.Header>
+                                <Card.Body>
+                                    {/* <Card.Title>Activities This Week</Card.Title> */}
+
+                                    <div className="date-picker-container">
+                            {/* <DatePicker selected={startDate} onChange={date => setStartDate(date)} /> */}
+                            {/* <DatePicker selected={endDate} onChange={date => setEndDate(date)} /> */}
+                            <DatePicker selected={date} onChange={date => setDate(date)} />
+                        </div>
+
+                                    <div>
+                                        {isActivitiesLoading ? (
+                                            <div>Loading...</div>
+                                        ) : activitiesError ? (
+                                            <div>Error: {activitiesError}</div>
+                                        ) : activitiesForWeek.length > 0 ? (
+                                            activitiesForWeek.map((activity, index) => (
+                                                <div key={index}>
+                                                    <strong>{activity.type}</strong>: {activity.duration} minutes - {activity.intensity}
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <p>No activities found for this week</p>
+                                        )}
+                                    </div>
+        </Card.Body>
+      </Card>
+      
+    </>
+    
+
                     </div>
             {/*     </>
             ) : ( */}
@@ -338,54 +428,35 @@ const Homepage = ({ onLogout }) => {
                     <Button variant="primary">Go somewhere</Button>
                     </Card.Body>
                     </Card> */}
+    
 
-            <div className="pet-functions-section">
-                <button onClick={() => {/* function to add food */}}>Add Food</button>
-                <button onClick={() => {/* function to add activity */}}>Add Activity</button>
-            </div>
+{/* <>
+      <Card border="primary" style={{ width: '18rem' }}>
+        <Card.Header>Header</Card.Header>
+        <Card.Body>
+          <Card.Title>Primary Card Title</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the cards content.
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      
 
-            <CardGroup>
-      <Card>
-        <Card.Img variant="top" src="holder.js/100px160" />
+      <Card border="light" style={{ width: '18rem' }}>
+        <Card.Header>Header</Card.Header>
         <Card.Body>
-          <Card.Title>Card title</Card.Title>
+          <Card.Title>Light Card Title</Card.Title>
           <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
+            Some quick example text to build on the card title and make up the
+            bulk of the cards content.
           </Card.Text>
         </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
       </Card>
-      <Card>
-        <Card.Img variant="top" src="holder.js/100px160" />
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This card has supporting text below as a natural lead-in to
-            additional content.{' '}
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src="holder.js/100px160" />
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This card has even longer content than the
-            first to show that equal height action.
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-    </CardGroup>
+      
+    </> */}
+
+            
 
     {/* <Dock /> */}
         </div>

@@ -16,20 +16,23 @@ export class ActivityController {
                 return res.status(400).json({ message: 'Date is required' });
             }
 
-            // Ensure the date is in YYYY-MM-DD format
-            const startDate = new Date(date);
+
+           /*  const startDate = new Date(date);
             startDate.setHours(0, 0, 0, 0);
 
             const endDate = new Date(date);
-            endDate.setHours(23, 59, 59, 999);
+            endDate.setHours(23, 59, 59, 999); */
 
-            // Filter activities by petId and createdAt within the date range
+            
             const activities = await ActivityModel.find({
                 petId: petId,
-                createdAt: {
+                /* createdAt: {
                     $gte: startDate,
                     $lte: endDate
-                }
+                } */
+
+               
+
             }).lean();
 
             console.log("Activities fetched:", activities);
@@ -41,23 +44,97 @@ export class ActivityController {
         }
     }
 
-   /*  async getActivityDetails(req, res, next) {
+    /* async getActivityDetails(req, res, next) {
         try {
             const petId = req.params.petId
+            const { date, startDate, endDate } = req.query
+
             if (!petId) {
                 return res.status(400).json({ message: 'Pet ID is required' })
             }
-           
-            const activities = await ActivityModel.find({ petId: petId }).lean()
-            console.log("Activities fetched:", activities) 
-            
+
+            if (!date || !startDate || !endDate) {
+                return res.status(400).json({ message: 'Date, startDate, and endDate are required' })
+            }
+
+            const targetDate = new Date(date)
+            const start = new Date(startDate)
+            const end = new Date(endDate)
+
+            if (isNaN(targetDate) || isNaN(start) || isNaN(end)) {
+                return res.status(400).json({ message: 'Invalid date format' })
+            }
+
+            targetDate.setHours(0, 0, 0, 0)
+            start.setHours(0, 0, 0, 0)
+            end.setHours(23, 59, 59, 999)
+
+            const activities = await ActivityModel.find({
+                petId,
+                createdAt: {
+                    $gte: start,
+                    $lte: end
+                }
+            }).lean()
+
             res.json({ activities })
-            
         } catch (error) {
             console.error('Error fetching activities:', error)
             res.status(500).json({ message: 'Error fetching activities' })
         }
     } */
+
+   /*  async getActivityDetails(req, res, next) {
+        try {
+            const petId = req.params.petId
+            const { date, startDate, endDate } = req.query
+
+            if (!petId) {
+                return res.status(400).json({ message: 'Pet ID is required' })
+            }
+
+            let dateFilter = {}
+
+            if (date) {
+                
+                const targetDate = new Date(date)
+                targetDate.setHours(0, 0, 0, 0)
+                const endOfDay = new Date(date)
+                endOfDay.setHours(23, 59, 59, 999)
+                dateFilter = {
+                    $gte: targetDate,
+                    $lte: endOfDay,
+                }
+            } else if (startDate && endDate) {
+                
+                const start = new Date(startDate)
+                const end = new Date(endDate)
+                if (isNaN(start) || isNaN(end)) {
+                    return res.status(400).json({ message: 'Invalid date format' })
+                }
+                start.setHours(0, 0, 0, 0)
+                end.setHours(23, 59, 59, 999)
+                dateFilter = {
+                    $gte: start,
+                    $lte: end,
+                }
+            } else {
+                return res.status(400).json({ message: 'Date or date range (startDate and endDate) is required' })
+            }
+
+            const activities = await ActivityModel.find({
+                petId: petId,
+                createdAt: dateFilter
+            }).lean()
+
+            res.json({ activities })
+        } catch (error) {
+            console.error('Error fetching activities:', error)
+            res.status(500).json({ message: 'Error fetching activities' })
+        }
+    } */
+
+
     
 
     

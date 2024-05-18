@@ -50,7 +50,7 @@ const dietProfileSchema = new mongoose.Schema({
     quantity: { type: Number, required: true },
     totalCalories: { type: Number, required: true },
     selectedBrand: { type: String, required: true }
-})
+}, { timestamps: true })
 
 /* const mealSchema = new mongoose.Schema({
     mealType: { type: String, enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], required: true },

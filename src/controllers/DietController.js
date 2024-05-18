@@ -5,12 +5,20 @@ import { DietModel } from '../models/DietModel.js'
 
 export class DietController {
 
-    async getDietDetails(req, res) {
+   /*  async getDietDetails(req, res) {
         console.log("Fetching meals for petId:", req.params.petId)
         try {
             const petId = req.params.petId
-            /* const userId = req.user._id */
-            /* const dietDetails = await DietModel.find({ userId })({petId: petId}) */
+            const { date } = req.query
+
+            if (!petId) {
+                return res.status(400).json({ message: 'Pet ID is required' })
+            }
+
+            if (!date) {
+                return res.status(400).json({ message: 'Date is required' })
+            }
+           
             const dietDetails = await DietModel.find({ petId: petId })
             console.log("Diet details fetched:", petId,  dietDetails)
 console.log("Type of dietDetails:", typeof dietDetails)
@@ -23,16 +31,50 @@ console.log("Fetching meals for petId:", req.params.petId)
             }
     
             const formattedDietDetails = dietDetails.map(diet => diet.toObject())
-            // Map over the documents to convert them to plain JavaScript objects
-          /*   const formattedDietDetails = dietDetails.map(diet => ({
-                ...diet.toObject(),
-                _id: diet._id  
-                _id: diet._id.toString()
-            })) */
+           
             console.log("Diet details fetched:", dietDetails)
-            res.json({ meals: formattedDietDetails/* , userId  */}) // Send the formatted diet details
+            res.json({ meals: formattedDietDetails}) 
         } catch (error) {
             console.error('Fetch Error:', error)
+            res.status(500).json({ message: 'Error fetching diet details' })
+        }
+    } */
+
+    async getDietDetails(req, res) {
+        console.log("Fetching meals for petId:", req.params.petId)
+        try {
+            const petId = req.params.petId
+            const { date } = req.query
+
+            if (!petId) {
+                return res.status(400).json({ message: 'Pet ID is required' })
+            }
+
+            if (!date) {
+                return res.status(400).json({ message: 'Date is required' })
+            }
+
+            const startDate = new Date(date)
+            startDate.setHours(0, 0, 0, 0)
+
+            const endDate = new Date(date)
+            endDate.setHours(23, 59, 59, 999)
+
+            const dietDetails = await DietModel.find({
+                petId: petId,
+                createdAt: {
+                    $gte: startDate,
+                    $lte: endDate
+                }
+            }).lean()
+
+            console.log("Activities fetched:", dietDetails)
+
+            /* const formattedDietDetails = dietDetails.map(diet => diet.toObject()) */
+           /*  res.json({ meals: formattedDietDetails }) */
+            res.json({ meals: dietDetails })
+        } catch (error) {
+            console.error('Error fetching diet details:', error)
             res.status(500).json({ message: 'Error fetching diet details' })
         }
     }
