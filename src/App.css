@@ -684,6 +684,23 @@ textarea:focus {
   color: #adb2f0;
 }
 
+.summary-card-home {
+  margin-bottom: 1px;
+}
+
+
+.custom-heading-home {
+  font-family: 'Varela Round', sans-serif; /* Use your desired font family */
+  /* color: #333; */ /* Change the color as needed */
+  color: hsl(293, 39%, 95%);
+  font-size: 1.5rem; /* Adjust the font size */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Adjust the margin as needed */
+  margin-bottom: 20px; /* Adjust the margin as needed */
+  text-transform: uppercase; /* Optional: transform text to uppercase */
+  letter-spacing: 2px; /* Optional: add letter spacing */
+}
+
 
 
 
@@ -699,7 +716,7 @@ textarea:focus {
     flex: 0 1 calc(40% - 8px);
     padding: 1px;
     height: auto;
-    border-radius: 2px;;
+    border-radius: 2px;
     /* margin: 1px; */
   }
 
@@ -752,13 +769,37 @@ textarea:focus {
   /* gap: 2px; */
 }
 
-.custom-heading {
-  font-size: 1.5rem;
-}
 
 .btn-primary {
   font-size: 15px;
 }
+
+/* .summary-cards-container {
+  flex-direction: column;
+  align-items: center;
+} */
+
+.summary-card-home {
+ /*  width: 100%;
+  max-width: 100%; */
+  flex: 0 1 calc(90% - 8px);
+    padding: 1px;
+    height: auto;
+    border-radius: 2px;
+}
+
+.custom-heading-home {
+  font-family: 'Varela Round', sans-serif; /* Use your desired font family */
+  color: hsl(293, 39%, 95%);
+  font-size: 1rem; /* Adjust the font size */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Adjust the margin as needed */
+  margin-bottom: 20px; /* Adjust the margin as needed */
+  text-transform: uppercase; /* Optional: transform text to uppercase */
+  letter-spacing: 2px; /* Optional: add letter spacing */
+}
+
+
 
 /* .activityForm {
   width: 170px;

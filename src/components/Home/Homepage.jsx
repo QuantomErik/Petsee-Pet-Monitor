@@ -15,6 +15,7 @@ import Dock from '../Dock/Dock.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeals } from '../Diet//mealsSlice'
 import { fetchActivitiesForWeek } from '../Activity/activitiesSlice'
+
 import { fetchActivitiess } from '../Activity/activitiesSlice'
 
 import DatePicker from 'react-datepicker'
@@ -36,7 +37,7 @@ const Homepage = ({ onLogout }) => {
 
     const [selectedDate, setSelectedDate] = useState(new Date())
     const dispatch = useDispatch() //new
-    const { meals, isLoading, error } = useSelector(state => state.meals) //new
+    
 
     const navigate = useNavigate()
     const [petDetails, setPetDetails] = useState(null)
@@ -52,6 +53,7 @@ const Homepage = ({ onLogout }) => {
     const [scheduleError, setScheduleError] = useState(false)
 
     const { activitiesForWeek = [], isLoading: isActivitiesLoading, error: activitiesError } = useSelector(state => state.activities)
+    const { meals, isLoading: isMealsLoading, error: mealsError } = useSelector(state => state.meals)
     const currentPet = useSelector(state => state.pets.currentPet)
 
     const [startDate, setStartDate] = useState(new Date(new Date().setDate(new Date().getDate() - 7)))
@@ -85,9 +87,9 @@ const Homepage = ({ onLogout }) => {
         fetchPetDetails()
     }, []) */
 
-    useEffect(() => {
+    /* useEffect(() => {
         dispatch(fetchMeals())
-    }, [dispatch])
+    }, [dispatch]) */
 
    /*  useEffect(() => {
        
@@ -136,6 +138,18 @@ const Homepage = ({ onLogout }) => {
             }))
         }
     }, [dispatch, currentPet, date, startDate, endDate])
+
+    useEffect(() => {
+        if (currentPet && currentPet.id) {
+            console.log('Fetching activities for week with pet ID:', currentPet.id)
+            dispatch(fetchMeals({
+                petId: currentPet.id,
+                
+                date
+              
+            }))
+        }
+    }, [dispatch, currentPet, date])
 
    /*  useEffect(() => {
         if (currentPet && currentPet.id) {
@@ -199,6 +213,15 @@ const Homepage = ({ onLogout }) => {
 
     return (
         <div className="home-background">
+
+
+<div className="custom-date-picker">
+      <DatePicker selected={selectedDate} onChange={date => {
+        setSelectedDate(date)
+        console.log(`Date changed to: ${date.toISOString().split('T')[0]}`)
+      }} />
+    </div>
+
             {/* {petDetails ? (
                 <> */}
                     {/* <div className="pet-image-section">
@@ -359,30 +382,52 @@ const Homepage = ({ onLogout }) => {
                         </Card>
 
 
+                       {/*  <div className="date-picker-container">
+                            <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+                            <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+                            <DatePicker selected={date} onChange={date => setDate(date)} />
+                        </div> */}
+
+{/* <div className="date-picker-container">
+      <DatePicker selected={selectedDate} onChange={date => {
+        setSelectedDate(date)
+        console.log(`Date changed to: ${date.toISOString().split('T')[0]}`)
+      }} />
+    </div> */}
+
+
                         <>
-      <Card border="primary" style={{ width: '53rem' }}>
-        <Card.Header>Diet summary Week</Card.Header>
+                       {/*  <div className="summary-cards-container"> */}
+      <Card border="primary" className="summary-card-home" style={{ width: '53rem' }}>
+        <Card.Header className="custom-heading-home">Diet Summary</Card.Header>
         <Card.Body>
-          <Card.Title>Primary Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the cards content.
-          </Card.Text>
+        <div>
+                                {isMealsLoading ? (
+                                    <div>Loading...</div>
+                                ) : mealsError ? (
+                                    <div>Error: {mealsError}</div>
+                                ) : meals.length > 0 ? (
+                                    meals.map((meal, index) => (
+                                        <div key={index}>
+                                            <strong>{meal.mealType}</strong>: {meal.time} - {meal.quantity} grams - {meal.totalCalories} kcal
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No meals found for this date</p>
+                                )}
+                            </div>
         </Card.Body>
       </Card>
       
+      
 
-      <Card border="light" style={{ width: '53rem' }}>
+      <Card border="primary" className="summary-card-home" style={{ width: '53rem' }}>
         
-                                <Card.Header>Activity and Diet summary </Card.Header>
+                                <Card.Header className="custom-heading-home">Activity Summary </Card.Header>
                                 <Card.Body>
                                     {/* <Card.Title>Activities This Week</Card.Title> */}
 
-                                    <div className="date-picker-container">
-                            {/* <DatePicker selected={startDate} onChange={date => setStartDate(date)} /> */}
-                            {/* <DatePicker selected={endDate} onChange={date => setEndDate(date)} /> */}
-                            <DatePicker selected={date} onChange={date => setDate(date)} />
-                        </div>
+                             
 
                                     <div>
                                         {isActivitiesLoading ? (
@@ -396,12 +441,12 @@ const Homepage = ({ onLogout }) => {
                                                 </div>
                                             ))
                                         ) : (
-                                            <p>No activities found for this week</p>
+                                            <p>No activities found for this date</p>
                                         )}
                                     </div>
         </Card.Body>
       </Card>
-      
+     {/*  </div> */}
     </>
     
 
@@ -460,6 +505,7 @@ const Homepage = ({ onLogout }) => {
 
     {/* <Dock /> */}
         </div>
+        
 
 
 
