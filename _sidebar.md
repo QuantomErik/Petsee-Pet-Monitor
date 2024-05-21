@@ -17,6 +17,9 @@
 - [Testrapport](Testning/Testrapport-2) iteration 2
 - [Testrapport](Testning/Testrapport-3) iteration 3
 - [Testrapport](Testning/Testrapport-4) iteration 4
+- [Testrapport](Testning/Testrapport-5) iteration 6
+- [Testrapport](Testning/Testrapport-6) iteration 6
+- [Testrapport](Testning/Testrapport-7) iteration 6
 - ...
 - Testrapport iteration 8
 

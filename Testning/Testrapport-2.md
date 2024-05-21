@@ -1,3 +1,64 @@
+# Test Report for Diet Management
+
+## 2024-04-20
+
+### Test Environment
+- **Development Tools:** VSCode
+- **Browser:** Google Chrome
+- **Database:** MongoDB
+- **Framework:** [React, MongoDB, node.js, express]
+
+### Test Suite: Diet Management
+
+#### Test Case 5.1: Add Meals
+**Objective:** Verify that users can add meals for pet.
+- **Input:** Log in.
+Click on the "Diet" card.
+Choose Kalle in the drop down menu.
+Click on "Create Meal.
+Fill out the form.
+Click "Add Meal and save"
+- **Expected Output:** A new meal is added which displayes calories, brand name of the food and quantity in grams.
+Displays the meals and a summary of the meals.
+- **Result:** [Pass]
+- **Screenshots:** ![Local Image](./screenshots/TC5.1.png)
+
+#### Test Case 5.2: Edit Meal
+**Objective:** Ensure that the user can edit meals.
+- **Input:** Click on the "Diet" card.
+Choose Kalle in the drop down menu.
+Choose the meal "Snack" and click edit.
+Change the quantity from 5 grams to 10 grams.
+Cick the "Update Meal" button.
+- **Expected Output:** Details of the meal are updated.
+Displays the updated meal with the quantity of 10 grams.
+- **Result:** [Pass]
+- **Screenshots:** ![Local Image](./screenshots/TC5.2.1.png) ![Local Image](./screenshots/TC5.2.2.png)
+
+#### Test Case 5.3: Delete Meal
+**Objective:** Ensure that the user can delete meals.
+- **Input:** Click on the "Diet" card.
+Choose Kalle in the drop down menu.
+Choose the meal "Snack" and click edit.
+Cick the "Delete Meal" button.
+- **Expected Output:** A warning is shown to the user.
+The meal is deleted.
+- **Result:** [Pass]
+- **Screenshots:** ![Local Image](./screenshots/TC5.3.1.png) ![Local Image](./screenshots/TC5.3.2.png)
+
+
+
+### Summary
+- **Overall Success Rate:** [6 out of 6]
+- **General Comments:** Implementing React Toast/ToastContainer for the flash messages. Overall the routes, the fetching, the schemas and the interface works. Needs more improvement with the UI ofcourse.
+
+
+
+
+
+
+
+
 # Test Report for Activity Management
 
 ## 2024-04-20
@@ -61,4 +122,8 @@
 ### Summary
 - **Overall Success Rate:** [6 out of 6]
 - **General Comments:** Implementing React Toast/ToastContainer for the flash messages. Overall the routes, the fetching, the schemas and the interface works. Needs more improvement with the UI ofcourse.
+
+
+
+
 

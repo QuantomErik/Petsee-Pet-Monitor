@@ -1,17 +1,12 @@
-**Sprint backlog v6**
-**Analys av föregående iteration.**
-This week I spent alot of time on finetuning the UI and overall design of my application. I continued to work on the responsiveness as well. Furthermore, I added one additional feature, which is a progress bar. I thought it would enhance the user experience and give a better overview.
-
-
 #### Tidsrapport
 
 | Uppgift                                            | Krav                  | Teststatus                        | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------|-------------|-------------|
 | Titta på video Blogg                               |                       |                                   | 1           |             |
 | Gå igenom material på kurshemsidan                 |                       |                                   | 1           |             |
-| Research av React                                  |                       |                                   | 1           |    1        |
-| Adjust application for responsiveness for phone    |                       |                                   | 8           |    8        |
-| Finetune the interface and design for the app      |                       |                                   | 8           |    8        |
+| Research av React                                  |                       |                                   | 1           |             |
+| Adjust application for responsiveness for phone    |                       |                                   | 8           |             |
+| Finetune the interface and design for the app      |                       |                                   | 8           |             |
 | Work on serviceworker for offline functionality    |                       |                                   | 7           |    1        |
 | Restructure code for better readability            |                       |                                   | 4           |             |
 | Brainstorm about additional functions              |                       |                                   | 4           |    4        |
