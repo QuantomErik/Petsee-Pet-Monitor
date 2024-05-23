@@ -18,7 +18,9 @@ function EditPetDetails() {
         favouriteToy: '',
        /*  breed: '', */
         medicalNotes: '',
-        animalType: ''
+        animalType: '',
+        caloriesDay: '',
+        activitiesDay: '',
     })
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
@@ -37,6 +39,7 @@ function EditPetDetails() {
             })
             const data = await response.json()
             if (!response.ok) throw new Error(data.message || 'Failed to fetch pet details')
+              console.log('Fetched pet details:', data)
             setPetDetails(data)
         } catch (error) {
             setError(error.message)
@@ -253,6 +256,39 @@ function EditPetDetails() {
                 onChange={handleDetailChange}
               />
             </Form.Group>
+
+
+            <Form.Group className="mb-3"  controlId="caloriesDay">
+                    <Form.Label>CaloriesDay</Form.Label>
+                    <Form.Select
+                        name="caloriesDay"
+                        value={petDetails.caloriesDay}
+                        onChange={handleDetailChange}
+                    >
+                        {Array.from({ length: 15 }, (_, i) => 100 * (i + 1)).map((value) => (
+                            <option key={value} value={value}>
+                                {value} calories
+                            </option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
+
+
+                <Form.Group className="mb-3" controlId="activitiesDay">
+        <Form.Label>Activities Needed Per Day</Form.Label>
+        <Form.Select
+          name="activitiesDay"
+          value={petDetails.activitiesDay}
+          onChange={handleDetailChange}
+        >
+          {/* <option value="">Choose activities needed per day</option> */}
+          {Array.from({ length: 11 }, (_, i) => i).map((value) => (
+            <option key={value} value={value}>
+              {value} activities
+            </option>
+          ))}
+        </Form.Select>
+      </Form.Group>
 
             <div className="d-flex justify-content-start">
     

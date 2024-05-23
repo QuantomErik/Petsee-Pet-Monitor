@@ -21,6 +21,9 @@ import { fetchActivitiess } from '../Activity/activitiesSlice'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
+import 'react-circular-progressbar/dist/styles.css'
+
 
 
 
@@ -59,6 +62,11 @@ const Homepage = ({ onLogout }) => {
     const [startDate, setStartDate] = useState(new Date(new Date().setDate(new Date().getDate() - 7)))
     const [endDate, setEndDate] = useState(new Date())
     const [date, setDate] = useState(new Date())
+
+    const [isFlipped, setIsFlipped] = useState(false)
+    const handleFlip = () => {
+        setIsFlipped(!isFlipped)
+      }
 
 
     /* useEffect(() => {
@@ -151,6 +159,30 @@ const Homepage = ({ onLogout }) => {
         }
     }, [dispatch, currentPet, selectedDate])
 
+
+    useEffect(() => {
+        if (meals && meals.length > 0) {
+          const validMeals = meals.filter((meal) => meal != null);
+          const totals = validMeals.reduce(
+            (acc, meal) => {
+              acc.totalCalories += Number(meal.totalCalories);
+              acc.totalQuantity += Number(meal.quantity);
+              return acc;
+            },
+            { totalCalories: 0, totalQuantity: 0 }
+          );
+    
+          totals.totalCalories = parseFloat(totals.totalCalories.toFixed(1));
+          totals.totalQuantity = parseFloat(totals.totalQuantity.toFixed(1));
+          setDietDetails(totals);
+        } else {
+          setDietDetails({
+            totalCalories: 0,
+            totalQuantity: 0,
+          });
+        }
+      }, [meals]);
+
    /*  useEffect(() => {
         if (currentPet && currentPet.id) {
             dispatch(fetchActivitiesForWeek({ petId: currentPet.id }))
@@ -209,6 +241,17 @@ const Homepage = ({ onLogout }) => {
     
         fetchScheduleDetails()
     }, [])
+
+
+
+    const calorieGoal = currentPet?.caloriesDay
+    const percentage = Math.min((dietDetails.totalCalories / calorieGoal) * 100, 100)
+
+    const activityGoal = currentPet?.activitiesDay
+    const activitiesCompleted = activitiesForWeek.length
+
+    const activityPercentage = (activitiesCompleted / activityGoal) * 100;
+
     
 
     return (
@@ -222,94 +265,58 @@ const Homepage = ({ onLogout }) => {
       }} />
     </div>
 
-            {/* {petDetails ? (
-                <> */}
-                    {/* <div className="pet-image-section">
-                        <img src={`data:image/jpegbase64,${petDetails.image}`} alt="Pet" className="pet-image-circle" />
-                    </div> */}
+    {/*<div className="pet-details-cards">
+        <div className={`flip-card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+          <div className="flip-card-inner">
+            <div className="flip-card-front">
+              <Card className="home-card">
+                <Card.Img variant="top" src={addMealImage} className="card-image-top" />
+                <Card.Body>
+                  <Card.Title>Diet</Card.Title>
+                  <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
+                </Card.Body>
+              </Card>
+            </div>
+            <div className="flip-card-back">
+              <div style={{ width: '200px', height: '200px', margin: 'auto' }}>
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${percentage.toFixed(0)}%`}
+                  styles={buildStyles({
+                    textColor: 'black',
+                    pathColor: `rgba(62, 152, 199, ${percentage / 100})`,
+                    trailColor: '#d6d6d6',
+                  })}
+                />
+              </div>
+              <div className="diet-card">
+                <p>Total Calories: {dietDetails.totalCalories} kcal</p>
+                <p>Calorie Goal: {calorieGoal} kcal</p>
+                <p>Total Quantity: {dietDetails.totalQuantity} grams</p>
+              </div>
+            </div>
+          </div>
+                </div>*/}
+      
                     <div className="pet-details-cards">
-                        {/* <Card title="Pet Details" style={{ width: '23rem' }}
-                        onClick={() => navigate('/petdetails')}
-
-                        >
-                        <Card.Img variant="top" src={petDetailsImage} className="card-image-top"/>
-                        <Card.Body>
-                        <Card.Title>Profile</Card.Title>
-                        <div>
-                            <p>Name: {petDetails.name}</p>
-                            <p>Animal Type: {petDetails.animalType}</p>
-                            <p>Age: {petDetails.age}</p>
-                            <p>Weight: {petDetails.weight}</p>
-                            <p>Length: {petDetails.length}</p>
-                            <p>Favourite Food: {petDetails.favouriteFood}</p>
-                            <p>Favourite Toy: {petDetails.favouriteToy}</p>
-                            <p>Breed: {petDetails.breed}</p>
-                            <p>Medical Notes: {petDetails.medicalNotes}</p>
-                            </div>
-                            <button className="icon-button fas fa-edit" onClick={() => navigate('/petdetails')}></button>
-                            </Card.Body>
-                        </Card> */}
-
-                        <Card title="Diet" style={{ width: '23rem' }}
+                        <Card className="home-card" title="Diet" style={{ width: '23rem' }}
                         onClick={() => navigate('/dietdetails')}
-
                         >
                 <Card.Img variant="top" src={addMealImage} className="card-image-top"/>
                 <Card.Body>
                     <Card.Title>Diet</Card.Title>
-
-                   {/*  <div>
-                        {isLoading ? (
-                            <p>Loading diet details...</p>
-                        ) : error ? (
-                            <p>Error loading diet details. Please try again.</p>
-                        ) : (
-                            <ul>
-                                {meals.map((meal, index) => (
-                                    <li key={index}>{`${meal.mealType}: ${meal.time}`}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </div> */}
 
                     <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
                 </Card.Body>
             </Card>
 
                     
-{/* 
-                        <Card title="Diet" style={{ width: '23rem' }}>
-  <Card.Img variant="top" src={addMealImage} className="card-image-top"/>
-  <Card.Body>
-    <Card.Title>Diet</Card.Title>
-   
-    <div>
-      {dietDetails ? (
-        <>
-          <ul>
-            {dietDetails.meals.map((meal, index) => (
-              <li key={index}>{`${meal.mealType}: ${meal.time}`}</li>
-            ))}
-          </ul>
-          <div>Total Calories: {dietDetails.totalCalories} kcal</div>
-          <div>Total Quantity: {dietDetails.quantity} grams</div>
-          <div>Name: {dietDetails.name}</div>
-        </>
-      ) : dietError ? (
-        "Error loading diet details. Please try again."
-      ) : (
-        "Loading diet details..."
-      )}
-    </div>
-    <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
-  </Card.Body>
-</Card> */}
 
 
 
 
 
-                        <Card title="Activity" style={{ width: '23rem' }}
+                        <Card className="home-card" title="Activity" style={{ width: '23rem' }}
                         onClick={() => navigate('/activitydetails')}
 
                         >
@@ -341,27 +348,14 @@ const Homepage = ({ onLogout }) => {
                         </Card>
 
 
-                        <Card title="Schedule" style={{ width: '23rem' }}
+                        <Card className="home-card" title="Schedule" style={{ width: '23rem' }}
                         onClick={() => navigate('/scheduledetails')}
 
                         >
                         <Card.Img variant="top" src={bowlImage} className="card-image-top"/>
                         <Card.Body>
                         <Card.Title>Schedule</Card.Title>
-                       {/*  <div>
-
-                        {scheduleDetails ? (
-                        <>
-                            <p>Date: {new Date(scheduleDetails.date).toLocaleDateString()}</p>
-                        <p>Note: {scheduleDetails.note}</p>
-                        
-                             </>
-                        ) : scheduleError ? (
-                        <p>Error loading schedule details. Please try again.</p>
-                        ) : (
-                        <p>Loading schedule details...</p>
-                        )}
-                    </div> */}
+                     
                          <button className="icon-button fas fa-edit" onClick={() => navigate('/scheduledetails')}></button>
                     </Card.Body>
                         </Card>
@@ -369,7 +363,7 @@ const Homepage = ({ onLogout }) => {
 
 
 
-                <Card title="Schedule" style={{ width: '23rem' }}
+                <Card className="home-card" title="ToDoList" style={{ width: '23rem'/* , height: '30rem' */ }}
                         onClick={() => navigate('/todolist')}
 
                         >
@@ -382,23 +376,12 @@ const Homepage = ({ onLogout }) => {
                         </Card>
 
 
-                       {/*  <div className="date-picker-container">
-                            <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-                            <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-                            <DatePicker selected={date} onChange={date => setDate(date)} />
-                        </div> */}
-
-{/* <div className="date-picker-container">
-      <DatePicker selected={selectedDate} onChange={date => {
-        setSelectedDate(date)
-        console.log(`Date changed to: ${date.toISOString().split('T')[0]}`)
-      }} />
-    </div> */}
+  
 
 
                         <>
                        {/*  <div className="summary-cards-container"> */}
-      <Card border="primary" className="summary-card-home" style={{ width: '53rem' }}>
+      {/* <Card border="primary" className="summary-card-home" style={{ width: '55rem' }}>
         <Card.Header className="custom-heading-home">Diet Summary</Card.Header>
         <Card.Body>
         <div>
@@ -415,17 +398,94 @@ const Homepage = ({ onLogout }) => {
                                 ) : (
                                     <p>No meals found for this date</p>
                                 )}
+
+        <div className="diet-card">
+          Total Calories: {dietDetails.totalCalories} kcal
+                    <br />
+                    Total Quantity: {dietDetails.totalQuantity} grams
+            </div>
                             </div>
+
         </Card.Body>
-      </Card>
+      </Card> */}
+
+<div className="summary-cards-container">
+        <Card border="primary" className="summary-card-home" style={{ width: '27rem' }}>
+          <Card.Header className="custom-heading-home">Diet</Card.Header>
+          <Card.Body>
+
+          <div className="progress-container">
+            
+
+            {/* <div style={{ width: '80%', height: '200px', margin: 'auto' }}> */}
+            <div style={{ width: '90%', height: '270px', margin: 'auto' }}>
+           {/*  <div className="progress-bar-wrapper"> */}
+              <CircularProgressbar
+                value={percentage}
+                text={`${percentage.toFixed(0)}%`}
+                styles={buildStyles({
+                  textColor: 'black',
+                  pathColor: `rgba(62, 152, 199, ${percentage / 100})`,
+                  trailColor: '#d6d6d6',
+                })}
+              />
+            </div>
+
+            {/* <div className="diet-card"> */}
+            <div className="progress-text">
+                <p><span className="quadrant" style={{ backgroundColor: 'blue' }}></span>Total Calories: {dietDetails.totalCalories} kcal</p>
+                <p><span className="quadrant" style={{ backgroundColor: 'green' }}></span>Calorie Goal: {calorieGoal} kcal</p>
+                <p><span className="quadrant" style={{ backgroundColor: 'red' }}></span>Total Quantity: {dietDetails.totalQuantity} grams</p>
+
+           {/*  <div className="diet-card">
+              <p>Total Calories: {dietDetails.totalCalories} kcal</p>
+              <p>Calorie Goal: {calorieGoal} kcal</p>
+              <p>Total Quantity: {dietDetails.totalQuantity} grams</p> */}
+            </div>
+
+            </div>
+
+          </Card.Body>
+        </Card>
+
+
+        <Card border="primary" className="summary-card-home" style={{ width: '27rem' }}>
+          <Card.Header className="custom-heading-home">Active</Card.Header>
+          <Card.Body>
+          <div className="progress-container">
+            <div style={{ width: '90%', height: '270px', margin: 'auto' }}>
+              <CircularProgressbar
+                value={activityPercentage}
+                text={`${activityPercentage.toFixed(0)}%`}
+                styles={buildStyles({
+                  textColor: 'black',
+                  pathColor: `rgba(62, 152, 199, ${activityPercentage / 100})`,
+                  trailColor: '#d6d6d6',
+                })}
+              />
+            </div>
+            <div className="progress-text">
+                <p><span className="quadrant" style={{ backgroundColor: 'blue' }}></span>Activities Completed: {activitiesCompleted}</p>
+                <p><span className="quadrant" style={{ backgroundColor: 'green' }}></span>Activities Goal: {activityGoal}</p>
+                
+           {/*  <div className="diet-card">
+            <p>Activities Completed: {activitiesCompleted}</p>
+            <p>Activities Goal: {activityGoal}</p> */}
+            </div>
+
+            </div>
+          </Card.Body>
+        </Card>
+        </div>
+      
       
       
 
-      <Card border="primary" className="summary-card-home" style={{ width: '53rem' }}>
+      {/* <Card border="primary" className="summary-card-home" style={{ width: '55rem' }}>
         
                                 <Card.Header className="custom-heading-home">Activity Summary </Card.Header>
                                 <Card.Body>
-                                    {/* <Card.Title>Activities This Week</Card.Title> */}
+                                   
 
                              
 
@@ -445,65 +505,14 @@ const Homepage = ({ onLogout }) => {
                                         )}
                                     </div>
         </Card.Body>
-      </Card>
-     {/*  </div> */}
+      </Card> */}
+     
     </>
     
 
                     </div>
-            {/*     </>
-            ) : ( */}
-                {/* <>
-                    <p>Loading pet details...</p>
-                    <div>
-                        <p>No pet details found. Add your pets details to get started.</p>
-                        <button onClick={() => navigate('/petdetails')} className="add-pet-details-button">Add Pet Details</button>
-                    </div>
-                </>
-            )} */}
-
-                    {/* <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src="holder.js/100px180" />
-                    <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the cards content.
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                    </Card.Body>
-                    </Card> */}
-    
-
-{/* <>
-      <Card border="primary" style={{ width: '18rem' }}>
-        <Card.Header>Header</Card.Header>
-        <Card.Body>
-          <Card.Title>Primary Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the cards content.
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      
-
-      <Card border="light" style={{ width: '18rem' }}>
-        <Card.Header>Header</Card.Header>
-        <Card.Body>
-          <Card.Title>Light Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the cards content.
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      
-    </> */}
-
             
-
-    {/* <Dock /> */}
+    
         </div>
         
 

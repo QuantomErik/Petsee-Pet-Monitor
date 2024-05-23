@@ -20,7 +20,10 @@ const PetDetails = () => {
     favouriteFood: '',
     favouriteToy: '',
     medicalNotes: '',
-    animalType: ','
+    animalType: ',',
+    caloriesDay: '',
+    activitiesDay: '',
+    
   })
 
  
@@ -73,6 +76,15 @@ const PetDetails = () => {
   }
 
   const handleSaveOrUpdate = async () => {
+
+    const requiredFields = ['name', 'age', 'weight', 'length', 'favouriteFood', 'favouriteToy', 'medicalNotes', 'animalType', 'caloriesDay', 'activitiesDay']
+  
+  const missingFields = requiredFields.filter(key => !petDetails[key].trim())
+
+  if (missingFields.length > 0) {
+    toast.error(`Please fill in all the fields: ${missingFields.join(', ')}`)
+    return
+  }
 
     const method = petDetails.id ? 'PUT' : 'POST'
     const endpoint = petDetails.id ? `https://cscloud7-95.lnu.se/petsee/pet/petdetails/${petDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/pet/petdetails'
@@ -175,7 +187,8 @@ const PetDetails = () => {
           </Form.Select>
         </Form.Group>
 
-        {/* Length */}
+
+       
         <Form.Group className="petForm" controlId="petLength">
           <Form.Label>Length (cm)</Form.Label>
           <Form.Select
@@ -188,6 +201,8 @@ const PetDetails = () => {
             ))}
           </Form.Select>
         </Form.Group>
+
+
 
         {/* Favourite Food */}
         <Form.Group className="petForm" controlId="favouriteFood">
@@ -239,6 +254,43 @@ const PetDetails = () => {
             onChange={handleDetailChange}
           />
         </Form.Group>
+
+
+
+        <Form.Group className="petForm" controlId="caloriesDay">
+        <Form.Label>CaloriesDay</Form.Label>
+        <Form.Select
+          name="caloriesDay"
+          value={petDetails.caloriesDay}
+          onChange={handleDetailChange}
+        >
+          <option value="">Choose calories needed per day</option>
+          {Array.from({ length: 15 }, (_, i) => /* (i + 10) */ 100 * (i + 1)).map((value) => (
+            <option key={value} value={value}>
+              {value} calories
+            </option>
+          ))}
+        </Form.Select>
+      </Form.Group>
+
+
+      <Form.Group className="petForm" controlId="activitiesDay">
+        <Form.Label>Activities Needed Per Day</Form.Label>
+        <Form.Select
+          name="activitiesDay"
+          value={petDetails.activitiesDay}
+          onChange={handleDetailChange}
+        >
+          <option value="">Choose activities needed per day</option>
+          {Array.from({ length: 11 }, (_, i) => i).map((value) => (
+            <option key={value} value={value}>
+              {value} activities
+            </option>
+          ))}
+        </Form.Select>
+      </Form.Group>
+
+
 
         <Button variant="primary" onClick={handleSaveOrUpdate}>
           {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}

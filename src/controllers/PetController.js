@@ -18,15 +18,20 @@ export class PetController {
             /* const petData = JSON.parse(body.details) */
             const petData = req.body
 
+            console.log('Pet data:', petData);
+
     
 
             const petDetails = new PetProfileModel({
                 ...petData,
                
-                userId: user.id
+                userId: user.id,
+                caloriesDay: petData.caloriesDay,
+                activitiesDay: petData.activitiesDay
             })
-
+            console.log('Pet details before save:', petDetails);
             await petDetails.save()
+            console.log('Pet details after save:', petDetails);
             res.status(201).json({ success: true, message: 'Pet Details saved successfully', data: petDetails })
         } catch (error) {
             console.error('Error saving pet Details:', error)
@@ -82,6 +87,7 @@ export class PetController {
 async updatePetDetails(req, res) {
     const { id } = req.params
     const updateData = JSON.parse(req.body.details)
+   
 
     console.log("Received update for ID:", id)
     console.log("Updating pet details with data:", req.body)

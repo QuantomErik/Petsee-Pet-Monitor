@@ -11,21 +11,9 @@ import Button from 'react-bootstrap/Button'
 
 
 
-// Add props parameter to your Login function
-const Login = (props) => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [flashMessage, setFlashMessage] = useState('')
-    const [showFlash, setShowFlash] = useState(false)
 
-     const features = [
-        { title: 'Diet Monitoring', description: 'Track and manage your pet’s dietary needs.' },
-        { title: 'Activity Monitoring', description: 'Monitor your pet’s physical activities.' },
-        { title: 'Nutritional Facts', description: 'Get insights into the nutritional values.' },
-        { title: 'Routine Planning', description: 'Plan and schedule your pet’s daily routines.' }
-    ]
 
-    async function loginUser(credentials) {
+    export async function loginUser(credentials, setFlashMessage, setShowFlash) {
         /* const response = await fetch('http://localhost:3000/api/login', { */
             const response = await fetch('https://cscloud7-95.lnu.se/petsee/login', {
             method: 'POST',
@@ -47,6 +35,20 @@ const Login = (props) => {
             return Promise.reject(errorData)
         }
     }
+
+    // Add props parameter to your Login function
+const Login = (props) => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [flashMessage, setFlashMessage] = useState('')
+    const [showFlash, setShowFlash] = useState(false)
+
+     const features = [
+        { title: 'Diet Monitoring', description: 'Track and manage your pet’s dietary needs.' },
+        { title: 'Activity Monitoring', description: 'Monitor your pet’s physical activities.' },
+        { title: 'Nutritional Facts', description: 'Get insights into the nutritional values.' },
+        { title: 'Routine Planning', description: 'Plan and schedule your pet’s daily routines.' }
+    ]
 
     const handleSubmit = async (event) => {
         event.preventDefault()

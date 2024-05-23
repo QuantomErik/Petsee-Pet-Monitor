@@ -3,7 +3,18 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // Function to handle user registration
-async function registerUser(userData) {
+export async function registerUser(userData) {
+
+    if (!userData.username) {
+        throw new Error('Username is required')
+      }
+      if (!userData.email) {
+        throw new Error('Email is required');
+      }
+      if (!userData.password) {
+        throw new Error('Password is required');
+      }
+
     const response = await fetch('https://cscloud7-95.lnu.se/petsee/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -23,7 +34,7 @@ const Register = () => {
         email: ''
     
     })
-
+    const [errorMessage, setErrorMessage] = useState('')
     const navigate = useNavigate()
 
     const handleChange = (event) => {
@@ -42,6 +53,7 @@ const Register = () => {
             navigate('/login')
             
         } catch (error) {
+            setErrorMessage(error.message)
             console.error('Registration error:', error)
         }
     }
@@ -91,6 +103,7 @@ const Register = () => {
                         placeholder="Password"
                     />
                 </div>
+                {errorMessage && <div className="mb-4 text-red-500">{errorMessage}</div>}
                 <div className="flex items-center justify-between">
                     <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Register

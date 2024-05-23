@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // Define initial state and reducer for the activity details
 const initialState = {
@@ -47,6 +49,15 @@ const ActivityDetails = () => {
             alert("Please select a pet first.")
             return
         }
+
+         // Validation check
+         const requiredFields = ['type', 'duration', 'intensity']
+         const missingFields = requiredFields.filter(key => !activityDetails[key].trim())
+ 
+         if (missingFields.length > 0) {
+             toast.error('Please fill in all the fields.')
+             return
+         }
 
         try {
             const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/activitydetails`, {

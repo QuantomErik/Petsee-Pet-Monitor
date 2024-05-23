@@ -27,6 +27,7 @@ const petProfileSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  
   length: {
     type: String,
     required: true,
@@ -57,8 +58,15 @@ const petProfileSchema = new mongoose.Schema({
     required: true,
     trim: true,
     enum: ['Dog', 'Cat', 'Bird', 'Hamster', 'Rabbit']  // Enum to restrict the animal types
-},
- /*  image: String, */
+  },
+  caloriesDay: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  activitiesDay: 
+  { type: Number,
+    required: true}
 })
 
 
