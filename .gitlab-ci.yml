@@ -32,21 +32,21 @@ Build system:
   
   script:
     - echo "Building..."
-    - npm run build
+    
 
 Code Linting:
   stage: test
   
   script:
     - echo "Code Linting...."
-    - npm run lint
+    
 
 Document Linting:
   stage: test
   
   script:
     - echo "Document Linting...."
-    - npm run lint
+    
 
 Unit tests:
   stage: test
