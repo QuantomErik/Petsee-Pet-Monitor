@@ -1,12 +1,10 @@
 import { Selector } from 'testcafe'
 
-// Function to generate a unique username and email address
-const generateUniqueUsername = () => `testuser${new Date().getTime()}${Math.floor(Math.random() * 1000)}`
-const generateUniqueEmail = () => `testuser${new Date().getTime()}${Math.floor(Math.random() * 1000)}@example.com`
-
+// Fixture and URL
 fixture `User Login`
   .page `http://localhost:5173/petsee/login`
 
+// Test for successful login
 test('should log in a user successfully', async t => {
   // Use known credentials
   const username = 'testuser' // Replace with actual known username
@@ -14,43 +12,37 @@ test('should log in a user successfully', async t => {
 
   console.log(`Testing login with username: ${username}`)
 
-  // Capture a screenshot before interacting with the page
-  /* await t.takeScreenshot('before-login.png') */
-
   // Fill out login form and submit
   await t
     .typeText(Selector('#username'), username)
-    .typeText(Selector('input[type="password"]'), password)
+    .typeText(Selector('#password'), password)
     .click(Selector('button[type="submit"]'))
 
-  // Capture a screenshot after attempting login
- /*  await t.takeScreenshot('after-login.png') */
-
   // Debug information
-  const bodyText = await Selector('body').innerText
-  console.log(bodyText)
+ /*  const bodyText = await Selector('body').innerText
+  console.log(bodyText) */
 
   // Verify that the user is redirected to the homepage
- /*  await t.expect(bodyText).contains('Welcome to Petsee', { timeout: 10000 }) */
+  /* await t.expect(bodyText).contains('Welcome to Petsee', { timeout: 10000 }) */
 })
 
+// Test for failed login
 test('should show an error when login fails', async t => {
-  // Capture a screenshot before interacting with the page
-  /* await t.takeScreenshot('before-failed-login.png') */
-
   // Fill out login form with incorrect credentials and submit
   await t
     .typeText(Selector('#username'), 'nonexistentuser')
-    .typeText(Selector('input[type="password"]'), 'wrongpassword')
+    .typeText(Selector('#password'), 'wrongpassword')
     .click(Selector('button[type="submit"]'))
 
-  // Capture a screenshot after attempting login
- /*  await t.takeScreenshot('after-failed-login.png') */
-
   // Debug information
-  const bodyText = await Selector('body').innerText
-  console.log(bodyText)
+ /*  const bodyText = await Selector('body').innerText
+  console.log(bodyText) */
 
   // Verify that the appropriate error message is displayed
-  /* await t.expect(Selector('.alert-danger').innerText).contains('Invalid login', { timeout: 10000 }) */
+  const alertText = await Selector('.alert-danger').innerText
+  
+  await t
+    .expect(alertText).eql('Incorrect password', { timeout: 10000 })
+    .catch(() => t.expect(alertText).eql("The username doesn't exist", { timeout: 10000 }))
+    .catch(() => t.expect(alertText).eql('Invalid login', { timeout: 10000 }))
 })

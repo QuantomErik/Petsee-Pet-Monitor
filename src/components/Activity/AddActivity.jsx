@@ -26,7 +26,7 @@ const reducer = (state, action) => {
     }
 }
 
-const ActivityDetails = () => {
+export const ActivityDetails = () => {
     const [activityDetails, dispatch] = useReducer(reducer, initialState)
     const currentPet = useSelector(state => state.pets.currentPet)
     const navigate = useNavigate()

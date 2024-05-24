@@ -36,7 +36,7 @@ describe('loginUser', () => {
     })
 
     const credentials = { username: 'testuser', password: 'wrongpassword' }
-    await expect(loginUser(credentials, mockSetFlashMessage, mockSetShowFlash)).rejects.toEqual({ message: 'Incorrect password' })
+    await expect(loginUser(credentials, mockSetFlashMessage, mockSetShowFlash)).rejects.toThrow('Incorrect password')
   })
 
   it('handles non-existent username', async () => {
@@ -47,7 +47,7 @@ describe('loginUser', () => {
     })
 
     const credentials = { username: 'nonexistentuser', password: 'password123' }
-    await expect(loginUser(credentials, mockSetFlashMessage, mockSetShowFlash)).rejects.toEqual({ message: "The username doesn't exist" })
+    await expect(loginUser(credentials, mockSetFlashMessage, mockSetShowFlash)).rejects.toThrow("The username doesn't exist")
   })
 
   it('handles other login failures', async () => {
@@ -58,6 +58,6 @@ describe('loginUser', () => {
     })
 
     const credentials = { username: 'testuser', password: 'password123' }
-    await expect(loginUser(credentials, mockSetFlashMessage, mockSetShowFlash)).rejects.toEqual({ message: 'Invalid login' })
+    await expect(loginUser(credentials, mockSetFlashMessage, mockSetShowFlash)).rejects.toThrow('Invalid login')
   })
 })
