@@ -11,8 +11,8 @@
     "test": "jest",
     "test:register": "jest tests/unit/registerUser.test.js",
     "test:login": "jest tests/unit/loginUser.test.js",
-    "test:addActivity": "jest tests/unit/addActivity.test.js",
-    "test:petdetails": "jest tests/unit/PetDetails.test.js",
+    
+    
     "test:edittodolist": "jest tests/unit/EditToDoList.test.js",
     "test:acceptance": "testcafe firefox tests/acceptance/*.e2e.test.js",
     "test:acceptance:register": "testcafe firefox tests/acceptance/registerUser.e2e.test.js",
