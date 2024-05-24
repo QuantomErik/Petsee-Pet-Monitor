@@ -17,7 +17,14 @@ Build system:
   stage: build
   
   script:
+    - npm install
+    - npm run build
     - echo "Building..."
+  artifacts:
+    paths:
+      - "build/"  
+
+      
 
 Code Linting:
   stage: test
@@ -36,6 +43,8 @@ Unit tests:
   
   script:
     - echo "Running Unit tests..."
+    - npm install
+    - npm run test
 
 Other automatic tests:
   stage: test
