@@ -69,6 +69,7 @@ Acceptance tests:
     - wget -qO- "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" | tar xj
     - mv firefox /opt/firefox
     - ln -s /opt/firefox/firefox /usr/bin/firefox
+    - /usr/bin/firefox --version  # Check Firefox version to ensure it is installed correctly
     - npm install -g testcafe
   script:
     - echo "Running Acceptance (e2e) Tests..."
