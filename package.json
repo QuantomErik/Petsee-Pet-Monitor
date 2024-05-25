@@ -13,7 +13,7 @@
     "test:login": "jest tests/unit/loginUser.test.js",
     "test:edittodolist": "jest tests/unit/EditToDoList.test.js",
     "test:petdetails": "jest tests/unit/PetDetails.test.js",
-    "test:acceptance": "testcafe firefox tests/acceptance/*.e2e.test.js",
+    "test:acceptance": "testcafe firefox:headless tests/acceptance/*.e2e.test.js",
     "test:acceptance:register": "testcafe firefox tests/acceptance/registerUser.e2e.test.js",
     "test:acceptance:login": "testcafe firefox tests/acceptance/loginUser.e2e.test.js",
     "test:acceptance:petdetails": "testcafe firefox tests/acceptance/PetDetails.e2e.test.js",
