@@ -56,8 +56,11 @@ Unit tests:
     - echo "Running Unit tests..."
     - npm run test
 
-Other automatic tests:
+Acceptance tests:
   stage: test
+  before_script:
+    - apt-get update
+    - apt-get install -y firefox
   
   script:
     - echo "Running Acceptance (e2e) Tests..."
