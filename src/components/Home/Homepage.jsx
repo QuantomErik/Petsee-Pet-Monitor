@@ -7,7 +7,7 @@ import activityImage from '../../images/activity.webp'
 import petDetailsImage from '../../images/background.webp'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeals } from '../Diet/mealsSlice'
-import { fetchActivitiesForWeek } from '../Activity/activitiesSlice'
+import { fetchActivitiess } from '../Activity/activitiesSlice'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
@@ -19,14 +19,15 @@ const Homepage = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [dietDetails, setDietDetails] = useState({ meals: [] })
-  const { activitiesForWeek = []} = useSelector((state) => state.activities)
+
+  const { activities = []} = useSelector((state) => state.activities)
   const { meals} = useSelector((state) => state.meals)
   const currentPet = useSelector((state) => state.pets.currentPet)
 
   useEffect(() => {
     if (currentPet && currentPet.id) {
       dispatch(
-        fetchActivitiesForWeek({
+        fetchActivitiess({
           petId: currentPet.id,
           date: selectedDate.toISOString().split('T')[0],
         })
@@ -71,7 +72,7 @@ const Homepage = () => {
   const calorieGoal = currentPet?.caloriesDay
   const percentage = Math.min((dietDetails.totalCalories / calorieGoal) * 100, 100)
   const activityGoal = currentPet?.activitiesDay
-  const activitiesCompleted = activitiesForWeek.length
+  const activitiesCompleted = activities.length
   const activityPercentage = (activitiesCompleted / activityGoal) * 100
 
   return (

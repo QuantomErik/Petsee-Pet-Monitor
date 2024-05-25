@@ -45,6 +45,10 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'no-unused-vars': [
+      'error',
+      { varsIgnorePattern: 'React' } // Ignore unused React imports
+    ],
   },
   globals: {
     fixture: 'readonly',

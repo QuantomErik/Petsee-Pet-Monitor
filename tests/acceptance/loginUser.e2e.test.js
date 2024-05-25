@@ -7,8 +7,8 @@ fixture `User Login`
 // Test for successful login
 test('should log in a user successfully', async t => {
   // Use known credentials
-  const username = 'testuser' // Replace with actual known username
-  const password = 'password123' // Replace with actual known password
+  const username = 'testuser'
+  const password = 'password123'
 
   console.log(`Testing login with username: ${username}`)
 
@@ -18,12 +18,6 @@ test('should log in a user successfully', async t => {
     .typeText(Selector('#password'), password)
     .click(Selector('button[type="submit"]'))
 
-  // Debug information
- /*  const bodyText = await Selector('body').innerText
-  console.log(bodyText) */
-
-  // Verify that the user is redirected to the homepage
-  /* await t.expect(bodyText).contains('Welcome to Petsee', { timeout: 10000 }) */
 })
 
 // Test for failed login
@@ -34,11 +28,6 @@ test('should show an error when login fails', async t => {
     .typeText(Selector('#password'), 'wrongpassword')
     .click(Selector('button[type="submit"]'))
 
-  // Debug information
- /*  const bodyText = await Selector('body').innerText
-  console.log(bodyText) */
-
-  // Verify that the appropriate error message is displayed
   const alertText = await Selector('.alert-danger').innerText
   
   await t
