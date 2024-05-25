@@ -39,6 +39,7 @@ Code Linting:
   
   script:
     - echo "Code Linting...."
+    - npm run lint
     
 
 Document Linting:
@@ -59,19 +60,30 @@ Other automatic tests:
   stage: test
   
   script:
-    - echo "Running Other Tests..."
+    - echo "Running Acceptance (e2e) Tests..."
+    - npm run test:acceptance
 
 Deploy to testenv:
   stage: review
   
   script:
     - echo "Deploying to review server"
+    - echo "Building the application..."
+    - npm run build
+    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
+    - echo "Running deployment script on the server..."
+    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
 
 Deploy to production:
   stage: production
   
   script:
     - echo "Deploying to production server"
+    - echo "Building the application..."
+    - npm run build
+    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
+    - echo "Running deployment script on the server..."
+    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
   
   rules:
     # We want to production as a manual step.
