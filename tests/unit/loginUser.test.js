@@ -1,6 +1,6 @@
-import { loginUser } from '../../src/components/Login/Login.jsx'
+import { loginUser } from '../../src/components/Login/LoginUser.js'
 
-global.fetch = jest.fn()
+window.fetch = jest.fn()
 
 describe('loginUser', () => {
   const mockSetFlashMessage = jest.fn()

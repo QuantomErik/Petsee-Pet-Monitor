@@ -7,14 +7,11 @@ export const fetchPets = createAsyncThunk('pets/fetchPets', async () => {
     const token = localStorage.getItem('token')
     console.log('Fetching pets with token:', token)
    
-  /*   const response = await fetch('http://localhost:3000/petsee/pet/petdetails', { */
+
   const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/petdetails', {
-   /*  method: 'GET', */
     headers: { 'Authorization': `Bearer ${token}`,
-    /* 'Content-Type': 'application/json' */
   },
 }).catch(err => console.error('Fetch error:', err))
-
 
 if (!response.ok) {
   const responseBody = await response.text()
@@ -25,7 +22,6 @@ if (!response.ok) {
   const data = await response.json()
   console.log('Pets fetched:', data)
   return data
-  /* return data.pets */
 })
 
 // Slice definition

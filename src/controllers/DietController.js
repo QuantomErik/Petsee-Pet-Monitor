@@ -1,44 +1,7 @@
-// src/controllers/DietController.js
 import mongoose from 'mongoose'
-
 import { DietModel } from '../models/DietModel.js'
 
 export class DietController {
-
-   /*  async getDietDetails(req, res) {
-        console.log("Fetching meals for petId:", req.params.petId)
-        try {
-            const petId = req.params.petId
-            const { date } = req.query
-
-            if (!petId) {
-                return res.status(400).json({ message: 'Pet ID is required' })
-            }
-
-            if (!date) {
-                return res.status(400).json({ message: 'Date is required' })
-            }
-           
-            const dietDetails = await DietModel.find({ petId: petId })
-            console.log("Diet details fetched:", petId,  dietDetails)
-console.log("Type of dietDetails:", typeof dietDetails)
-
-console.log("Fetching meals for petId:", req.params.petId)
-            
-    
-            if (!dietDetails || dietDetails.length === 0) {
-                return res.status(404).json({ message: 'No diet details found' })
-            }
-    
-            const formattedDietDetails = dietDetails.map(diet => diet.toObject())
-           
-            console.log("Diet details fetched:", dietDetails)
-            res.json({ meals: formattedDietDetails}) 
-        } catch (error) {
-            console.error('Fetch Error:', error)
-            res.status(500).json({ message: 'Error fetching diet details' })
-        }
-    } */
 
     async getDietDetails(req, res) {
         console.log("Fetching meals for petId:", req.params.petId)
@@ -54,24 +17,12 @@ console.log("Fetching meals for petId:", req.params.petId)
                 return res.status(400).json({ message: 'Date is required' })
             }
 
-           /*  const startDate = new Date(date)
-            startDate.setHours(0, 0, 0, 0)
-
-            const endDate = new Date(date)
-            endDate.setHours(23, 59, 59, 999) */
-
             const dietDetails = await DietModel.find({
                 petId: petId,
-                /* createdAt: {
-                    $gte: startDate,
-                    $lte: endDate
-                } */
             }).lean()
 
             console.log("Activities fetched:", dietDetails)
 
-            /* const formattedDietDetails = dietDetails.map(diet => diet.toObject()) */
-           /*  res.json({ meals: formattedDietDetails }) */
             res.json({ meals: dietDetails })
         } catch (error) {
             console.error('Error fetching diet details:', error)
@@ -80,33 +31,9 @@ console.log("Fetching meals for petId:", req.params.petId)
     }
     
 
-   /*  async getDietDetails(req, res) {
-        
-        const userId = req.user.id
-        try {
-            
-            const dietDetails = await DietModel.find({ userId: userId })
-
-            if (!dietDetails || dietDetails.length === 0) {
-                return res.status(404).json({ message: 'No diet details found' })
-            }
-            
-            const consolidatedMeals = dietDetails.reduce((acc, detail) => {
-                acc.meals = acc.meals.concat(detail.meals)
-                return acc
-            }, { meals: [], userId: userId })
-
-           
-            res.status(200).json(consolidatedMeals)
-        } catch (error) {
-            res.status(500).json({ message: 'Failed to fetch diet details', error })
-        }
-    }
- */
-
     async saveDietDetails(req, res) {
         try {
-            const petId = req.params.petId// Get pet ID from route parameter
+            const petId = req.params.petId
             const dietDetails = new DietModel({
                 ...req.body,
                 petId: petId,
@@ -123,33 +50,6 @@ console.log("Fetching meals for petId:", req.params.petId)
         }
     }
     
-    /* async saveDietDetails(req, res) {
-
-        console.log("Received diet details:", req.body)
-
-        console.log('POST /api/pet/dietdetails route handler')
-        console.log("Received diet details:", req.body)
-
-        try {
-
-            const dietDetails = new DietModel({
-                ...req.body,
-                userId: req.user.id
-            })
-
-            console.log("Full body received:", req.body)
-
-          await dietDetails.save()
-
-          res.status(201).json({ success: true, message: 'DietController: Diet Details saved successfully', data: dietDetails })
-        } catch (error) {
-          console.error('Failed to save diet details:', error)
-          res.status(500).send('Internal Server Error')
-        }
-      } */
-      
-    
-
       async updateDietDetails(req, res) {
 
         console.log("Received diet details:", req.body)
@@ -178,19 +78,17 @@ console.log("Fetching meals for petId:", req.params.petId)
 
     async deleteMeal(req, res) {
         const { mealId } = req.params
-        /* const userId = req.user.id */
-    
+
         try {
             const result = await DietModel.findOneAndDelete(
-                /* { userId: userId }, */
                 { $pull: { meals: { _id: mealId } } },
                 { new: true }
             )
-    
+
             if (!result) {
                 return res.status(404).json({ message: 'Meal not found' })
             }
-    
+
             res.status(200).json({ success: true, message: 'Meal deleted successfully', data: result })
         } catch (error) {
             res.status(500).json({ message: 'Failed to delete meal', error })
@@ -200,12 +98,12 @@ console.log("Fetching meals for petId:", req.params.petId)
     async getMealById(req, res) {
         const id = req.params.id
         console.log('Attempting to fetch meal with ID:', id)
-    
+
         if (!mongoose.Types.ObjectId.isValid(id)) {
             console.warn('Invalid ID supplied:', id)
             return res.status(400).json({ message: "Invalid ID format" })
         }
-    
+
         try {
             const meal = await DietModel.findById(id)
             if (!meal) {
@@ -219,31 +117,4 @@ console.log("Fetching meals for petId:", req.params.petId)
             res.status(500).json({ message: "Error fetching meal", error: error.message })
         }
     }
-    
-
-    /* async deleteMeal(req, res) {
-        const { mealId } = req.params
-        const userId = req.user.id
-        console.log('Attempting to delete meal with ID:', mealId, 'for user ID:', userId)
-        console.log('Attempting to delete meal with ID:', mealId, 'for user ID:', userId)
-try {
-    const result = await DietModel.updateOne(
-        { userId: userId, 'meals._id': new mongoose.Types.ObjectId(mealId) },
-        { $pull: { meals: { _id: new mongoose.Types.ObjectId(mealId) } } }
-    )
-    console.log('MongoDB Response:', result)
-    if (result.modifiedCount === 0) {
-        return res.status(404).json({ message: 'Meal not found or nothing to delete' })
-    }
-    res.status(200).json({ success: true, message: 'Meal deleted successfully' })
-} catch (error) {
-    console.error('Failed to delete meal:', error)
-    res.status(500).json({ message: 'Failed to delete meal', error })
-}
-    } */
-    
-    
-    
-    
-    
 }

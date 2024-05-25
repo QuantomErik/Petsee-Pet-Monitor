@@ -43,13 +43,13 @@ test('should log in and add/update pet details successfully', async t => {
     .expect(Selector('button').withText('Save Pet Details').exists).ok('Save button does not exist');
 
   // Debug step: Print the options of the weight dropdown
-  const getWeightOptions = ClientFunction(() => {
+  /* const getWeightOptions = ClientFunction(() => {
     const options = document.querySelectorAll('select[name="weight"] option');
     return Array.from(options).map(option => option.value);
   });
 
   const weightOptions = await getWeightOptions();
-  console.log('Weight options:', weightOptions);
+  console.log('Weight options:', weightOptions); */
 
   // Ensure the dropdowns are visible and expanded
   const ensureVisible = ClientFunction(() => {

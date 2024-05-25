@@ -25,7 +25,7 @@ export class JsonWebToken {
    * @param {string|number} expiresIn - The expiration time for the JWT, specified in seconds or as a string describing a time span (e.g., '1d', '2h') using the vercel/ms library.
    * @returns {Promise<string>} A Promise that resolves to the generated JWT.
    */
-  static async encodeUser (user, expiresIn) {
+  static async encodeUser (user) {
     const payload = {
       sub: user.id,
       email: user.email,
@@ -77,6 +77,4 @@ export class JsonWebToken {
       })
     })
   }
-
-
 }

@@ -2,7 +2,6 @@ import { ToDoListModel } from '../models/ToDoListModel.js'
 
 export class ToDoListController { 
 
-
 async getTasks (req, res) {
     try {
         const userId = req.user.id
@@ -39,7 +38,6 @@ async getTaskById(req, res) {
             return res.status(404).json({ message: "Task not found" })
         }
 
-        // Optionally, check if the task belongs to the user making the request
         if (task.userId.toString() !== req.user.id) {
             return res.status(403).json({ message: "Not authorized to access this task" })
         }

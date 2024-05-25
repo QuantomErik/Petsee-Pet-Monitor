@@ -7,19 +7,17 @@ export class ScheduleController {
 
         try {
             const { date, note } = req.body
-            /* const newSchedule = new ScheduleModel({ date, note, userId: req.user._id }) */
-            const newSchedule = new ScheduleModel({ date, note, userId/* : userId */ })
+            const newSchedule = new ScheduleModel({ date, note, userId })
             await newSchedule.save()
             res.status(201).json(newSchedule)
         } catch (error) {
             res.status(500).send('Failed to save schedule details')
         }
     }
-    
+
     async getScheduleDetails (req, res){
         const userId = req.user.id
         try {
-            /* const schedules = await ScheduleModel.find({ userId: req.user._id }) */
             const schedules = await ScheduleModel.find({ userId: userId })
             res.json(schedules)
         } catch (error) {
@@ -45,7 +43,7 @@ export class ScheduleController {
     async deleteScheduleDetails(req, res) {
         const id = req.params.id
     
-        try {  // Ensure this opening brace is present
+        try {
             const note = await ScheduleModel.findByIdAndDelete(id)
     
             if (note) {
@@ -58,7 +56,7 @@ export class ScheduleController {
                     message: "Activity not found"
                 })
             }
-        } catch (error) {  // This catch now correctly corresponds to the try block
+        } catch (error) {
             console.error('Error deleting activity:', error)
             res.status(500).json({
                 message: "Error deleting activity",

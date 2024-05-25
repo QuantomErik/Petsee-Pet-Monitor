@@ -1,31 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { Modal, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { toast} from 'react-toastify'
 
-
-
-
-
-const customStyles = {
-    overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.75)',
-        zIndex: 1000
-    },
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        zIndex: 1000
-    }
-}
 
 const ScheduleDetails = () => {
     const navigate = useNavigate()
@@ -68,7 +49,6 @@ const ScheduleDetails = () => {
 
     const handleDateClick = (arg) => {
         const clickedDate = new Date(arg.dateStr)
-        /* clickedDate.setUTCHours(0, 0, 0, 0) */
         setScheduleDetails(prevDetails => ({
             ...prevDetails,
             date: clickedDate,
@@ -77,11 +57,10 @@ const ScheduleDetails = () => {
         }))
         setModalIsOpen(true)
     }
-    
 
-   
+
     const handleEventClick = (clickInfo) => {
-        
+
         const event = clickInfo.event
         setScheduleDetails({
             id: event.id,
@@ -112,25 +91,16 @@ const ScheduleDetails = () => {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(scheduleDetails)
-               /* body: JSON.stringify({...scheduleDetails, date: dateToSend.toISOString()}) */
-                
             })
 
             if (response.ok) {
-
                 toast.info('Note saved successfully')
-
-               
-
                 const result = await response.json()
-
                 const updatedEvent = {
                     id: scheduleDetails.id ? scheduleDetails.id : result.id,
                     title: scheduleDetails.note,
-                    date: scheduleDetails.date/* .toISOString().split('T')[0] */
+                    date: scheduleDetails.date
                 }
-
-              
 
                 setCalendarEvents(prevEvents => {
                     if (scheduleDetails.id) {
@@ -139,8 +109,6 @@ const ScheduleDetails = () => {
                         return [...prevEvents, updatedEvent]
                     }
                 })
-
-              
 
                 navigate('/scheduledetails')
                 setModalIsOpen(false)
@@ -153,7 +121,7 @@ const ScheduleDetails = () => {
     }
 
     const handleDelete = async () => {
-        if (!scheduleDetails.id) return 
+        if (!scheduleDetails.id) return
 
         const token = localStorage.getItem('token')
         const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/scheduledetails/${scheduleDetails.id}`, {
@@ -162,10 +130,8 @@ const ScheduleDetails = () => {
         })
         if (response.ok) {
 
-
             setCalendarEvents(prevEvents => prevEvents.filter(event => event.id !== scheduleDetails.id))
             setModalIsOpen(false)
-
             toast.info('Note deleted successfully')
         }
     }
@@ -199,13 +165,11 @@ const ScheduleDetails = () => {
                     <textarea value={scheduleDetails.note} onChange={handleNoteChange} className="form-control" />
                 </Modal.Body>
                 <Modal.Footer>
-                   
+
                     <Button variant="primary" onClick={handleSaveOrUpdate}>Save</Button>
                     {scheduleDetails.id && <Button variant="danger" onClick={handleDelete}>Delete</Button>}
                 </Modal.Footer>
             </Modal>
-
-          
         </div>
     )
 }

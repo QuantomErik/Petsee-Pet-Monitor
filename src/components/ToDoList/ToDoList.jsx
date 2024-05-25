@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Form, InputGroup, ListGroup } from 'react-bootstrap'
-import { FaCheckCircle, FaRegCircle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 function ToDoList() {
@@ -51,9 +50,7 @@ function ToDoList() {
             console.error('Error creating task:', error)
         }
     }
-    
 
-    // Function to handle task completion toggle
     const toggleCompletion = async (id) => {
         const taskToUpdate = tasks.find(task => task._id === id)
         if (!taskToUpdate) return
@@ -72,7 +69,7 @@ function ToDoList() {
     
             if (response.ok) {
                 // Update task state locally if the server update was successful
-                const updatedTasks = tasks.map(task => 
+                const updatedTasks = tasks.map(task =>
                     task._id === id ? updatedTask : task
                 )
                 setTasks(updatedTasks)
@@ -115,17 +112,17 @@ function ToDoList() {
                 />
                 <Button variant="primary" onClick={addTask}>Create Task</Button>
             </InputGroup>
-            
+
             <ListGroup>
     {tasks.map(task => (
         <ListGroup.Item
             key={task._id}
             variant={task.isCompleted ? 'success' : ''}
             onClick={() => handleTaskClick(task._id)}
-            style={{ display: 'flex', alignItems: 'center' }} // Ensures alignment of items within the list
+            style={{ display: 'flex', alignItems: 'center' }}
         >
             <div 
-                onClick={(event) => event.stopPropagation()} // Stops click events from propagating to the ListGroup.Item
+                onClick={(event) => event.stopPropagation()}
                 style={{ marginRight: 'auto' }}
             >
                 <Form.Check

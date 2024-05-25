@@ -1,6 +1,6 @@
-import { registerUser } from '../../src/components/Register/Register.jsx'
+import { registerUser } from '../../src/components/Register/RegisterUser.js'
 
-global.fetch = jest.fn(() =>
+window.fetch = jest.fn(() =>
   Promise.resolve({
     ok: true,
     json: () => Promise.resolve({ message: 'Registration successful' }),

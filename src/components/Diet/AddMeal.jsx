@@ -1,5 +1,5 @@
 
-import React, { useReducer, useEffect, useCallback, useState } from 'react'
+import { useReducer, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
@@ -62,7 +62,6 @@ const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
   const navigate = useNavigate()
   
   useEffect(() => {
-    /* if (!isSubmitting || !dietDetails) return */
     if (!isSubmitting || !dietDetails || !currentPet || !currentPet.id) return
 
     const saveDietDetails = async () => {
@@ -76,7 +75,6 @@ const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
     name: dietDetails.name
       }
       const method = 'POST'
-     /*  const endpoint = 'http://localhost:3000/api/pet/dietdetails/' */
       const endpoint = `https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`
   
       try {
@@ -90,17 +88,17 @@ const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
           },
           body: JSON.stringify(payload)
         })
-  
+
         if (!response.ok) throw new Error('Failed to save/update diet details')
-  
+
         const result = await response.json()
         console.log('Operation successful:', result)
-        
-        
+
+
       } catch (error) {
         console.error('Error saving/updating diet details:', error)
       } finally {
-        
+
         navigate('/dietdetails', { state: { refresh: true } })
       }
     }
@@ -116,7 +114,6 @@ const DietDetails = () => {
     totalCalories: 0,
     selectedBrand: '',
     nutrients: {},
-    /* meals: [], */
     currentMeal: { mealType: '', time: '', quantity: '0' },
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -158,15 +155,6 @@ const DietDetails = () => {
     }
   }
 
-  const calculateTotalCalories = (quantity, brandName) => {
-    const brand = brandsData.brands.find(b => b.name === brandName)
-    return brand ? (brand.caloriesPerGram * parseFloat(quantity)).toFixed(2) : 0
-  }
-
-  
-
-
- 
   const handleSubmit = async () => {
     console.log("Sending payload:", JSON.stringify(payload))
 
@@ -194,10 +182,9 @@ const DietDetails = () => {
     try {
       console.log("Sending payload:", JSON.stringify(payload))
       console.log("URL:", `https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`)
-console.log("Payload:", JSON.stringify(payload))
+      console.log("Payload:", JSON.stringify(payload))
 
       const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`, {
-      /* const response = await fetch('http://localhost:3000/api/pet/dietdetails/', { */
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -221,8 +208,6 @@ console.log("Payload:", JSON.stringify(payload))
 
   const addMealAndSave = async () => {
 
-    
-
     if (!currentPet || !currentPet.id) {
       console.error("No current pet selected or pet ID is missing.")
       alert("Please select a pet first.")
@@ -235,33 +220,18 @@ console.log("Payload:", JSON.stringify(payload))
       alert("Please fill in all fields for the meal.")
       return
     }
-  
-    setIsSubmitting(true)
-    const totalCalories = calculateTotalCalories(quantity, dietDetails.selectedBrand)
-    const newMeal = {
-      mealType,
-      time,
-      quantity: parseFloat(quantity),
-      totalCalories,
-      nutrients: { ...dietDetails.nutrients }
-    }
-  
-    /* const updatedMeals = [... newMeal] */
-  
+
     const payload = {
       name: dietDetails.name,
       quantity: dietDetails.quantity,
-      totalCalories: dietDetails.totalCalories, 
+      totalCalories: dietDetails.totalCalories,
       mealType: dietDetails.currentMeal.mealType,
       time: dietDetails.currentMeal.time,
       selectedBrand: dietDetails.selectedBrand
-      /* meals: updatedMeals */
     }
   
     try {
-     /*  console.log("Sending payload:", JSON.stringify(payload)) */
       
-      /* const response = await fetch('http://localhost:3000/api/pet/dietdetails/', { */
       const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`, {
         method: 'POST',
         headers: {
@@ -272,14 +242,13 @@ console.log("Payload:", JSON.stringify(payload))
       })
 
       console.log("Sending payload:", JSON.stringify(payload))
-  
+
       if (!response.ok) throw new Error('Failed to save/update diet details')
       const result = await response.json()
       console.log('Operation successful:', result)
-      
-     
-      dispatch({ type: 'SET_DIET_DETAILS', details: {...result, /* meals: updatedMeals, */ currentMeal: { mealType: '', time: '', quantity: '0' }} })
-  
+
+      dispatch({ type: 'SET_DIET_DETAILS', details: {...result, currentMeal: { mealType: '', time: '', quantity: '0' }} })
+
       navigate('/dietdetails', { state: { refresh: true } })
     } catch (error) {
       console.error('Error saving/updating diet details:', error)
@@ -287,23 +256,17 @@ console.log("Payload:", JSON.stringify(payload))
       setIsSubmitting(false)
     }
   }
-  
-  
 
-  
-    
+
   return (
     <div className="diet-details-container">
        <h1 className="custom-heading">Add Meal</h1>
-      {/* <h1>Diet Details</h1> */}
-
-      
+ 
       <form onSubmit={handleSubmit}>
 
 
       <div >
       <Form.Group>
-      {/* <Form.Label>Brand:</Form.Label> */}
       <Form.Select 
       className="mealForm"
       name="selectedBrand" 
@@ -321,8 +284,6 @@ console.log("Payload:", JSON.stringify(payload))
 
       <div >
       <Form.Group>
-      {/* <Form.Label>Quantity (grams):</Form.Label> */}
-      
       <Form.Select 
       className="mealForm"
       type="number" 
@@ -348,7 +309,6 @@ console.log("Payload:", JSON.stringify(payload))
 
       <div>
       <Form.Group>
-        {/* <label>Meal Type:</label> */}
         <Form.Select
         className="mealForm"
         name="mealType" 
@@ -373,14 +333,6 @@ console.log("Payload:", JSON.stringify(payload))
       </div>
 
 
-
-
-
-
-
-      {/* </form> */}
-
-
       <div className="center-select">
 
 <Card style={{ width: '40rem' }} className="addmeal-nutrients-card">
@@ -392,26 +344,14 @@ console.log("Payload:", JSON.stringify(payload))
         <ListGroup.Item><strong>Total Calories:</strong> {dietDetails.totalCalories} kcal</ListGroup.Item>
       </ListGroup>
     </Card>
-   
    </div>
-   
 
-     
     <Button variant="primary" onClick={addMealAndSave} disabled={isSubmitting} className="save-button">
       Add Meal and Save
     </Button>
-    
-
       </form>
     </div>
-    
-    
   )
-  
 }
-
-
- 
-
 
 export default DietDetails

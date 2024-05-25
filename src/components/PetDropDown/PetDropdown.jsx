@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPets, setCurrentPet } from '../Profile/petProfileSlice'
@@ -9,7 +9,6 @@ const PetDropdown = () => {
     const currentPet = useSelector(state => state.pets.currentPet)
 
     useEffect(() => {
-        /* console.log('Pets in dropdown:', pets) */
         dispatch(fetchPets())
     }, [dispatch])
 

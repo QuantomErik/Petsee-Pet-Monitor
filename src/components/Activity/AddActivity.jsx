@@ -1,9 +1,9 @@
-import React, { useReducer, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useReducer, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 // Define initial state and reducer for the activity details
@@ -90,12 +90,9 @@ export const ActivityDetails = () => {
       <div className="activity-details-container">
         <h1 className="custom-heading">Add Activity</h1>
 
-        
-
         <div>
           
 <Form.Group>
- {/*  <Form.Label>Activity Type</Form.Label> */}
   <Form.Select
     className="activityForm"
     name="type"
@@ -114,7 +111,6 @@ export const ActivityDetails = () => {
 
 <div>
 <Form.Group>
-  {/* <Form.Label>Activity Duration</Form.Label> */}
   <Form.Select
     className="activityForm"
     name="duration"
@@ -134,7 +130,6 @@ export const ActivityDetails = () => {
 
 <div>
 <Form.Group>
- {/*  <Form.Label>Activity Intensity</Form.Label> */}
   <Form.Select
     className="activityForm"
     name="intensity"
@@ -154,9 +149,6 @@ export const ActivityDetails = () => {
   <Button variant="primary" onClick={handleSaveActivityDetails} className="save-button">
 Save Activity Details
 </Button>
-
-          {/* <button onClick={handleSaveActivityDetails} className="save-button">Save Activity Details</button> */}
-        
       </div>
       
     )

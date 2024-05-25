@@ -63,13 +63,18 @@ const hasPermission = (req, res, next, permissionLevel) => {
  */
 const authenticateJWT = async (req, res, next) => {
   try {
-    const [authenticationScheme, token] = req.headers.authorization?.split(' ')
+
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+      throw new Error('Authorization header is missing.');
+    }
+
+    const [authenticationScheme, token] = authHeader.split(' ');
 
     if (authenticationScheme !== 'Bearer') {
       throw new Error('Invalid authentication scheme.')
     }
 
-    /*  req.user = await JsonWebToken.decodeUser(token, process.env.ACCESS_TOKEN_SECRET) */
     req.user = await JsonWebToken.decodeUser(token)
 
     console.log('Authorization header:', req.headers.authorization)

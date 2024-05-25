@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react'; */
 import { render, fireEvent, waitFor, act } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -24,12 +24,12 @@ describe('EditToDoList', () => {
   const navigate = jest.fn();
   beforeEach(() => {
     jest.clearAllMocks();
-    global.fetch = jest.fn();
+    window.fetch = jest.fn();
     jest.requireMock('react-router-dom').useNavigate.mockReturnValue(navigate);
   });
 
   afterEach(() => {
-    global.fetch.mockRestore();
+    window.fetch.mockRestore();
     localStorage.clear();
   });
 
@@ -47,7 +47,7 @@ describe('EditToDoList', () => {
   };
 
   it('retrieves and displays the task details', async () => {
-    global.fetch.mockResolvedValueOnce({
+    window.fetch.mockResolvedValueOnce({
       ok: true,
       json: () => Promise.resolve({
         task: 'Test Task',
@@ -63,7 +63,7 @@ describe('EditToDoList', () => {
   });
 
   it('updates the task successfully', async () => {
-    global.fetch
+    window.fetch
       .mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve({
@@ -94,7 +94,7 @@ describe('EditToDoList', () => {
   });
 
   it('deletes the task successfully', async () => {
-    global.fetch
+    window.fetch
       .mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve({
@@ -122,7 +122,7 @@ describe('EditToDoList', () => {
   });
 
   it('handles failed task retrieval', async () => {
-    global.fetch.mockResolvedValueOnce({
+    window.fetch.mockResolvedValueOnce({
       ok: false,
     });
 
@@ -134,7 +134,7 @@ describe('EditToDoList', () => {
   });
 
   it('handles failed task update', async () => {
-    global.fetch
+    window.fetch
       .mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve({
@@ -158,7 +158,7 @@ describe('EditToDoList', () => {
   });
 
   it('handles failed task deletion', async () => {
-    global.fetch
+    window.fetch
       .mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve({

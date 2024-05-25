@@ -5,9 +5,6 @@
  */
 
 import express from 'express'
-import http from 'node:http'
-/* import { router as homeRouter } from './homeRouter.js' */
-/* import { router as dashRouter } from './dashRouter.js' */
 import { router as loginRouter } from './loginRouter.js'
 import { router as userRouter } from './userRouter.js'
 import { router as logoutRouter } from './logoutRouter.js'

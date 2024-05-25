@@ -25,31 +25,6 @@ export class LoginController {
    * @throws {Error} Throws an error if there's an issue with authentication.
    */
 
-
-/* async login(req, res) {
-    try {
-      const user = await UserModel.authenticate(req.body.username, req.body.password)
-      if (user) {
-        const accessToken = await JsonWebToken.encodeUser(user, '36h')
-        res.json({
-          success: true,
-          message: 'Login successful',
-          user: {
-            id: user.id,
-            username: user.username
-          },
-          accessToken
-        })
-      } else {
-        res.status(401).json({ success: false, message: 'Invalid username or password' })
-      }
-    } catch (error) {
-      console.error('Login error:', error)
-      res.status(500).json({ success: false, message: 'Internal server error' })
-    }
-  } */
-
-
   async login(req, res) {
     try {
         const result = await UserModel.authenticate(req.body.username, req.body.password)
@@ -80,6 +55,4 @@ export class LoginController {
         res.status(500).json({ success: false, message: 'Internal server error' })
     }
 }
-
-
 }

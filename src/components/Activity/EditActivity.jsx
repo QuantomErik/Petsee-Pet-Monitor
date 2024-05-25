@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
-import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 function EditActivity() {
@@ -73,8 +72,8 @@ function EditActivity() {
     console.log("Navigating to /activitydetails")
     navigate('/activitydetails')
   }, 100)
-               
-                
+
+
             } else {
                 throw new Error(data.message || 'Failed to update activity')
             }
@@ -118,10 +117,7 @@ function EditActivity() {
     return (
         <div>
             <h1 className="custom-heading">Edit Activity</h1>
-           {/*  <ToastContainer /> */}
         <Form onSubmit={handleSubmit}>
-
-{/* <div className="center-select"> */}
 <div >
             <Form.Group>
                 <Form.Label>Activity Type</Form.Label>
@@ -139,7 +135,7 @@ function EditActivity() {
             </Form.Group>
             </div>
 
-            {/* <div className="center-select"> */}
+
             <div >
             <Form.Group>
                 <Form.Label>Duration (min)</Form.Label>
@@ -157,7 +153,7 @@ function EditActivity() {
             </Form.Group>
             </div>
 
-            {/* <div className="center-select"> */}
+
             <div >
             <Form.Group>
                 <Form.Label>Intensity</Form.Label>

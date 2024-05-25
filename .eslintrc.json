@@ -1,3 +1,26 @@
 {
-    "extends": "@lnu"
+  "extends": ["@lnu", "eslint:recommended", "plugin:react/recommended", "plugin:react/jsx-runtime", "plugin:react-hooks/recommended"],
+  "env": {
+    "node": true,
+    "jest": true,
+    "es2020": true,
+    "browser": true,
+    "testcafe": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": ["react-refresh"],
+  "rules": {
+    "react/jsx-no-target-blank": "off",
+    "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "^React$" }]
+  },
+  "ignorePatterns": ["dist", ".eslintrc.cjs"]
 }

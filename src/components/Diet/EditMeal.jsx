@@ -1,17 +1,6 @@
-/* import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import ListGroup from 'react-bootstrap/ListGroup'
-import Card from 'react-bootstrap/Card'
- */
-
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Form, Button, ListGroup, Card } from 'react-bootstrap'
-import { toast } from 'react-toastify'
-
 
 const brandsData = {
     brands: [
@@ -57,30 +46,19 @@ const brandsData = {
         if (brand && quantity) {
             const nutrients = {}
             Object.entries(brand.nutrients).forEach(([key, percent]) => {
-                nutrients[key] = ((quantity * percent) / 100).toFixed(2) // Ensure calculation is correct
+                nutrients[key] = ((quantity * percent) / 100).toFixed(2)
             })
             const totalCalories = (brand.caloriesPerGram * quantity).toFixed(2)
-    
             return { nutrients, totalCalories }
         }
-    
-        return { nutrients: {}, totalCalories: '0' } // Return default if no brand or quantity
+             return { nutrients: {}, totalCalories: '0' }
     }
 
- 
-
-  const calculateTotalCalories = (quantity, brandName) => {
-    const brand = brandsData.brands.find(b => b.name === brandName)
-    return brand ? (brand.caloriesPerGram * parseFloat(quantity)).toFixed(2) : 0
-  }
-
- 
 
     useEffect(() => {
         const fetchMeal = async () => {
             setIsLoading(true)
             try {
-               /*  const response = await fetch(`http://localhost:3000/api/pet/dietdetails/${id}`, { */
                const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/dietdetails/${id}`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 })
@@ -104,7 +82,6 @@ const brandsData = {
             }
             setIsLoading(false)
         }
-    
         fetchMeal()
     }, [id])
     
@@ -127,8 +104,6 @@ const brandsData = {
             }))
         }
     }
-    
-   
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -145,15 +120,12 @@ const brandsData = {
             const data = await response.json()
             if (response.ok) {
 
-                
                 console.log("Setting flash message")
-  localStorage.setItem('flashMessage', 'Meal updated successfully!')
-  setTimeout(() => {
-    console.log("Navigating to /dietdetails")
-    navigate('/dietdetails')
-  }, 100)
-               
-               
+            localStorage.setItem('flashMessage', 'Meal updated successfully!')
+            setTimeout(() => {
+            console.log("Navigating to /dietdetails")
+            navigate('/dietdetails')
+        }, 100)
             } else {
                 throw new Error(data.message || 'Failed to update meal')
             }
@@ -201,12 +173,9 @@ const brandsData = {
     return (
         <div className="form-container">
             <h1 className="custom-heading">Edit Meal</h1>
-           {/*  <ToastContainer /> */}
         <Form onSubmit={handleSubmit}>
-
 <div>
 
-    
             <Form.Group>
                 <Form.Label>Selected Brand</Form.Label>
                 <Form.Select
@@ -253,7 +222,7 @@ const brandsData = {
                 <Form.Select
                 className="mealForm"
                     name="mealType"
-                    value={meal/* .currentMeal? */.mealType}
+                    value={meal.mealType}
                     onChange={handleInputChange}
                 >
                     <option value="">Choose Meal</option>
@@ -268,7 +237,7 @@ const brandsData = {
             <div className="center-select">
                 <Form.Group>
                 <Form.Label>Choose a Time</Form.Label>
-                    <input type="time" name="time" value={meal/* .currentMeal? */.time || ''} onChange={handleInputChange} />
+                    <input type="time" name="time" value={meal.time || ''} onChange={handleInputChange} />
                     </Form.Group>
             </div>
 
@@ -283,10 +252,7 @@ const brandsData = {
       </ListGroup>
     </Card>
     </div>
-
-
             <Button variant="primary" type="submit">Update Meal</Button>
-
             <Button variant="danger" onClick={handleDelete}>Delete Meal</Button>
         </Form>
         </div>
