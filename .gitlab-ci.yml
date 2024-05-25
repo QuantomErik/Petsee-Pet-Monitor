@@ -1,7 +1,4 @@
-# Using latest node version
 image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
-#image: node:16
-
 
 # Gitlab has built-in templates that we can use for different checks. 
 # This one is documented at https://docs.gitlab.com/ee/user/application_security/secret_detection/
@@ -10,15 +7,15 @@ include:
   - template: Security/Secret-Detection.gitlab-ci.yml
 
 stages:
-  # - build
-  # - test
-  # - review
-  # - production
+  - build
   - test
+  - review
+  # - production
 
 variables:
   NODE_ENV: development
-  TESTCAFE_BROWSER_INIT_TIMEOUT: 600000
+  # TESTCAFE_BROWSER_INIT_TIMEOUT: 600000
+
 cache:
   paths:
     - node_modules/
@@ -30,83 +27,28 @@ before_script:
   - rm -f package-lock.json
   - npm install
 
-# Build system:
-#  stage: build
-  
-#  script:
-#    - echo "Building..."
-    
+build_system:
+  stage: build
+  script:
+    - echo "Building..."
 
-# Code Linting:
-#  stage: test
-  
-#  script:
-#    - echo "Code Linting...."
-#    - npm run lint
-    
-
-# Document Linting:
-#  stage: test
-  
-#  script:
-#    - echo "Document Linting...."
-    
-
-#Unit tests:
-#  stage: test
-  
-#  script:
-#    - echo "Running Unit tests..."
-#    - npm run test
-
-start_application:
+unit_tests:
   stage: test
   script:
-    - echo "Starting Vite server..."
-    - npm run dev &  # Run Vite in the background
-    - sleep 30  # Wait for the server to start
-  rules:
-    - when: always
+    - echo "Running Unit tests..."
+    - npm run test
 
-Acceptance tests:
-  
-  
-  stage: test
-  before_script:
-    - apt-get update
-    - apt-get install -y wget tar bzip2 libdbus-glib-1-2 libxt6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libasound2 libgtk-3-0
-    - wget -qO- "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" | tar xj
-    - mv firefox /opt/firefox
-    - ln -s /opt/firefox/firefox /usr/bin/firefox
-    - /usr/bin/firefox --version  # Check Firefox version to ensure it is installed correctly
-    - npm install -g testcafe
+deploy_to_testenv:
+  stage: review
   script:
-    - echo "Running Acceptance (e2e) Tests..."
- #   - npm run test:acceptance
- #   - testcafe "firefox:headless" tests/acceptance/*.e2e.test.js
-    - npx testcafe "firefox:headless" tests/acceptance/*.e2e.test.js
-# Deploy to testenv:
-#  stage: review
-  
-#  script:
-#    - echo "Deploying to review server"
-#    - echo "Building the application..."
-#    - npm run build
-#    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
-#    - echo "Running deployment script on the server..."
-#    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
+    - echo "Deploying to review server"
+    - echo "Building the application..."
+    - npm run build
+    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
+    - echo "Running deployment script on the server..."
+    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
 
-#Deploy to production:
-#  stage: production
-  
-#  script:
-#    - echo "Deploying to production server"
-#    - echo "Building the application..."
-#    - npm run build
-#    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
-#    - echo "Running deployment script on the server..."
-#    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
-  
   rules:
     # We want to production as a manual step.
-    - when: manual 
+    - when: manual
+
