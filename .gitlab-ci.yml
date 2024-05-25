@@ -18,7 +18,7 @@ stages:
 
 variables:
   NODE_ENV: development
-
+  TESTCAFE_BROWSER_INIT_TIMEOUT: 600000
 cache:
   paths:
     - node_modules/
@@ -65,16 +65,16 @@ Acceptance tests:
   stage: test
   before_script:
     - apt-get update
-    - apt-get install -y wget tar bzip2
+    - apt-get install -y wget tar bzip2 libdbus-glib-1-2 libxt6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libasound2
     - wget -qO- "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" | tar xj
     - mv firefox /opt/firefox
     - ln -s /opt/firefox/firefox /usr/bin/firefox
     - npm install -g testcafe
   script:
     - echo "Running Acceptance (e2e) Tests..."
-    - npm run test:acceptance
+ #   - npm run test:acceptance
  #   - testcafe "firefox:headless" tests/acceptance/*.e2e.test.js
-
+    - npx testcafe "firefox:headless" tests/acceptance/*.e2e.test.js
 # Deploy to testenv:
 #  stage: review
   
