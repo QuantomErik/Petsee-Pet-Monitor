@@ -59,6 +59,15 @@ before_script:
 #    - echo "Running Unit tests..."
 #    - npm run test
 
+start_application:
+  stage: test
+  script:
+    - echo "Starting Vite server..."
+    - npm run dev &  # Run Vite in the background
+    - sleep 30  # Wait for the server to start
+  rules:
+    - when: always
+
 Acceptance tests:
   
   
