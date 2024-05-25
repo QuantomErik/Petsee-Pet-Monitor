@@ -10,7 +10,7 @@ stages:
   - build
   - test
   - review
-  # - production
+  - production
 
 variables:
   NODE_ENV: development
@@ -53,7 +53,19 @@ deploy_to_testenv:
     - echo "Running deployment script on the server..."
     - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
 
-  rules:
+  #rules:
     # We want to production as a manual step.
-    - when: manual
+    #- when: manual
+
+Deploy to production:
+  stage: production
+  script:
+    - echo "Deploying to production server"
+    - echo "Building the application..."
+    - npm run build
+    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
+    - echo "Running deployment script on the server..."
+    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
+  #rules:
+  #  - when: manual    
 
