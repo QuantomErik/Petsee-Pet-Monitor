@@ -1,7 +1,6 @@
 # Using latest node version
-# image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
+image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
 
-image: node:14-browsers
 
 # Gitlab has built-in templates that we can use for different checks. 
 # This one is documented at https://docs.gitlab.com/ee/user/application_security/secret_detection/
@@ -60,7 +59,9 @@ Unit tests:
 
 Acceptance tests:
   stage: test
-
+  before_script:
+    - apt-get update
+    - apt-get install -y firefox
   
   script:
     - echo "Running Acceptance (e2e) Tests..."
