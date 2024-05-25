@@ -26,6 +26,10 @@ before_script:
   - rm -rf node_modules/
   - rm -f package-lock.json
   - npm install
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - ssh-keyscan -H cscloud7-95.lnu.se >> ~/.ssh/known_hosts
 
 build_system:
   stage: build
@@ -44,6 +48,7 @@ deploy_to_testenv:
     - echo "Deploying to review server"
     - echo "Building the application..."
     - npm run build
+    - echo "Copying files to the server"
     - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
     - echo "Running deployment script on the server..."
     - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
