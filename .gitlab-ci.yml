@@ -68,7 +68,7 @@ Acceptance tests:
   
   script:
     - echo "Running Acceptance (e2e) Tests..."
-    - npm run test:acceptance
+    - npm run test:acceptance -- --headless
 
 Deploy to testenv:
   stage: review
