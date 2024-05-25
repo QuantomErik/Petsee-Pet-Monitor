@@ -68,7 +68,7 @@ Acceptance tests:
   
   script:
     - echo "Running Acceptance (e2e) Tests..."
-    - npm run test:acceptance -- --headless
+    - testcafe "firefox:headless" tests/acceptance/*.e2e.test.js
 
 Deploy to testenv:
   stage: review
