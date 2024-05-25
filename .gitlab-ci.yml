@@ -61,7 +61,10 @@ Acceptance tests:
   stage: test
   before_script:
     - apt-get update
-    - apt-get install -y firefox
+    - apt-get install -y wget tar
+    - wget -qO- "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" | tar xj
+    - mv firefox /opt/
+    - ln -s /opt/firefox/firefox /usr/bin/firefox
   
   script:
     - echo "Running Acceptance (e2e) Tests..."
