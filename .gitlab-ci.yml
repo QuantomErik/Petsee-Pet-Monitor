@@ -70,7 +70,7 @@ Acceptance tests:
    # - wget -qO- "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" | tar xj
   #- mv firefox /opt/
    # - ln -s /opt/firefox/firefox /usr/bin/firefox
-  
+    - npm install -g testcafe 
   script:
     - echo "Running Acceptance (e2e) Tests..."
     - npm run test:acceptance
