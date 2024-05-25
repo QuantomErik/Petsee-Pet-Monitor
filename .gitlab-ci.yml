@@ -60,7 +60,7 @@ before_script:
 #    - npm run test
 
 Acceptance tests:
-  image: cirkleci/node:16-browsers
+  
   
   stage: test
   before_script:
