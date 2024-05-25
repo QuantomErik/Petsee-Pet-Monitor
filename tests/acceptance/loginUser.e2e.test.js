@@ -2,8 +2,8 @@ import { Selector } from 'testcafe'
 
 // Fixture and URL
 fixture `User Login`
-  .page `http://localhost:5173/petsee/login`
-  /* .page `https://cscloud7-95.lnu.se/petsee/login` */
+ /*  .page `http://localhost:5173/petsee/login` */
+  .page `https://cscloud7-95.lnu.se/petsee/login`
 
 // Test for successful login
 test('should log in a user successfully', async t => {
