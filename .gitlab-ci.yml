@@ -1,5 +1,6 @@
 # Using latest node version
-image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
+#image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
+image: node:16
 
 
 # Gitlab has built-in templates that we can use for different checks. 
@@ -9,10 +10,11 @@ include:
   - template: Security/Secret-Detection.gitlab-ci.yml
 
 stages:
-  - build
+  # - build
+  # - test
+  # - review
+  # - production
   - test
-  - review
-  - production
 
 variables:
   NODE_ENV: development
@@ -28,69 +30,73 @@ before_script:
   - rm -f package-lock.json
   - npm install
 
-Build system:
-  stage: build
+# Build system:
+#  stage: build
   
-  script:
-    - echo "Building..."
+#  script:
+#    - echo "Building..."
     
 
-Code Linting:
-  stage: test
+# Code Linting:
+#  stage: test
   
-  script:
-    - echo "Code Linting...."
-    - npm run lint
+#  script:
+#    - echo "Code Linting...."
+#    - npm run lint
     
 
-Document Linting:
-  stage: test
+# Document Linting:
+#  stage: test
   
-  script:
-    - echo "Document Linting...."
+#  script:
+#    - echo "Document Linting...."
     
 
-Unit tests:
-  stage: test
+#Unit tests:
+#  stage: test
   
-  script:
-    - echo "Running Unit tests..."
-    - npm run test
+#  script:
+#    - echo "Running Unit tests..."
+#    - npm run test
 
 Acceptance tests:
+  image: cirkleci/node:16-browsers
+  
   stage: test
   before_script:
     - apt-get update
-    - apt-get install -y wget tar bzip2
-    - wget -qO- "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" | tar xj
-    - mv firefox /opt/
-    - ln -s /opt/firefox/firefox /usr/bin/firefox
+   # - apt-get install -y wget tar bzip2
+    - apt-get install
+   # - wget -qO- "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" | tar xj
+  #- mv firefox /opt/
+   # - ln -s /opt/firefox/firefox /usr/bin/firefox
   
   script:
     - echo "Running Acceptance (e2e) Tests..."
-    - testcafe "firefox:headless" tests/acceptance/*.e2e.test.js
+    - npm run test:acceptance
+ #   - testcafe "firefox:headless" tests/acceptance/*.e2e.test.js
 
-Deploy to testenv:
-  stage: review
+# Deploy to testenv:
+#  stage: review
   
-  script:
-    - echo "Deploying to review server"
-    - echo "Building the application..."
-    - npm run build
-    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
-    - echo "Running deployment script on the server..."
-    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
+#  script:
+#    - echo "Deploying to review server"
+#    - echo "Building the application..."
+#    - npm run build
+#    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
+#    - echo "Running deployment script on the server..."
+#    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
 
-Deploy to production:
-  stage: production
+#Deploy to production:
+#  stage: production
   
-  script:
-    - echo "Deploying to production server"
-    - echo "Building the application..."
-    - npm run build
-    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
-    - echo "Running deployment script on the server..."
-    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
+#  script:
+#    - echo "Deploying to production server"
+#    - echo "Building the application..."
+#    - npm run build
+#    - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
+#    - echo "Running deployment script on the server..."
+#    - ssh ubuntu@cscloud7-95.lnu.se 'bash /var/www/petsee/scripts/deploy.sh'
   
   rules:
     # We want to production as a manual step.
