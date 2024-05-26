@@ -1,4 +1,6 @@
-image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
+#image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
+
+image: node:14
 
 # Gitlab has built-in templates that we can use for different checks. 
 # This one is documented at https://docs.gitlab.com/ee/user/application_security/secret_detection/
@@ -23,8 +25,8 @@ cache:
 
 before_script:
   - echo "Running before_script"
-  - rm -rf node_modules/
-  - rm -f package-lock.json
+  #- rm -rf node_modules/
+  #- rm -f package-lock.json
   - npm install
   - mkdir -p ~/.ssh
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
@@ -35,6 +37,14 @@ build_system:
   stage: build
   script:
     - echo "Building..."
+
+Code Linting:
+  stage: test
+  
+  script:
+    - echo "Code Linting...."
+    - npm run lint
+
 
 unit_tests:
   stage: test
