@@ -48,12 +48,13 @@ return (
   <div className="text-gray-800">
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/petsee/home">Pet App</Navbar.Brand>
+       {/*  <Navbar.Brand href="/petsee/home">Pet App</Navbar.Brand> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" variant="tabs" defaultActiveKey="/home">
             {isAuthenticated ? (
               <>
+                
                 <Nav.Link as={Link} to="/home" eventKey="/home">Home</Nav.Link>
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               </>
