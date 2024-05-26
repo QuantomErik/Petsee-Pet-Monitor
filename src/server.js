@@ -17,6 +17,7 @@ import mongoose from 'mongoose'
 
 
 
+
 try {
   // Connect to MongoDB.
   await connectToDatabase(process.env.DB_CONNECTION_STRING)
@@ -64,7 +65,7 @@ app.use(express.urlencoded({ extended: false })) // Parses incoming requests wit
   app.use(express.urlencoded({ extended: false }))
   app.use(express.static('dist'))
 
- 
+
 
   // Setup and use session middleware (https://github.com/expressjs/session)
   if (process.env.NODE_ENV === 'production') {
@@ -96,6 +97,8 @@ app.use(express.urlencoded({ extended: false })) // Parses incoming requests wit
     console.log(`Incoming request: ${req.method} ${req.path}`)
     next()
   })
+
+  
 
   // Starts the HTTP server listening for connections.
   const server = app.listen(process.env.PORT || 3000, () => {
