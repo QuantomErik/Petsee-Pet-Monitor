@@ -1,6 +1,6 @@
-image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
+# image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
 
-#image: node:20
+# image: node:20
 
 # Gitlab has built-in templates that we can use for different checks. 
 # This one is documented at https://docs.gitlab.com/ee/user/application_security/secret_detection/
@@ -39,6 +39,9 @@ build_system:
   stage: build
   script:
     - echo "Building..."
+    - rm -rf node_modules/
+    - rm -f package-lock.json
+    - npm install
 
 Code Linting:
   stage: test
