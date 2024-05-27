@@ -166,7 +166,7 @@ Unit tests for the pet details form validation and submission, and acceptance te
 
 - **Result:** [PASS 1/1]
 
-![Local Image](./screenshots//automatedTests/Petdetails-unit.png)
+![Local Image](./screenshots//automatedTests/PetDetails-acceptance.png)
 
 
 
