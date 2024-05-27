@@ -1,1 +1,0 @@
->Syftet med ordlistan är att förklara termer och begrepp så att missförstånd kan undvikas. Ordlistan kan även tjäna som uppslagsverk och definiera begrepp i kraven på ett tydligt sätt så att man slipper återupprepa detta hela tiden.

@@ -20,6 +20,7 @@
 - [Testrapport](Testning/Testrapport-5) iteration 6
 - [Testrapport](Testning/Testrapport-6) iteration 6
 - [Testrapport](Testning/Testrapport-7) iteration 6
+- [Testrapport](Testning/Testrapport-8) iteration 7
 - ...
 - Testrapport iteration 8
 
@@ -32,6 +33,7 @@
 - [Iteration 4](/Sprints/Iteration-4)
 - [Iteration 5](/Sprints/Iteration-5)
 - [Iteration 6](/Sprints/Iteration-6)
+- [Iteration 7](/Sprints/Iteration-7)
 - ...
 - Iteration 8
 
