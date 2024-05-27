@@ -1,6 +1,6 @@
 #image: gitlab.lnu.se:5050/1dv025/pipelines/docker-images
 
-image: node:14
+image: node:18
 
 # Gitlab has built-in templates that we can use for different checks. 
 # This one is documented at https://docs.gitlab.com/ee/user/application_security/secret_detection/
