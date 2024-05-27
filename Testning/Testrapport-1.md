@@ -1,8 +1,25 @@
 2024-04-11
 
-### Test User Registration
-
 >* Test enviroment: VScode, google chrome, web browser, mongoDB.
+
+
+### Test Start Page
+
+#### Test Case 1.1: Successful display of start page
+#### Objective: Verify that the user is met by a sleek and easy to navigate start page
+
+![Local Image](./screenshots/TC1.1.png)
+
+
+#### Test Case 1.2: Register/Login from start page
+#### Objective: Ensure the start page has links to register/login.
+
+![Local Image](./screenshots/TC1.2.png)
+
+
+
+
+### Test User Registration
 
 #### Test Case 2.1: Successful User Registration
 #### Objective: Verify that new users can register successfully using valid credentials.
