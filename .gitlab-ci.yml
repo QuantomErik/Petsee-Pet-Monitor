@@ -25,8 +25,8 @@ cache:
 
 before_script:
   - echo "Running before_script"
-  #- rm -rf node_modules/
-  #- rm -f package-lock.json
+  - rm -rf node_modules/
+  - rm -f package-lock.json
   - npm install
   - mkdir -p ~/.ssh
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
@@ -62,6 +62,9 @@ deploy_to_testenv:
   script:
     - echo "Deploying to review server"
     - echo "Building the application..."
+    - rm -rf node_modules/
+    - rm -f package-lock.json
+    - npm install
     - npm run build
     - echo "Copying files to the server"
     - scp -r ./dist/* ubuntu@cscloud7-95.lnu.se:/var/www/petsee/dist
