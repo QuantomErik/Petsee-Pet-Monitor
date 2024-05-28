@@ -7,15 +7,15 @@ This week I spent alot of time on finetuning the UI and overall design of my app
 
 | Uppgift                                            | Krav                  | Teststatus                        | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------|-------------|-------------|
-| Titta på video Blogg                               |                       |                                   | 1           |             |
-| Gå igenom material på kurshemsidan                 |                       |                                   | 1           |             |
-| Research av React                                  |                       |                                   | 1           |    1        |
+| Watch video Blogg                                  |                       |                                   | 1           |             |
+| Go through online course content                   |                       |                                   | 1           |             |
+| Research React                                     |                       |                                   | 1           |    1        |
 | Adjust application for responsiveness for phone    |                       |                                   | 8           |    8        |
 | Finetune the interface and design for the app      |                       |                                   | 8           |    8        |
 | Work on serviceworker for offline functionality    |                       |                                   | 7           |    1        |
 | Restructure code for better readability            |                       |                                   | 4           |             |
 | Brainstorm about additional functions              |                       |                                   | 4           |    4        |
-| Skriva Sprint BackLogs                             |                       |                                   | 1           |    2        |
+| Produce Sprint BackLog                             |                       |                                   | 1           |    2        |
 | Add additional functions                           |                       |                                   | 8           |             |
 | Add additional function - ProgressBar              |                       |                                   | 8           |    8        |
 | Restructure code, routes, urls for production      |                       |                                   | 2           |    2        |

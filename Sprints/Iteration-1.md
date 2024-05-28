@@ -8,14 +8,14 @@ The application now has a fully functioning login page. I have created manual te
 
 | Uppgift                                            | Krav                  | Teststatus                                | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-------------------------------------------|-------------|-------------|
-| Titta på video Blogg                               |                       |                                           | 1           | 1           |
-| Gå igenom material på kurshemsidan                 |                       |                                           | 3           | 2           |
-| Research av React                                  |                       |                                           | 5           | 4           |
-| Skriva kod                                         |                       |                                           | 20          | 25          |
-| Fundera över projectidé på promenad/i bilen        |                       |                                           | 4           | 4           |
-| Skriva Sprint BackLogs                             |                       |                                           | 1           | 1           |
-| Validering av inloggningsfunktion                  | 3 – Inloggning        | [4 ✅](/Testning/Testrapport-1.md)        | 2            | 2          |
-| Validering av registreringssfunktion               | 2 – Registrering      | [1 ✅, 4 ❌](/Testning/Testrapport-1.md) | 2            | 2          |
+| Watch video Blogg                                  |                       |                                           | 1           | 1           |
+| Go through online course content                   |                       |                                           | 3           | 2           |
+| Research React                                     |                       |                                           | 5           | 4           |
+| Produce code                                       |                       |                                           | 20          | 25          |
+| Think about project idéa on walks/in car           |                       |                                           | 4           | 4           |
+| Produce Sprint BackLogs                            |                       |                                           | 1           | 1           |
+| Validating log in function                         | 3 – Inloggning        | [4 ✅](/Testning/Testrapport-1.md)        | 2            | 2          |
+| Validering register function                       | 2 – Registrering      | [1 ✅, 4 ❌](/Testning/Testrapport-1.md) | 2            | 2          |
 | …                                                  | …                     | …                                         | …           | …           |
 |                                                    |                       | Summa                                     | 35          | 41          |
 |                                                    |                       | Tid sedan föregående iteration            |             | 50          |

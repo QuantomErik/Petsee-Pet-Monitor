@@ -6,15 +6,15 @@ This week I mainly focused on deploying my application for production. I first t
 
 | Uppgift                                            | Krav                  | Teststatus                        | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------|-------------|-------------|
-| Titta på video Blogg                               |                       |                                   | 1           |   0         |
-| Gå igenom material på kurshemsidan                 |                       |                                   | 1           |   1         |
-| Research av React                                  |                       |                                   | 1           |   1         |
+| Watch video Blogg                                  |                       |                                   | 1           |   0         |
+| Go through online course content                   |                       |                                   | 1           |   1         |
+| Research React                                     |                       |                                   | 1           |   1         |
 | Restructure activitydetails                        |                       |                                   | 7           |             |
 | Implement add activity for specific pet            |                       |                                   | 7           |             |
 | Implement fetch activities for specific pet        |                       |                                   | 7           |             |
 | Continue working on Dock                           |                       |                                   | 7           |             |
-| Fundera över projectidé på promenad/i bilen        |                       |                                   | 1           |             |
-| Skriva Sprint BackLogs                             |                       |                                   | 1           |   1         |
+| Think about project idéa on walks/in car           |                       |                                   | 1           |             |
+| Produce Sprint BackLog                             |                       |                                   | 1           |   1         |
 | Deploy application in production                   |                       |                                   |             |   4         |
 | Creating a serviceWorker                           |                       |                                   |             |   2         |
 | Writing manifest                                   |                       |                                   |             |   2         |

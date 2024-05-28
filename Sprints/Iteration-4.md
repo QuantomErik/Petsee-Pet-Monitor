@@ -6,9 +6,9 @@ This week we had the oral examination on the course and so I spent some time stu
 
 | Uppgift                                            | Krav                  | Teststatus                        | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------|-------------|-------------|
-| Titta på video Blogg                               |                       |                                   | 1           |       0     |
-| Gå igenom material på kurshemsidan                 |                       |                                   | 2           |       1     |
-| Research av React                                  |                       |                                   | 2           |       1     |
+| Watch video Blogg                                  |                       |                                   | 1           |       0     |
+| Go through online course content                   |                       |                                   | 2           |       1     |
+| Research React                                     |                       |                                   | 2           |       1     |
 | Restructure dietdetails                            |                       |                                   | 2           |       2     |
 | Working schedule with note function                |                       |                                   | 2           |       2     |
 | Implement switch pet function                      |                       |                                   | 7           |       7     |
@@ -17,10 +17,10 @@ This week we had the oral examination on the course and so I spent some time stu
 | Added dock with icons                              |                       |                                   | 4           |       4     |
 | Added function for adding pets from dock           |                       |                                   | 4           |       4     |
 | Implement Logout function from dock                |                       |                                   | 1           |       1     |
-| Skriva kod för activitydetails                     |                       |                                   | 1           |       1     |
-| Fundera över projectidé på promenad/i bilen        |                       |                                   | 1           |       1     |
-| Skriva Sprint BackLogs                             |                       |                                   | 1           |       1     |
-| Studera inför muntlig tentamen                     |                       |                                   | 6           |       6     |
+| Produce code for activitydetails                   |                       |                                   | 1           |       1     |
+| Think about project idéa on walks/in car           |                       |                                   | 1           |       1     |
+| Produce Sprint BackLog                             |                       |                                   | 1           |       1     |
+| Study for oral exam                                |                       |                                   | 6           |       6     |
 | Testing functions for PetDetails                   | 4 –Activity Management|                                   | 2           |       2     |
 | Testing functions for DietDetails                  | 5 –Diet Management    |                                   | 2           |       2     |
 | Testing functions for Schedule                     | 7 –Schedule Management|                                   | 1           |       0     |

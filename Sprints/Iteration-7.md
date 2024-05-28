@@ -6,15 +6,15 @@ For this week I spent most of my time developing automated unit and acceptance (
 
 | Uppgift                                            | Krav                  | Teststatus                        | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------|-------------|-------------|
-| Titta på video Blogg                               |                       |                                   | 1           |     1       |
-| Gå igenom material på kurshemsidan                 |                       |                                   | 1           |     1       |
-| Research av React                                  |                       |                                   | 1           |     1       |
+| Watch video Blogg                                  |                       |                                   | 1           |     1       |
+| Go through online course content                   |                       |                                   | 1           |     1       |
+| Research React                                     |                       |                                   | 1           |     1       |
 | Adjust application for responsiveness for phone    |                       |                                   | 8           |     2       |
 | Finetune the interface and design for the app      |                       |                                   | 8           |     2       |
 | Work on serviceworker for offline functionality    |                       |                                   | 7           |     2       |
 | Restructure code for better readability            |                       |                                   | 4           |     1       |
 | Brainstorm about additional functions              |                       |                                   | 4           |             |
-| Skriva Sprint BackLogs                             |                       |                                   | 1           |     1       |
+| Produce Sprint BackLog                             |                       |                                   | 1           |     1       |
 | Add additional functions                           |                       |                                   | 8           |             |
 | Working on ProgressBar                             |                       |                                   | 8           |     4       |
 | Creating automated unit tests                      |                       |                                   |             |     13      |

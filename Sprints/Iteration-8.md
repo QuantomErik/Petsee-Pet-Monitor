@@ -6,11 +6,11 @@
 
 | Uppgift                                            | Krav                  | Teststatus                              | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------------|-------------|-------------|
-| Gå igenom material på kurshemsidan                 |                       |                                         | 1           |            |
+| Go through online course content                   |                       |                                         | 1           |            |
 | Finetune the interface and design for the app      |                       |                                         | 2           |             |
 | Check code for lint errors                         |                       |                                         | 2           |             |
 | Check application for bugs                         |                       |                                         | 2           |             |
-| Skriva Sprint BackLogs                             |                       |                                         | 1           |             |
+| Produce Sprint BackLog                             |                       |                                         | 1           |             |
 | Work on automated unit tests                       |                       |                                         |   3          |             |
 | Work on automated acceptance tests (e2e)           |                       |                                         |    3        |             |
 | Work on documentation of the project               |                       |                                         |    16       |             |

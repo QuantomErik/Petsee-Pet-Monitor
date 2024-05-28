@@ -6,61 +6,13 @@ Applikationen har nu ett simpelt användargränssnitt. Funktion för registrerin
 
 | Uppgift                                            | Krav                  | Teststatus                        | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------|-------------|-------------|
-| Titta på video Blogg                               |                       |                                   | 1           | 1           |
-| Gå igenom material på kurshemsidan                 |                       |                                   | 3           | 3           |
-| Research av React                                  |                       |                                   | 8           | 8           |
-| Skriva kod                                         |                       |                                   | 8           | 8           |
-| Fundera över projectidé på promenad/i bilen        |                       |                                   | 4           | 4           |
-| Skriva Sprint BackLogs                             |                       |                                   | 1           | 1           |
+| Watch video Blogg                                  |                       |                                   | 1           | 1           |
+| Go through online course content                   |                       |                                   | 3           | 3           |
+| Research React                                     |                       |                                   | 8           | 8           |
+| Produce code                                       |                       |                                   | 8           | 8           |
+| Think about project idéa on walks/in car           |                       |                                   | 4           | 4           |
+| Produce Sprint BackLogs                            |                       |                                   | 1           | 1           |
 | …                                                  | …                     | …                                 | …           | …           |
 |                                                    |                       | Summa                             | 25          | 25          |
 |                                                    |                       | Tid sedan föregående iteration    |             | 50          |
 |                                                    |                       | Tid totalt i projektet            |             | 50          |
-
-# Risklista
-
-## <span style="color: red;">Tekniska Risker</span>
-
-## Dataintegritet och Noggrannhet
-
-#### Risk: Felaktig eller ofullständig data om husdjursnutrition och aktiviteter kan leda till vilseledande insikter.
-#### Åtgärd: Implementera robusta processer för datavalidering och verifiering. Samarbeta med pålitliga datakällor för information om husdjursnutrition.
-
-## API-integration och Datatillgänglighet
-
-#### Risk: Beroende av tredjeparts-API:er för näringsinformation kan leda till otillgänglighet av data eller integrationsproblem.
-#### Åtgärd: Forska och integrera med pålitliga API:er. Överväg alternativ för manuell datainmatning som en backup.
-
-## Applikationsprestanda och Skalbarhet
-
-#### Risk: Applikationen kanske inte presterar väl under belastning eller kanske inte skalar effektivt med ett ökande antal användare och datavolym.
-#### Åtgärd: Designa applikationen med skalbarhet i åtanke. Använd effektiva algoritmer, databasindexering och överväg molntjänster som skalar automatiskt.
-
-## Offline Funktionalitet och Datasynkronisering
-
-#### Risk: Som en PWA behöver applikationen fungera effektivt offline och pålitligt synkronisera data när den är online.
-#### Åtgärd: Implementera service workers och lokala cachningsmekanismer effektivt. Säkerställ att datasynkroniseringsprocesser är robusta och hanterar konflikter på ett smidigt sätt.
-
-## <span style="color: red;">Användarupplevelse Risker</span>
-
-## Användarengagemang och -bevarande
-
-#### Risk: Användare kan tycka att applikationen är komplex eller inte tillräckligt engagerande för att använda regelbundet.
-#### Åtgärd: Fokusera på användarvänlig design, spelmekanismer och regelbundna uppdateringar baserade på användarfeedback för att öka engagemanget.
-
-## Tillgänglighet och Användbarhet
-
-#### Risk: Applikationen kanske inte är lättanvänd för alla målanvändare, särskilt de som inte är tekniskt kunniga eller har funktionshinder.
-#### Åtgärd: Följ riktlinjer för tillgänglighet, genomför användbarhetstester med olika användargrupper och implementera intuitiva UI/UX-designer.
-
-## <span style="color: red;">Juridiska och Reglerande Risker</span>
-
-## Datasekretess och Säkerhet
-
-#### Risk: Hantering av personuppgifter, särskilt hälsorelaterad information, medför betydande integritets- och säkerhetsrisker.
-#### Åtgärd: Implementera strikta dataskyddsåtgärder, följ relevanta föreskrifter (som GDPR eller HIPAA om tillämpligt) och säkerställ kryptering av känslig data.
-
-## Immateriella rättigheter och Upphovsrättsfrågor
-
-#### Risk: Användning av tredjepartsdata eller API:er kan bryta mot immateriella rättigheter.
-#### Åtgärd: Verifiera laglig användning av externa datakällor, skaffa nödvändiga licenser och attribuera datakällor som krävs.

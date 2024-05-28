@@ -22,7 +22,7 @@ Uppnå hög användarengagemang och retention genom en välutvecklad UI/UX-desig
 ## Resursplan
 ### Människoresurser
 Projektledare/Utvecklare: Erik Yang
-Mentor/Granskare: [Oxana ]
+Mentor/Granskare: [Oxana Lundström]
 Standup möten
 
 ### Teknikresurser

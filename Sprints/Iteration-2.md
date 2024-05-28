@@ -8,16 +8,16 @@ I have now started to implement the different functions of the application. It i
 
 | Uppgift                                            | Krav                  | Teststatus                        | Skattad tid | Verklig tid |
 |----------------------------------------------------|-----------------------|-----------------------------------|-------------|-------------|
-| Titta på video Blogg                               |                       |                                   | 1           |         1   |
-| Gå igenom material på kurshemsidan                 |                       |                                   | 2           |         2   |
-| Research av React                                  |                       |                                   | 2           |         1   |
-| Skriva kod för dietdetails                         |                       |                                   | 1           |         8   |
-| Skriva kod för dietdetails/addmeal                 |                       |                                   | 5           |         17  |
-| Skriva kod för activitydetails                     |                       |                                   | 7           |         13  |
-| Skriva kod för scheduledetails                     |                       |                                   | 7           |         2   |
-| Skriva kod för petdetails                          |                       |                                   | 7           |         3   |
-| Fundera över projectidé på promenad/i bilen        |                       |                                   | 2           |         1   |
-| Skriva Sprint BackLogs                             |                       |                                   | 1           |         1   |
+| Watch video Blogg                                  |                       |                                   | 1           |         1   |
+| Go through online course content                   |                       |                                   | 2           |         2   |
+| Research React                                     |                       |                                   | 2           |         1   |
+| Produce code for dietdetails                       |                       |                                   | 1           |         8   |
+| Produce code for dietdetails/addmeal               |                       |                                   | 5           |         17  |
+| Produce code for activitydetails                   |                       |                                   | 7           |         13  |
+| Produce code for scheduledetails                   |                       |                                   | 7           |         2   |
+| Produce code for petdetails                        |                       |                                   | 7           |         3   |
+| Think about project idéa on walks/in car           |                       |                                   | 2           |         1   |
+| Produce Sprint BackLog                             |                       |                                   | 1           |         1   |
 | Testing functions for ActivityDetails              | 6 –Activity Management|[6 ✅](/Testning/Testrapport-2.md)| 2            |        4    |
 | …                                                  | …                     | …                                 | …           | …           |
 |                                                    |                       | Summa                             | 37          |         52  |
