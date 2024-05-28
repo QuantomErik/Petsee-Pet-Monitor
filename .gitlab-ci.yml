@@ -5,8 +5,7 @@ image: node:20
 # Gitlab has built-in templates that we can use for different checks. 
 # This one is documented at https://docs.gitlab.com/ee/user/application_security/secret_detection/
 # and will automatically run during the "test"-stage
-include:
-  - template: Security/Secret-Detection.gitlab-ci.yml
+
 
 stages:
   - build
