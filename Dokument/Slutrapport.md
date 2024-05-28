@@ -23,7 +23,7 @@ For the front end of my application I used React. For the backend I used MongoDB
 
 From the very onset, my goal was to create a PWA (progressive webb application). They are very flexible in terms of adjusting to different screens, whether it is a desktop screen, a laptop, an ipad or an iphone. That is why I developed my application with the thought on responsiveness to different screen sizes from the very beginning and always made sure that the user interface worked properly, especially on a phone screen.
 
-![Local Image](../testning/screenshots/slutrapport/phone1.png)
+![Local Image](../Testning/screenshots/slutrapport/phone1.png)
 
 
 ## Positives
