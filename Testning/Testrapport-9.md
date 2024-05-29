@@ -35,7 +35,7 @@ Unit tests for task retrieval and update/delete operations, and acceptance tests
    - Mock a successful API response for deleting.
    - Verify the task is deleted.
 
-![Local Image](./screenshots//automatedTests/Summary-unit.png)
+![Local Image](./screenshots//automatedTests/Summary-Unit.png)
 
 
 ## Acceptance tests (e2e)

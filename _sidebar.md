@@ -8,7 +8,7 @@
 - [Kravspecifikation](Dokument/Kravspecifikation)
 - [Projektplan](/Dokument/Projektplan) (frivillig)
 - [Risklista](/Dokument/Risklista) (frivillig)
-- [Ordlista](/Dokument/Ordlista) (frivillig)
+<!-- - [Ordlista](/Dokument/Ordlista) (frivillig) -->
 
 #### Testning
 - [TestSpecification](Testning/TestSpecification)
@@ -17,7 +17,7 @@
 - [Testrapport](Testning/Testrapport-2) iteration 2
 - [Testrapport](Testning/Testrapport-3) iteration 3
 - [Testrapport](Testning/Testrapport-4) iteration 4
-- [Testrapport](Testning/Testrapport-5) iteration 6
+- [Testrapport](Testning/Testrapport-5) iteration 5
 - [Testrapport](Testning/Testrapport-6) iteration 6
 - [Testrapport](Testning/Testrapport-7) iteration 6
 - [Testrapport](Testning/Testrapport-8) iteration 7
