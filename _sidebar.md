@@ -8,6 +8,8 @@
 - [Kravspecifikation](Dokument/Kravspecifikation)
 - [Projektplan](/Dokument/Projektplan) (frivillig)
 - [Risklista](/Dokument/Risklista) (frivillig)
+- [KlassDiagram](/Dokument/Klassdiagram.png)
+- [SekvensDiagram](/Dokument/Sekvensdiagram.png)
 <!-- - [Ordlista](/Dokument/Ordlista) (frivillig) -->
 
 #### Testning
