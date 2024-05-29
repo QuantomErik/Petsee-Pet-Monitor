@@ -21,10 +21,11 @@
 - [Testrapport](Testning/Testrapport-6) iteration 6
 - [Testrapport](Testning/Testrapport-7) iteration 6
 - [Testrapport](Testning/Testrapport-8) iteration 7
-- [Testrapport](Testning/Testrapport-9) iteration 8
 - [Testrapport](Testning/Testrapport-Feedback-student) iteration 7 - Student Feedback
-- ...
-- Testrapport iteration 8
+- [Testrapport](Testning/Testrapport-9) iteration 8
+
+
+
 
 #### Sprint Backlogs
 - [Iteration -1](/Sprints/Iteration--1)
@@ -37,8 +38,7 @@
 - [Iteration 6](/Sprints/Iteration-6)
 - [Iteration 7](/Sprints/Iteration-7)
 - [Iteration 8](/Sprints/Iteration-8)
-- ...
-- Iteration 8
+
 
 ### Applikationen
 - [Källkod](Källkod)
