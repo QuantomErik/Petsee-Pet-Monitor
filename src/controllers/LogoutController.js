@@ -5,7 +5,7 @@
  */
 
 /**
- * Encapsulates a controller.
+ * Encapsulates a controller for handling user logout.
  */
 export class LogoutController {
 /**

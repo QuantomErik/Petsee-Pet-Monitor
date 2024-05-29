@@ -1,5 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
+
+/**
+ * Async thunk to fetch meals for a specific pet on a specific date.
+ *
+ * @function
+ * @param {Object} params - Parameters for fetching meals.
+ * @param {string} params.petId - The ID of the pet.
+ * @param {string} params.date - The date for which to fetch meals.
+ * @returns {Promise<Array>} The fetched meals.
+ */
 export const fetchMeals = createAsyncThunk('meals/fetchMeals', async ({ petId, date}) => {
     const token = localStorage.getItem('token')
     const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${petId}/dietdetails?date=${date}`, {
@@ -10,6 +20,15 @@ export const fetchMeals = createAsyncThunk('meals/fetchMeals', async ({ petId, d
     return data.meals
 })
 
+
+/**
+ * Slice for managing meals state.
+ *
+ * @redux
+ * @property {Array} meals - The list of meals.
+ * @property {boolean} isLoading - Loading state for fetching meals.
+ * @property {string|null} error - Error message if fetching meals fails.
+ */
 const mealsSlice = createSlice({
     name: 'meals',
     initialState: {

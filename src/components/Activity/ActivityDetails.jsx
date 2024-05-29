@@ -11,6 +11,16 @@ import { fetchActivitiess } from './activitiesSlice'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
+/**
+ * ActivityDetails component that displays the details of activities for a specific pet.
+ * Allows the user to view, edit, and create activities for the selected date.
+ *
+ * @component
+ * @example
+ * return (
+ *   <ActivityDetails />
+ * )
+ */
 
 function ActivityDetails() {
     const [selectedDate, setSelectedDate] = useState(new Date())
@@ -19,6 +29,9 @@ function ActivityDetails() {
     const dispatch = useDispatch()
     const currentPet = useSelector(state => state.pets.currentPet)
 
+     /**
+     * Fetch activities for the selected pet and date whenever the current pet or selected date changes.
+     */
     useEffect(() => {
         if (currentPet && currentPet.id) {
             console.log(`Fetching activities for date: ${selectedDate.toISOString().split('T')[0]}`)
@@ -26,6 +39,9 @@ function ActivityDetails() {
         }
     }, [dispatch, currentPet, selectedDate])
 
+    /**
+     * Display a success toast message if a flash message is found in local storage.
+     */
     useEffect(() => {
         const message = localStorage.getItem('flashMessage')
         if (message) {

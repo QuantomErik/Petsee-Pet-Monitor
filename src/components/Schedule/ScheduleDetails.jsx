@@ -8,6 +8,15 @@ import 'react-toastify/dist/ReactToastify.css'
 import { toast} from 'react-toastify'
 
 
+/**
+ * ScheduleDetails component to display and manage the schedule details using a calendar interface.
+ *
+ * @component
+ * @example
+ * return (
+ *   <ScheduleDetails />
+ * )
+ */
 const ScheduleDetails = () => {
     const navigate = useNavigate()
     const [calendarEvents, setCalendarEvents] = useState([])
@@ -47,6 +56,12 @@ const ScheduleDetails = () => {
         fetchScheduleDetails()
     }, [])
 
+
+    /**
+     * Handles the click on a date in the calendar to open the modal for adding a note.
+     *
+     * @param {Object} arg - The date click argument from FullCalendar.
+     */
     const handleDateClick = (arg) => {
         const clickedDate = new Date(arg.dateStr)
         setScheduleDetails(prevDetails => ({
@@ -59,6 +74,11 @@ const ScheduleDetails = () => {
     }
 
 
+    /**
+     * Handles the click on an event in the calendar to open the modal for editing the note.
+     *
+     * @param {Object} clickInfo - The event click info from FullCalendar.
+     */
     const handleEventClick = (clickInfo) => {
 
         const event = clickInfo.event
@@ -70,6 +90,12 @@ const ScheduleDetails = () => {
         setModalIsOpen(true)
     }
 
+
+    /**
+     * Handles the change in the note input field.
+     *
+     * @param {Object} event - The change event from the input field.
+     */
     const handleNoteChange = (event) => {
         setScheduleDetails(prevDetails => ({
             ...prevDetails,
@@ -77,6 +103,10 @@ const ScheduleDetails = () => {
         }))
     }
 
+
+     /**
+     * Handles the save or update of the schedule details.
+     */
     const handleSaveOrUpdate = async () => {
         const token = localStorage.getItem('token')
         const method = scheduleDetails.id ? 'PUT' : 'POST'
@@ -120,6 +150,10 @@ const ScheduleDetails = () => {
         }
     }
 
+
+    /**
+     * Handles the deletion of the schedule note.
+     */
     const handleDelete = async () => {
         if (!scheduleDetails.id) return
 

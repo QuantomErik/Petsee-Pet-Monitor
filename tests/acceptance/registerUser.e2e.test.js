@@ -6,7 +6,7 @@ const generateUniqueEmail = () => `testuser${new Date().getTime()}${Math.floor(M
 
 fixture `User Registration`
   .page `http://localhost:5173/petsee/register`
-  /* .page `https://cscloud7-95.lnu.se/petsee/register` */
+ 
 
 test('should load the registration page and find the input fields', async t => {
   await t

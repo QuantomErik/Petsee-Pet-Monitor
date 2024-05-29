@@ -1,7 +1,21 @@
 import { PetProfileModel } from '../models/PetProfileModel.js'
 
+/**
+ * Controller for handling pet profile operations.
+ */
 export class PetController {
 
+
+     /**
+     * Save pet details to the database.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after saving pet details.
+     * @throws {Error} Throws an error if there's an issue saving pet details.
+     */
     async savePetDetails(req, res) {
         console.log('POST /api/pet/petdetails route handler')
         try {
@@ -28,6 +42,16 @@ export class PetController {
     }
 
 
+    /**
+     * Fetch all pet details for the logged-in user.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after fetching pet details.
+     * @throws {Error} Throws an error if there's an issue fetching pet details.
+     */
     async getPetDetails(req, res) {
         try {
 
@@ -46,6 +70,17 @@ export class PetController {
         }
     }
 
+
+    /**
+     * Fetch pet details by pet ID.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after fetching pet details by ID.
+     * @throws {Error} Throws an error if there's an issue fetching pet details.
+     */
     async getPetDetailsById(req, res) {
         try {
 
@@ -64,7 +99,18 @@ export class PetController {
     }
 
 
-async updatePetDetails(req, res) {
+
+     /**
+     * Update pet details by pet ID.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after updating pet details.
+     * @throws {Error} Throws an error if there's an issue updating pet details.
+     */
+    async updatePetDetails(req, res) {
     const { id } = req.params
     const updateData = JSON.parse(req.body.details)
    
@@ -84,7 +130,17 @@ async updatePetDetails(req, res) {
     }
 }
 
-async deletePet(req, res) {
+/**
+     * Delete pet details by pet ID.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after deleting pet details.
+     * @throws {Error} Throws an error if there's an issue deleting pet details.
+     */
+    async deletePet(req, res) {
     try {
         const id = req.params.id
         const activity = await PetProfileModel.findByIdAndDelete(id)

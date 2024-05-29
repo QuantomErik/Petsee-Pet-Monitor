@@ -2,7 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { isEqual } from 'lodash'
 
 
-// Async thunk for fetching pets
+/**
+ * Async thunk for fetching pets.
+ *
+ * @async
+ * @function fetchPets
+ * @returns {Promise<Array>} The fetched pets data.
+ * @throws {Error} If the request fails.
+ */
 export const fetchPets = createAsyncThunk('pets/fetchPets', async () => {
     const token = localStorage.getItem('token')
     console.log('Fetching pets with token:', token)
@@ -24,7 +31,12 @@ if (!response.ok) {
   return data
 })
 
-// Slice definition
+/**
+ * Redux slice for managing pets state.
+ *
+ * @constant
+ * @type {Slice}
+ */
 const petsSlice = createSlice({
   name: 'pets',
   initialState: {
@@ -33,9 +45,23 @@ const petsSlice = createSlice({
     error: null
   },
   reducers: {
+    /**
+     * Set the current pet.
+     *
+     * @function
+     * @param {Object} state - The current state of the slice.
+     * @param {Object} action - The action to set the current pet.
+     */
     setCurrentPet: (state, action) => {
       state.currentPet = action.payload
   },
+
+  /**
+     * Reset the current pet.
+     *
+     * @function
+     * @param {Object} state - The current state of the slice.
+     */
   resetCurrentPet: (state) => {
       state.currentPet = null
   }

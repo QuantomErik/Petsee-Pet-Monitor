@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react'
 import { Button, Form, InputGroup, ListGroup } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
+
+/**
+ * ToDoList component for managing and displaying a list of tasks.
+ *
+ * @component
+ * @example
+ * return (
+ *   <ToDoList />
+ * )
+ */
 function ToDoList() {
     const [tasks, setTasks] = useState([])
     const [newTask, setNewTask] = useState('')
@@ -25,7 +35,9 @@ function ToDoList() {
         fetchTasks()
     }, [])
 
-    // Function to handle adding new tasks
+     /**
+     * Handles adding a new task.
+     */
     const addTask = async () => {
         if (!newTask.trim()) return
        
@@ -51,6 +63,12 @@ function ToDoList() {
         }
     }
 
+
+    /**
+     * Toggles the completion status of a task.
+     *
+     * @param {string} id - The ID of the task to toggle.
+     */
     const toggleCompletion = async (id) => {
         const taskToUpdate = tasks.find(task => task._id === id)
         if (!taskToUpdate) return
@@ -82,7 +100,11 @@ function ToDoList() {
     }
     
 
-    // Function to handle input changes
+   /**
+     * Handles input change for the new task input field.
+     *
+     * @param {Object} e - The input change event.
+     */
     const handleInputChange = (e) => {
         setNewTask(e.target.value)
     }
@@ -94,6 +116,12 @@ function ToDoList() {
         }
     }
 
+
+    /**
+     * Navigates to the edit page for a task.
+     *
+     * @param {string} id - The ID of the task to edit.
+     */
     const handleTaskClick = (id) => {
         navigate(`/todolist/edit/${id}`)
     }

@@ -8,6 +8,17 @@ import { FaDog, FaQuestionCircle, FaHeadset} from 'react-icons/fa'
 import { MdExitToApp } from 'react-icons/md'
 import PropTypes from 'prop-types'
 
+/**
+ * More component that displays a list of pets and navigation buttons for additional actions.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {function} props.onLogout - Function to be called when the user logs out.
+ * @example
+ * return (
+ *   <More onLogout={() => console.log('Logout')} />
+ * )
+ */
 function More({ onLogout }) {
   const dispatch = useDispatch()
   const { pets} = useSelector(state => state.pets)
@@ -18,18 +29,32 @@ function More({ onLogout }) {
 
   const navigate = useNavigate()
 
+  /**
+   * Navigate to the customer service page.
+   */
   const handleCustomerServiceClick = () => {
     navigate('/customerservice')
   }
 
+  /**
+   * Navigate to the FAQ page.
+   */
   const handleFaqClick = () => {
     navigate('/faq')
   }
 
+  /**
+   * Navigate to the add pet page.
+   */
   const handleAddPetClick = () => {
     navigate('/more/addpet')
   }
 
+  /**
+   * Navigate to the pet details page for the selected pet.
+   * 
+   * @param {string} petId - The ID of the selected pet.
+   */
   const handlePetClick = (petId) => {
     navigate(`/petdetails/${petId}`)
   }

@@ -3,6 +3,16 @@ import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+
+/**
+ * EditToDoList component for editing and deleting a task from the to-do list.
+ *
+ * @component
+ * @example
+ * return (
+ *   <EditToDoList />
+ * )
+ */
 function EditToDoList() {
     const [task, setTask] = useState('')
     const [isCompleted, setIsCompleted] = useState(false)
@@ -34,6 +44,10 @@ function EditToDoList() {
         fetchTask()
     }, [id])
 
+
+     /**
+     * Function to update the task.
+     */
     const updateTask = async () => {
         try {
             const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/todolist/edit/${id}`, {
@@ -56,6 +70,10 @@ function EditToDoList() {
         }
     }
 
+
+    /**
+     * Function to delete the task.
+     */
     const deleteTask = async () => {
         try {
             const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/todolist/edit/${id}`, {

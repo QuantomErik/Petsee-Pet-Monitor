@@ -5,6 +5,16 @@ import { toast} from 'react-toastify'
 import { useParams} from 'react-router-dom'
 
 
+/**
+ * PetDetails component that displays and allows editing of pet details.
+ * Fetches pet details if an ID is provided in the URL, otherwise allows adding a new pet.
+ *
+ * @component
+ * @example
+ * return (
+ *   <PetDetails />
+ * )
+ */
 const PetDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -25,6 +35,11 @@ const PetDetails = () => {
 
 
   useEffect(() => {
+    /**
+     * Fetch pet details from the server.
+     *
+     * @param {string} petId - The ID of the pet to fetch details for.
+     */
     const fetchPetDetails = async (petId) => {
       const token = localStorage.getItem('token')
       try {
@@ -55,39 +70,11 @@ const PetDetails = () => {
     }
   }, [id, setImagePreviewUrl])
 
-  /* useEffect(() => {
-    if (id && id !== 'addpet') {
-      fetchPetDetails(id)
-    }
-  }, [id])
-
-  const fetchPetDetails = async (id) => {
-    const token = localStorage.getItem('token')
-    try {
-
-      const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/petdetails/${id}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      })
-      if (response.ok) {
-        const data = await response.json()
-        if (data) {
-          setPetDetails(data)
-          if (data.image) {
-            setImagePreviewUrl(`data:image/jpeg;base64,${data.image}`)
-          }
-        }
-      } else {
-        throw new Error('Failed to fetch pet details')
-      }
-    } catch (error) {
-      console.error('Error fetching pet details:', error)
-    }
-  } */
-
-
+   /**
+   * Handle changes in the form fields and update the state.
+   *
+   * @param {Object} event - The event triggered by the form field change.
+   */
   const handleDetailChange = (event) => {
     const { name, value } = event.target
     setPetDetails(prevDetails => ({
@@ -96,6 +83,10 @@ const PetDetails = () => {
     }))
   }
 
+   /**
+   * Save or update the pet details by sending a request to the server.
+   * Validates required fields before sending the request.
+   */
   const handleSaveOrUpdate = async () => {
     const requiredFields = ['name', 'age', 'weight', 'length', 'favouriteFood', 'favouriteToy', 'medicalNotes', 'animalType', 'caloriesDay', 'activitiesDay']
     const missingFields = requiredFields.filter(key => !petDetails[key].trim())
@@ -277,8 +268,6 @@ const PetDetails = () => {
           ))}
         </Form.Select>
       </Form.Group>
-
-
 
         <Button variant="primary" onClick={handleSaveOrUpdate}>
           {petDetails.id ? 'Update Pet Details' : 'Save Pet Details'}

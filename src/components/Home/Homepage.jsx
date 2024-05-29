@@ -14,6 +14,17 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import PropTypes from 'prop-types'
 
+
+/**
+ * Homepage component that displays the main dashboard with diet and activity summaries,
+ * as well as navigation cards to different sections of the application.
+ *
+ * @component
+ * @example
+ * return (
+ *
+ * )
+ */
 const Homepage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const dispatch = useDispatch()
@@ -24,6 +35,9 @@ const Homepage = () => {
   const { meals} = useSelector((state) => state.meals)
   const currentPet = useSelector((state) => state.pets.currentPet)
 
+   /**
+   * Fetch activities for the selected pet and date whenever the current pet or selected date changes.
+   */
   useEffect(() => {
     if (currentPet && currentPet.id) {
       dispatch(
@@ -35,6 +49,9 @@ const Homepage = () => {
     }
   }, [dispatch, currentPet, selectedDate])
 
+  /**
+   * Fetch meals for the selected pet and date whenever the current pet or selected date changes.
+   */
   useEffect(() => {
     if (currentPet && currentPet.id) {
       dispatch(
@@ -46,6 +63,10 @@ const Homepage = () => {
     }
   }, [dispatch, currentPet, selectedDate])
 
+
+  /**
+   * Calculate total calories and quantity from the fetched meals and update the state.
+   */
   useEffect(() => {
     if (meals && meals.length > 0) {
       const validMeals = meals.filter((meal) => meal != null)

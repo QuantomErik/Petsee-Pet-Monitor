@@ -3,6 +3,18 @@ import { Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPets, setCurrentPet } from '../Profile/petProfileSlice'
 
+
+/**
+ * PetDropdown component that displays a dropdown menu for selecting a pet.
+ *
+ * Fetches the list of pets from the server and allows the user to select a pet from the dropdown.
+ *
+ * @component
+ * @example
+ * return (
+ *   <PetDropdown />
+ * )
+ */
 const PetDropdown = () => {
     const dispatch = useDispatch()
     const pets = useSelector(state => state.pets.pets)
@@ -12,6 +24,12 @@ const PetDropdown = () => {
         dispatch(fetchPets())
     }, [dispatch])
 
+
+     /**
+   * Handles the selection of a pet from the dropdown.
+   *
+   * @param {string} petId - The ID of the selected pet.
+   */
     const handleSelect = (petId) => {
         const selectedPet = pets.find(pet => pet.id === petId)
         dispatch(setCurrentPet(selectedPet))

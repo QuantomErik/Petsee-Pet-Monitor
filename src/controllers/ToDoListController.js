@@ -1,7 +1,21 @@
 import { ToDoListModel } from '../models/ToDoListModel.js'
 
-export class ToDoListController { 
+/**
+ * Controller for handling to-do list-related operations.
+ */
+export class ToDoListController {
 
+
+/**
+ * Get all tasks for the logged-in user.
+ *
+ * @async
+ * @function
+ * @param {object} req - Express request object.
+ * @param {object} res - Express response object.
+ * @returns {Promise<void>} A promise that resolves after fetching tasks.
+ * @throws {Error} Throws an error if there's an issue fetching tasks.
+ */
 async getTasks (req, res) {
     try {
         const userId = req.user.id
@@ -12,6 +26,17 @@ async getTasks (req, res) {
     }
 }
 
+
+/**
+     * Create a new task for the logged-in user.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after creating a task.
+     * @throws {Error} Throws an error if there's an issue creating the task.
+     */
 async createTask (req, res) {
     try {
         const { task } = req.body
@@ -29,6 +54,17 @@ async createTask (req, res) {
     }
 }
 
+
+/**
+     * Get a task by ID.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after fetching the task.
+     * @throws {Error} Throws an error if there's an issue fetching the task.
+     */
 async getTaskById(req, res) {
     try {
         const { id } = req.params // Extracting the task ID from the request parameters
@@ -51,6 +87,17 @@ async getTaskById(req, res) {
     }
 }
 
+
+/**
+     * Update a task by ID.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after updating the task.
+     * @throws {Error} Throws an error if there's an issue updating the task.
+     */
 async updateTask(req, res) {
     try {
         const { id } = req.params // Extracting the task ID from the URL
@@ -84,6 +131,17 @@ async updateTask(req, res) {
 }
 
 
+
+/**
+     * Delete a task by ID.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after deleting the task.
+     * @throws {Error} Throws an error if there's an issue deleting the task.
+     */
 async deleteTask(req, res) {
     try {
         const { id } = req.params // Extracting the task ID from the URL

@@ -1,37 +1,13 @@
-/* #root {
-
-  margin: 0 auto;
-  
-  text-align: center;
-  margin-bottom: 80px;
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
- 
-  overflow: auto;
-} */
 
 html, body, #root {
   height: 100%;
- /*  margin: 0; */
- margin: 0 auto;
   padding: 0;
-  overflow: auto; /* Ensure no unwanted scrolling */
+  overflow: auto;
   text-align: center;
   flex-direction: column;
   padding-bottom: 20px;
 }
 
-/* .h1 {
-  margin-bottom: 20px;
-} */
-
-/* body, html {
-  margin-bottom: 200px;
-} */
 
 .logo {
   height: 6em;
@@ -55,15 +31,6 @@ html, body, #root {
   }
 }
 
-/* @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-} */
-
-/* .card {
-  padding: 2em;
-} */
 
 .read-the-docs {
   color: #888;
@@ -87,51 +54,6 @@ html, body, #root {
   border-radius: 8px;
 }
 
-/* .container, .container-fluid {
-  height: 100%;       
-  padding: 0;         
-  margin: 0;       
-} */
-
-/* .input-field, .login-button {
-  background-color: white;
-  border: 1px solid #ccc; 
-  padding: 0.5rem;
-  border-radius: 4px;
-} */
-
-/* .login-button {
-  background-color: #007bff; 
-  color: white;
-  border: none;
-} */
-
-
-
-/* #root {
-  min-height: 100%;
-  overflow: hidden;
-} */
-
-/* .full-screen-background {
-  background-image: url('./images/test6.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100%;
-} */
-
-
-/* footer {
-  background-color: #f3f3f3;
-  color: #636363;
-  text-align: center;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-} */
 
 .petsee-text {
   text-align: left;
@@ -139,10 +61,6 @@ html, body, #root {
   margin-bottom: 50px;
 }
 
-/* .rounded-text {
-  font-family: 'Roboto', sans-serif;
-  font-weight: bold;
-} */
 
 .varela-round-regular {
   font-family: "Varela Round", sans-serif;
@@ -151,16 +69,6 @@ html, body, #root {
 }
 
 .home-background {
-  /* height: 100vh;
-  background-image: url('./images/test2.jpg'); */
- /*  background: linear-gradient(
-    to bottom,
-    #f7fafc 33%,
-    #d4ebe8 33%
-  ) */
- /*  background-color: #000; */
-
-
  min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -169,22 +77,12 @@ html, body, #root {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
- 
 }
-
-
 
 .home-card {
   height: 330px;
-  /* margin-bottom: 20px; */
-  /* perspective: 1000px; */
-
- /*  width: 25rem;
-  position: relative; */
-  
 }
 
-/* App.css */
 .contact-background {
   background-color: rgb(243, 239, 239);
   height: 100vh;
@@ -200,19 +98,6 @@ html, body, #root {
   height: 100vh;
 }
 
-/* App.css */
-
-/* .nav-link {
-  display: inline-block;
-  padding: 10px 15px;
-  margin: 5px 25px;
-  background-color: #adb2f0;
-  color: white;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: background-color 0.3s, transform 0.2s;
-  font-family: 'Varela Round', sans-serif;
-} */
 
 .nav-link:hover {
   background-color: #e043f5;
@@ -224,9 +109,6 @@ html, body, #root {
   margin-right: 10px;
 }
 
-/* .login-button {
-  background-color: #adb2f0;
-} */
 
 .card {
   background: rgba( 255, 255, 255, 0.2 );
@@ -241,7 +123,6 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   margin: 2px;
   color: black;
   margin-bottom: 20px;
-  /* height: 400px; */
 }
 
 .card-title {
@@ -252,26 +133,13 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 .card-description {
   font-size: 16px;
-  
 }
 
-/* .login-background {
-  position: relative; 
-} */
 
 .feature-cards-container {
   max-width: 500px;
-  /* margin-right: 50px; */
   margin-bottom: 10px;
-  /* background-color: #adb2f0; */
 }
-
-/* .feature-card {
-  background-color: rgb(38, 44, 119);
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-} */
 
 
 .pet-image-section {
@@ -280,25 +148,24 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .pet-image-container {
-  display: inline-block; /* Makes the container inline for center alignment */
-  width: 200px; /* Set the width as needed */
-  height: 200px; /* Set the height as needed */
-  border-radius: 50%; /* Makes it circular */
-  overflow: hidden; /* Ensures the image does not exceed the container's bounds */
-  border: 2px solid #adb2f0; /* Optional: Adds a border to the circle */
-  line-height: 0; /* Remove space below the image */
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #adb2f0;
+  line-height: 0;
 }
 
 .pet-image {
-  width: 100%; /* Makes the image fill the container */
-  height: 100%; /* Makes the image fill the container */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 
-
 .pet-image-circle {
-  width: 150px; /* or any size */
+  width: 150px;
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
@@ -312,7 +179,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .pet-image-circle {
-  width: 150px;  /* or any size you prefer */
+  width: 150px;
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
@@ -339,7 +206,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   border-radius: 50%;
   object-fit: cover;
   margin-top: 20px;
-  display: block; /* Ensure the image is block level to center it */
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
@@ -347,13 +214,12 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .petdetails-container {
   text-align: center;
   align-items: center;
-  
  display: flex;
  flex-direction: column;
  min-height: 100vh;  
  overflow-y: auto;
  margin-bottom: 70px;
- 
+
 }
 
 .mb-3 {
@@ -364,12 +230,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .petForm {
   width: 50%;
   margin-bottom: 20px;
-
-
 }
-
-
-
 
 
 .input-container {
@@ -378,13 +239,11 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .input-container input {
-  /* display: flex; */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  width: 80%; /* Adjust width as per design requirements */
-  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
- 
+  width: 80%;
+  box-sizing: border-box;
 }
 
 .petcard {
@@ -400,7 +259,6 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .pet-details-cards {
-  /* margin-top: 60px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -409,17 +267,6 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   
 }
 
-/* @media (min-width: 768px) {
-  .petcard {
-      width: 50%
-  }
-}
-
-@media (min-width: 992px) {
-  .petcard {
-      width: 25%
-  }
-} */
 
 .cards-container {
   display: flex;
@@ -432,7 +279,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px; /* Space between card and icon */
+  margin-bottom: 20px;
 }
 
 .icon-button {
@@ -445,78 +292,39 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .card-image-top {
-  max-height: 250px; /* Set the maximum height as required */
+  max-height: 250px;
   width: 400px;
   display: block;
-  margin: 0 auto; /* Centers the image horizontally */
-  object-fit: cover; 
-  /* border-radius: 20px; */
+  margin: 0 auto;
+  object-fit: cover;
 }
 
 .card-text {
-  column-count: 1; /* Start with one column by default */
-  max-height: 300px; /* Adjust based on your preference */
+  column-count: 1;
+  max-height: 300px;
   overflow: auto;
-  font-size: 1em; /* Allows scrolling if content exceeds max height */
-}
-
-.card-text p {
-  /* position: relative; */
-  /* padding-left: 20px; */
-}
-
-.card-text p::before {
-/*   content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  background-color: #666;
-  border-radius: 50%; */
+  font-size: 1em;
 }
 
 
 .activityForm {
-  /* width: 700px; */
   margin-bottom: 20px;
- /*  margin-right: 5px;
-  margin-left: 5px; */
- 
-  /* margin-top: 20px; */
 }
 
 .mealForm {
-  /* width: 700px; */
   margin-bottom: 20px;
-
-  /* margin-bottom:100px; */
 }
 
-/* .petForm {
-  margin-bottom: 20px;
-} */
-
-/* .form {
-  margin-bottom:100px;
-} */
 
 .editmeal-nutrients-card {
-  /* width: 300px; */ /* Set the width to a suitable size */
- /*  height: auto;  *//* Auto height to fit content, or set a specific height if needed */
   margin-bottom: 10px;
-  margin-top: px; /* Center the card horizontally if within a block-level container */
-  /* display: block;  */
+  margin-top: px;
 }
 
 .center-select {
   display: flex;
   justify-content: center;
   margin-top: 40px;
-  /* margin-bottom: 0px; */
-  /* flex-wrap: wrap; */
-  
 }
 
 
@@ -526,16 +334,12 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .diet-details-container {
- /*  display: flex; */
   justify-content: center;
   align-items: center;
-  /* flex-direction: column; */
 }
 
 .addmeal-nutrients-card {
- /* display: block; */
  margin: 1px auto;
-/*  width: 2; */
 }
 
 .card-headerStyle {
@@ -544,9 +348,6 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   font-size: 20px;
   font-weight: bold;
 }
-
-
-
 
 
 .react-datepicker {
@@ -570,14 +371,13 @@ textarea {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ced4da;
-  resize: none; /* Optional: disables resizing */
+  resize: none;
 }
 
 textarea:focus {
   border-color: #80bdff;
   outline: none;
 }
-
 
 .schedule-details-container {
   display: flex;
@@ -591,34 +391,24 @@ textarea:focus {
   max-width: 500px;
 }
 
-/* .schedule-details-container .fc {
-  width: 80%;
-  margin: auto;
-} */
 
 .ReactModal__Overlay {
-  z-index: 1000; /* You can increase this if it’s still not high enough */
+  z-index: 1000;
 }
 
 .ReactModal__Content {
-  z-index: 1001; /* This ensures the content is above the overlay */
+  z-index: 1001;
 }
 
 .summary-card {
   background-color: #21b86c;
   color: white;
   border-color: #3e8e41;
-  padding: 10px; /* Example: Adds more space inside the card */
-  border-radius: 10px; /* Example: Rounded corners */
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.diet-card {
-  /* color: hsl(293, 39%, 95%); */
-  /* font-weight: bold; */
-  /* background-color: #b79afa; */
-}
 
-/* Adjust CSS for icons if necessary */
 .dock-icon {
   display: flex;
   justify-content: center;
@@ -627,58 +417,56 @@ textarea:focus {
   height: 50px;
   border: none;
   background: none;
-  color: white; /* Icon color */
-  font-size: 24px; /* Adjust icon size */
+  color: white;
+  font-size: 24px;
   cursor: pointer;
 }
 
 .dock-container {
   display: flex;
-  justify-content: space-around; /* Evenly spaces the icons across the container */
-  align-items: center; /* Aligns icons vertically */
-  position: fixed; /* Keeps the dock in place when scrolling */
-  bottom: 0; /* Positions the dock at the bottom of the viewport */
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
   left: 0;
   right: 0;
-  background-color: #2c3e50; /* Sets a background color for the dock */
-  height: 60px; /* Sets a fixed height for the dock */
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.3); /* Optional: adds a subtle shadow for a lifted effect */
-  /* margin-top: 20px; */
+  background-color: #2c3e50;
+  height: 60px;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
 }
 
 .dock-icon:hover {
-  color: #18BC9C; /* Change color on hover */
+  color: #18BC9C;
 }
 
-/* MoreStyles.css */
 .button-container {
   display: grid;
-  gap: 16px; /* Adjust the space between the buttons */
-  padding: 10px; /* Padding around the buttons inside the container */
+  gap: 16px;
+  padding: 10px;
 }
 
 .button-container button {
-  width: 100%; /* Ensure buttons are block-level */
-  padding: 8px 0; /* Additional padding for the buttons, adjust as needed */
+  width: 100%;
+  padding: 8px 0;
 }
 
 .custom-button {
   display: flex;
   align-items: center;
   position: relative;
-  padding-right: 2rem; /* Ensuring there's room for the circle on the right */
+  padding-right: 2rem;
 }
 
 .icon-left {
   font-size: 20px;;
   margin-right: 1rem;
-  margin-left: 0.5rem; /* Space between the icon and text */
+  margin-left: 0.5rem;
 }
 
 .icon-right {
-  margin-left: auto; /* Pushes the icon to the right */
+  margin-left: auto;
   position: relative;
-  width: 20px; /* Diameter of the circle */
+  width: 20px;
   height: 20px;
   display: flex;
   align-items: center;
@@ -688,33 +476,33 @@ textarea:focus {
 .icon-right::before {
   content: "";
   position: absolute;
-  width: 100%; /* Full width of the parent */
-  height: 100%; /* Full height of the parent */
-  background-color: #fff; /* Background of the circle */
-  border: 1px solid #ccc; /* Border of the circle */
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
   border-radius: 50%;
   z-index: 0;
 }
 
 .icon-right > svg {
   position: relative;
-  z-index: 1; /* Makes sure the icon is above the pseudo-element */
-  color: #000; /* Icon color */
+  z-index: 1;
+  color: #000;
 }
 
 .form-container {
-  padding-bottom: 100px; /* Adjust the value based on your navbar's height */
+  padding-bottom: 100px;
 }
 
 .custom-heading {
-  font-family: 'Varela Round', sans-serif; /* Use your desired font family */
-  color: #333; /* Change the color as needed */
-  font-size: 2.5rem; /* Adjust the font size */
-  text-align: center; /* Center align the text */
-  margin-top: 20px; /* Adjust the margin as needed */
-  margin-bottom: 20px; /* Adjust the margin as needed */
-  text-transform: uppercase; /* Optional: transform text to uppercase */
-  letter-spacing: 2px; /* Optional: add letter spacing */
+  font-family: 'Varela Round', sans-serif;
+  color: #333;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* Custom styles for DatePicker */
@@ -747,49 +535,41 @@ textarea:focus {
 }
 
 .summary-card-home {
-  /* margin-top: 1px; */
-  /* margin-bottom: 20px; */
   border: none;
   background: none;
   box-shadow: none;
   text-align: center;
- /*  width: 500px; */
-
 }
 
 .summary-cards-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 300px; /* Adjust the gap between the summary cards */
-  /* width: 300px; */
-
+  gap: 300px;
 }
 
 
 .custom-heading-home {
-  font-family: 'Varela Round', sans-serif; /* Use your desired font family */
-  /* color: #333; */ /* Change the color as needed */
+  font-family: 'Varela Round', sans-serif;
   color: hsl(293, 39%, 95%);
-  font-size: 1.5rem; /* Adjust the font size */
-  text-align: center; /* Center align the text */
-  margin-top: px; /* Adjust the margin as needed */
-  margin-bottom: 20px; /* Adjust the margin as needed */
-  text-transform: uppercase; /* Optional: transform text to uppercase */
-  letter-spacing: 2px; /* Optional: add letter spacing */
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-/* Add this to your CSS file */
 .flip-card {
   margin-bottom: 15px;
-  position: relative; /* Position relative to contain absolutely positioned children */
+  position: relative;
   width: 25rem;
-  height: 350px; /* Set height to match the card height */
+  height: 350px;
   perspective: 1000px;
 }
 
 .flip-card-inner {
-  position: absolute; /* Ensure inner card is absolutely positioned */
+  position: absolute;
   width: 100%;
   height: 100%;
   transition: transform 0.6s;
@@ -801,7 +581,7 @@ textarea:focus {
 }
 
 .flip-card-front, .flip-card-back {
-  position: absolute; /* Ensure front and back are absolutely positioned */
+  position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
@@ -810,8 +590,6 @@ textarea:focus {
 .flip-card-back {
   transform: rotateY(180deg);
 }
-
-
 
 .progress-container {
   display: flex;
@@ -823,9 +601,6 @@ textarea:focus {
 .progress-bar-wrapper {
   width: 500px; 
   height: 270px; 
- /*  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; */
 }
 
 
@@ -846,31 +621,6 @@ textarea:focus {
 }
 
 
-
-
-/* @media (max-width: 800px) { 
-  .card, .flip-card {
-    flex: 0 1 calc(40% - 8px);
-    padding: 1px;
-    height: auto;
-    border-radius: 2px;
-   
-  }
-
-  .progress-container {
-    flex-direction: row;
-    align-items: center;
-    width: 50%;
-    height: 80%;
-    
-  }
-}
- */
-
-
-
-
-
 @media (max-width: 600px) { 
   .card, .flip-card {
     flex: 0 1 calc(40% - 8px);
@@ -882,11 +632,11 @@ textarea:focus {
 
 
   .card-title, .card-text {
-    font-size: 12px; /* Smaller font size for better fit on small screens */
+    font-size: 12px;
   }
 
   .card-body {
-    padding: 5px; /* Reduce padding to save space */
+    padding: 5px;
   }
 
   .icon-button {
@@ -899,16 +649,16 @@ textarea:focus {
   }
 
   .icon-button {
-    display: none;  /* Hide the edit button */
+    display: none;
   }
 
   .card:hover {
-    cursor: pointer; /* Indicates the card is clickable */
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Optional: Add a shadow on hover to highlight the card */
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
 
   .fc-event-title {
-    font-size: 10px; /* Smaller size for smaller screens */
+    font-size: 10px;
 }
 
 .fc-day-number {
@@ -926,8 +676,6 @@ textarea:focus {
 .button-container button {
   font-size: 10px;
   border-radius: 4px;
-  /* padding: 5px; */
-  /* gap: 2px; */
 }
 
 
@@ -935,14 +683,8 @@ textarea:focus {
   font-size: 15px;
 }
 
-/* .summary-cards-container {
-  flex-direction: column;
-  align-items: center;
-} */
 
 .summary-card-home {
- /*  width: 100%; */
-  /* max-width: 100%; */
   flex: 0 1 calc(45% - 1px);
     padding: 1px;
     height: auto;
@@ -950,22 +692,20 @@ textarea:focus {
 }
 
 .custom-heading-home {
-  font-family: 'Varela Round', sans-serif; /* Use your desired font family */
+  font-family: 'Varela Round', sans-serif;
   color: hsl(293, 39%, 95%);
-  font-size: 0.6rem; /* Adjust the font size */
-  text-align: center; /* Center align the text */
-  margin-top: 20px; /* Adjust the margin as needed */
-  margin-bottom: 20px; /* Adjust the margin as needed */
-  text-transform: uppercase; /* Optional: transform text to uppercase */
-  letter-spacing: 2px; /* Optional: add letter spacing */
-  
+  font-size: 0.6rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 
 .mb-3 {
   width: 100%;
   margin-bottom: 20px;
-  
 }
 
 .petForm {
@@ -974,13 +714,9 @@ textarea:focus {
 }
 
 
-
 .summary-cards-container {
  width: 100%;
 gap: 10px;
-/* flex-direction: column;
-align-items: center; */
-
 }
 
 .progress-container {
@@ -988,68 +724,24 @@ align-items: center; */
   align-items: center;
   width: 100%;
   height: 80%;
-  
 }
 
 
-
-
-/* .summary-card-home {
-width: 100%;
-} */
 .progress-text {
   margin-left: 5px;
   font-size: 0.6rem;
 }
 
-/* .progress-text p {
-  display: flex;
-  align-items: center;
-  font-size: 10px;
- 
-} */
 
 .quadrant {
 
   width: 20%;
-  /* height: 3px; */
- /*  height: 100%; */
   margin-right: 1px;
   border-radius: 3px;
 }
 
 
-
-/* .progressbar {
-  width: 100%;
-} */
-
-
-
-
-
-/* .activityForm {
-  width: 170px;
-} */
-
-/* .center-select {
-  width: 10px;
-} */
-
-  /*  */
-
 }
-
-/* .card-img-top {
-  width: 100%;
-  height: auto; 
-  max-height: 150px
-}
-
-.card-body {
-  padding: 0.5px;
-} */
-
 
 
 

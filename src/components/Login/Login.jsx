@@ -8,6 +8,16 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { loginUser } from './LoginUser.js'
 
+/**
+ * Login component that allows the user to log in to the Petsee application.
+ * Displays a login form and feature cards highlighting the app's functionalities.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Login onLoginSuccess={() => console.log('Login successful')} />
+ * )
+ */
 const Login = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -21,6 +31,11 @@ const Login = (props) => {
     { title: 'Routine Planning', description: 'Plan and schedule your pet’s daily routines.' },
   ]
 
+  /**
+   * Handles the form submission for user login.
+   *
+   * @param {Object} event - The form submission event.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault()
     setShowFlash(false)

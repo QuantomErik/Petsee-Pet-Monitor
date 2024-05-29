@@ -22,6 +22,16 @@ const brandsData = {
     ]
   }
 
+
+  /**
+ * EditMeal component allows the user to edit and update an existing meal.
+ *
+ * @component
+ * @example
+ * return (
+ *   <EditMeal />
+ * )
+ */
   function EditMeal() {
     const { id } = useParams()
     console.log("ID from useParams:", id)
@@ -36,8 +46,16 @@ const brandsData = {
     })
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
-    
 
+
+    /**
+     * Calculate the nutrients and total calories based on the selected brand and quantity.
+     *
+     * @param {string} value - The value of the changed field.
+     * @param {string} name - The name of the changed field.
+     * @param {Object} meal - The current meal details.
+     * @returns {Object} The calculated nutrients and total calories.
+     */
     const calculateNutrients = (value, name, meal) => {
         const quantity = name === 'quantity' ? parseFloat(value) : parseFloat(meal.quantity)
         const selectedBrand = name === 'selectedBrand' ? value : meal.selectedBrand
@@ -105,6 +123,12 @@ const brandsData = {
         }
     }
 
+
+    /**
+     * Handle form submission to update the meal details.
+     *
+     * @param {Object} e - The event triggered by the form submission.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault()
         setIsLoading(true)
@@ -135,6 +159,10 @@ const brandsData = {
         setIsLoading(false)
     }
 
+
+    /**
+     * Handle deleting the meal.
+     */
     const handleDelete = async () => {
         if (!window.confirm("Are you sure you want to delete this meal?")) return
         setIsLoading(true)

@@ -29,6 +29,14 @@ const brandsData = {
   ]
 }
 
+
+/**
+ * Reducer function to manage the state of the diet details form.
+ *
+ * @param {Object} state - The current state of the form.
+ * @param {Object} action - The action to be performed on the state.
+ * @returns {Object} The new state of the form.
+ */
 const dietReducer = (state, action) => {
   switch (action.type) {
     case 'SET_FIELD':
@@ -58,6 +66,13 @@ const dietReducer = (state, action) => {
 }
 
 
+/**
+ * Custom hook to save diet details when the form is submitted.
+ *
+ * @param {boolean} isSubmitting - Indicates if the form is being submitted.
+ * @param {Object} dietDetails - The details of the diet.
+ * @param {Object} currentPet - The current pet.
+ */
 const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
   const navigate = useNavigate()
   
@@ -107,6 +122,16 @@ const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
   }, [isSubmitting, dietDetails, navigate, currentPet])
 }
 
+
+/**
+ * DietDetails component that allows the user to add and save diet details for a pet.
+ *
+ * @component
+ * @example
+ * return (
+ *   <DietDetails />
+ * )
+ */
 const DietDetails = () => {
   const navigate = useNavigate()
   const [dietDetails, dispatch] = useReducer(dietReducer, {
@@ -118,10 +143,14 @@ const DietDetails = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const currentPet = useSelector(state => state.pets.currentPet)
-  
-
   useSaveDietDetails(isSubmitting, dietDetails)
 
+
+   /**
+   * Handle changes in the form fields and update the state.
+   *
+   * @param {Object} event - The event triggered by the form field change.
+   */
   const handleInputChange = (event) => {
     const { name, value } = event.target
     dispatch({ type: 'SET_FIELD', field: name, value: value })
@@ -130,23 +159,29 @@ const DietDetails = () => {
     }
     console.log(`Updated ${name} to ${value}`)
   }
-  
 
+  /**
+   * Calculate the nutrients and total calories based on the selected brand and quantity.
+   *
+   * @param {string} value - The value of the changed field.
+   * @param {string} name - The name of the changed field.
+   * @param {Object} dietDetails - The details of the diet.
+   * @param {Function} dispatch - The dispatch function to update the state.
+   */
   const calculateNutrients = (value, name, dietDetails, dispatch) => {
     console.log('Calculating nutrients for:', name, value)
     const quantity = name === 'quantity' ? parseFloat(value) : parseFloat(dietDetails.quantity)
     const selectedBrand = name === 'selectedBrand' ? value : dietDetails.selectedBrand
     const brand = brandsData.brands.find(brand => brand.name === selectedBrand)
-  
+
     if (brand && quantity) {
       const nutrients = {}
       Object.entries(brand.nutrients).forEach(([key, percent]) => {
         nutrients[key] = ((quantity * percent) / 100).toFixed(2)
       })
       const totalCalories = (brand.caloriesPerGram * quantity).toFixed(2)
-      
       console.log('Calculated nutrients:', nutrients)
-  
+
       dispatch({
         type: 'UPDATE_NUTRIENTS',
         nutrients,
@@ -155,6 +190,9 @@ const DietDetails = () => {
     }
   }
 
+  /**
+   * Handle form submission to add a meal and save the diet details.
+   */
   const handleSubmit = async () => {
     console.log("Sending payload:", JSON.stringify(payload))
 
@@ -206,15 +244,16 @@ const DietDetails = () => {
   }
 
 
+  /**
+   * Add a meal and save the diet details.
+   */
   const addMealAndSave = async () => {
 
     if (!currentPet || !currentPet.id) {
       console.error("No current pet selected or pet ID is missing.")
       alert("Please select a pet first.")
       return
-    
     }
-  
     const { mealType, time, quantity } = dietDetails.currentMeal
     if (!mealType || !time || !quantity) {
       alert("Please fill in all fields for the meal.")

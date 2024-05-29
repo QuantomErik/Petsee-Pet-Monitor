@@ -14,18 +14,16 @@ test('should log in and add/update pet details successfully', async t => {
     .typeText(Selector('#password'), password)
     .click(Selector('button').withText('Log'))
 
-  // Ensure the login was successful
-  // await t.expect(Selector('h1').withText('Home').exists).ok('Login failed or Home page did not load correctly')
+ 
 
   // Navigate to add pet page
   await t.navigateTo('http://localhost:5173/petsee/more/addpet')
-  /* await t.navigateTo('https://cscloud7-95.lnu.se/petsee/more/addpet') */
+  
 
-  // Ensure the page is loaded correctly
-  // await t.expect(Selector('h1.custom-heading').withText('Pet Details').exists).ok('Page did not load correctly')
+ 
 
   // Add a wait to ensure the page is fully loaded
-  await t.wait(3000) // Adjust the wait time as needed
+  await t.wait(3000)
 
   // Add more debug information
   console.log('Checking for input fields...')
@@ -85,15 +83,5 @@ test('should log in and add/update pet details successfully', async t => {
     .pressKey('enter')
     .click(Selector('button').withText('Save Pet Details'))
 
-  // Add a wait time to ensure navigation
-  /* await t.wait(5000) */ // Increase the wait time to ensure navigation is complete
-
-  // Wait for navigation to home page
-  /* const getLocation = ClientFunction(() => document.location.href) */
  
-
-  // Verify the toast message on the home page
-  /* await t */
-    /* .expect(Selector('.toast').withText('Information updated successfully!').exists).ok({ timeout: 10000 }) */
-    /* .expect(Selector('h1').withText('Home').exists).ok({ timeout: 5000 }) */
 })

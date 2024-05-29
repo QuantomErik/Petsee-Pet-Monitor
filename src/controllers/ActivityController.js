@@ -1,7 +1,18 @@
 import { ActivityModel } from '../models/ActivityModel.js'
 
+/**
+ * ActivityController class to handle activity-related operations.
+ */
 export class ActivityController {
 
+
+     /**
+     * Get activity details for a specific pet on a specific date.
+     *
+     * @param {Object} req - Express request object.
+     * @param {Object} res - Express response object.
+     * @returns {Promise<void>}
+     */
     async getActivityDetails(req, res) {
         try {
             const petId = req.params.petId
@@ -39,6 +50,14 @@ export class ActivityController {
     }
 
 
+
+    /**
+     * Create a new activity for a specific pet.
+     *
+     * @param {Object} req - Express request object.
+     * @param {Object} res - Express response object.
+     * @returns {Promise<void>}
+     */
     async createActivity(req, res) {
         try {
 
@@ -61,6 +80,14 @@ export class ActivityController {
     }
 
 
+
+     /**
+     * Get activity details by activity ID.
+     *
+     * @param {Object} req - Express request object.
+     * @param {Object} res - Express response object.
+     * @returns {Promise<void>}
+     */
     async getActivityById(req, res) {
         try {
             const id = req.params.id
@@ -77,19 +104,25 @@ export class ActivityController {
         }
     }
 
+
+       /**
+     * Update an existing activity by activity ID.
+     *
+     * @param {Object} req - Express request object.
+     * @param {Object} res - Express response object.
+     * @returns {Promise<void>}
+     */
       async updateActivity(req, res) {
         const { id } = req.params
         const updates = req.body
-    
+
         try {
-            // Find the document by ID and update it with the new values
-            // The { new: true } option returns the updated document instead of the original
             const updatedActivity = await ActivityModel.findByIdAndUpdate(id, updates, { new: true })
-    
+
             if (!updatedActivity) {
                 return res.status(404).json({ message: "Activity not found" })
             }
-    
+
             // Send back the updated activity data
             res.status(200).json({
                 message: "Activity updated successfully",
@@ -105,6 +138,13 @@ export class ActivityController {
     }
 
 
+    /**
+     * Delete an activity by activity ID.
+     *
+     * @param {Object} req - Express request object.
+     * @param {Object} res - Express response object.
+     * @returns {Promise<void>}
+     */
     async deleteActivity(req, res) {
         try {
             const id = req.params.id

@@ -1,6 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-
+/**
+ * Async thunk to fetch activities for a specific pet on a specific date.
+ *
+ * @function
+ * @param {Object} params - Parameters for fetching activities.
+ * @param {string} params.petId - The ID of the pet.
+ * @param {string} params.date - The date for which to fetch activities.
+ * @returns {Promise<Array>} The fetched activities.
+ */
 export const fetchActivitiess = createAsyncThunk(
     'activitiess/fetchActivitiess',
     async ({ petId, date }) => {
@@ -15,6 +23,15 @@ export const fetchActivitiess = createAsyncThunk(
 )
 
 
+/**
+ * Slice for managing activities state.
+ *
+ * @redux
+ * @property {Array} activities - The list of activities.
+ * @property {boolean} isLoading - Loading state for fetching activities.
+ * @property {string|null} error - Error message if fetching activities fails.
+ * @property {Array} activitiesForWeek - Placeholder for future implementation.
+ */
 const activitiesSlice = createSlice({
     name: 'activities',
     initialState: {

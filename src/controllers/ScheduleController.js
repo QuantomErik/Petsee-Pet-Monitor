@@ -1,7 +1,21 @@
 import { ScheduleModel } from '../models/ScheduleModel.js'
 
+/**
+ * Controller for handling schedule-related operations.
+ */
 export class ScheduleController {
 
+
+     /**
+     * Save new schedule details to the database.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after saving schedule details.
+     * @throws {Error} Throws an error if there's an issue saving schedule details.
+     */
     async saveScheduleDetails (req, res) {
         const userId = req.user.id
 
@@ -15,6 +29,17 @@ export class ScheduleController {
         }
     }
 
+
+    /**
+     * Get all schedule details for the logged-in user.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after fetching schedule details.
+     * @throws {Error} Throws an error if there's an issue fetching schedule details.
+     */
     async getScheduleDetails (req, res){
         const userId = req.user.id
         try {
@@ -25,6 +50,17 @@ export class ScheduleController {
         }
     }
     
+
+    /**
+     * Update schedule details by schedule ID.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after updating schedule details.
+     * @throws {Error} Throws an error if there's an issue updating schedule details.
+     */
     async updateScheduleDetails(req, res) {
         const { id } = req.params
         const { date, note } = req.body
@@ -40,12 +76,23 @@ export class ScheduleController {
         }
     }
 
+
+     /**
+     * Delete schedule details by schedule ID.
+     *
+     * @async
+     * @function
+     * @param {object} req - Express request object.
+     * @param {object} res - Express response object.
+     * @returns {Promise<void>} A promise that resolves after deleting schedule details.
+     * @throws {Error} Throws an error if there's an issue deleting schedule details.
+     */
     async deleteScheduleDetails(req, res) {
         const id = req.params.id
-    
+
         try {
             const note = await ScheduleModel.findByIdAndDelete(id)
-    
+
             if (note) {
                 res.status(200).json({
                     message: "Activity successfully deleted",

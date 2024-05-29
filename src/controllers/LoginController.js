@@ -8,7 +8,7 @@ import { UserModel } from '../models/UserModel.js'
 import { JsonWebToken } from '../lib/JsonWebToken.js'
 
 /**
- * Encapsulates a controller.
+ * Encapsulates a controller for handling user login.
  */
 export class LoginController {
  

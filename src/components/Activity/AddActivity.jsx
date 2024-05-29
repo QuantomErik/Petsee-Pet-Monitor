@@ -6,13 +6,23 @@ import Form from 'react-bootstrap/Form'
 import { toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-// Define initial state and reducer for the activity details
+/**
+ * Initial state for the activity details form.
+ */
 const initialState = {
     type: '',
     duration: '',
     intensity: '',
 }
 
+
+/**
+ * Reducer function to manage the state of the activity details form.
+ *
+ * @param {Object} state - The current state of the form.
+ * @param {Object} action - The action to be performed on the state.
+ * @returns {Object} The new state of the form.
+ */
 const reducer = (state, action) => {
     switch (action.type) {
         case 'SET_FIELD':
@@ -26,23 +36,46 @@ const reducer = (state, action) => {
     }
 }
 
+
+/**
+ * ActivityDetails component allows the user to add and save activity details for a pet.
+ *
+ * @component
+ * @example
+ * return (
+ *   <ActivityDetails />
+ * )
+ */
 export const ActivityDetails = () => {
     const [activityDetails, dispatch] = useReducer(reducer, initialState)
     const currentPet = useSelector(state => state.pets.currentPet)
     const navigate = useNavigate()
 
-    // Effect to reset form when currentPet changes
+    /**
+     * Effect to reset the form when the current pet changes.
+     */
     useEffect(() => {
         if (currentPet) {
             dispatch({ type: 'RESET' })
         }
     }, [currentPet])
 
+
+    /**
+     * Handle changes in the form fields and update the state.
+     *
+     * @param {Object} event - The event triggered by the form field change.
+     */
     const handleChange = (event) => {
         const { name, value } = event.target
         dispatch({ type: 'SET_FIELD', field: name, value })
     }
 
+
+     /**
+     * Handle saving the activity details by making an API call.
+     * Validates the form fields and shows error messages if necessary.
+     */
     const handleSaveActivityDetails = async () => {
         const token = localStorage.getItem('token')
         if (!currentPet) {

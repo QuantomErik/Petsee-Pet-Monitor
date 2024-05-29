@@ -3,6 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import 'react-toastify/dist/ReactToastify.css'
 
+
+/**
+ * EditActivity component allows the user to edit and update an existing activity.
+ *
+ * @component
+ * @example
+ * return (
+ *   <EditActivity />
+ * )
+ */
 function EditActivity() {
     const { id } = useParams()
     console.log("ID from useParams:", id)
@@ -16,6 +26,10 @@ function EditActivity() {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
 
+
+    /**
+     * Fetch the activity details when the component mounts and when the `id` changes.
+     */
     useEffect(() => {
         const fetchActivity = async () => {
             setIsLoading(true)
@@ -45,11 +59,23 @@ function EditActivity() {
         fetchActivity()
     }, [id])
 
+
+     /**
+     * Handle changes in the form fields and update the activity state.
+     *
+     * @param {Object} e - The event triggered by the form field change.
+     */
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setActivity(prev => ({ ...prev, [name]: value }))
     }
 
+
+    /**
+     * Handle form submission to update the activity details.
+     *
+     * @param {Object} e - The event triggered by the form submission.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault()
         setIsLoading(true)
@@ -83,6 +109,10 @@ function EditActivity() {
         setIsLoading(false)
     }
 
+
+     /**
+     * Handle deleting the activity.
+     */
     const handleDelete = async () => {
         if (!window.confirm("Are you sure you want to delete this activity?")) return
         setIsLoading(true)

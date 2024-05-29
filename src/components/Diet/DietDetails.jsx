@@ -8,6 +8,17 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { fetchMeals } from './mealsSlice'
 
+
+/**
+ * DietDetails component that displays the diet details for a specific pet on a selected date.
+ * Allows the user to view, edit, and create meals for the selected date.
+ *
+ * @component
+ * @example
+ * return (
+ *   <DietDetails />
+ * )
+ */
 const DietDetails = () => {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const navigate = useNavigate()
@@ -20,6 +31,9 @@ const DietDetails = () => {
   })
 
 
+  /**
+   * Fetch meals for the selected pet and date whenever the current pet or selected date changes.
+   */
   useEffect(() => {
     console.log("Current pet ID:", currentPet?.id)
     if (currentPet && currentPet.id) {
@@ -28,7 +42,11 @@ const DietDetails = () => {
   }
 }, [dispatch, currentPet, selectedDate])
 
-useEffect(() => {
+
+ /**
+   * Calculate total calories and quantity from the fetched meals and update the state.
+   */
+  useEffect(() => {
   if (meals && meals.length > 0) {
     const validMeals = meals.filter(meal => meal != null)
     const totals = validMeals.reduce((acc, meal) => {

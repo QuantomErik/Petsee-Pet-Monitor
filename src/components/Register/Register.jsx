@@ -2,6 +2,16 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { registerUser } from './RegisterUser.js';
 
+
+/**
+ * Register component that allows a user to create a new account.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Register />
+ * )
+ */
 const Register = () => {
     const [userData, setUserData] = useState({
         username: '',
@@ -12,6 +22,12 @@ const Register = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const navigate = useNavigate()
 
+
+    /**
+     * Handle changes in the input fields and update the state.
+     *
+     * @param {Object} event - The event triggered by the input field change.
+     */
     const handleChange = (event) => {
         const { name, value } = event.target
         setUserData(prevData => ({
@@ -20,6 +36,12 @@ const Register = () => {
         }))
     }
 
+
+     /**
+     * Handle form submission to register a new user.
+     *
+     * @param {Object} event - The event triggered by form submission.
+     */
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
