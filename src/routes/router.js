@@ -14,12 +14,7 @@ import { router as activityRouter } from './activityRouter.js'
 import { router as scheduleRouter } from './scheduleRouter.js'
 import { router as todolistRouter } from './todolistRouter.js'
 
-
-
 export const router = express.Router()
-
-
-
 
 router.use('/', userRouter)
 router.use('/', petRouter)
@@ -30,15 +25,10 @@ router.use('/', todolistRouter)
 router.use('/', loginRouter)
 router.use('/logout', logoutRouter)
 
-
-
-
 router.use((req, res, next) => {
   console.log('Unhandled Path:', req.path)
   next()
 })
-
-
 
 router.use('*', (req, res) => {
   res.status(404).json({ error: "Not Found", status: 404, path: req.originalUrl })

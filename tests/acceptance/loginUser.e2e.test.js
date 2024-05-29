@@ -1,11 +1,15 @@
 import { Selector } from 'testcafe'
 
-// Fixture and URL
+/**
+ * Fixture for User Login tests.
+ */
 fixture `User Login`
   .page `http://localhost:5173/petsee/login`
-  /* .page `https://cscloud7-95.lnu.se/petsee/login` */
 
-// Test for successful login
+/**
+ * Test for successful login.
+ * @param {TestController} t - The test controller provided by TestCafe.
+ */
 test('should log in a user successfully', async t => {
   // Use known credentials
   const username = 'testuser'
@@ -21,7 +25,10 @@ test('should log in a user successfully', async t => {
 
 })
 
-// Test for failed login
+/**
+ * Test for failed login with incorrect credentials.
+ * @param {TestController} t - The test controller provided by TestCafe.
+ */
 test('should show an error when login fails', async t => {
   // Fill out login form with incorrect credentials and submit
   await t

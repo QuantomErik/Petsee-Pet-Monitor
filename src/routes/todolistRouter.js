@@ -1,3 +1,8 @@
+/**
+ * @file Defines the ToDoList router.
+ * @module ToDoListRouter
+ * @author Erik Yang
+ */
 import express from 'express'
 import { ToDoListController } from '../controllers/ToDoListController.js'
 import auth from '../middlewares/auth.js'

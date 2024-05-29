@@ -20,19 +20,33 @@ jest.mock('react-toastify', () => ({
   },
 }))
 
+/**
+ * Test suite for the EditToDoList component.
+ */
 describe('EditToDoList', () => {
   const navigate = jest.fn()
+   /**
+   * Clears all mocks and sets up fetch mock and useNavigate mock before each test.
+   */
   beforeEach(() => {
     jest.clearAllMocks()
     window.fetch = jest.fn()
     jest.requireMock('react-router-dom').useNavigate.mockReturnValue(navigate)
   })
 
+  /**
+   * Restores fetch mock and clears localStorage after each test.
+   */
   afterEach(() => {
     window.fetch.mockRestore()
     localStorage.clear()
   })
 
+  /**
+   * Renders the EditToDoList component wrapped in Router and ToastContainer.
+   *
+   * @returns {Promise<import('@testing-library/react').RenderResult>} The render result.
+   */
   const renderComponent = async () => {
     let utils
     await act(async () => {
@@ -46,6 +60,9 @@ describe('EditToDoList', () => {
     return utils
   }
 
+  /**
+   * Tests retrieving and displaying task details.
+   */
   it('retrieves and displays the task details', async () => {
     window.fetch.mockResolvedValueOnce({
       ok: true,
@@ -62,6 +79,9 @@ describe('EditToDoList', () => {
     })
   })
 
+   /**
+   * Tests updating the task successfully.
+   */
   it('updates the task successfully', async () => {
     window.fetch
       .mockResolvedValueOnce({
@@ -93,6 +113,9 @@ describe('EditToDoList', () => {
     })
   })
 
+  /**
+   * Tests deleting the task successfully.
+   */
   it('deletes the task successfully', async () => {
     window.fetch
       .mockResolvedValueOnce({
@@ -121,6 +144,9 @@ describe('EditToDoList', () => {
     })
   })
 
+  /**
+   * Tests handling of failed task retrieval.
+   */
   it('handles failed task retrieval', async () => {
     window.fetch.mockResolvedValueOnce({
       ok: false,
@@ -133,6 +159,9 @@ describe('EditToDoList', () => {
     })
   })
 
+   /**
+   * Tests handling of failed task update.
+   */
   it('handles failed task update', async () => {
     window.fetch
       .mockResolvedValueOnce({
@@ -157,6 +186,9 @@ describe('EditToDoList', () => {
     })
   })
 
+   /**
+   * Tests handling of failed task deletion.
+   */
   it('handles failed task deletion', async () => {
     window.fetch
       .mockResolvedValueOnce({

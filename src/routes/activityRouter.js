@@ -1,4 +1,9 @@
-// src/routes/activityRouter.js
+/**
+ * @file Defines the Activity router.
+ * @module ActivityRouter
+ * @author Erik Yang
+ */
+
 import express from 'express'
 import { ActivityController } from '../controllers/ActivityController.js'
 import auth from '../middlewares/auth.js'
@@ -16,8 +21,7 @@ router.post('/pet/:petId/activitydetails', auth.authenticateJWT, (req, res, next
     activityController.createActivity(req, res, next)
 })
 
-/* router.param('id', (req, res, next, id) => activityController.getActivityById(req, res, next, id))
- */
+
 router.post('/pet/activitydetails', auth.authenticateJWT, (req, res, next) => {
     activityController.createActivity(req, res, next)
 })

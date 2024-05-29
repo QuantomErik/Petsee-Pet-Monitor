@@ -1,26 +1,30 @@
 import { Selector, ClientFunction } from 'testcafe'
 
+/**
+ * Fixture for Pet Details tests.
+ */
 fixture `Pet Details`
   .page `http://localhost:5173/petsee/login`
-  /* .page `https://cscloud7-95.lnu.se/petsee/login` */
 
+
+  /**
+ * Test to log in and add/update pet details successfully.
+ * @param {TestController} t - The test controller provided by TestCafe.
+ */
 test('should log in and add/update pet details successfully', async t => {
   // Login process
-  const username = 'testuser' // Replace with actual known username
-  const password = 'password123' // Replace with actual known password
+  const username = 'testuser'
+  const password = 'password123'
 
   await t
     .typeText(Selector('#username'), username)
     .typeText(Selector('#password'), password)
     .click(Selector('button').withText('Log'))
 
- 
 
   // Navigate to add pet page
   await t.navigateTo('http://localhost:5173/petsee/more/addpet')
-  
 
- 
 
   // Add a wait to ensure the page is fully loaded
   await t.wait(3000)

@@ -26,6 +26,16 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import { useEffect } from 'react'
 import './App.css'
 
+
+/**
+ * Main application component.
+ *
+ * @component
+ * @example
+ * return (
+ *   <App />
+ * )
+ */
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -34,10 +44,17 @@ const App = () => {
     setIsAuthenticated(!!token)
 }, [])
 
+
+/**
+   * Handles login success by setting authentication state to true.
+   */
   const handleLoginSuccess = () => {
     setIsAuthenticated(true)
   }
 
+  /**
+   * Handles user logout by clearing the authentication token and setting authentication state to false.
+   */
   const handleLogout = () => {
     localStorage.removeItem('token')
     setIsAuthenticated(false)

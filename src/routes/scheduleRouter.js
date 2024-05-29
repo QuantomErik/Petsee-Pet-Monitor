@@ -1,4 +1,8 @@
-// src/routes/activityRouter.js
+/**
+ * @file Defines the Schedule router.
+ * @module ScheduleRouter
+ * @author Erik Yang
+ */
 import express from 'express'
 import { ScheduleController } from '../controllers/ScheduleController.js'
 import auth from '../middlewares/auth.js'
@@ -6,13 +10,9 @@ import auth from '../middlewares/auth.js'
 export const router = express.Router()
 const scheduleController = new ScheduleController()
 
-
-
-
 router.post('/pet/scheduledetails', auth.authenticateJWT, (req, res, next) => {
     scheduleController.saveScheduleDetails(req, res, next)
 })
-
 
 router.get('/pet/scheduledetails', auth.authenticateJWT, (req, res, next) => {
     scheduleController.getScheduleDetails(req, res, next)
