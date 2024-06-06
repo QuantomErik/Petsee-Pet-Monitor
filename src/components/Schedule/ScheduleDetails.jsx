@@ -31,7 +31,8 @@ const ScheduleDetails = () => {
         const fetchScheduleDetails = async () => {
             const token = localStorage.getItem('token')
             try {
-                const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/scheduledetails', {
+                /* const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/scheduledetails', { */
+                const response = await fetch('https://cscloud7-95.lnu.se/petsee/api/scheduledetails', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -110,7 +111,8 @@ const ScheduleDetails = () => {
     const handleSaveOrUpdate = async () => {
         const token = localStorage.getItem('token')
         const method = scheduleDetails.id ? 'PUT' : 'POST'
-        const url = scheduleDetails.id ? `https://cscloud7-95.lnu.se/petsee/pet/scheduledetails/${scheduleDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/pet/scheduledetails'
+        /* const url = scheduleDetails.id ? `https://cscloud7-95.lnu.se/petsee/pet/scheduledetails/${scheduleDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/pet/scheduledetails' */
+        const url = scheduleDetails.id ? `https://cscloud7-95.lnu.se/petsee/api/scheduledetails/${scheduleDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/api/scheduledetails'
 
        
         try {
@@ -158,7 +160,8 @@ const ScheduleDetails = () => {
         if (!scheduleDetails.id) return
 
         const token = localStorage.getItem('token')
-        const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/scheduledetails/${scheduleDetails.id}`, {
+        /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/scheduledetails/${scheduleDetails.id}`, { */
+        const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/scheduledetails/${scheduleDetails.id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         })

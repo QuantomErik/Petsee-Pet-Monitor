@@ -43,7 +43,8 @@ const PetDetails = () => {
     const fetchPetDetails = async (petId) => {
       const token = localStorage.getItem('token')
       try {
-        const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/petdetails/${petId}`, {
+        /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/petdetails/${petId}`, { */
+        const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/petdetails/${petId}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -95,7 +96,8 @@ const PetDetails = () => {
     return
   }
     const method = petDetails.id ? 'PUT' : 'POST'
-    const endpoint = petDetails.id ? `https://cscloud7-95.lnu.se/petsee/pet/petdetails/${petDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/pet/petdetails'
+    /* const endpoint = petDetails.id ? `https://cscloud7-95.lnu.se/petsee/pet/petdetails/${petDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/pet/petdetails' */
+    const endpoint = petDetails.id ? `https://cscloud7-95.lnu.se/petsee/api/petdetails/${petDetails.id}` : 'https://cscloud7-95.lnu.se/petsee/api/petdetails'
 
     try {
       const token = localStorage.getItem('token')

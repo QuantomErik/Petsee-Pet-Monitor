@@ -19,7 +19,9 @@ function ToDoList() {
 
     useEffect(() => {
         const fetchTasks = async () => {
-            const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/todolist', {
+            /* const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/todolist', { */
+            const response = await fetch('https://cscloud7-95.lnu.se/petsee/api/todolist', {
+            /* const response = await fetch('/api/pet/todolist', { */
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -42,7 +44,9 @@ function ToDoList() {
         if (!newTask.trim()) return
        
         try {
-            const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/todolist', {
+            /* const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/todolist', { */
+           const response = await fetch('https://cscloud7-95.lnu.se/petsee/api/todolist', {
+            /* const response = await fetch('/api/pet/todolist', { */
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +80,8 @@ function ToDoList() {
         const updatedTask = { ...taskToUpdate, isCompleted: !taskToUpdate.isCompleted }
         
         try {
-            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/todolist/${id}`, {
+            /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/todolist/${id}`, { */
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/todolist/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

@@ -13,6 +13,9 @@ import { router } from './routes/router.js'
 import helmet from 'helmet'
 import cors from 'cors'
 import mongoose from 'mongoose'
+import path from 'path';
+
+const __dirname = path.resolve();
 
 
 
@@ -63,7 +66,9 @@ app.use(express.urlencoded({ extended: false })) // Parses incoming requests wit
   // Parse requests of the content type application/x-www-form-urlencoded.
   // Populates the request object with a body object (req.body).
   app.use(express.urlencoded({ extended: false }))
-  app.use(express.static('dist'))
+  /* app.use(express.static('dist')) */
+
+  app.use(express.static(path.join(__dirname, 'dist')));
 
 
 
@@ -90,13 +95,18 @@ app.use(express.urlencoded({ extended: false })) // Parses incoming requests wit
   })
 
   // Register routes.
-  app.use('/', router)
+  /* app.use('/', router) */
+  app.use('/api', router)
 
 
   app.use((req, res, next) => {
     console.log(`Incoming request: ${req.method} ${req.path}`)
     next()
   })
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+  });
 
   
 

@@ -11,4 +11,5 @@ export const router = express.Router()
 const controller = new LoginController()
 
 
-router.post('/login', (req, res, next) => controller.login(req, res, next))
+/* router.post('/login', (req, res, next) => controller.login(req, res, next)) */
+router.post('/', (req, res, next) => controller.login(req, res, next))

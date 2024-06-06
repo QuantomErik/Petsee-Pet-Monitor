@@ -10,7 +10,8 @@
  * @throws {Error} If the login request fails, an error is thrown with the message from the server.
  */
 export async function loginUser(credentials) {
-    const response = await fetch('https://cscloud7-95.lnu.se/petsee/login', {
+    const response = await fetch('https://cscloud7-95.lnu.se/petsee/api/login', {
+   /* const response = await fetch('https://cscloud7-95.lnu.se/petsee/login', { */
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),

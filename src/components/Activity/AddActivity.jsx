@@ -93,7 +93,8 @@ export const ActivityDetails = () => {
          }
 
         try {
-            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/activitydetails`, {
+            /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/activitydetails`, { */
+            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/${currentPet.id}/activitydetails`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

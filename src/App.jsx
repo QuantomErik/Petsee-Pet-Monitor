@@ -104,17 +104,18 @@ return (
 
         <Route path="/activitydetails" element={isAuthenticated ? <ActivityDetails /> : <Navigate replace to="/activitydetails" />} />
         <Route path="/activitydetails/addactivity" element={isAuthenticated ? <AddActivity /> : <Navigate replace to="/activitydetails/addactivity" />} />
-        <Route path="/activitydetails/edit/:id" element={isAuthenticated ? <EditActivity /> : <Navigate replace to="/login" />} />
+        <Route path="/activitydetails/edit/:id" element={isAuthenticated ? <EditActivity /> : <Navigate replace to="/activitydetails" />} />
 
         <Route path="/scheduledetails" element={isAuthenticated ? <ScheduleDetails /> : <Navigate replace to="/scheduledetails" />} />
 
         <Route path="/more" element={isAuthenticated ? <More onLogout={handleLogout} /> : <Navigate replace to="/login" />} />
+        <Route path="/more" element={isAuthenticated ? <More /> : <Navigate replace to="/more" />} />
         <Route path="/more/addpet" element={isAuthenticated ? <PetDetails /> : <Navigate replace to="/more/addpet" />} />
         <Route path="/petdetails/:id" element={isAuthenticated ? <EditPetDetails /> : <Navigate replace to="/petdetails/:id" />} />
 
 
         <Route path="/todolist" element={isAuthenticated ? <ToDoList /> : <Navigate replace to="/todolist" />} />
-        <Route path="/todolist/edit/:id" element={isAuthenticated ? <EditToDoList /> : <Navigate replace to="/todolist" />} />
+        <Route path="/todolist/edit/:id" element={isAuthenticated ? <EditToDoList /> : <Navigate replace to="/pet/todolist" />} />
 
         <Route path="/customerservice" element={<CustomerService />} />
         <Route path="/faq" element={<Faq />} />

@@ -10,7 +10,7 @@ import auth from '../middlewares/auth.js'
 export const router = express.Router()
 const scheduleController = new ScheduleController()
 
-router.post('/pet/scheduledetails', auth.authenticateJWT, (req, res, next) => {
+/* router.post('/pet/scheduledetails', auth.authenticateJWT, (req, res, next) => {
     scheduleController.saveScheduleDetails(req, res, next)
 })
 
@@ -23,5 +23,21 @@ router.put('/pet/scheduledetails/:id', auth.authenticateJWT, (req, res, next) =>
 })
 
 router.delete('/pet/scheduledetails/:id', (req, res, next) => {
+    scheduleController.deleteScheduleDetails(req, res, next)
+}) */
+
+router.post('/', auth.authenticateJWT, (req, res, next) => {
+    scheduleController.saveScheduleDetails(req, res, next)
+})
+
+router.get('/', auth.authenticateJWT, (req, res, next) => {
+    scheduleController.getScheduleDetails(req, res, next)
+})
+
+router.put('/:id', auth.authenticateJWT, (req, res, next) => {
+    scheduleController.updateScheduleDetails(req, res, next)
+})
+
+router.delete('/:id', (req, res, next) => {
     scheduleController.deleteScheduleDetails(req, res, next)
 })
