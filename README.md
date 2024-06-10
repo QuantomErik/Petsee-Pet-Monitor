@@ -102,10 +102,8 @@ The Petsee application will be continuously updated based on user feedback and n
 ## Contact
 For any inquiries or support, please contact:
 
-**Name**: Erik Yang  
-**Username**: ey222ci  
-**Study Form**: Distance  
-**Email**: [ey222ci@student.lnu.se](mailto:ey222ci@student.lnu.se)
+**Name**: Erik Yang    
+**Email**: [erikyang@hotmail.com](mailto:erikyang@hotmail.com)
 
 ---
 
