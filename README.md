@@ -1,12 +1,10 @@
 # Petsee
 
 ### Author: Erik Yang
-### Date: 2024-05-26
 
 ## Table of Contents
 - [Petsee](#petsee)
     - [Author: Erik Yang](#author-erik-yang)
-    - [Date: 2024-05-26](#date-2024-05-26)
   - [Table of Contents](#table-of-contents)
   - [Abstract](#abstract)
   - [Introduction and Background](#introduction-and-background)
