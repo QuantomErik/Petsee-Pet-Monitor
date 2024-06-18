@@ -18,6 +18,7 @@ import PetDropdown from './components/PetDropDown/PetDropdown'
 import ToDoList from './components/ToDoList/ToDoList'
 import EditToDoList from './components/ToDoList/EditToDoList'
 import Dock from './components/Dock/Dock.jsx'
+import WelcomeModal from './components/WelcomeModal/WelcomeModal.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import { ToastContainer } from 'react-toastify'
@@ -39,10 +40,22 @@ import './App.css'
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
+  const [showWelcome, setShowWelcome] = useState(false);
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     setIsAuthenticated(!!token)
 }, [])
+
+useEffect(() => {
+  if (isAuthenticated) {
+    const isFirstTime = localStorage.getItem('isFirstTime')
+    if (!isFirstTime) {
+      setShowWelcome(true);
+      localStorage.setItem('isFirstTime', 'false')
+    }
+  }
+}, [isAuthenticated])
 
 
 /**
@@ -59,6 +72,7 @@ const App = () => {
     localStorage.removeItem('token')
     setIsAuthenticated(false)
 }
+
 
 return (
   <Router basename="/petsee">
@@ -122,7 +136,10 @@ return (
         <Route path="/" element={<Navigate replace to={isAuthenticated ? "/home" : "/login"} />} />
       </Routes>
   
+      
     <Dock />
+
+    <WelcomeModal show={showWelcome} onHide={() => setShowWelcome(false)} />
 
     </div>
   </Router>
