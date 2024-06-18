@@ -91,7 +91,7 @@ const useSaveDietDetails = (isSubmitting, dietDetails, currentPet) => {
       }
       const method = 'POST'
       /* const endpoint = `https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails` */
-      const endpoint = `https://cscloud7-95.lnu.se/petsee/api/${currentPet.id}/dietdetails`
+      const endpoint = `https://erikyang.se/petsee/api/${currentPet.id}/dietdetails`
   
       try {
         console.log("Sending payload:", JSON.stringify(payload))
@@ -221,11 +221,11 @@ const DietDetails = () => {
     try {
       console.log("Sending payload:", JSON.stringify(payload))
       /* console.log("URL:", `https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`) */
-      console.log("URL:", `https://cscloud7-95.lnu.se/petsee/api/${currentPet.id}/dietdetails`)
+      console.log("URL:", `https://erikyang.se/petsee/api/${currentPet.id}/dietdetails`)
       console.log("Payload:", JSON.stringify(payload))
 
      /*  const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`, { */
-     const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/${currentPet.id}/dietdetails`, {
+     const response = await fetch(`https://erikyang.se/petsee/api/${currentPet.id}/dietdetails`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -275,7 +275,7 @@ const DietDetails = () => {
     try {
       
       /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${currentPet.id}/dietdetails`, { */
-      const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/${currentPet.id}/dietdetails`, {
+      const response = await fetch(`https://erikyang.se/petsee/api/${currentPet.id}/dietdetails`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

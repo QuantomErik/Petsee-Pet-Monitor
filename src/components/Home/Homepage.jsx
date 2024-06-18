@@ -35,6 +35,9 @@ const Homepage = () => {
   const { meals} = useSelector((state) => state.meals)
   const currentPet = useSelector((state) => state.pets.currentPet)
 
+
+  
+
    /**
    * Fetch activities for the selected pet and date whenever the current pet or selected date changes.
    */
@@ -90,13 +93,25 @@ const Homepage = () => {
     }
   }, [meals])
 
-  const calorieGoal = currentPet?.caloriesDay
+ /*  const calorieGoal = currentPet?.caloriesDay
   const percentage = Math.min((dietDetails.totalCalories / calorieGoal) * 100, 100)
   const activityGoal = currentPet?.activitiesDay
   const activitiesCompleted = activities.length
-  const activityPercentage = (activitiesCompleted / activityGoal) * 100
+  const activityPercentage = (activitiesCompleted / activityGoal) * 100 */
 
-  return (
+  const calorieGoal = currentPet?.caloriesDay || 0
+  const percentage = calorieGoal ? Math.min((dietDetails.totalCalories / calorieGoal) * 100, 100) : 0
+  const activityGoal = currentPet?.activitiesDay || 0
+  const activitiesCompleted = activities.length
+  const activityPercentage = activityGoal ? (activitiesCompleted / activityGoal) * 100 : 0
+
+  /* const dietText = currentPet ? `${percentage.toFixed(0)}%` : "Select a pet"
+  const activityText = currentPet ? `${activityPercentage.toFixed(0)}%` : "Select a pet" */
+
+   const dietText = currentPet ? (meals.length > 0 ? `${percentage.toFixed(0)}%` : "Add meals") : "Select a pet"
+  const activityText = currentPet ? (activities.length > 0 ? `${activityPercentage.toFixed(0)}%` : "Add activities") : "Select a pet"
+
+  /* return (
     <div className="home-background">
       <div className="custom-date-picker">
         <DatePicker
@@ -206,6 +221,123 @@ const Homepage = () => {
 
 Homepage.propTypes = {
   onLogout: PropTypes.func.isRequired,
+}
+
+export default Homepage */
+
+
+return (
+  <div className="home-background">
+    <div className="custom-date-picker">
+      <DatePicker
+        selected={selectedDate}
+        onChange={(date) => {
+          setSelectedDate(date)
+          console.log(`Date changed to: ${date.toISOString().split('T')[0]}`)
+        }}
+      />
+    </div>
+    <div className="pet-details-cards">
+      <Card className="home-card" title="Diet" style={{ width: '23rem' }} onClick={() => navigate('/dietdetails')}>
+        <Card.Img variant="top" src={addMealImage} className="card-image-top" />
+        <Card.Body>
+          <Card.Title>Diet</Card.Title>
+          <button className="icon-button fas fa-edit" onClick={() => navigate('/dietdetails')}></button>
+        </Card.Body>
+      </Card>
+
+      <Card className="home-card" title="Activity" style={{ width: '23rem' }} onClick={() => navigate('/activitydetails')}>
+        <Card.Img variant="top" src={activityImage} className="card-image-top" />
+        <Card.Body>
+          <Card.Title>Activity</Card.Title>
+          <button className="icon-button fas fa-edit" onClick={() => navigate('/activitydetails')}></button>
+        </Card.Body>
+      </Card>
+
+      <Card className="home-card" title="Schedule" style={{ width: '23rem' }} onClick={() => navigate('/scheduledetails')}>
+        <Card.Img variant="top" src={bowlImage} className="card-image-top" />
+        <Card.Body>
+          <Card.Title>Schedule</Card.Title>
+          <button className="icon-button fas fa-edit" onClick={() => navigate('/scheduledetails')}></button>
+        </Card.Body>
+      </Card>
+
+      <Card className="home-card" title="ToDoList" style={{ width: '23rem' }} onClick={() => navigate('/todolist')}>
+        <Card.Img variant="top" src={petDetailsImage} className="card-image-top" />
+        <Card.Body>
+          <Card.Title>ToDoList</Card.Title>
+          <button className="icon-button fas fa-edit" onClick={() => navigate('/todolist')}></button>
+        </Card.Body>
+      </Card>
+
+      <div className="summary-cards-container">
+        <Card border="primary" className="summary-card-home" style={{ width: '27rem' }}>
+          <Card.Header className="custom-heading-home">Diet</Card.Header>
+          <Card.Body>
+            <div className="progress-container">
+              <div style={{ width: '90%', height: '270px', margin: 'auto' }}>
+                <CircularProgressbar
+                  value={percentage}
+                  text={dietText} // Display "Select a pet" if no pet is selected
+                  styles={buildStyles({
+                    textSize: '10px',
+                    textColor: 'black',
+                    pathColor: `rgba(62, 152, 199, ${percentage / 100})`,
+                    trailColor: '#d6d6d6',
+                  })}
+                />
+              </div>
+
+              <div className="progress-text">
+                <p>
+                  <span className="quadrant" style={{ backgroundColor: 'blue' }}></span>Total Calories: {dietDetails.totalCalories} kcal
+                </p>
+                <p>
+                  <span className="quadrant" style={{ backgroundColor: 'green' }}></span>Calorie Goal: {calorieGoal} kcal
+                </p>
+                <p>
+                  <span className="quadrant" style={{ backgroundColor: 'red' }}></span>Total Quantity: {dietDetails.totalQuantity} grams
+                </p>
+              </div>
+            </div>
+          </Card.Body>
+        </Card>
+
+        <Card border="primary" className="summary-card-home" style={{ width: '27rem' }}>
+          <Card.Header className="custom-heading-home">Active</Card.Header>
+          <Card.Body>
+            <div className="progress-container">
+              <div style={{ width: '90%', height: '270px', margin: 'auto' }}>
+                <CircularProgressbar
+                  value={activityPercentage}
+                  text={activityText} // Display "Select a pet" if no pet is selected
+                  styles={buildStyles({
+                    textSize: '10px',
+                    textColor: 'black',
+                    pathColor: `rgba(62, 152, 199, ${activityPercentage / 100})`,
+                    trailColor: '#d6d6d6',
+                  })}
+                />
+              </div>
+              <div className="progress-text">
+                <p>
+                  <span className="quadrant" style={{ backgroundColor: 'blue' }}></span>Activities Completed: {activitiesCompleted}
+                </p>
+                <p>
+                  <span className="quadrant" style={{ backgroundColor: 'green' }}></span>Activities Goal: {activityGoal}
+                </p>
+              </div>
+            </div>
+          </Card.Body>
+        </Card>
+      </div>
+    </div>
+  </div>
+)
+}
+
+Homepage.propTypes = {
+onLogout: PropTypes.func.isRequired,
 }
 
 export default Homepage

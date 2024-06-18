@@ -15,7 +15,7 @@ export const fetchActivitiess = createAsyncThunk(
         const token = localStorage.getItem('token')
         /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/${petId}/activitydetails?date=${date}`, { */
         /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/${petId}/activitydetails?date=${date}`, { */
-           const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/${petId}/activitydetails?date=${date}`, {
+           const response = await fetch(`https://erikyang.se/petsee/api/${petId}/activitydetails?date=${date}`, {
             
             headers: { 'Authorization': `Bearer ${token}` },
         })

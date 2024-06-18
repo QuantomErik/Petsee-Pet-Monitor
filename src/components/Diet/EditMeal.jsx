@@ -78,7 +78,7 @@ const brandsData = {
             setIsLoading(true)
             try {
                /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/dietdetails/${id}`, { */
-               const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/dietdetails/${id}`, {
+               const response = await fetch(`https://erikyang.se/petsee/api/dietdetails/${id}`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 })
                 const data = await response.json()
@@ -135,7 +135,7 @@ const brandsData = {
         setIsLoading(true)
         try {
             /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/dietdetails/edit/${id}`, { */
-            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/dietdetails/edit/${id}`, {
+            const response = await fetch(`https://erikyang.se/petsee/api/dietdetails/edit/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ const brandsData = {
         setIsLoading(true)
         try {
             /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/dietdetails/edit/${id}`, { */
-            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/dietdetails/edit/${id}`, {
+            const response = await fetch(`https://erikyang.se/petsee/api/dietdetails/edit/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`

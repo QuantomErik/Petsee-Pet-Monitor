@@ -16,7 +16,7 @@ export const fetchPets = createAsyncThunk('pets/fetchPets', async () => {
    
 
   /* const response = await fetch('https://cscloud7-95.lnu.se/petsee/pet/petdetails', { */
-  const response = await fetch('https://cscloud7-95.lnu.se/petsee/api/petdetails', {
+  const response = await fetch('https://erikyang.se/petsee/api/petdetails', {
     headers: { 'Authorization': `Bearer ${token}`,
   },
 }).catch(err => console.error('Fetch error:', err))

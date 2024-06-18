@@ -22,7 +22,7 @@ export async function registerUser(userData) {
     }
   
    /*  const response = await fetch('https://cscloud7-95.lnu.se/petsee/register', { */
-   const response = await fetch('https://cscloud7-95.lnu.se/petsee/api/register', {
+   const response = await fetch('https://erikyang.se/petsee/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData),

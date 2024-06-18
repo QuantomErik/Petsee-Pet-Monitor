@@ -46,10 +46,11 @@ mongoose.set('debug', true)
     helmet.contentSecurityPolicy({
       directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        'default-src': ["'self'"],
-        
-        'script-src': ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net', 'gc.kis.v2.scr.kaspersky-labs.com'],
-        'connect-src': ["'self'", 'wss://gc.kis.v2.scr.kaspersky-labs.com', 'https://gc.kis.v2.scr.kaspersky-labs.com', 'http://localhost:5173',]
+      'default-src': ["'self'"],
+      'script-src': ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net', 'gc.kis.v2.scr.kaspersky-labs.com'],
+      'connect-src': ["'self'", 'wss://gc.kis.v2.scr.kaspersky-labs.com', 'https://gc.kis.v2.scr.kaspersky-labs.com', 'http://localhost:5173', 'https://erikyang.se'],
+      'img-src': ["'self'", 'data:', 'https://www.erikyang.se/petsee/assets/images/'],
+      'style-src': ["'self'", "'unsafe-inline'"]
       }
     })
   )

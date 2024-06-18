@@ -35,7 +35,7 @@ function EditActivity() {
             setIsLoading(true)
             try {
                 /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/activitydetails/${id}`, { */
-                const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/activitydetails/${id}`, {
+                const response = await fetch(`https://erikyang.se/petsee/api/activitydetails/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
@@ -82,7 +82,7 @@ function EditActivity() {
         setIsLoading(true)
         try {
             /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/activitydetails/edit/${id}`, { */
-            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/activitydetails/edit/${id}`, {
+            const response = await fetch(`https://erikyang.se/petsee/api/activitydetails/edit/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ function EditActivity() {
         setIsLoading(true)
         try {
             /* const response = await fetch(`https://cscloud7-95.lnu.se/petsee/pet/activitydetails/edit/${id}`, { */
-            const response = await fetch(`https://cscloud7-95.lnu.se/petsee/api/activitydetails/edit/${id}`, {
+            const response = await fetch(`https://erikyang.se/petsee/api/activitydetails/edit/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
