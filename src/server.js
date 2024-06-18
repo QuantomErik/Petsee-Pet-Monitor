@@ -48,9 +48,17 @@ mongoose.set('debug', true)
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
       'default-src': ["'self'"],
       'script-src': ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net', 'gc.kis.v2.scr.kaspersky-labs.com'],
-      'connect-src': ["'self'", 'wss://gc.kis.v2.scr.kaspersky-labs.com', 'https://gc.kis.v2.scr.kaspersky-labs.com', 'http://localhost:5173', 'https://erikyang.se'],
-      'img-src': ["'self'", 'data:', 'https://www.erikyang.se/petsee/assets/images/'],
-      'style-src': ["'self'", "'unsafe-inline'"]
+      'style-src': ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', 'cdnjs.cloudflare.com'],
+      'font-src': ["'self'", 'fonts.gstatic.com', 'cdnjs.cloudflare.com'],
+      'connect-src': [
+        "'self'",
+        'wss://gc.kis.v2.scr.kaspersky-labs.com',
+        'https://gc.kis.v2.scr.kaspersky-labs.com',
+        'http://localhost:5173',
+        'https://erikyang.se',
+        'https://www.erikyang.se',
+      ],
+      'img-src': ["'self'", 'data:', 'https://www.erikyang.se', 'https://erikyang.se'],
       }
     })
   )
