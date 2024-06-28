@@ -105,8 +105,8 @@ const Homepage = () => {
   const activitiesCompleted = activities.length
   const activityPercentage = activityGoal ? (activitiesCompleted / activityGoal) * 100 : 0
 
-  /* const dietText = currentPet ? `${percentage.toFixed(0)}%` : "Select a pet"
-  const activityText = currentPet ? `${activityPercentage.toFixed(0)}%` : "Select a pet" */
+  /* const dietText = currentPet ? `${percentage.toFixed(0)}%` : "Select a pet" */
+  /* const activityText = currentPet ? `${activityPercentage.toFixed(0)}%` : "Select a pet" */
 
    const dietText = currentPet ? (meals.length > 0 ? `${percentage.toFixed(0)}%` : "Add meals") : "Select a pet"
   const activityText = currentPet ? (activities.length > 0 ? `${activityPercentage.toFixed(0)}%` : "Add activities") : "Select a pet"
@@ -278,7 +278,8 @@ return (
               <div style={{ width: '90%', height: '270px', margin: 'auto' }}>
                 <CircularProgressbar
                   value={percentage}
-                  text={dietText} // Display "Select a pet" if no pet is selected
+                  text={dietText}
+                  /* text={`${percentage.toFixed(0)}%`} */
                   styles={buildStyles({
                     textSize: '10px',
                     textColor: 'black',
@@ -310,7 +311,8 @@ return (
               <div style={{ width: '90%', height: '270px', margin: 'auto' }}>
                 <CircularProgressbar
                   value={activityPercentage}
-                  text={activityText} // Display "Select a pet" if no pet is selected
+                  text={activityText}
+                  /* text={`${activityPercentage.toFixed(0)}%`} */
                   styles={buildStyles({
                     textSize: '10px',
                     textColor: 'black',

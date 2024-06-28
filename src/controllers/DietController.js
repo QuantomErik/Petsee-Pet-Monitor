@@ -13,7 +13,8 @@ export class DietController {
      * @param {Object} res - Express response object.
      * @returns {Promise<void>}
      */
-    async getDietDetails(req, res) {
+
+     async getDietDetails(req, res) {
         console.log("Fetching meals for petId:", req.params.petId)
         try {
             const petId = req.params.petId
@@ -27,12 +28,23 @@ export class DietController {
                 return res.status(400).json({ message: 'Date is required' })
             }
 
+            const startDate = new Date(date)
+            startDate.setHours(0, 0, 0, 0)
+
+            const endDate = new Date(date)
+            endDate.setHours(23, 59, 59, 999)
+
             const dietDetails = await DietModel.find({
                 petId: petId,
+                createdAt: {
+                    $gte: startDate,
+                    $lte: endDate
+                }
             }).lean()
 
-            console.log("Activities fetched:", dietDetails)
+            console.log("Activities fetched:", dietDetails);
 
+            
             res.json({ meals: dietDetails })
         } catch (error) {
             console.error('Error fetching diet details:', error)

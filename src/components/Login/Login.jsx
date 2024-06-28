@@ -25,10 +25,10 @@ const Login = (props) => {
   const [showFlash, setShowFlash] = useState(false)
 
   const features = [
-    { title: 'Diet Monitoring', description: 'Track and manage your pet’s dietary needs.' },
+    { title: 'Diet Monitoring', description: 'Track and manage dietary needs.' },
     { title: 'Activity Monitoring', description: 'Monitor your pet’s physical activities.' },
-    { title: 'Nutritional Facts', description: 'Get insights into the nutritional values.' },
-    { title: 'Routine Planning', description: 'Plan and schedule your pet’s daily routines.' },
+    { title: 'Nutritional Facts', description: 'Get insights into nutritional values.' },
+    { title: 'Routine Planning', description: 'Plan and schedule daily routines.' },
   ]
 
   /**
