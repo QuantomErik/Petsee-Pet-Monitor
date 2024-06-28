@@ -1,4 +1,5 @@
-import { useState } from 'react'
+/* import { useState } from 'react' */
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import FeatureCard from '../Home/FeatureCard'
 import Container from 'react-bootstrap/Container'
@@ -7,6 +8,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { loginUser } from './LoginUser.js'
+import { toast } from 'react-toastify';
 
 /**
  * Login component that allows the user to log in to the Petsee application.
@@ -23,6 +25,14 @@ const Login = (props) => {
   const [password, setPassword] = useState('')
   const [flashMessage, setFlashMessage] = useState('')
   const [showFlash, setShowFlash] = useState(false)
+
+  useEffect(() => {
+    const showRegistrationToast = localStorage.getItem('showRegistrationToast')
+    if (showRegistrationToast) {
+      toast.success('Registration successful')
+      localStorage.removeItem('showRegistrationToast')
+    }
+  }, [])
 
   const features = [
     { title: 'Diet Monitoring', description: 'Track and manage dietary needs.' },

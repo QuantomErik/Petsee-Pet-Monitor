@@ -94,7 +94,7 @@ return (
                 <Nav.Link as={Link} to="/register" eventKey="/register">Register</Nav.Link>
               </>
             )}
-            <Nav.Link as={Link} to="/support" eventKey="/support">Support</Nav.Link>
+            {/* <Nav.Link as={Link} to="/support" eventKey="/support">Support</Nav.Link> */}
             <Nav.Link as={Link} to="/contact" eventKey="/contact">Contact</Nav.Link>
           </Nav>
 

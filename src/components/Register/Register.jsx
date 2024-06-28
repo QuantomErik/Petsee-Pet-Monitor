@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { registerUser } from './RegisterUser.js';
+import { registerUser } from './RegisterUser.js'
+/* import { toast } from 'react-toastify' */
 
 
 /**
@@ -47,7 +48,12 @@ const Register = () => {
         try {
             const data = await registerUser(userData)
             console.log('Registration successful:', data)
+            localStorage.setItem('showRegistrationToast', 'true')
             navigate('/login')
+            /* toast.success('Registration successful', { onClose: () => navigate('/login') })
+            setTimeout(() => {
+                navigate('/login')
+            }, 1000) */
             
         } catch (error) {
             setErrorMessage(error.message)
