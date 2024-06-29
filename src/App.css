@@ -8,6 +8,35 @@ html, body, #root {
   padding-bottom: 20px;
 }
 
+/* Removes padding and adjusts styles specifically on login page */
+body.login-page, body.login-page html, body.login-page #root {
+  padding-bottom: 0 !important;
+  height: 100vh; /* Ensures full viewport height with no overflow */
+  overflow: hidden; /* Prevents any kind of scrolling */
+}
+
+#contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88vh;
+  margin: 2;
+  overflow: auto;
+}
+
+
+
+
+/* .no-padding-bottom {
+  padding-bottom: 0;
+} */
+
+
+/* body.no-padding-bottom {
+  padding-bottom: 0 !important;
+} */
+
+
 
 .logo {
   height: 6em;
@@ -46,6 +75,7 @@ html, body, #root {
   display: flex;     
   align-items: center; 
   justify-content: center;
+  /* overflow: hidden; */
 }
 
 .login-container {

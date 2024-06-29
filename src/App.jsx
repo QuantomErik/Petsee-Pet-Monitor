@@ -27,6 +27,11 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import { useEffect } from 'react'
 import './App.css'
 
+import Contact from './components/Contact/Contact.jsx'
+/* import { useBodyClass } from './hooks/useBodyClass.js' */
+import BodyClassManager from './components/BodyClassManager.js'
+
+
 
 /**
  * Main application component.
@@ -38,6 +43,7 @@ import './App.css'
  * )
  */
 const App = () => {
+  
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const [showWelcome, setShowWelcome] = useState(false);
@@ -76,6 +82,7 @@ useEffect(() => {
 
 return (
   <Router basename="/petsee">
+    <BodyClassManager />
   <div className="text-gray-800">
     <Navbar bg="light" expand="lg">
       <Container>
@@ -87,6 +94,7 @@ return (
                 
                 <Nav.Link as={Link} to="/home" eventKey="/home">Home</Nav.Link>
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link as={Link} to="/contact" eventKey="/contact">Contact</Nav.Link>
               </>
             ) : (
               <>
@@ -94,8 +102,7 @@ return (
                 <Nav.Link as={Link} to="/register" eventKey="/register">Register</Nav.Link>
               </>
             )}
-            {/* <Nav.Link as={Link} to="/support" eventKey="/support">Support</Nav.Link> */}
-            <Nav.Link as={Link} to="/contact" eventKey="/contact">Contact</Nav.Link>
+           {/*  <Nav.Link as={Link} to="/contact" eventKey="/contact">Contact</Nav.Link> */}
           </Nav>
 
           {isAuthenticated && <PetDropdown />}
@@ -134,10 +141,14 @@ return (
         <Route path="/customerservice" element={<CustomerService />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/" element={<Navigate replace to={isAuthenticated ? "/home" : "/login"} />} />
+        <Route path="/contact" element={<Contact />} />
+
       </Routes>
   
       
     <Dock />
+
+    {isAuthenticated && <Dock isAuthenticated={isAuthenticated} />}
 
     <WelcomeModal show={showWelcome} onHide={() => setShowWelcome(false)} />
 
