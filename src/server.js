@@ -14,8 +14,6 @@ import helmet from 'helmet'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import path from 'path';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const __dirname = path.resolve();
 
