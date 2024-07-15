@@ -35,7 +35,7 @@ const Login = (props) => {
   }, [])
 
   const features = [
-    { title: 'Diet MonitorinG', description: 'Track and manage dietary needs.' },
+    { title: 'Diet Monitoring', description: 'Track and manage dietary needs.' },
     { title: 'Activity Monitoring', description: 'Monitor your pet’s physical activities.' },
     { title: 'Nutritional Facts', description: 'Get insights into nutritional values.' },
     { title: 'Routine Planning', description: 'Plan and schedule daily routines.' },
